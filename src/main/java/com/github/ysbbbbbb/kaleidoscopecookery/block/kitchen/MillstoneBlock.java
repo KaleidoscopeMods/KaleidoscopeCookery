@@ -1,14 +1,17 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IMillstone;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.MillstoneBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -164,6 +167,10 @@ public class MillstoneBlock extends HorizontalDirectionalBlock implements Entity
             BlockEntity blockEntity = pLevel.getBlockEntity(centerPos);
             if (blockEntity instanceof MillstoneBlockEntity millstone && !millstone.hasEntity() && millstone.canBindEntity(mob)) {
                 millstone.bindEntity(mob);
+                // 检查实体的乘客是不是玩家，如果是，那么给予成就
+                if (mob.getFirstPassenger() instanceof ServerPlayer player) {
+                    ModTrigger.EVENT.trigger(player, ModEventTriggerType.DRIVE_THE_MILLSTONE);
+                }
             }
         }
     }

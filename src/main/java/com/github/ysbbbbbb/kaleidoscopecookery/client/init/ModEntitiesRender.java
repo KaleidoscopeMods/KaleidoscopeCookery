@@ -7,7 +7,9 @@ import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.ScarecrowRen
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.SitRenderer;
 import com.github.ysbbbbbb.kaleidoscopecookery.entity.ScarecrowEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.entity.SitEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.entity.ThrowableBaoziEntity;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +21,7 @@ public class ModEntitiesRender {
     public static void onEntityRenderers(EntityRenderersEvent.RegisterRenderers evt) {
         EntityRenderers.register(SitEntity.TYPE, SitRenderer::new);
         EntityRenderers.register(ScarecrowEntity.TYPE, ScarecrowRender::new);
+        EntityRenderers.register(ThrowableBaoziEntity.TYPE, ThrownItemRenderer::new);
     }
 
     @SubscribeEvent

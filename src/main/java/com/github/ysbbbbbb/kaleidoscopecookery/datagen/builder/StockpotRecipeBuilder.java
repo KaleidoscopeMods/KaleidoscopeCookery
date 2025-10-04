@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -50,6 +51,8 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
                 this.ingredients.add(Ingredient.of(tagKey));
             } else if (ingredient instanceof Ingredient ingredientObj) {
                 this.ingredients.add(ingredientObj);
+            } else if (ingredient instanceof RegistryObject) {
+                this.ingredients.add(Ingredient.of(((RegistryObject<Item>) ingredient).get()));
             }
         }
         return this;

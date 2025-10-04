@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.event;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -35,6 +36,9 @@ public class ModModelEvent {
         event.register(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_in_millstone"));
         // 油
         event.register(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/oil_in_millstone"));
+
+        // 重置缓存
+        ItemRenderReplacer.resetCache();
     }
 
     private static ResourceLocation handleModelId(ResourceLocation input) {

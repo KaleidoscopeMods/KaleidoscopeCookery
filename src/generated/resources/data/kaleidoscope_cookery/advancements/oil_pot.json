@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:millstone",
+  "criteria": {
+    "use_millstone_get_oil_pot": {
+      "conditions": {
+        "event": "use_millstone_get_oil_pot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.oil_pot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:oil_pot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.oil_pot.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_millstone_get_oil_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

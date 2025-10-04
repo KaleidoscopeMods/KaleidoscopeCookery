@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.effect;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
@@ -35,6 +36,13 @@ public class WarmthEffect extends BaseEffect {
                         return;
                     }
                 }
+            }
+        }
+        // 如果玩家在下界，那么缓慢恢复
+        if (livingEntity.level().dimension().equals(Level.NETHER)) {
+            // 缓慢的话。那就概率恢复
+            if (livingEntity.getRandom().nextInt(4) == 0) {
+                livingEntity.heal(0.5F);
             }
         }
     }

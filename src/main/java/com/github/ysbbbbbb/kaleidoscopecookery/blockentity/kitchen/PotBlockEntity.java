@@ -380,6 +380,29 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         }
     }
 
+    public void addAllIngredients(List<ItemStack> ingredients, LivingEntity user) {
+        if (this.level == null) {
+            return;
+        }
+        if (this.status != PUT_INGREDIENT) {
+            return;
+        }
+        for (int i = 0; i < Math.min(ingredients.size(), this.inputs.size()); i++) {
+            ItemStack stack = ingredients.get(i);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            // 如果带有容器，此时返还容器
+            Item containerItem = ItemUtils.getContainerItem(stack);
+            if (containerItem != Items.AIR) {
+                ItemUtils.getItemToLivingEntity(user, containerItem.getDefaultInstance());
+            }
+            this.inputs.set(i, stack.copyWithCount(1));
+        }
+        level.playSound(null, this.worldPosition, SoundEvents.LANTERN_PLACE, SoundSource.BLOCKS, 1.0F, 0.5F);
+        this.refresh();
+    }
+
     @Override
     public boolean addIngredient(Level level, LivingEntity user, ItemStack itemStack) {
         if (this.status != PUT_INGREDIENT) {

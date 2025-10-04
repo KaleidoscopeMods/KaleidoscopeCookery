@@ -25,6 +25,7 @@ public class ModRecipeGenerator extends ModRecipeProvider {
         providers.add(new SimplePotRecipeProvider(output));
         providers.add(new StockpotRecipeProvider(output));
         providers.add(new MillstoneRecipeProvider(output));
+        providers.add(new SteamerRecipeProvider(output));
     }
 
     @Override

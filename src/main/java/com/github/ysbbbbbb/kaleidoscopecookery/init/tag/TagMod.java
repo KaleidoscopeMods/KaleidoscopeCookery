@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -93,16 +94,22 @@ public interface TagMod {
      * 默认是任何具有 LIT 标签的方块或拥有此 tag 的方块，故这里需要添加的是没有 LIT 标签的热源方块
      */
     TagKey<Block> HEAT_SOURCE_BLOCKS_WITHOUT_LIT = blockTag("heat_source_blocks_without_lit");
-
     /**
      * 被本模组当做猪油来源的实体
      */
     TagKey<EntityType<?>> PIG_OIL_SOURCE = entityTag("pig_oil_source");
-
     /**
      * 可以拉磨的生物，必须继承自 Mob
      */
     TagKey<EntityType<?>> MILLSTONE_BINDABLE = entityTag("millstone_bindable");
+    /**
+     * 可以促进本模组水稻生长的水生生物
+     */
+    TagKey<EntityType<?>> RICE_GROWTH_BOOSTER = entityTag("rice_growth_booster");
+    /**
+     * 饱腹代偿效果抵御效果较差的伤害来源
+     */
+    TagKey<DamageType> SATIATED_SHIELD_WEAKNESS = damageTypeTag("satiated_shield_weakness");
 
     static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, name));
@@ -114,5 +121,9 @@ public interface TagMod {
 
     static TagKey<EntityType<?>> entityTag(String name) {
         return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(KaleidoscopeCookery.MOD_ID, name));
+    }
+
+    static TagKey<DamageType> damageTypeTag(String name) {
+        return TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(KaleidoscopeCookery.MOD_ID, name));
     }
 }

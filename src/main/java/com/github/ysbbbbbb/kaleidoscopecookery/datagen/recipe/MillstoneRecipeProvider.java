@@ -1,12 +1,17 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.ingredinet.AnyIngredient;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.MillstoneRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.PartialNBTIngredient;
 
 import java.util.function.Consumer;
 
@@ -430,7 +435,10 @@ public class MillstoneRecipeProvider extends ModRecipeProvider {
         MillstoneRecipeBuilder.builder()
                 .setIngredient(Items.WHEAT)
                 .setResult(ModItems.RAW_DOUGH.get())
-                .setCarrier(TagMod.MILLSTONE_DOUGH_CONTAINER)
+                .setCarrier(AnyIngredient.of(
+                        Ingredient.of(TagMod.MILLSTONE_DOUGH_CONTAINER),
+                        PartialNBTIngredient.of(PotionUtils.setPotion(Items.POTION.getDefaultInstance(), Potions.WATER).getOrCreateTag(), Items.POTION)
+                ))
                 .save(consumer, "raw_dough_from_wheat");
 
         MillstoneRecipeBuilder.builder()

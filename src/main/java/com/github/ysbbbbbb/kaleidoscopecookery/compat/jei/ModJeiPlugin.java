@@ -1,10 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.jei;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category.ChoppingBoardRecipeCategory;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category.MillstoneRecipeCategory;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category.PotRecipeCategory;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category.StockpotRecipeCategory;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -23,6 +20,7 @@ public class ModJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new ChoppingBoardRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new StockpotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MillstoneRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new SteamerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -31,6 +29,7 @@ public class ModJeiPlugin implements IModPlugin {
         registration.addRecipes(ChoppingBoardRecipeCategory.TYPE, ChoppingBoardRecipeCategory.getRecipes());
         registration.addRecipes(StockpotRecipeCategory.TYPE, StockpotRecipeCategory.getRecipes());
         registration.addRecipes(MillstoneRecipeCategory.TYPE, MillstoneRecipeCategory.getRecipes());
+        registration.addRecipes(SteamerRecipeCategory.TYPE, SteamerRecipeCategory.getRecipes());
     }
 
     @Override
@@ -39,6 +38,7 @@ public class ModJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(ModItems.CHOPPING_BOARD.get(), ChoppingBoardRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.STOCKPOT.get(), StockpotRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.MILLSTONE.get(), MillstoneRecipeCategory.TYPE);
+        registration.addRecipeCatalyst(ModItems.STEAMER.get(), SteamerRecipeCategory.TYPE);
     }
 
     @Override

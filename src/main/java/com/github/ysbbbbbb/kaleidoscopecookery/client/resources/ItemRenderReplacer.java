@@ -22,25 +22,35 @@ import java.util.function.Function;
 public record ItemRenderReplacer(Map<ResourceLocation, ResourceLocation> pot,
                                  Map<ResourceLocation, ResourceLocation> stockpotCooking,
                                  Map<ResourceLocation, ResourceLocation> stockpotFinished,
-                                 Map<ResourceLocation, ResourceLocation> millstone) {
+                                 Map<ResourceLocation, ResourceLocation> millstone,
+                                 Map<ResourceLocation, ResourceLocation> steamer) {
     public static final Codec<ResourceLocation> RL_CODEC = Codec.STRING.comapFlatMap(ItemRenderReplacer::parseModelLocation, ResourceLocation::toString).stable();
     public static final Codec<ItemRenderReplacer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("pot").forGetter(ItemRenderReplacer::pot),
             Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("stockpot_cooking").forGetter(ItemRenderReplacer::stockpotCooking),
             Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("stockpot_finished").forGetter(ItemRenderReplacer::stockpotFinished),
-            Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("millstone").forGetter(ItemRenderReplacer::millstone)
+            Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("millstone").forGetter(ItemRenderReplacer::millstone),
+            Codec.unboundedMap(ResourceLocation.CODEC, RL_CODEC).fieldOf("steamer").forGetter(ItemRenderReplacer::steamer)
     ).apply(instance, ItemRenderReplacer::new));
 
-    private static final Function<ResourceLocation, BakedModel> CACHE = Util.memoize(id -> {
-        ModelManager modelManager = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getModelManager();
-        if (id instanceof ModelResourceLocation modelRl) {
-            return modelManager.getModel(modelRl);
-        }
-        return modelManager.getModel(id);
-    });
+    private static Function<ResourceLocation, BakedModel> CACHE = createNewCache();
 
     public ItemRenderReplacer() {
-        this(Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
+        this(Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
+    }
+
+    private static Function<ResourceLocation, BakedModel> createNewCache() {
+        return Util.memoize(id -> {
+            ModelManager modelManager = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getModelManager();
+            if (id instanceof ModelResourceLocation modelRl) {
+                return modelManager.getModel(modelRl);
+            }
+            return modelManager.getModel(id);
+        });
+    }
+
+    public static void resetCache() {
+        CACHE = createNewCache();
     }
 
     public static BakedModel getModel(@Nullable Level level, ItemStack stack,
@@ -70,5 +80,6 @@ public record ItemRenderReplacer(Map<ResourceLocation, ResourceLocation> pot,
         this.stockpotCooking.putAll(other.stockpotCooking);
         this.stockpotFinished.putAll(other.stockpotFinished);
         this.millstone.putAll(other.millstone);
+        this.steamer.putAll(other.steamer);
     }
 }

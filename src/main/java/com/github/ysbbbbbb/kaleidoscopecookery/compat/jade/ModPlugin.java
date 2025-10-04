@@ -2,10 +2,12 @@ package com.github.ysbbbbbb.kaleidoscopecookery.compat.jade;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.RecipeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.TableBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.KitchenwareRacksBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.PotBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.SteamerBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.StockpotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.block.*;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +28,8 @@ public class ModPlugin implements IWailaPlugin {
     public static final ResourceLocation FRUIT_BASKET = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "fruit_basket");
     public static final ResourceLocation KITCHENWARE_RACK = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "kitchenware_rack");
     public static final ResourceLocation OIL_POT = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "oil_pot");
+    public static final ResourceLocation RECIPE_BLOCK = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "recipe_block");
+    public static final ResourceLocation STEAMER = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer");
 
     @Override
     public void register(IWailaCommonRegistration registration) {
@@ -34,6 +38,7 @@ public class ModPlugin implements IWailaPlugin {
         registration.registerItemStorage(TableComponentProvider.INSTANCE, TableBlockEntity.class);
         registration.registerItemStorage(PotComponentProvider.INSTANCE, PotBlockEntity.class);
         registration.registerItemStorage(StockpotComponentProvider.INSTANCE, StockpotBlockEntity.class);
+        registration.registerItemStorage(SteamerComponentProvider.INSTANCE, SteamerBlockEntity.class);
     }
 
     @Override
@@ -48,6 +53,9 @@ public class ModPlugin implements IWailaPlugin {
         registration.registerItemStorageClient(TableComponentProvider.INSTANCE);
         registration.registerItemStorageClient(PotComponentProvider.INSTANCE);
         registration.registerItemStorageClient(StockpotComponentProvider.INSTANCE);
+        registration.registerItemStorageClient(SteamerComponentProvider.INSTANCE);
+
         registration.registerBlockComponent(MillstoneComponentProvider.INSTANCE, MillstoneBlock.class);
+        registration.registerBlockComponent(RecipeBlockComponentProvider.INSTANCE, RecipeBlock.class);
     }
 }

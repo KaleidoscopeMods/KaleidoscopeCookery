@@ -20,12 +20,17 @@ public class SimpleCookingRecipeProvider extends ModRecipeProvider {
         simpleCookingRecipe(ModItems.RAW_COW_OFFAL.get(), ModItems.COOKED_COW_OFFAL.get(), 0.35F, consumer);
         simpleCookingRecipe(ModItems.RAW_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get(), 0.35F, consumer);
         simpleCookingRecipe(ModItems.RAW_DONKEY_MEAT.get(), ModItems.COOKED_DONKEY_MEAT.get(), 0.35F, consumer);
+        vanillaCookingRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.SAMSA.get(), 0.35F, consumer);
     }
 
     public void simpleCookingRecipe(ItemLike input, ItemLike output, float experience, Consumer<FinishedRecipe> consumer) {
+        vanillaCookingRecipe(input, output, experience, consumer);
+        PotRecipeBuilder.builder().addInput(input).setResult(output.asItem()).save(consumer);
+    }
+
+    public void vanillaCookingRecipe(ItemLike input, ItemLike output, float experience, Consumer<FinishedRecipe> consumer) {
         simpleCookingRecipe(consumer, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, input, output, experience);
         simpleCookingRecipe(consumer, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, input, output, experience);
         simpleCookingRecipe(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, input, output, experience);
-        PotRecipeBuilder.builder().addInput(input).setResult(output.asItem()).save(consumer);
     }
 }

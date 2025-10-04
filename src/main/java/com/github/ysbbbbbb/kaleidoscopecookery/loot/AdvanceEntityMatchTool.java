@@ -6,8 +6,9 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.Serializer;
@@ -34,15 +35,17 @@ public class AdvanceEntityMatchTool implements LootItemCondition {
 
     @Override
     public Set<LootContextParam<?>> getReferencedContextParams() {
-        return ImmutableSet.of(LootContextParams.LAST_DAMAGE_PLAYER);
+        return ImmutableSet.of(LootContextParams.KILLER_ENTITY);
     }
 
     @Override
     public boolean test(LootContext context) {
-        if (context.hasParam(LootContextParams.LAST_DAMAGE_PLAYER)) {
-            Player player = context.getParam(LootContextParams.LAST_DAMAGE_PLAYER);
-            ItemStack stack = player.getItemBySlot(this.slot);
-            return this.predicate.matches(stack);
+        if (context.hasParam(LootContextParams.KILLER_ENTITY)) {
+            Entity entity = context.getParam(LootContextParams.KILLER_ENTITY);
+            if (entity instanceof LivingEntity livingEntity) {
+                ItemStack stack = livingEntity.getItemBySlot(this.slot);
+                return this.predicate.matches(stack);
+            }
         }
         return false;
     }

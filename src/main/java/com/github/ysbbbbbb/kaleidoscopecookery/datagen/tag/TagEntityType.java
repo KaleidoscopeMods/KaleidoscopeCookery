@@ -28,5 +28,10 @@ public class TagEntityType extends EntityTypeTagsProvider {
                 EntityType.SHEEP, EntityType.GOAT,
                 EntityType.VILLAGER
         );
+
+        this.tag(TagMod.RICE_GROWTH_BOOSTER).add(
+                EntityType.COD, EntityType.SALMON, EntityType.TROPICAL_FISH,
+                EntityType.PUFFERFISH, EntityType.TADPOLE, EntityType.AXOLOTL
+        );
     }
 }

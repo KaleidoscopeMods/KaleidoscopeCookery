@@ -17,6 +17,14 @@
     ],
     "subtitle": "subtitles.kaleidoscope_cookery.block.paddy"
   },
+  "block.recipe_block": {
+    "sounds": [
+      "kaleidoscope_cookery:block/recipe_block/recipe_block_0",
+      "kaleidoscope_cookery:block/recipe_block/recipe_block_1",
+      "kaleidoscope_cookery:block/recipe_block/recipe_block_2"
+    ],
+    "subtitle": "subtitles.kaleidoscope_cookery.block.recipe_block"
+  },
   "block.stockpot": {
     "sounds": [
       "kaleidoscope_cookery:block/stockpot/stockpot_0",

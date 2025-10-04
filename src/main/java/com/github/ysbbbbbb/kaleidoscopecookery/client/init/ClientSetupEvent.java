@@ -6,10 +6,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.client.render.block.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacerReloadListener;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.RawDoughItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.StockpotLidItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,6 +28,9 @@ public class ClientSetupEvent {
         event.enqueueWork(() -> ItemProperties.register(ModItems.STOCKPOT_LID.get(), StockpotLidItem.USING_PROPERTY, StockpotLidItem::getTexture));
         event.enqueueWork(() -> ItemProperties.register(ModItems.OIL_POT.get(), OilPotItem.HAS_OIL_PROPERTY, OilPotItem::getTexture));
         event.enqueueWork(() -> ItemProperties.register(ModItems.RAW_DOUGH.get(), RawDoughItem.PULL_PROPERTY, RawDoughItem::getTexture));
+        event.enqueueWork(() -> ItemProperties.register(ModItems.RECIPE_ITEM.get(), RecipeItem.HAS_RECIPE_PROPERTY, RecipeItem::getTexture));
+        event.enqueueWork(() -> ItemProperties.register(ModItems.TRANSMUTATION_LUNCH_BAG.get(), TransmutationLunchBagItem.HAS_ITEMS_PROPERTY, TransmutationLunchBagItem::getTexture));
+        event.enqueueWork(() -> ItemProperties.register(ModItems.STEAMER.get(), SteamerItem.HAS_ITEMS, SteamerItem::getTexture));
     }
 
     @SubscribeEvent
@@ -44,6 +44,8 @@ public class ClientSetupEvent {
         BlockEntityRenderers.register(ModBlocks.TABLE_BE.get(), TableBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.SHAWARMA_SPIT_BE.get(), ShawarmaSpitBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.MILLSTONE_BE.get(), MillstoneBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.RECIPE_BLOCK_BE.get(), RecipeBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.STEAMER_BE.get(), SteamerBlockEntityRender::new);
     }
 
     @SubscribeEvent

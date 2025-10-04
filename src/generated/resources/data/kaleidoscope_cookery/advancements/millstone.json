@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:root",
+  "criteria": {
+    "drive_the_millstone": {
+      "conditions": {
+        "event": "drive_the_millstone"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.millstone.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:millstone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.millstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "drive_the_millstone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

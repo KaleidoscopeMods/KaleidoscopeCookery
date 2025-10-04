@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.crop;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -12,7 +13,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -42,6 +42,7 @@ import net.minecraftforge.common.ForgeHooks;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class RiceCropBlock extends BaseCropBlock implements SimpleWaterloggedBlock {
     public static final int DOWN = 0;
@@ -50,6 +51,8 @@ public class RiceCropBlock extends BaseCropBlock implements SimpleWaterloggedBlo
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty LOCATION = IntegerProperty.create("location", DOWN, UP);
+
+    private static final Predicate<LivingEntity> RICE_GROWTH_BOOSTER = e -> e.isAlive() && e.getType().is(TagMod.RICE_GROWTH_BOOSTER);
 
     private static final VoxelShape BASE_SHAPE = Block.box(2, 0, 2, 14, 16, 14);
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
@@ -197,7 +200,9 @@ public class RiceCropBlock extends BaseCropBlock implements SimpleWaterloggedBlo
             // 生长速度慢 2 倍
             float speed = getGrowthSpeed(this, serverLevel, pos) / 2;
             // 如果稻田附加 3x3 区域有鱼，那么速度翻倍
-            List<AbstractFish> fish = serverLevel.getEntitiesOfClass(AbstractFish.class, new AABB(pos).inflate(1, 0, 1));
+            List<LivingEntity> fish = serverLevel.getEntitiesOfClass(LivingEntity.class,
+                    new AABB(pos).inflate(1, 0, 1),
+                    RICE_GROWTH_BOOSTER);
             if (!fish.isEmpty()) {
                 float size = (float) (Math.log(fish.size()) / Math.log(2));
                 speed = speed + speed * size;

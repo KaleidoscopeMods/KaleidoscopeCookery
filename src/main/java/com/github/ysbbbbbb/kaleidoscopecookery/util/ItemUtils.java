@@ -18,6 +18,10 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class ItemUtils {
     public static void getItemToLivingEntity(LivingEntity entity, ItemStack stack) {
+        getItemToLivingEntity(entity, stack, -1);
+    }
+
+    public static void getItemToLivingEntity(LivingEntity entity, ItemStack stack, int preferredSlot) {
         if (stack.isEmpty()) {
             return;
         }
@@ -26,7 +30,7 @@ public class ItemUtils {
             entity.setItemInHand(InteractionHand.MAIN_HAND, stack);
             entity.playSound(SoundEvents.ITEM_PICKUP, 0.2F, ((random.nextFloat() - random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         } else if (entity instanceof Player player) {
-            ItemHandlerHelper.giveItemToPlayer(player, stack);
+            ItemHandlerHelper.giveItemToPlayer(player, stack, preferredSlot);
         } else {
             // 否则直接在实体所处位置生成物品
             ItemEntity dropItem = entity.spawnAtLocation(stack);
@@ -66,6 +70,8 @@ public class ItemUtils {
             return Items.GLASS_BOTTLE;
         } else if (stack.is(TagMod.BUCKET_CONTAINER)) {
             return Items.BUCKET;
+        } else if (stack.is(Items.POTION)) {
+            return Items.GLASS_BOTTLE;
         }
         return Items.AIR;
     }

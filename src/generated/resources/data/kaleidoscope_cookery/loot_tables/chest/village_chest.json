@@ -150,6 +150,16 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "kaleidoscope_cookery:recipe_randomly"
+            }
+          ],
+          "name": "kaleidoscope_cookery:recipe_item",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
           "name": "kaleidoscope_cookery:iron_kitchen_knife",
           "weight": 5
         },

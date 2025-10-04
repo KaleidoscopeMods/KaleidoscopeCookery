@@ -100,6 +100,11 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             return;
         }
 
+        // 每秒额外检查一次输出，强制触发 MillstoneFinishEvent 事件
+        if (serverLevel.getGameTime() % 20 == 0 && this.input.isEmpty() && !this.output.isEmpty()) {
+            MinecraftForge.EVENT_BUS.post(new MillstoneFinishEvent(this, this.bindEntity));
+        }
+
         // 旋转一圈的时间 (ticks)
         float rot = this.getRotation(level, 0);
         Vec3 center = Vec3.atBottomCenterOf(this.getBlockPos());

@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Consumer;
 
@@ -32,9 +33,14 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder().addInput(Items.RABBIT).setResult(Items.COOKED_RABBIT).save(consumer);
 
         addSingleItemRecipe(TagCommon.EGGS, ModItems.FRIED_EGG.get(), "egg", consumer);
+        addSingleItemRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.MEAT_PIE.get(), "stuffed_dough_food", consumer);
     }
 
     public void addSingleItemRecipe(TagKey<Item> inputItem, Item outputItem, String idInput, Consumer<FinishedRecipe> consumer) {
+        this.addSingleItemRecipe(inputItem, outputItem, idInput, Ingredient.EMPTY, consumer);
+    }
+
+    public void addSingleItemRecipe(ItemLike inputItem, Item outputItem, String idInput, Consumer<FinishedRecipe> consumer) {
         this.addSingleItemRecipe(inputItem, outputItem, idInput, Ingredient.EMPTY, consumer);
     }
 
@@ -42,6 +48,17 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
     public void addSingleItemRecipe(TagKey<Item> inputItem, Item outputItem, String idInput, Ingredient carrier, Consumer<FinishedRecipe> consumer) {
         for (int i = 1; i <= 9; i++) {
             TagKey<Item>[] inputs = this.getItemsWithCount(inputItem, i);
+            ItemStack output = new ItemStack(outputItem, i);
+            String idOutput = this.getRecipeIdWithCount(outputItem, i);
+            String id = String.format("%s_to_%s", idInput, idOutput);
+            PotRecipeBuilder.builder().addInput(inputs).setResult(output).setCarrier(carrier).save(consumer, id);
+        }
+    }
+
+    @SuppressWarnings("all")
+    public void addSingleItemRecipe(ItemLike inputItem, Item outputItem, String idInput, Ingredient carrier, Consumer<FinishedRecipe> consumer) {
+        for (int i = 1; i <= 9; i++) {
+            ItemLike[] inputs = this.getItemsWithCount(inputItem, i);
             ItemStack output = new ItemStack(outputItem, i);
             String idOutput = this.getRecipeIdWithCount(outputItem, i);
             String id = String.format("%s_to_%s", idInput, idOutput);

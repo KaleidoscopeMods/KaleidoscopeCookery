@@ -17,5 +17,7 @@
   "millstone": {
     "kaleidoscope_cookery:raw_dough": "kaleidoscope_cookery:item/raw_dough_in_millstone",
     "kaleidoscope_cookery:oil_pot": "kaleidoscope_cookery:item/oil_in_millstone"
+  },
+  "steamer": {
   }
 }

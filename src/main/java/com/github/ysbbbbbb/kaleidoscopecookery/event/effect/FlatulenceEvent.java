@@ -3,7 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.event.effect;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModEffects;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
-import com.github.ysbbbbbb.kaleidoscopecookery.network.message.FlatulenceMessage;
+import com.github.ysbbbbbb.kaleidoscopecookery.network.message.SimpleC2SModMessage;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -35,7 +35,7 @@ public class FlatulenceEvent {
             }
             keyShift.consumeClick();
             player.addDeltaMovement(new Vec3(0, 0.75, 0));
-            NetworkHandler.CHANNEL.sendToServer(new FlatulenceMessage());
+            NetworkHandler.CHANNEL.sendToServer(new SimpleC2SModMessage(SimpleC2SModMessage.FLATULENCE));
         }
     }
 

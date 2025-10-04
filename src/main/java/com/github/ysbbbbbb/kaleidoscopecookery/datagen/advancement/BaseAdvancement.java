@@ -266,5 +266,37 @@ public class BaseAdvancement {
                 .parent(scarecrow)
                 .addCriterion("place_head_on_scarecrow", ModEventTrigger.create(ModEventTriggerType.PLACE_HEAD_ON_SCARECROW))
                 .save(saver, modLoc("scarecrow_head"), existingFileHelper);
+
+        // 饭袋成就，独立的
+        Advancement lunchBag = makeGoal(ModItems.TRANSMUTATION_LUNCH_BAG.get(), "transmutation_lunch_bag")
+                .parent(root)
+                .addCriterion("use_transmutation_lunch_bag", ModEventTrigger.create(ModEventTriggerType.USE_TRANSMUTATION_LUNCH_BAG))
+                .save(saver, modLoc("transmutation_lunch_bag"), existingFileHelper);
+
+        // 石磨、蒸笼系列成就
+        Advancement millstone = makeTask(ModItems.MILLSTONE.get(), "millstone")
+                .parent(root)
+                .addCriterion("drive_the_millstone", ModEventTrigger.create(ModEventTriggerType.DRIVE_THE_MILLSTONE))
+                .save(saver, modLoc("millstone"), existingFileHelper);
+
+        Advancement oilPot = makeTask(ModItems.OIL_POT.get(), "oil_pot")
+                .parent(millstone)
+                .addCriterion("use_millstone_get_oil_pot", ModEventTrigger.create(ModEventTriggerType.USE_MILLSTONE_GET_OIL_POT))
+                .save(saver, modLoc("oil_pot"), existingFileHelper);
+
+        Advancement dough = makeTask(ModItems.RAW_DOUGH.get(), "dough")
+                .parent(millstone)
+                .addCriterion("pull_the_dough", ModEventTrigger.create(ModEventTriggerType.PULL_THE_DOUGH))
+                .save(saver, modLoc("dough"), existingFileHelper);
+
+        Advancement steamer = makeTask(ModItems.STEAMER.get(), "steamer")
+                .parent(dough)
+                .addCriterion("use_steamer", ModEventTrigger.create(ModEventTriggerType.USE_STEAMER))
+                .save(saver, modLoc("steamer"), existingFileHelper);
+
+        Advancement baozi = makeGoal(ModItems.BAOZI.get(), "baozi")
+                .parent(steamer)
+                .addCriterion("meat_buns_beat_dogs", ModEventTrigger.create(ModEventTriggerType.MEAT_BUNS_BEAT_DOGS))
+                .save(saver, modLoc("baozi"), existingFileHelper);
     }
 }

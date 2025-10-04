@@ -3,10 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.RawDoughItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.StockpotLidItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -99,7 +96,19 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.RAW_DONKEY_MEAT.get());
         basicItem(ModItems.COOKED_DONKEY_MEAT.get());
         basicItem(ModItems.RAW_NOODLES.get());
+        basicItem(ModItems.STUFFED_DOUGH_FOOD.get());
         basicItem(ModItems.DONKEY_BURGER.get());
+        basicItem(ModItems.DONKEY_SOUP.get());
+
+        basicItem(ModItems.BAOZI.get());
+        basicItem(ModItems.DUMPLING.get());
+        basicItem(ModItems.SAMSA.get());
+        basicItem(ModItems.MANTOU.get());
+        basicItem(ModItems.MEAT_PIE.get());
+
+        basicItem(ModItems.BEEF_NOODLE.get());
+        basicItem(ModItems.HUI_NOODLE.get());
+        basicItem(ModItems.UDON_NOODLE.get());
 
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
@@ -139,13 +148,47 @@ public class ItemModelGenerator extends ItemModelProvider {
                     .override().model(potHasOil).predicate(OilPotItem.HAS_OIL_PROPERTY, 1).end();
         }
 
+        ResourceLocation recipeItem = ForgeRegistries.ITEMS.getKey(ModItems.RECIPE_ITEM.get());
+        if (recipeItem != null) {
+            ItemModelBuilder noRecipe = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "recipe_item_no_recipe"));
+            ItemModelBuilder hasRecipe = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "recipe_item_has_recipe"));
+            getBuilder(recipeItem.toString())
+                    .override().model(noRecipe).predicate(RecipeItem.HAS_RECIPE_PROPERTY, 0).end()
+                    .override().model(hasRecipe).predicate(RecipeItem.HAS_RECIPE_PROPERTY, 1).end();
+        }
+
+        ResourceLocation bagItem = ForgeRegistries.ITEMS.getKey(ModItems.TRANSMUTATION_LUNCH_BAG.get());
+        if (bagItem != null) {
+            ItemModelBuilder noItems = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "transmutation_lunch_bag_no_items"));
+            ItemModelBuilder hasItems = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "transmutation_lunch_bag_has_items"));
+            getBuilder(bagItem.toString())
+                    .override().model(noItems).predicate(TransmutationLunchBagItem.HAS_ITEMS_PROPERTY, 0).end()
+                    .override().model(hasItems).predicate(TransmutationLunchBagItem.HAS_ITEMS_PROPERTY, 1).end();
+        }
+
         ResourceLocation rawDough = ForgeRegistries.ITEMS.getKey(ModItems.RAW_DOUGH.get());
         if (rawDough != null) {
             ItemModelBuilder builder = getBuilder(rawDough.toString());
-            for (int i = 0; i <= 3; i++) {
-                ModelFile.UncheckedModelFile modelFile = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_" + i));
-                builder.override().model(modelFile).predicate(RawDoughItem.PULL_PROPERTY, i).end();
-            }
+            ModelFile.UncheckedModelFile file0 = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_0"));
+            ModelFile.UncheckedModelFile file1 = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_1"));
+            ModelFile.UncheckedModelFile file2 = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_2"));
+            ModelFile.UncheckedModelFile file3 = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_3"));
+            ModelFile.UncheckedModelFile file4 = new ModelFile.UncheckedModelFile(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "item/raw_dough_4"));
+
+            builder.override().model(file0).predicate(RawDoughItem.PULL_PROPERTY, 0).end();
+            builder.override().model(file1).predicate(RawDoughItem.PULL_PROPERTY, 0.1f).end();
+            builder.override().model(file2).predicate(RawDoughItem.PULL_PROPERTY, 1).end();
+            builder.override().model(file3).predicate(RawDoughItem.PULL_PROPERTY, 2).end();
+            builder.override().model(file4).predicate(RawDoughItem.PULL_PROPERTY, 3).end();
+        }
+
+        ResourceLocation steamerItem = ForgeRegistries.ITEMS.getKey(ModItems.STEAMER.get());
+        if (steamerItem != null) {
+            ItemModelBuilder noItems = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer_no_items"));
+            ItemModelBuilder hasItems = basicItem(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer_has_items"));
+            getBuilder(steamerItem.toString())
+                    .override().model(noItems).predicate(SteamerItem.HAS_ITEMS, 0).end()
+                    .override().model(hasItems).predicate(SteamerItem.HAS_ITEMS, 1).end();
         }
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {

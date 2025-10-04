@@ -41,6 +41,12 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
                 .with(sound("block/millstone/millstone_5"));
         this.add(ModSounds.BLOCK_MILLSTONE.get(), millstoneSound);
 
+        SoundDefinition recipeBlockSound = definition().subtitle(subtitle("block.recipe_block"))
+                .with(sound("block/recipe_block/recipe_block_0"))
+                .with(sound("block/recipe_block/recipe_block_1"))
+                .with(sound("block/recipe_block/recipe_block_2"));
+        this.add(ModSounds.BLOCK_RECIPE_BLOCK.get(), recipeBlockSound);
+
         SoundDefinition doughTransformSound = definition().subtitle(subtitle("item.dough_transform"))
                 .with(sound("item/dough_transform"));
         this.add(ModSounds.ITEM_DOUGH_TRANSFORM.get(), doughTransformSound);

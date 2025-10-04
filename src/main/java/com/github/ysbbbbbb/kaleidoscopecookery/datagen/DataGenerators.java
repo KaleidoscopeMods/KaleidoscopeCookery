@@ -3,10 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.BlockModelGenerator;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.BlockStateGenerator;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.ItemModelGenerator;
-import com.github.ysbbbbbb.kaleidoscopecookery.datagen.tag.TagBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.datagen.tag.TagEntityType;
-import com.github.ysbbbbbb.kaleidoscopecookery.datagen.tag.TagItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.datagen.tag.TagPoiType;
+import com.github.ysbbbbbb.kaleidoscopecookery.datagen.tag.*;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,6 +25,7 @@ public class DataGenerators {
         vanillaPack.addProvider(packOutput -> new TagItem(packOutput, registries, block.contentsGetter(), helper));
         vanillaPack.addProvider(packOutput -> new TagPoiType(packOutput, registries, helper));
         vanillaPack.addProvider(packOutput -> new TagEntityType(packOutput, registries, helper));
+        vanillaPack.addProvider(packOutput -> new TagDamage(packOutput, registries, helper));
 
         generator.addProvider(true, new ForgeAdvancementProvider(pack, registries, helper,
                 Collections.singletonList(new AdvancementGenerator())

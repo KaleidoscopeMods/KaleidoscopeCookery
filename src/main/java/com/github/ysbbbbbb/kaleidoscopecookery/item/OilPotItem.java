@@ -57,6 +57,12 @@ public class OilPotItem extends BlockItem {
         }
     }
 
+    public static ItemStack getFullOilPot() {
+        ItemStack stack = new ItemStack(ModBlocks.OIL_POT.get());
+        setOilCount(stack, MAX_COUNT);
+        return stack;
+    }
+
     @OnlyIn(Dist.CLIENT)
     public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
         if (hasOil(stack)) {

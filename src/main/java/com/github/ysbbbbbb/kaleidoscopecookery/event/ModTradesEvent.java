@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.event;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModVillager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.RecipeItem;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems.*;
-import static net.minecraft.world.item.Items.EMERALD;
+import static net.minecraft.world.item.Items.*;
 
 @Mod.EventBusSubscriber(modid = KaleidoscopeCookery.MOD_ID)
 public class ModTradesEvent {
@@ -48,6 +49,23 @@ public class ModTradesEvent {
         addTrade(event, 2, EMERALD, 4, KITCHEN_SHOVEL.get(), 1, 12, 4, 0.1f);
         addTrade(event, 2, EMERALD, 8, IRON_KITCHEN_KNIFE.get(), 1, 12, 4, 0.2f);
         addTrade(event, 2, EMERALD, 3, STOCKPOT_LID.get(), 1, 16, 4, 0.1f);
+
+        addTrade(event, 2, EMERALD, 3,
+                RecipeItem.RecipeRecord.pot(SCRAMBLE_EGG_WITH_TOMATOES, FRIED_EGG, FRIED_EGG, TOMATO, TOMATO),
+                16, 4, 0.1f);
+
+        addTrade(event, 2, EMERALD, 3,
+                RecipeItem.RecipeRecord.pot(BRAISED_BEEF, RAW_COW_OFFAL, RAW_COW_OFFAL, GREEN_CHILI, GREEN_CHILI),
+                16, 4, 0.1f);
+
+        addTrade(event, 2, EMERALD, 3,
+                RecipeItem.RecipeRecord.pot(SWEET_AND_SOUR_PORK.get(), SUGAR, SUGAR, SUGAR, PORKCHOP, PORKCHOP, PORKCHOP),
+                16, 4, 0.1f);
+
+        addTrade(event, 2, EMERALD, 3,
+                RecipeItem.RecipeRecord.pot(FISH_FLAVORED_SHREDDED_PORK.get(), BROWN_MUSHROOM, BROWN_MUSHROOM,
+                        PORKCHOP, PORKCHOP, PORKCHOP, GREEN_CHILI.get()),
+                16, 4, 0.1f);
     }
 
     // 老手交易（等级3）
@@ -55,6 +73,22 @@ public class ModTradesEvent {
         addTrade(event, 3, DELICIOUS_EGG_FRIED_RICE.get(), 1, EMERALD, 3, 16, 5, 0.05f);
         addTrade(event, 3, SUSPICIOUS_STIR_FRY_RICE_BOWL.get(), 3, EMERALD, 1, 16, 5, 0.05f);
         addTrade(event, 3, FoodBiteRegistry.getItem(FoodBiteRegistry.DARK_CUISINE), 5, EMERALD, 2, 16, 5, 0.1f);
+
+        addTrade(event, 3, EMERALD, 3,
+                RecipeItem.RecipeRecord.stockpot(TOMATO_BEEF_BRISKET_SOUP.get(), BEEF, BEEF, BEEF, TOMATO.get(), TOMATO.get(), TOMATO.get()),
+                16, 4, 0.1f);
+
+        addTrade(event, 3, EMERALD, 3,
+                RecipeItem.RecipeRecord.stockpot(PUFFERFISH_SOUP.get(), PUFFERFISH, PUFFERFISH, PUFFERFISH, SEAGRASS),
+                16, 4, 0.1f);
+
+        addTrade(event, 3, EMERALD, 3,
+                RecipeItem.RecipeRecord.stockpot(BORSCHT.get(), BEEF, BEEF, TOMATO.get(), TOMATO.get(), LETTUCE.get()),
+                16, 4, 0.1f);
+
+        addTrade(event, 3, EMERALD, 3,
+                RecipeItem.RecipeRecord.stockpot(BRAISED_BEEF_WITH_POTATOES.get(), BEEF, BEEF, POTATO, POTATO, POTATO),
+                16, 4, 0.1f);
     }
 
     // 专家交易（等级4）
@@ -70,6 +104,34 @@ public class ModTradesEvent {
         addTrade(event, 4, BORSCHT.get(), 1, EMERALD, 2, 16, 10, 0.1f);
         addTrade(event, 4, BEEF_MEATBALL_SOUP.get(), 1, EMERALD, 3, 16, 10, 0.1f);
         addTrade(event, 4, FEARSOME_THICK_SOUP.get(), 1, EMERALD, 5, 16, 10, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.DONGPO_PORK), BAMBOO, BAMBOO, PORKCHOP, PORKCHOP, PORKCHOP),
+                16, 4, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.STARGAZY_PIE), COD, COD, COD, COD, COD, PUMPKIN_PIE),
+                16, 4, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.NETHER_STYLE_SASHIMI),
+                        CRIMSON_FUNGUS, CRIMSON_FUNGUS, WARPED_FUNGUS, WARPED_FUNGUS, TROPICAL_FISH, TROPICAL_FISH),
+                16, 4, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL),
+                        SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL),
+                16, 4, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.SPICY_CHICKEN),
+                        GREEN_CHILI.get(), GREEN_CHILI.get(), GREEN_CHILI.get(), CHICKEN, CHICKEN, CHICKEN, CHICKEN),
+                16, 4, 0.1f);
+
+        addTrade(event, 4, EMERALD, 5,
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.YAKITORI),
+                        GREEN_CHILI.get(), GREEN_CHILI.get(), CHICKEN, CHICKEN, CHICKEN, CHICKEN),
+                16, 4, 0.1f);
     }
 
     // 大师交易（等级5）
@@ -83,6 +145,16 @@ public class ModTradesEvent {
                                  int villagerXp, float priceMultiplier) {
         ItemStack input = createItemStack(inputItem, inputCount);
         ItemStack output = createItemStack(outputItem, outputCount);
+        BasicItemListing listing = new BasicItemListing(input, output, maxUses, villagerXp, priceMultiplier);
+        event.getTrades().get(level).add(listing);
+    }
+
+    // 辅助方法：添加指定 ID 的合成菜谱
+    private static void addTrade(VillagerTradesEvent event, int level, Object inputItem, int inputCount,
+                                 RecipeItem.RecipeRecord record, int maxUses, int villagerXp, float priceMultiplier) {
+        ItemStack input = createItemStack(inputItem, inputCount);
+        ItemStack output = RECIPE_ITEM.get().getDefaultInstance();
+        RecipeItem.setRecipe(output, record);
         BasicItemListing listing = new BasicItemListing(input, output, maxUses, villagerXp, priceMultiplier);
         event.getTrades().get(level).add(listing);
     }

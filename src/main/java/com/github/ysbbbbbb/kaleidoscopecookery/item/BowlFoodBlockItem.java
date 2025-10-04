@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.item.IHasContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.CompatRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -62,7 +63,7 @@ public class BowlFoodBlockItem extends BlockItem implements IHasContainer {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        if (!this.effectInstances.isEmpty()) {
+        if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS) {
             PotionUtils.addPotionTooltip(this.effectInstances, tooltip, 1.0F);
         }
     }

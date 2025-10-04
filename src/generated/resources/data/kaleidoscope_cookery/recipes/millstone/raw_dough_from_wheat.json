@@ -1,7 +1,23 @@
 {
   "type": "kaleidoscope_cookery:millstone",
   "carrier": {
-    "tag": "kaleidoscope_cookery:millstone_dough_container"
+    "type": "kaleidoscopecookery:any_ingredient",
+    "ingredients": [
+      {
+        "type": "minecraft:item",
+        "value": {
+          "tag": "kaleidoscope_cookery:millstone_dough_container"
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "value": {
+          "type": "forge:partial_nbt",
+          "item": "minecraft:potion",
+          "nbt": "{Potion:\"minecraft:water\"}"
+        }
+      }
+    ]
   },
   "ingredient": {
     "item": "minecraft:wheat"

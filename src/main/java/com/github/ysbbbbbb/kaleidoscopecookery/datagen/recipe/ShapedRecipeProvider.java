@@ -229,5 +229,37 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_smooth_stone", has(Items.SMOOTH_STONE))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.RECIPE_ITEM.get())
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', Items.PAPER)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEAMER.get())
+                .pattern("TTT")
+                .pattern("BBB")
+                .define('T', Items.BAMBOO_TRAPDOOR)
+                .define('B', Items.BAMBOO_BLOCK)
+                .unlockedBy("has_bamboo", has(Items.BAMBOO))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.TRANSMUTATION_LUNCH_BAG.get())
+                .pattern(" L ")
+                .pattern("LSL")
+                .pattern("LLL")
+                .define('L', Items.LEATHER)
+                .define('S', Items.NETHER_STAR)
+                .unlockedBy("has_nether_star", has(Items.NETHER_STAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.OIL_POT.get())
+                .pattern("P ")
+                .pattern("BS")
+                .define('P', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                .define('B', Items.BUCKET)
+                .define('S', Items.STICK)
+                .unlockedBy("has_bucket", has(Items.BUCKET))
+                .save(consumer);
     }
 }

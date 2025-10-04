@@ -2,7 +2,7 @@
 	"credit": "by YSBB  2025",
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "kaleidoscope_cookery:item/raw_dough_3"
+		"layer0": "kaleidoscope_cookery:item/raw_dough_4"
 	},
 	"display": {
 		"thirdperson_righthand": {

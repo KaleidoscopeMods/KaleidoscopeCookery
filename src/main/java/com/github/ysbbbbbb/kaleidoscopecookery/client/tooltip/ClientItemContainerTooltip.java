@@ -36,7 +36,8 @@ public class ClientItemContainerTooltip implements ClientTooltipComponent {
         if (emptyTip != null) {
             return 10;
         }
-        return 20;
+        int row = (items.size() - 1) / 8 + 1;
+        return 20 * row;
     }
 
     @Override
@@ -44,7 +45,8 @@ public class ClientItemContainerTooltip implements ClientTooltipComponent {
         if (emptyTip != null) {
             return font.width(emptyTip);
         }
-        return items.size() * 20;
+        int maxInRow = Math.min(items.size(), 8);
+        return maxInRow * 20;
     }
 
     @Override
@@ -54,9 +56,10 @@ public class ClientItemContainerTooltip implements ClientTooltipComponent {
         } else {
             int i = 0;
             for (ItemStack stack : this.items) {
-                int xOffset = pX + i * 20;
-                guiGraphics.renderFakeItem(stack, xOffset, pY);
-                guiGraphics.renderItemDecorations(font, stack, xOffset, pY);
+                int xOffset = pX + (i % 8) * 20;
+                int yOffset = pY + (i / 8) * 20;
+                guiGraphics.renderFakeItem(stack, xOffset, yOffset);
+                guiGraphics.renderItemDecorations(font, stack, xOffset, yOffset);
                 i++;
             }
         }

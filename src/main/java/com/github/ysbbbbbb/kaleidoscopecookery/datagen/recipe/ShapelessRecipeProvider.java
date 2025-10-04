@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -40,5 +41,17 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .requires(ModItems.TOMATO.get())
                 .unlockedBy("has_tomato", has(ModItems.TOMATO.get()))
                 .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.STUFFED_DOUGH_FOOD.get(), 1)
+                .requires(TagCommon.RAW_MEATS)
+                .requires(TagCommon.VEGETABLES)
+                .requires(TagCommon.DOUGH)
+                .unlockedBy("has_dough", has(TagCommon.DOUGH))
+                .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RECIPE_ITEM.get(), 1)
+                .requires(ModItems.RECIPE_ITEM.get())
+                .unlockedBy("has_recipe_item", has(ModItems.RECIPE_ITEM.get()))
+                .save(consumer, "reset_recipe_item");
     }
 }

@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.lootable;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.loot.RecipeRandomlyFunction;
 import net.minecraft.data.loot.packs.VanillaChestLoot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -48,6 +49,9 @@ public class ChestLootTables extends VanillaChestLoot {
 
                 .add(LootItem.lootTableItem(ModItems.STRAW_BLOCK.get()).setWeight(8)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
+
+                .add(LootItem.lootTableItem(ModItems.RECIPE_ITEM.get()).setWeight(8)
+                        .apply(RecipeRandomlyFunction.randomRecipe()))
 
                 .add(LootItem.lootTableItem(ModItems.IRON_KITCHEN_KNIFE.get()).setWeight(5))
                 .add(LootItem.lootTableItem(ModItems.STRAW_HAT.get()).setWeight(5))

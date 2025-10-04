@@ -44,6 +44,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Objects;
 
 public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
@@ -236,8 +237,12 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         return false;
     }
 
+    public StockpotContainer getContainer() {
+        return new StockpotContainer(this.inputs, this.soupBaseId);
+    }
+
     private void setRecipe(Level levelIn) {
-        StockpotContainer container = new StockpotContainer(this.inputs, this.soupBaseId);
+        StockpotContainer container = this.getContainer();
 
         // 触发事件，允许其他 mod 修改配方
         StockpotMatchRecipeEvent.Pre preEvent = new StockpotMatchRecipeEvent.Pre(levelIn, this, container);
@@ -318,6 +323,34 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
             return true;
         }
         return false;
+    }
+
+    public void addAllIngredients(List<ItemStack> ingredients, LivingEntity user) {
+        if (this.level == null) {
+            return;
+        }
+        if (this.hasLid()) {
+            return;
+        }
+        if (this.status != PUT_INGREDIENT) {
+            return;
+        }
+        for (int i = 0; i < Math.min(ingredients.size(), this.inputs.size()); i++) {
+            ItemStack stack = ingredients.get(i);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            // 如果带有容器，此时返还容器
+            Item containerItem = ItemUtils.getContainerItem(stack);
+            if (containerItem != Items.AIR) {
+                ItemUtils.getItemToLivingEntity(user, containerItem.getDefaultInstance());
+            }
+            this.inputs.set(i, stack.copyWithCount(1));
+        }
+        level.playSound(null, this.worldPosition,
+                SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F,
+                ((level.random.nextFloat() - level.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+        this.refresh();
     }
 
     @Override

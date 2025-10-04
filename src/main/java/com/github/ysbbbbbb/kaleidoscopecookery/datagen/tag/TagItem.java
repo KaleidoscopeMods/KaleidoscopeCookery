@@ -67,7 +67,7 @@ public class TagItem extends ItemTagsProvider {
         this.tag(BUCKET_CONTAINER).add(WATER_BUCKET, LAVA_BUCKET, MILK_BUCKET,
                 SALMON_BUCKET, COD_BUCKET, TROPICAL_FISH_BUCKET, PUFFERFISH_BUCKET,
                 AXOLOTL_BUCKET, TADPOLE_BUCKET, POWDER_SNOW_BUCKET);
-        this.tag(MILLSTONE_DOUGH_CONTAINER).add(WATER_BUCKET, POTION);
+        this.tag(MILLSTONE_DOUGH_CONTAINER).add(WATER_BUCKET);
 
         this.addModItems();
         this.addPotIngredient();
@@ -87,10 +87,17 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.CROPS_TOMATO).add(ModItems.TOMATO.get());
         tag(TagCommon.CROPS_LETTUCE).add(ModItems.LETTUCE.get());
         tag(TagCommon.CROPS_RICE).add(ModItems.RICE_SEED.get());
+        tag(TagCommon.CROPS).addTag(TagCommon.CROPS_CHILI_PEPPER)
+                .addTag(TagCommon.CROPS_TOMATO)
+                .addTag(TagCommon.CROPS_LETTUCE)
+                .addTag(TagCommon.CROPS_RICE);
 
         tag(TagCommon.VEGETABLES_CHILI_PEPPER).add(ModItems.RED_CHILI.get(), ModItems.GREEN_CHILI.get());
         tag(TagCommon.VEGETABLES_TOMATO).add(ModItems.TOMATO.get());
         tag(TagCommon.VEGETABLES_LETTUCE).add(ModItems.LETTUCE.get());
+        tag(TagCommon.VEGETABLES).addTag(TagCommon.VEGETABLES_CHILI_PEPPER)
+                .addTag(TagCommon.VEGETABLES_TOMATO)
+                .addTag(TagCommon.VEGETABLES_LETTUCE);
 
         tag(TagCommon.SEEDS_CHILI_PEPPER).add(ModItems.CHILI_SEED.get());
         tag(TagCommon.SEEDS_TOMATO).add(ModItems.TOMATO_SEED.get());
@@ -114,10 +121,20 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.RAW_FISHES_COD).add(COD);
         tag(TagCommon.RAW_FISHES_SALMON).add(SALMON);
 
+        tag(TagCommon.RAW_MEATS).addTag(TagCommon.RAW_BEEF)
+                .addTag(TagCommon.RAW_CHICKEN)
+                .addTag(TagCommon.RAW_PORK)
+                .addTag(TagCommon.RAW_MUTTON)
+                .addTag(TagCommon.RAW_FISHES_COD)
+                .addTag(TagCommon.RAW_FISHES_SALMON)
+                .addTag(TagCommon.RAW_FISHES_TROPICAL);
+
+        tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
+
         // 均衡饮食兼容
         tag(TagCommon.GRAINS).add(ModItems.RICE_SEED.get(), ModItems.RICE_PANICLE.get());
         tag(TagCommon.PROTEINS).add(ModItems.CATERPILLAR.get());
-        tag(TagCommon.VEGETABLES).add(ModItems.TOMATO.get(), ModItems.LETTUCE.get(), ModItems.RED_CHILI.get(), ModItems.GREEN_CHILI.get());
+        tag(TagCommon.DIET_VEGETABLES).addTag(TagCommon.VEGETABLES);
 
         // 兼容静谧四季
         tag(TagCommon.SPRING_CROPS).add(ModItems.LETTUCE_SEED.get());
@@ -151,6 +168,10 @@ public class TagItem extends ItemTagsProvider {
                         TagCommon.SEEDS_LETTUCE,
                         TagCommon.SEEDS_RICE,
                         TagCommon.EGGS
+                ).add(
+                        ModItems.RAW_DOUGH.get(),
+                        ModItems.RAW_NOODLES.get(),
+                        ModItems.STUFFED_DOUGH_FOOD.get()
                 ).add(
                         STONE,
                         GRANITE,
