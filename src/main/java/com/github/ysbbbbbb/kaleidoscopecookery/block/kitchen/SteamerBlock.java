@@ -4,12 +4,15 @@ import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTr
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.ISteamer;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.SteamerBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.SteamerItem;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,7 +23,9 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -93,8 +98,44 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         // 如果蒸笼正下方是热源，则触发成就
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (level.isClientSide) {
+            return;
+        }
+
         if (placer instanceof ServerPlayer player && level.getBlockEntity(pos) instanceof ISteamer steamer && steamer.hasHeatSource(level)) {
             ModTrigger.EVENT.get().trigger(player, ModEventTriggerType.USE_STEAMER);
+        }
+
+        BlockState belowState = level.getBlockState(pos.below());
+        //如果下方也是一个
+        if (belowState.is(this)) {
+            if (level.getBlockEntity(pos.below()) instanceof SteamerBlockEntity bottomSteamer &&
+            level.getBlockEntity((pos.above())) instanceof SteamerBlockEntity topSteamer) {
+                ItemStack stackToAdd;
+                ItemStack bottomStack = new ItemStack(ModItems.STEAMER.get());
+                bottomSteamer.saveToItem(bottomStack, level.registryAccess());
+                CompoundTag finalData = topSteamer.mergeItem(bottomStack, level);
+                topSteamer.loadAdditional(finalData, level.registryAccess());
+                topSteamer.setChanged();
+                if (placer instanceof Player player && player.isCreative()) {
+                    stackToAdd = stack.copy();
+                }
+                else {
+                    stackToAdd = stack;
+                }
+                bottomSteamer.mergeItem(stackToAdd, level);
+
+                CustomData blockEntityData = stackToAdd.get(DataComponents.BLOCK_ENTITY_DATA);
+                if (blockEntityData != null) {
+                    topSteamer.loadAdditional(blockEntityData.copyTag(), level.registryAccess());
+                }
+                level.setBlock(pos.below(), belowState.setValue(SteamerBlock.HALF, false), Block.UPDATE_ALL);
+
+                if (!state.getValue(SteamerBlock.HALF)) {
+                    level.setBlock(pos.above(), state.setValue(SteamerBlock.HALF, true), Block.UPDATE_ALL);
+                }
+            }
         }
     }
 
