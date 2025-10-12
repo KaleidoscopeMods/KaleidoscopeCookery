@@ -11,6 +11,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
@@ -22,6 +23,7 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
     public static final int DEFAULT_TIME = 300;
     public static final int DEFAULT_COOKING_BUBBLE_COLOR = 0xFFECC3;
     public static final int DEFAULT_FINISHED_BUBBLE_COLOR = 0xF4AA8B;
+    public static final Ingredient DEFAULT_CARRIER = Ingredient.of(Items.BOWL);
     public static final ResourceLocation DEFAULT_SOUP_BASE = ModSoupBases.WATER;
     public static final ResourceLocation EMPTY_ID = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "stockpot/empty");
     public static final ResourceLocation DEFAULT_COOKING_TEXTURE = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "stockpot/default_cooking");
@@ -30,7 +32,7 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
     public static StockpotRecipe getEmptyRecipe() {
         return new StockpotRecipe(EMPTY_ID,
                 Lists.newArrayList(), DEFAULT_SOUP_BASE,
-                ItemStack.EMPTY, DEFAULT_TIME,
+                ItemStack.EMPTY, DEFAULT_TIME, DEFAULT_CARRIER,
                 DEFAULT_COOKING_TEXTURE, DEFAULT_FINISHED_TEXTURE,
                 DEFAULT_COOKING_BUBBLE_COLOR,
                 DEFAULT_FINISHED_BUBBLE_COLOR);
@@ -49,11 +51,15 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         }
         ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
         int time = GsonHelper.getAsInt(json, "time", DEFAULT_TIME);
+        Ingredient carrier = DEFAULT_CARRIER;
+        if (json.has("carrier")) {
+            carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
+        }
         ResourceLocation cookingTexture = new ResourceLocation(GsonHelper.getAsString(json, "cooking_texture", DEFAULT_COOKING_TEXTURE.toString()));
         ResourceLocation finishedTexture = new ResourceLocation(GsonHelper.getAsString(json, "finished_texture", DEFAULT_FINISHED_TEXTURE.toString()));
         int cookingBubbleColor = GsonHelper.getAsInt(json, "cooking_bubble_color", DEFAULT_COOKING_BUBBLE_COLOR);
         int finishedBubbleColor = GsonHelper.getAsInt(json, "finished_bubble_color", DEFAULT_FINISHED_BUBBLE_COLOR);
-        return new StockpotRecipe(recipeId, inputs, soupBase, result, time, cookingTexture, finishedTexture, cookingBubbleColor, finishedBubbleColor);
+        return new StockpotRecipe(recipeId, inputs, soupBase, result, time, carrier, cookingTexture, finishedTexture, cookingBubbleColor, finishedBubbleColor);
     }
 
     @Override
@@ -66,12 +72,13 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         ResourceLocation soupBase = buf.readResourceLocation();
         ItemStack result = buf.readItem();
         int time = buf.readVarInt();
+        Ingredient carrier = Ingredient.fromNetwork(buf);
         ResourceLocation cookingTexture = buf.readResourceLocation();
         ResourceLocation finishedTexture = buf.readResourceLocation();
         int cookingBubbleColor = buf.readVarInt();
         int finishedBubbleColor = buf.readVarInt();
         return new StockpotRecipe(recipeId, inputs, soupBase, result,
-                time, cookingTexture, finishedTexture,
+                time, carrier, cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor);
     }
 
@@ -82,6 +89,7 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         buffer.writeResourceLocation(recipe.soupBase());
         buffer.writeItem(recipe.result());
         buffer.writeVarInt(recipe.time());
+        recipe.carrier().toNetwork(buffer);
         buffer.writeResourceLocation(recipe.cookingTexture());
         buffer.writeResourceLocation(recipe.finishedTexture());
         buffer.writeVarInt(recipe.cookingBubbleColor());

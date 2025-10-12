@@ -60,7 +60,7 @@ public class PotRecipeBuilder implements RecipeBuilder {
         return this;
     }
 
-    @SuppressWarnings("all")
+    @SuppressWarnings({"varargs", "all"})
     public PotRecipeBuilder addInput(Object... ingredients) {
         for (Object ingredient : ingredients) {
             if (ingredient instanceof ItemLike itemLike) {

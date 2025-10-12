@@ -1,0 +1,244 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "vectorwing",
+    "module": "FarmersDelight",
+    "version": "1.20.1-2.4.0+refabricated",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "accessors",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "base",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "networking",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "tags",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "config",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "tool_actions",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "loot",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "lazy_registration",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "recipe_book_categories",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "FarmersDelight-1.20.1-2.4.0+refabricated.jar",
+          "url": "FarmersDelight-1.20.1-2.4.0+refabricated.jar",
+          "size": 8024496,
+          "sha512": "298a416f5718926dfb825725705f3baa2b1b1ae0d8462df3fa0ca0f9d9f681570ef431b9ec37e0cdb52c82c195c6d010671a5e2b235fa182c4bcbf9c2978db79",
+          "sha256": "bbfd5fde5946a6a48fe82e92c1b50a90a345ef254df29ad4265b09e1e2c15450",
+          "sha1": "62c2e4c5fd5d40c1d1082c49c6a05c292d95e247",
+          "md5": "61cff464c1a1393c4a70631b4de04a4e"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.github.llamalad7",
+          "module": "mixinextras-fabric",
+          "version": {
+            "requires": "0.2.2"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "accessors",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "base",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "networking",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "tags",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "config",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "tool_actions",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "loot",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "lazy_registration",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "io.github.fabricators_of_create.Porting-Lib",
+          "module": "recipe_book_categories",
+          "version": {
+            "requires": "2.3.8+1.20.1"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "fabric-loader",
+          "version": {
+            "requires": "0.15.7"
+          }
+        },
+        {
+          "group": "net.fabricmc.fabric-api",
+          "module": "fabric-api",
+          "version": {
+            "requires": "0.92.0+1.20.1"
+          }
+        },
+        {
+          "group": "com.github.Chocohead",
+          "module": "Fabric-ASM",
+          "version": {
+            "requires": "v2.3"
+          },
+          "excludes": [
+            {
+              "group": "net.fabricmc.fabric-api",
+              "module": "*"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "FarmersDelight-1.20.1-2.4.0+refabricated.jar",
+          "url": "FarmersDelight-1.20.1-2.4.0+refabricated.jar",
+          "size": 8024496,
+          "sha512": "298a416f5718926dfb825725705f3baa2b1b1ae0d8462df3fa0ca0f9d9f681570ef431b9ec37e0cdb52c82c195c6d010671a5e2b235fa182c4bcbf9c2978db79",
+          "sha256": "bbfd5fde5946a6a48fe82e92c1b50a90a345ef254df29ad4265b09e1e2c15450",
+          "sha1": "62c2e4c5fd5d40c1d1082c49c6a05c292d95e247",
+          "md5": "61cff464c1a1393c4a70631b4de04a4e"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "FarmersDelight-1.20.1-2.4.0+refabricated-sources.jar",
+          "url": "FarmersDelight-1.20.1-2.4.0+refabricated-sources.jar",
+          "size": 2772066,
+          "sha512": "efd6c3b1e78e49ce7a74188796c169718412fc31b34f7432433a096fc4df26e331448e5f9904bd986d9080597fdf36396eacb24645e443c67782dd0997b24f4c",
+          "sha256": "021b8918ad5845983ab9461636e57cf72cccde8eada6af6a90ffcdfc2f4109fd",
+          "sha1": "628ef7338bd754d93dbb30bdf963fa01cc7d728e",
+          "md5": "5710495c221ea3f85085548b003ac8e3"
+        }
+      ]
+    }
+  ]
+}

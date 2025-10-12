@@ -45,6 +45,9 @@ public class BlockLootTables extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.POT);
         dropSelf(ModBlocks.CHOPPING_BOARD);
 
+        dropSelf(ModBlocks.OIL_POT);
+        dropSelf(ModBlocks.OIL_POT);
+
         dropSelf(ModBlocks.COOK_STOOL_OAK);
         dropSelf(ModBlocks.COOK_STOOL_SPRUCE);
         dropSelf(ModBlocks.COOK_STOOL_ACACIA);
@@ -86,6 +89,7 @@ public class BlockLootTables extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.KITCHENWARE_RACKS);
         dropSelf(ModBlocks.STRAW_BLOCK);
         dropSelf(ModBlocks.SHAWARMA_SPIT);
+        dropSelf(ModBlocks.OIL_BLOCK);
 
         this.add(ModBlocks.TOMATO_CROP, createCropDrops(ModBlocks.TOMATO_CROP, ModItems.TOMATO,
                 ModItems.TOMATO_SEED, createCropBuilder(ModBlocks.TOMATO_CROP)));

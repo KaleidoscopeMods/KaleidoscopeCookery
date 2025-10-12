@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.decoration;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.TableBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.BlockDrop;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.TodoCheck;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -156,6 +158,22 @@ public class TableBlock extends Block implements SimpleWaterloggedBlock, EntityB
         return InteractionResult.PASS;
     }
 
+    @TodoCheck
+    @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide && player.isCreative() && level.getBlockEntity(pos) instanceof TableBlockEntity tableBlockEntity) {
+//            ItemStackHandler items = tableBlockEntity.getItems();
+//            for (int i = 0; i < items.getSlots(); i++) {
+//                ItemStack stack = items.getStackInSlot(i);
+//                if (!stack.isEmpty()) {
+//                    popResource(level, pos, stack);
+//                    items.setStackInSlot(i, ItemStack.EMPTY);
+//                }
+//            }
+        }
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder lootParamsBuilder) {
         List<ItemStack> drops = super.getDrops(state, lootParamsBuilder);
@@ -185,13 +203,13 @@ public class TableBlock extends Block implements SimpleWaterloggedBlock, EntityB
         }
         BlockState westState = levelAccessor.getBlockState(pos.west());
         BlockState eastState = levelAccessor.getBlockState(pos.east());
-        if (eastState.is(this) && westState.is(this)) {
+        if (checkIfShouldLink(eastState, Direction.Axis.Z) && checkIfShouldLink(westState, Direction.Axis.Z)) {
             return baseState.setValue(POSITION, MIDDLE).setValue(AXIS, Direction.Axis.X);
         }
-        if (eastState.is(this) && !westState.is(this)) {
+        if (checkIfShouldLink(eastState, Direction.Axis.Z) && !checkIfShouldLink(westState, Direction.Axis.Z)) {
             return baseState.setValue(POSITION, LEFT).setValue(AXIS, Direction.Axis.X);
         }
-        if (!eastState.is(this) && westState.is(this)) {
+        if (!checkIfShouldLink(eastState, Direction.Axis.Z) && checkIfShouldLink(westState, Direction.Axis.Z)) {
             return baseState.setValue(POSITION, RIGHT).setValue(AXIS, Direction.Axis.X);
         }
         return baseState.setValue(POSITION, SINGLE);
@@ -204,16 +222,28 @@ public class TableBlock extends Block implements SimpleWaterloggedBlock, EntityB
         }
         BlockState northState = levelAccessor.getBlockState(pos.north());
         BlockState southState = levelAccessor.getBlockState(pos.south());
-        if (northState.is(this) && southState.is(this)) {
+        if (checkIfShouldLink(southState, Direction.Axis.X) && checkIfShouldLink(northState, Direction.Axis.X)) {
             return baseState.setValue(POSITION, MIDDLE).setValue(AXIS, Direction.Axis.Z);
         }
-        if (!northState.is(this) && southState.is(this)) {
+        if (checkIfShouldLink(southState, Direction.Axis.X) && !checkIfShouldLink(northState, Direction.Axis.X)) {
             return baseState.setValue(POSITION, LEFT).setValue(AXIS, Direction.Axis.Z);
         }
-        if (northState.is(this) && !southState.is(this)) {
+        if (!checkIfShouldLink(southState, Direction.Axis.X) && checkIfShouldLink(northState, Direction.Axis.X)) {
             return baseState.setValue(POSITION, RIGHT).setValue(AXIS, Direction.Axis.Z);
         }
         return baseState.setValue(POSITION, SINGLE);
+    }
+
+    private boolean checkIfShouldLink(BlockState state, Direction.Axis axis) {
+        if (!state.is(this)) {
+            return false;
+        }
+        // 如果对方与修正方向不同，且对方并不是独立状态，则不可以接
+        if (state.getValue(AXIS) == axis) {
+            return state.getValue(POSITION) == SINGLE;
+        }
+        // 如果双方方向相同且毗邻，则无论如何都可以接
+        return true;
     }
 
     @Override
@@ -262,5 +292,10 @@ public class TableBlock extends Block implements SimpleWaterloggedBlock, EntityB
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new TableBlockEntity(pos, state);
+    }
+
+    @Override
+    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+        return false;
     }
 }

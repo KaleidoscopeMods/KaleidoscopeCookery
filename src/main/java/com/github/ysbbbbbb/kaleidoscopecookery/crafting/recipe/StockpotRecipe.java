@@ -14,17 +14,25 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.*;
+
 public record StockpotRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients,
                              ResourceLocation soupBase, ItemStack result, int time,
-                             ResourceLocation cookingTexture,
+                             Ingredient carrier, ResourceLocation cookingTexture,
                              ResourceLocation finishedTexture, int cookingBubbleColor,
                              int finishedBubbleColor) implements BaseRecipe<StockpotContainer> {
     public StockpotRecipe(ResourceLocation id, List<Ingredient> ingredients, ResourceLocation soupBase, ItemStack result,
-                          int time, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
+                          int time, Ingredient carrier, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
                           int cookingBubbleColor, int finishedBubbleColor) {
         this(id, NonNullList.of(Ingredient.EMPTY, BaseRecipe.fillInputs(ingredients)),
-                soupBase, result, time, cookingTexture, finishedTexture,
+                soupBase, result, time, carrier, cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor);
+    }
+
+    public StockpotRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients, ItemStack result, int time, ItemStack container) {
+        this(id, ingredients, DEFAULT_SOUP_BASE, result, time, Ingredient.of(container),
+                DEFAULT_COOKING_TEXTURE, DEFAULT_FINISHED_TEXTURE,
+                DEFAULT_COOKING_BUBBLE_COLOR, DEFAULT_FINISHED_BUBBLE_COLOR);
     }
 
     @Override

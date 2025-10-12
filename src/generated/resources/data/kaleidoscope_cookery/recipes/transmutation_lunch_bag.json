@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    " L ",
+    "LSL",
+    "LLL"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:transmutation_lunch_bag"
+  },
+  "show_notification": true
+}

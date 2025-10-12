@@ -56,8 +56,16 @@ public class BaseAdvancement {
                                 ).build()
                         ))
                 ))
-                .addCriterion("kill_zombified_piglin", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().of(EntityType.ZOMBIFIED_PIGLIN),
+                .addCriterion("kill_piglin_brute", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().of(EntityType.PIGLIN_BRUTE),
+                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
+                                EntityEquipmentPredicate.Builder.equipment().mainhand(
+                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE).build()
+                                ).build()
+                        ))
+                ))
+                .addCriterion("kill_hoglin", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().of(EntityType.HOGLIN),
                         DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
                                 EntityEquipmentPredicate.Builder.equipment().mainhand(
                                         ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE).build()
@@ -258,5 +266,37 @@ public class BaseAdvancement {
                 .parent(scarecrow)
                 .addCriterion("place_head_on_scarecrow", ModEventTrigger.create(ModEventTriggerType.PLACE_HEAD_ON_SCARECROW))
                 .save(saver, modLoc("scarecrow_head"));
+
+        // 饭袋成就，独立的
+        Advancement lunchBag = makeGoal(ModItems.TRANSMUTATION_LUNCH_BAG, "transmutation_lunch_bag")
+                .parent(root)
+                .addCriterion("use_transmutation_lunch_bag", ModEventTrigger.create(ModEventTriggerType.USE_TRANSMUTATION_LUNCH_BAG))
+                .save(saver, modLoc("transmutation_lunch_bag"));
+
+        // 石磨、蒸笼系列成就
+        Advancement millstone = makeTask(ModItems.MILLSTONE, "millstone")
+                .parent(root)
+                .addCriterion("drive_the_millstone", ModEventTrigger.create(ModEventTriggerType.DRIVE_THE_MILLSTONE))
+                .save(saver, modLoc("millstone"));
+
+        Advancement oilPot = makeTask(ModItems.OIL_POT, "oil_pot")
+                .parent(millstone)
+                .addCriterion("use_millstone_get_oil_pot", ModEventTrigger.create(ModEventTriggerType.USE_MILLSTONE_GET_OIL_POT))
+                .save(saver, modLoc("oil_pot"));
+
+        Advancement dough = makeTask(ModItems.RAW_DOUGH, "dough")
+                .parent(millstone)
+                .addCriterion("pull_the_dough", ModEventTrigger.create(ModEventTriggerType.PULL_THE_DOUGH))
+                .save(saver, modLoc("dough"));
+
+        Advancement steamer = makeTask(ModItems.STEAMER, "steamer")
+                .parent(dough)
+                .addCriterion("use_steamer", ModEventTrigger.create(ModEventTriggerType.USE_STEAMER))
+                .save(saver, modLoc("steamer"));
+
+        Advancement baozi = makeGoal(ModItems.BAOZI, "baozi")
+                .parent(steamer)
+                .addCriterion("meat_buns_beat_dogs", ModEventTrigger.create(ModEventTriggerType.MEAT_BUNS_BEAT_DOGS))
+                .save(saver, modLoc("baozi"));
     }
 }

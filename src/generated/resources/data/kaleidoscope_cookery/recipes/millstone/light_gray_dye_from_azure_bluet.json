@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:azure_bluet"
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:light_gray_dye"
+  }
+}

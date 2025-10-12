@@ -28,6 +28,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     private List<Ingredient> ingredients = Lists.newArrayList();
     private ItemStack result = ItemStack.EMPTY;
     private int time = StockpotRecipeSerializer.DEFAULT_TIME;
+    private Ingredient carrier = StockpotRecipeSerializer.DEFAULT_CARRIER;
     private ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
     private ResourceLocation cookingTexture = StockpotRecipeSerializer.DEFAULT_COOKING_TEXTURE;
     private ResourceLocation finishedTexture = StockpotRecipeSerializer.DEFAULT_FINISHED_TEXTURE;
@@ -80,6 +81,11 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
 
     public StockpotRecipeBuilder setTime(int time) {
         this.time = time;
+        return this;
+    }
+
+    public StockpotRecipeBuilder setCarrier(ItemLike carrier) {
+        this.carrier = Ingredient.of(carrier);
         return this;
     }
 
@@ -140,7 +146,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
         recipeOutput.accept(new StockpotFinishedRecipe(id, this.ingredients, this.soupBase, this.result,
-                this.time, this.cookingTexture, this.finishedTexture, this.cookingBubbleColor, this.finishedBubbleColor));
+                this.time, this.carrier, this.cookingTexture, this.finishedTexture, this.cookingBubbleColor, this.finishedBubbleColor));
     }
 
     public static class StockpotFinishedRecipe implements FinishedRecipe {
@@ -149,19 +155,21 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
         private final ResourceLocation soupBase;
         private final ItemStack result;
         private final int time;
+        private final Ingredient carrier;
         private final ResourceLocation cookingTexture;
         private final ResourceLocation finishedTexture;
         private final int cookingBubbleColor;
         private final int finishedBubbleColor;
 
         public StockpotFinishedRecipe(ResourceLocation id, List<Ingredient> ingredients, ResourceLocation soupBase, ItemStack result,
-                                      int time, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
+                                      int time, Ingredient carrier, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
                                       int cookingBubbleColor, int finishedBubbleColor) {
             this.id = id;
             this.ingredients = ingredients;
             this.soupBase = soupBase;
             this.result = result;
             this.time = time;
+            this.carrier = carrier;
             this.cookingTexture = cookingTexture;
             this.finishedTexture = finishedTexture;
             this.cookingBubbleColor = cookingBubbleColor;
@@ -182,6 +190,9 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
             json.add("result", itemJson);
 
             json.addProperty("time", this.time);
+            if (!this.carrier.isEmpty()) {
+                json.add("carrier", this.carrier.toJson());
+            }
             json.addProperty("cooking_texture", this.cookingTexture.toString());
             json.addProperty("finished_texture", this.finishedTexture.toString());
             json.addProperty("cooking_bubble_color", this.cookingBubbleColor);

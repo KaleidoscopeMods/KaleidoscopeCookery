@@ -24,14 +24,15 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
         PotRecipeBuilder.builder()
-                .addInput(Items.HONEY_BOTTLE, Items.HONEY_BOTTLE,
-                        Items.SUGAR, Items.SUGAR, Items.PUMPKIN_PIE)
+                .addInput(Items.HONEY_BOTTLE, Items.HONEY_BOTTLE, Items.HONEY_BOTTLE,
+                        Items.SUGAR, Items.SUGAR, Items.SUGAR, Items.PUMPKIN_PIE)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.FONDANT_PIE)
                 .save(consumer);
 
         PotRecipeBuilder.builder()
                 .addInput(Items.BAMBOO, Items.BAMBOO,
+                        TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK,
                         TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.DONGPO_PORK)
@@ -52,30 +53,33 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD)
+                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
+                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
+                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.BRAISED_FISH)
                 .save(consumer, "braised_fish_cod");
 
         PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON)
+                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
+                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
+                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.BRAISED_FISH)
                 .save(consumer, "braised_fish_salmon");
 
         PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_SALMON)
-                .setBowlCarrier()
-                .setResult(FoodBiteRegistry.BRAISED_FISH)
-                .save(consumer, "braised_fish_cod_salmon");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.CROPS_CHILI_PEPPER)
+                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
+                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
+                        TagCommon.RAW_FISHES_COD, TagCommon.CROPS_CHILI_PEPPER)
                 .setCarrier(ModItems.COOKED_RICE)
                 .setResult(ModItems.BRAISED_FISH_RICE_BOWL)
                 .save(consumer, "braised_fish_cod_with_rice");
 
         PotRecipeBuilder.builder()
+//                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
+//                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
+//                        TagCommon.RAW_FISHES_SALMON)
                 .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.CROPS_CHILI_PEPPER)
                 .setCarrier(ModItems.COOKED_RICE)
                 .setResult(ModItems.BRAISED_FISH_RICE_BOWL)
@@ -98,7 +102,8 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "golden_salad_enchanted_golden_apple");
 
         PotRecipeBuilder.builder()
-                .addInput(Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, TagCommon.RAW_MUTTON)
+                .addInput(Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, Items.AMETHYST_SHARD,
+                        TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.CRYSTAL_LAMB_CHOP)
                 .save(consumer);
@@ -106,6 +111,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder()
                 .addInput(Items.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS,
                         Items.WARPED_FUNGUS, Items.WARPED_FUNGUS,
+                        TagCommon.RAW_FISHES_TROPICAL, TagCommon.RAW_FISHES_TROPICAL,
                         TagCommon.RAW_FISHES_TROPICAL, TagCommon.RAW_FISHES_TROPICAL)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.NETHER_STYLE_SASHIMI)
@@ -155,6 +161,8 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
+                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
+                        TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
                         Items.BLAZE_POWDER)
@@ -196,8 +204,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON,
-                        Items.BLAZE_ROD, Items.BLAZE_ROD, Items.BLAZE_ROD, Items.BLAZE_ROD,
-                        Blocks.MAGMA_BLOCK)
+                        Items.BLAZE_ROD, Items.BLAZE_ROD, Items.BLAZE_ROD)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.BLAZE_LAMB_CHOP).save(consumer);
 
@@ -254,6 +261,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
         addSameItemRecipe(inputItem, count, output, Ingredient.of(carrier), consumer);
     }
 
+    @SuppressWarnings("all")
     public void addSameItemRecipe(Item inputItem, int count, ItemStack output, Ingredient carrier, Consumer<FinishedRecipe> consumer) {
         ItemLike[] inputs = this.getItemsWithCount(inputItem, count);
         String idInput = this.getRecipeIdWithCount(inputItem, count);

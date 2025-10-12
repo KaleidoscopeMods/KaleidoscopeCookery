@@ -15,6 +15,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -27,7 +29,10 @@ public class RightClickEvent {
 
     private static InteractionResult onUseBlock(Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
         BlockPos pos = hitResult.getBlockPos();
+        ItemStack itemInHand = player.getItemInHand(hand);
         if (player.isSecondaryUseActive() && hand == InteractionHand.MAIN_HAND
+            // FIXME: 目前仅排除调试棒，这导致其他方块无法潜行右击果篮使用
+            && !itemInHand.is(Items.DEBUG_STICK)
             && level.getBlockEntity(pos) instanceof FruitBasketBlockEntity fruitBasketBlock) {
             fruitBasketBlock.takeOut(player);
             return InteractionResult.SUCCESS;

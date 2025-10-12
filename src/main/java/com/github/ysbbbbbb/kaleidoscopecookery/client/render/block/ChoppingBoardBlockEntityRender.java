@@ -33,7 +33,7 @@ public class ChoppingBoardBlockEntityRender implements BlockEntityRenderer<Chopp
             choppingBoard.previousModel = modelId;
             choppingBoard.cacheModels = new ResourceLocation[choppingBoard.getMaxCutCount() + 1];
             for (int i = 0; i <= choppingBoard.getMaxCutCount(); i++) {
-                choppingBoard.cacheModels[i] = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "chopping_board/" + modelId.getPath() + "/" + i);
+                choppingBoard.cacheModels[i] = new ResourceLocation(modelId.getNamespace(), "chopping_board/" + modelId.getPath() + "/" + i);
             }
         }
         if (choppingBoard.cacheModels == null) {

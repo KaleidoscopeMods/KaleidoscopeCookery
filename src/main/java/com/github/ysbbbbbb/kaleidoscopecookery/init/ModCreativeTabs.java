@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -25,7 +26,8 @@ public class ModCreativeTabs {
                 .title(Component.translatable("item_group.kaleidoscope_cookery.cookery_main.name"))
                 .icon(() -> BuiltInRegistries.ITEM.get(MAIN_ICON_ID).getDefaultInstance())
                 .displayItems((par, output) -> {
-                    output.accept(ModItems.STOVE);
+                    // 厨具与杂项
+                output.accept(ModItems.STOVE);
                     output.accept(ModItems.SHAWARMA_SPIT);
                     output.accept(ModItems.STRAW_BLOCK);
                     output.accept(ModItems.OIL_BLOCK);
@@ -33,27 +35,40 @@ public class ModCreativeTabs {
                     output.accept(ModItems.STOCKPOT);
                     output.accept(ModItems.STOCKPOT_LID);
                     output.accept(ModItems.CHOPPING_BOARD);
-                    output.accept(ModItems.KITCHENWARE_RACKS);
-                    output.accept(ModItems.FRUIT_BASKET);
+                    output.accept(ModItems.MILLSTONE);
+                output.accept(ModItems.STEAMER);
+                output.accept(ModItems.KITCHENWARE_RACKS);
+//                    output.accept(ModItems.FRUIT_BASKET);
                     output.accept(ModItems.SCARECROW);
                     output.accept(ModItems.ENAMEL_BASIN);
-                    output.accept(ModItems.OIL);
-                    output.accept(ModItems.CHILI_RISTRA);
+                    output.accept(ModItems.OIL_POT);
+                output.accept(OilPotItem.getFullOilPot());
+                output.accept(ModItems.OIL);
+                    output.accept(ModItems.RECIPE_ITEM);
+//                output.accept(ModItems.TRANSMUTATION_LUNCH_BAG);
+                // 原材料
+                output.accept(ModItems.RAW_DOUGH);
+                output.accept(ModItems.RAW_NOODLES);
+                output.accept(ModItems.STUFFED_DOUGH_FOOD);
+                output.accept(ModItems.CHILI_RISTRA);
                     output.accept(ModItems.RICE_SEED);
                     output.accept(ModItems.WILD_RICE_SEED);
                     output.accept(ModItems.TOMATO_SEED);
                     output.accept(ModItems.CHILI_SEED);
                     output.accept(ModItems.LETTUCE_SEED);
-                    output.accept(ModItems.KITCHEN_SHOVEL);
+                    // 工具
+                output.accept(ModItems.KITCHEN_SHOVEL);
                     output.accept(ModItems.GOLD_KITCHEN_KNIFE);
                     output.accept(ModItems.IRON_KITCHEN_KNIFE);
                     output.accept(ModItems.DIAMOND_KITCHEN_KNIFE);
                     output.accept(ModItems.NETHERITE_KITCHEN_KNIFE);
+                // 服装
                     output.accept(ModItems.STRAW_HAT);
                     output.accept(ModItems.STRAW_HAT_FLOWER);
                     output.accept(ModItems.FARMER_CHEST_PLATE);
                     output.accept(ModItems.FARMER_LEGGINGS);
                     output.accept(ModItems.FARMER_BOOTS);
+                // 凳子
                     output.accept(ModItems.COOK_STOOL_OAK);
                     output.accept(ModItems.COOK_STOOL_SPRUCE);
                     output.accept(ModItems.COOK_STOOL_ACACIA);
@@ -65,7 +80,8 @@ public class ModCreativeTabs {
                     output.accept(ModItems.COOK_STOOL_JUNGLE);
                     output.accept(ModItems.COOK_STOOL_MANGROVE);
                     output.accept(ModItems.COOK_STOOL_WARPED);
-                    output.accept(ModItems.CHAIR_OAK);
+                    // 椅子
+                output.accept(ModItems.CHAIR_OAK);
                     output.accept(ModItems.CHAIR_SPRUCE);
                     output.accept(ModItems.CHAIR_ACACIA);
                     output.accept(ModItems.CHAIR_BAMBOO);
@@ -76,6 +92,7 @@ public class ModCreativeTabs {
                     output.accept(ModItems.CHAIR_JUNGLE);
                     output.accept(ModItems.CHAIR_MANGROVE);
                     output.accept(ModItems.CHAIR_WARPED);
+                // 桌子
                     output.accept(ModItems.TABLE_OAK);
                     output.accept(ModItems.TABLE_SPRUCE);
                     output.accept(ModItems.TABLE_ACACIA);
@@ -93,20 +110,32 @@ public class ModCreativeTabs {
                 .title(Component.translatable("item_group.kaleidoscope_cookery.cookery_food.name"))
                 .icon(() -> BuiltInRegistries.ITEM.get(FOOD_ICON_ID).getDefaultInstance())
                 .displayItems((par, output) -> {
-                    output.accept(ModItems.TOMATO);
+                    // 原材料
+                output.accept(ModItems.TOMATO);
                     output.accept(ModItems.RED_CHILI);
                     output.accept(ModItems.GREEN_CHILI);
                     output.accept(ModItems.LETTUCE);
                     output.accept(ModItems.RICE_PANICLE);
                     output.accept(ModItems.CATERPILLAR);
-                    output.accept(ModItems.SASHIMI);
+                    // 肉类
+                output.accept(ModItems.SASHIMI);
                     output.accept(ModItems.RAW_LAMB_CHOPS);
                     output.accept(ModItems.COOKED_LAMB_CHOPS);
                     output.accept(ModItems.RAW_COW_OFFAL);
                     output.accept(ModItems.COOKED_COW_OFFAL);
                     output.accept(ModItems.RAW_PORK_BELLY);
                     output.accept(ModItems.COOKED_PORK_BELLY);
-                    output.accept(ModItems.FRIED_EGG);
+                    output.accept(ModItems.RAW_DONKEY_MEAT);
+                output.accept(ModItems.COOKED_DONKEY_MEAT);
+                // 基础食物
+                output.accept(ModItems.DONKEY_BURGER);
+                output.accept(ModItems.MANTOU);
+                output.accept(ModItems.BAOZI);
+                output.accept(ModItems.SAMSA);
+                output.accept(ModItems.MEAT_PIE);
+                output.accept(ModItems.DUMPLING);
+                output.accept(ModItems.FRIED_EGG);
+                // 小碗菜和盖饭
                     output.accept(ModItems.COOKED_RICE);
                     output.accept(ModItems.EGG_FRIED_RICE);
                     output.accept(ModItems.DELICIOUS_EGG_FRIED_RICE);
@@ -126,6 +155,7 @@ public class ModCreativeTabs {
                     output.accept(ModItems.BRAISED_FISH_RICE_BOWL);
                     output.accept(ModItems.SPICY_CHICKEN_RICE_BOWL);
                     output.accept(ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL);
+                // 汤类
                     output.accept(ModItems.PORK_BONE_SOUP);
                     output.accept(ModItems.SEAFOOD_MISO_SOUP);
                     output.accept(ModItems.FEARSOME_THICK_SOUP);
@@ -137,7 +167,12 @@ public class ModCreativeTabs {
                     output.accept(ModItems.BORSCHT);
                     output.accept(ModItems.BEEF_MEATBALL_SOUP);
                     output.accept(ModItems.CHICKEN_AND_MUSHROOM_STEW);
-
+                output.accept(ModItems.DONKEY_SOUP);
+                // 面条
+                output.accept(ModItems.BEEF_NOODLE);
+                output.accept(ModItems.HUI_NOODLE);
+                output.accept(ModItems.UDON_NOODLE);
+                // 硬菜
                     FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
                         var foodItem = BuiltInRegistries.ITEM.get(foodName);
                         output.accept(foodItem);

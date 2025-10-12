@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
@@ -54,13 +55,14 @@ public class StockpotRecipeCategory implements IRecipeCategory<StockpotRecipe> {
         }
         List<StockpotRecipe> stockpotRecipes = Lists.newArrayList();
         stockpotRecipes.addAll(level.getRecipeManager().getAllRecipesFor(ModRecipes.STOCKPOT_RECIPE));
+        // 农夫乐事兼容
+        FarmersDelightCompat.getTransformRecipeForJei(level, stockpotRecipes);
         return stockpotRecipes;
     }
 
     @Override
     public void draw(StockpotRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         this.bgDraw.draw(guiGraphics);
-        guiHelper.createDrawableItemLike(Items.BOWL).draw(guiGraphics, 133, 18);
     }
 
     @Override
@@ -79,6 +81,9 @@ public class StockpotRecipeCategory implements IRecipeCategory<StockpotRecipe> {
         ItemStack displayStack = soupBase.getDisplayStack();
         if (!displayStack.isEmpty()) {
             builder.addSlot(RecipeIngredientRole.INPUT, 72, 61).addIngredients(Ingredient.of(displayStack));
+        }
+        if (!recipe.carrier().isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 133, 18).addIngredients(recipe.carrier());
         }
         builder.addSlot(RecipeIngredientRole.OUTPUT, 143, 60).addItemStack(output);
     }

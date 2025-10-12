@@ -1,0 +1,9 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:deepslate"
+  },
+  "result": {
+    "item": "minecraft:polished_deepslate"
+  }
+}

@@ -43,6 +43,7 @@ public class FoodBiteRegistry {
     public static ResourceLocation DESERT_STYLE_SASHIMI;
     public static ResourceLocation TUNDRA_STYLE_SASHIMI;
     public static ResourceLocation COLD_STYLE_SASHIMI;
+    public static ResourceLocation SHENGJIAN_MANTOU;
 
     public static void init() {
         FoodBiteRegistry registry = new FoodBiteRegistry();
@@ -124,6 +125,9 @@ public class FoodBiteRegistry {
         COLD_STYLE_SASHIMI = registry.registerFoodData("cold_style_sashimi", FoodData
                 .create(4, COLD_STYLE_SASHIMI_BLOCK, COLD_STYLE_SASHIMI_ITEM)
                 .addLootItems(Items.SNOWBALL, Items.SNOWBALL));
+
+        SHENGJIAN_MANTOU = registry.registerFoodData("shengjian_mantou", FoodData
+                .create(4, SHENGJIAN_MANTOU_BLOCK, SHENGJIAN_MANTOU_ITEM));
     }
 
     public ResourceLocation registerFoodData(ResourceLocation foodName, FoodData data) {

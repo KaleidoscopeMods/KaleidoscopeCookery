@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:smooth_quartz"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:quartz"
+  }
+}

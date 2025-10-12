@@ -36,15 +36,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_soul_campfire", has(Items.SOUL_CAMPFIRE))
                 .save(consumer, "kaleidoscope_cookery:stove_soul_campfire");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.FRUIT_BASKET)
-                .pattern(" S ")
-                .pattern("#C#")
-                .pattern("###")
-                .define('S', Items.STICK)
-                .define('#', ItemTags.PLANKS)
-                .define('C', Items.CHEST)
-                .unlockedBy("has_chest", has(Items.CHEST))
-                .save(consumer);
+//        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.FRUIT_BASKET)
+//                .pattern(" S ")
+//                .pattern("#C#")
+//                .pattern("###")
+//                .define('S', Items.STICK)
+//                .define('#', ItemTags.PLANKS)
+//                .define('C', Items.CHEST)
+//                .unlockedBy("has_chest", has(Items.CHEST))
+//                .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.SCARECROW)
                 .pattern(" H ")
@@ -215,6 +215,51 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('I', Items.CHAIN)
                 .define('C', Items.CAMPFIRE)
                 .unlockedBy("has_campfire", has(Items.CAMPFIRE))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.MILLSTONE)
+                .pattern(" F ")
+                .pattern("SG ")
+                .pattern("TTT")
+                .define('F', ItemTags.FENCES)
+//                .define('F', Tags.Items.FENCES_WOODEN)
+                .define('S', Items.STICK)
+                .define('G', Items.GRINDSTONE)
+                .define('T', Items.SMOOTH_STONE)
+                .unlockedBy("has_smooth_stone", has(Items.SMOOTH_STONE))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.RECIPE_ITEM)
+                .pattern("PP")
+                .pattern("PP")
+                .define('P', Items.PAPER)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.STEAMER)
+                .pattern("TTT")
+                .pattern("BBB")
+                .define('T', Items.BAMBOO_TRAPDOOR)
+                .define('B', Items.BAMBOO_BLOCK)
+                .unlockedBy("has_bamboo", has(Items.BAMBOO))
+                .save(consumer);
+
+//        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.TRANSMUTATION_LUNCH_BAG)
+//                .pattern(" L ")
+//                .pattern("LSL")
+//                .pattern("LLL")
+//                .define('L', Items.LEATHER)
+//                .define('S', Items.NETHER_STAR)
+//                .unlockedBy("has_nether_star", has(Items.NETHER_STAR))
+//                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.OIL_POT)
+                .pattern("P ")
+                .pattern("BS")
+                .define('P', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                .define('B', Items.BUCKET)
+                .define('S', Items.STICK)
+                .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
     }
 }

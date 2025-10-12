@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo_block"
+    },
+    "T": {
+      "item": "minecraft:bamboo_trapdoor"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "BBB"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:steamer"
+  },
+  "show_notification": true
+}

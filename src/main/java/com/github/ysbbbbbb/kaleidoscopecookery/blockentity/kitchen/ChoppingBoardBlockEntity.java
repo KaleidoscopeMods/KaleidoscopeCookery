@@ -182,4 +182,8 @@ public class ChoppingBoardBlockEntity extends BaseBlockEntity implements IChoppi
     public int getCurrentCutCount() {
         return currentCutCount;
     }
+
+    public ItemStack getCurrentCutStack() {
+        return currentCutStack;
+    }
 }
