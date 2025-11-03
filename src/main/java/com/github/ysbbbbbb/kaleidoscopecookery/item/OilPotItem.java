@@ -72,6 +72,11 @@ public class OilPotItem extends BlockItem {
     }
 
     @Override
+    public int getMaxStackSize(ItemStack stack) {
+        return hasOil(stack) ? 1 : 16;
+    }
+
+    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         int oilCount = getOilCount(pStack);
         if (oilCount > 0) {
