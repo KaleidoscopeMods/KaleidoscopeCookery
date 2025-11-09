@@ -272,9 +272,12 @@ public class TransmutationLunchBagItem extends Item {
             removeOne(bag).ifPresent(stack -> add(bag, slot.safeInsert(stack)));
         } else if (clickItem.getItem().canFitInsideContainerItems() && canAdd(clickItem)) {
             // 否则，放入食物
-            int addCount = add(bag, clickItem);
+            int addCount = add(bag, clickItem, true);
             if (addCount > 0) {
-                slot.safeTake(clickItem.getCount(), addCount, player);
+                ItemStack takeout = slot.safeTake(clickItem.getCount(), addCount, player);
+                if (!takeout.isEmpty()) {
+                    add(bag, takeout);
+                }
                 this.playInsertSound(player);
             }
         }
@@ -331,20 +334,23 @@ public class TransmutationLunchBagItem extends Item {
     }
 
     private static int add(ItemStack bag, ItemStack food) {
+        return add(bag, food, false);
+    }
+
+    private static int add(ItemStack bag, ItemStack food, boolean simulate) {
         if (food.isEmpty() || !food.getItem().canFitInsideContainerItems() || !canAdd(food)) {
             return 0;
         }
         int totalCount = food.getCount();
 
         ItemStackHandler items = getItems(bag);
-        ItemStack remaining = ItemHandlerHelper.insertItemStacked(items, food, false);
+        ItemStack remaining = ItemHandlerHelper.insertItemStacked(items, food, simulate);
 
         int addCount = totalCount - (remaining.isEmpty() ? 0 : remaining.getCount());
-        if (addCount > 0) {
+        if (!simulate && addCount > 0) {
             setItems(bag, items);
-            return addCount;
         }
-        return 0;
+        return addCount;
     }
 
     private static boolean dropContents(ItemStack bag, Player player) {
