@@ -18,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -151,17 +150,22 @@ public class TransmutationLunchBagItem extends Item {
     }
 
     @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        if (entity instanceof Player player && player.isSecondaryUseActive()) {
+            // 摆动动作时，取出物品
+            if (dropContents(stack, player)) {
+                this.playDropContentsSound(player);
+                return true;
+            }
+        }
+        return super.onEntitySwing(stack, entity);
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        // 潜行右键使用，取出物品
-        if (player.isSecondaryUseActive() && dropContents(itemInHand, player)) {
-            this.playDropContentsSound(player);
-            player.awardStat(Stats.ITEM_USED.get(this));
-            return InteractionResultHolder.sidedSuccess(itemInHand, level.isClientSide());
-        }
-
-        // 非潜行状态，并且里面有物品
-        if (!player.isSecondaryUseActive() && hasItems(itemInHand)) {
+        // 里面有物品
+        if (hasItems(itemInHand)) {
             boolean hasFood = false;
             ItemStackHandler items = getItems(itemInHand);
             for (int i = 0; i < items.getSlots(); i++) {
