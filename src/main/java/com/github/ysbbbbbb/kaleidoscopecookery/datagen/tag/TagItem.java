@@ -129,6 +129,7 @@ public class TagItem extends ItemTagsProvider {
                 .addTag(TagCommon.RAW_FISHES_SALMON)
                 .addTag(TagCommon.RAW_FISHES_TROPICAL);
 
+        tag(TagCommon.FLOUR).add(ModItems.FLOUR.get());
         tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
 
         // 均衡饮食兼容
@@ -169,6 +170,7 @@ public class TagItem extends ItemTagsProvider {
                         TagCommon.SEEDS_RICE,
                         TagCommon.EGGS
                 ).add(
+                        ModItems.FLOUR.get(),
                         ModItems.RAW_DOUGH.get(),
                         ModItems.RAW_NOODLES.get(),
                         ModItems.STUFFED_DOUGH_FOOD.get()

@@ -99,6 +99,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.STUFFED_DOUGH_FOOD.get());
         basicItem(ModItems.DONKEY_BURGER.get());
         basicItem(ModItems.DONKEY_SOUP.get());
+        basicItem(ModItems.FLOUR.get());
 
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.DUMPLING.get());
@@ -112,7 +113,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
-        basicItem(modLoc("raw_dough_in_millstone"));
         basicItem(modLoc("oil_in_millstone"));
 
         ResourceLocation chileRistra = ForgeRegistries.ITEMS.getKey(ModItems.CHILI_RISTRA.get());

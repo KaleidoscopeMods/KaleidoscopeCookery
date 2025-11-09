@@ -38,6 +38,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.RECIPE_ITEM.get());
                 output.accept(ModItems.TRANSMUTATION_LUNCH_BAG.get());
                 // 原材料
+                output.accept(ModItems.FLOUR.get());
                 output.accept(ModItems.RAW_DOUGH.get());
                 output.accept(ModItems.RAW_NOODLES.get());
                 output.accept(ModItems.STUFFED_DOUGH_FOOD.get());

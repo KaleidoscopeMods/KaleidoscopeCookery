@@ -112,7 +112,7 @@ public class MillstoneBlock extends HorizontalDirectionalBlock implements Entity
         if (player != null && !player.isCreative()) {
             Block.popResource(world, pos, ModItems.MILLSTONE.get().getDefaultInstance());
         }
-        if (!millstone.getOutput().isEmpty() && millstone.getCarrier().isEmpty()) {
+        if (!millstone.getOutput().isEmpty()) {
             Block.popResource(world, pos, millstone.getOutput());
         }
         if (!millstone.getInput().isEmpty()) {
@@ -149,9 +149,6 @@ public class MillstoneBlock extends HorizontalDirectionalBlock implements Entity
             return InteractionResult.PASS;
         }
         ItemStack mainHandItem = player.getMainHandItem();
-        if (millstone.onTakeItem(player, mainHandItem)) {
-            return InteractionResult.SUCCESS;
-        }
         if (millstone.onPutItem(level, mainHandItem)) {
             return InteractionResult.SUCCESS;
         }

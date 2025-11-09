@@ -105,6 +105,7 @@ public final class ModItems {
     public static RegistryObject<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
 
     // 面类食材
+    public static RegistryObject<Item> FLOUR = ITEMS.register("flour", FlourItem::new);
     public static RegistryObject<Item> RAW_DOUGH = ITEMS.register("raw_dough", RawDoughItem::new);
     public static RegistryObject<Item> RAW_NOODLES = ITEMS.register("raw_noodles", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> STUFFED_DOUGH_FOOD = ITEMS.register("stuffed_dough_food", () -> new Item(new Item.Properties()));

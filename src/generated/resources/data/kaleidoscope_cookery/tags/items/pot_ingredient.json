@@ -13,6 +13,7 @@
     "#forge:seeds/lettuce",
     "#forge:seeds/rice",
     "#forge:eggs",
+    "kaleidoscope_cookery:flour",
     "kaleidoscope_cookery:raw_dough",
     "kaleidoscope_cookery:raw_noodles",
     "kaleidoscope_cookery:stuffed_dough_food",
