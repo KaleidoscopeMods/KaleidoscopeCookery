@@ -3,10 +3,10 @@
   "category": "equipment",
   "key": {
     "A": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:flint"
     },
     "B": {
-      "item": "minecraft:iron_nugget"
+      "item": "minecraft:string"
     },
     "C": {
       "item": "minecraft:stick"
@@ -14,8 +14,8 @@
   },
   "pattern": [
     "AAB",
-    "  C",
-    "  C"
+    " CA",
+    "C  "
   ],
   "result": {
     "item": "kaleidoscope_cookery:sickle"

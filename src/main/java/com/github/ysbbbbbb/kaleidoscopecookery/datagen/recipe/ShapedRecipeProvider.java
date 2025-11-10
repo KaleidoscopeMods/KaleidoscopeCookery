@@ -265,12 +265,12 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.SICKLE.get())
                 .pattern("AAB")
-                .pattern("  C")
-                .pattern("  C")
-                .define('A', Items.IRON_INGOT)
-                .define('B', Items.IRON_NUGGET)
+                .pattern(" CA")
+                .pattern("C  ")
+                .define('A', Items.FLINT)
+                .define('B', Items.STRING)
                 .define('C', Items.STICK)
-                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .unlockedBy("has_flint", has(Items.FLINT))
                 .save(consumer);
     }
 }

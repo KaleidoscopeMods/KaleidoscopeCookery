@@ -121,6 +121,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.COOKED_PORK_BELLY.get());
                 output.accept(ModItems.RAW_DONKEY_MEAT.get());
                 output.accept(ModItems.COOKED_DONKEY_MEAT.get());
+                output.accept(ModItems.RAW_CUT_SMALL_MEATS.get());
+                output.accept(ModItems.COOKED_CUT_SMALL_MEATS.get());
                 // 基础食物
                 output.accept(ModItems.DONKEY_BURGER.get());
                 output.accept(ModItems.MANTOU.get());

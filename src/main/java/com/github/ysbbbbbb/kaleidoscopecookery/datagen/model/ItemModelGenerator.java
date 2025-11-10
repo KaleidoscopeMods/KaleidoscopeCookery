@@ -101,6 +101,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.DONKEY_BURGER.get());
         basicItem(ModItems.DONKEY_SOUP.get());
         basicItem(ModItems.FLOUR.get());
+        basicItem(ModItems.RAW_CUT_SMALL_MEATS.get());
+        basicItem(ModItems.COOKED_CUT_SMALL_MEATS.get());
 
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.DUMPLING.get());

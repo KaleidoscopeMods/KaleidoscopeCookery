@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:chopping_board",
+  "cut_count": 4,
+  "ingredient": {
+    "item": "minecraft:cooked_salmon"
+  },
+  "model_id": "kaleidoscope_cookery:cooked_salmon",
+  "result": {
+    "count": 2,
+    "item": "minecraft:bone"
+  }
+}

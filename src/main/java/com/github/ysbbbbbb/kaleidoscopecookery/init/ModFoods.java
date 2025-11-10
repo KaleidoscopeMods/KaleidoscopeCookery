@@ -53,6 +53,11 @@ public interface ModFoods {
             .nutrition(2).saturationMod(0.3F)
             .meat().alwaysEat().build();
 
+    // 生切制小肉
+    FoodProperties RAW_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(2).saturationMod(0.3F)
+            .meat().alwaysEat().build();
+
     // 熟羊排
     FoodProperties COOKED_LAMB_CHOPS = (new FoodProperties.Builder())
             .nutrition(3).saturationMod(0.8F)
@@ -71,6 +76,11 @@ public interface ModFoods {
     // 熟驴肉
     FoodProperties COOKED_DONKEY_MEAT = (new FoodProperties.Builder())
             .nutrition(6).saturationMod(0.8F)
+            .meat().alwaysEat().build();
+
+    // 熟切制小肉
+    FoodProperties COOKED_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.8F)
             .meat().alwaysEat().build();
 
     // 驴肉火烧
