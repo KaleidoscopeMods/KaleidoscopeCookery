@@ -1,0 +1,50 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:steamer"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:steamer",
+    "nbt": {
+      "BlockEntityTag": {
+        "Items": [
+          {
+            "Count": 1,
+            "Slot": 0,
+            "id": "kaleidoscope_cookery:stuffed_dough_food"
+          },
+          {
+            "Count": 1,
+            "Slot": 1,
+            "id": "kaleidoscope_cookery:stuffed_dough_food"
+          },
+          {
+            "Count": 1,
+            "Slot": 2,
+            "id": "kaleidoscope_cookery:stuffed_dough_food"
+          },
+          {
+            "Count": 1,
+            "Slot": 3,
+            "id": "kaleidoscope_cookery:stuffed_dough_food"
+          }
+        ]
+      }
+    }
+  }
+}
