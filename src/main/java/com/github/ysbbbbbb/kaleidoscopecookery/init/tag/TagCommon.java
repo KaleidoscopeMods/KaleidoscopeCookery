@@ -23,6 +23,7 @@ public interface TagCommon {
     TagKey<Item> VEGETABLES_TOMATO = itemTag("vegetables/tomato");
     TagKey<Item> VEGETABLES_LETTUCE = itemTag("vegetables/lettuce");
 
+    TagKey<Item> SEEDS = itemTag("seeds");
     TagKey<Item> SEEDS_CHILI_PEPPER = itemTag("seeds/chilipepper");
     TagKey<Item> SEEDS_TOMATO = itemTag("seeds/tomato");
     TagKey<Item> SEEDS_LETTUCE = itemTag("seeds/lettuce");

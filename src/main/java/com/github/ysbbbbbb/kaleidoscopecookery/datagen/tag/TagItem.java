@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -30,6 +31,7 @@ public class TagItem extends ItemTagsProvider {
     }
 
     @Override
+    @SuppressWarnings("all")
     protected void addTags(HolderLookup.Provider provider) {
         // 模组 tag
         tag(OIL).add(ModItems.OIL.get());
@@ -67,7 +69,24 @@ public class TagItem extends ItemTagsProvider {
         this.tag(BUCKET_CONTAINER).add(WATER_BUCKET, LAVA_BUCKET, MILK_BUCKET,
                 SALMON_BUCKET, COD_BUCKET, TROPICAL_FISH_BUCKET, PUFFERFISH_BUCKET,
                 AXOLOTL_BUCKET, TADPOLE_BUCKET, POWDER_SNOW_BUCKET);
-        this.tag(MILLSTONE_DOUGH_CONTAINER).add(WATER_BUCKET);
+
+        // 给食物分类，简单分为食物和可放置食物
+        IntrinsicTagAppender<Item> meal = this.tag(MEALS);
+        IntrinsicTagAppender<Item> feasts = this.tag(FEASTS);
+        ForgeRegistries.ITEMS.getKeys().stream()
+                .filter(id -> id.getNamespace().equals(KaleidoscopeCookery.MOD_ID))
+                .forEach(id -> {
+                    Item item = ForgeRegistries.ITEMS.getValue(id);
+                    if (item == null) {
+                        return;
+                    }
+                    if (item.getFoodProperties() != null) {
+                        meal.add(item);
+                        if (item instanceof BowlFoodBlockItem) {
+                            feasts.add(item);
+                        }
+                    }
+                });
 
         this.addModItems();
         this.addPotIngredient();
@@ -103,6 +122,13 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.SEEDS_TOMATO).add(ModItems.TOMATO_SEED.get());
         tag(TagCommon.SEEDS_LETTUCE).add(ModItems.LETTUCE_SEED.get());
         tag(TagCommon.SEEDS_RICE).add(ModItems.RICE_SEED.get());
+        tag(TagCommon.SEEDS).add(
+                ModItems.CHILI_SEED.get(),
+                ModItems.TOMATO_SEED.get(),
+                ModItems.LETTUCE_SEED.get(),
+                ModItems.WILD_RICE_SEED.get(),
+                ModItems.RICE_SEED.get()
+        );
 
         tag(TagCommon.GRAIN_RICE).add(ModItems.RICE_SEED.get());
 

@@ -73,9 +73,13 @@ public interface TagMod {
      */
     TagKey<Item> GLASS_BOTTLE_CONTAINER = itemTag("glass_bottle_container");
     /**
-     * 石磨取出面团所使用的容器
+     * 本模组所有可以进食的食物
      */
-    TagKey<Item> MILLSTONE_DOUGH_CONTAINER = itemTag("millstone_dough_container");
+    TagKey<Item> MEALS = itemTag("meals");
+    /**
+     * 本模组可以放置出来的食物
+     */
+    TagKey<Item> FEASTS = itemTag("feasts");
     /**
      * 寒带疾行效果可以提速的方块
      */
