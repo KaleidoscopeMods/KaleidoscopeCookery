@@ -72,7 +72,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
                         TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
                         TagCommon.RAW_FISHES_COD)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.BRAISED_FISH_RICE_BOWL.get())
                 .save(consumer, "braised_fish_cod_with_rice");
 
@@ -80,7 +80,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
                         TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
                         TagCommon.RAW_FISHES_SALMON)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.BRAISED_FISH_RICE_BOWL.get())
                 .save(consumer, "braised_fish_salmon_with_rice");
 
@@ -173,7 +173,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
                         Items.BLAZE_POWDER)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.SPICY_CHICKEN_RICE_BOWL.get())
                 .save(consumer, "spicy_chicken_rice_bowl_blaze_powder");
 
@@ -189,7 +189,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.RAW_CHICKEN,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.SPICY_CHICKEN_RICE_BOWL.get())
                 .save(consumer, "spicy_chicken_rice_bowl");
 
