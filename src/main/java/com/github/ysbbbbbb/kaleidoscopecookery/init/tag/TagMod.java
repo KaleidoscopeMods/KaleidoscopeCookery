@@ -99,6 +99,22 @@ public interface TagMod {
      */
     TagKey<Block> HEAT_SOURCE_BLOCKS_WITHOUT_LIT = blockTag("heat_source_blocks_without_lit");
     /**
+     * 厨娘凳
+     */
+    TagKey<Block> COOK_STOOL = blockTag("cook_stool");
+    /**
+     * 椅子
+     */
+    TagKey<Block> CHAIR = blockTag("chair");
+    /**
+     * 餐桌
+     */
+    TagKey<Block> TABLE = blockTag("table");
+    /**
+     * 可以坐在上面的方块
+     */
+    TagKey<Block> SITTABLE = blockTag("sittable");
+    /**
      * 被本模组当做猪油来源的实体
      */
     TagKey<EntityType<?>> PIG_OIL_SOURCE = entityTag("pig_oil_source");
