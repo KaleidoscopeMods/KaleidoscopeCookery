@@ -182,11 +182,13 @@ public class BlockLootTables extends BlockLootSubProvider {
         var pumpkinSeed = getSeed(Items.PUMPKIN_SEEDS, 0.085F);
         var melonSeed = getSeed(Items.MELON_SEEDS, 0.085F);
         var torchFlowerSeeds = getSeed(Items.TORCHFLOWER_SEEDS, 0.01F);
+        var pitcherPod = getSeed(Items.PITCHER_POD, 0.01F);
 
         LootTable.Builder dropSeed = LootTable.lootTable().withPool(LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
                 .add(tomato).add(chili).add(lettuce).add(rice)
-                .add(beetRootSeed).add(cocoaBeans).add(pumpkinSeed).add(melonSeed).add(torchFlowerSeeds)
+                .add(beetRootSeed).add(cocoaBeans).add(pumpkinSeed).add(melonSeed)
+                .add(torchFlowerSeeds).add(pitcherPod)
         );
         output.accept(modLoc("straw_hat_seed_drop"), dropSeed);
     }

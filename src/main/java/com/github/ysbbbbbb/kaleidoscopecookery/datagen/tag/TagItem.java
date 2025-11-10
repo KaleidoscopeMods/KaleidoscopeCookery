@@ -93,7 +93,7 @@ public class TagItem extends ItemTagsProvider {
 
         // 原版兼容
         tag(ItemTags.SHOVELS).add(ModItems.KITCHEN_SHOVEL.get());
-        tag(ItemTags.SWORDS).addTag(KITCHEN_KNIFE);
+        tag(ItemTags.SWORDS).addTag(KITCHEN_KNIFE).add(ModItems.SICKLE.get());
         tag(EXTINGUISH_STOVE).addTag(ItemTags.SHOVELS);
         tag(VILLAGER_PLANTABLE_SEEDS).add(ModItems.TOMATO_SEED.get(),
                 ModItems.CHILI_SEED.get(), ModItems.LETTUCE_SEED.get()

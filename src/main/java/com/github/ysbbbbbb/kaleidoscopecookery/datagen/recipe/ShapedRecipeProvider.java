@@ -262,5 +262,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('S', Items.STICK)
                 .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.SICKLE.get())
+                .pattern("AAB")
+                .pattern("  C")
+                .pattern("  C")
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.IRON_NUGGET)
+                .define('C', Items.STICK)
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .save(consumer);
     }
 }

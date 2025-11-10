@@ -50,6 +50,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.LETTUCE_SEED.get());
                 // 工具
                 output.accept(ModItems.KITCHEN_SHOVEL.get());
+                output.accept(ModItems.SICKLE.get());
                 output.accept(ModItems.GOLD_KITCHEN_KNIFE.get());
                 output.accept(ModItems.IRON_KITCHEN_KNIFE.get());
                 output.accept(ModItems.DIAMOND_KITCHEN_KNIFE.get());

@@ -42,6 +42,7 @@ public final class ModItems {
     public static RegistryObject<Item> DIAMOND_KITCHEN_KNIFE = ITEMS.register("diamond_kitchen_knife", () -> new KitchenKnifeItem(Tiers.DIAMOND));
     public static RegistryObject<Item> NETHERITE_KITCHEN_KNIFE = ITEMS.register("netherite_kitchen_knife", () -> new KitchenKnifeItem(Tiers.NETHERITE, (new Item.Properties()).fireResistant()));
     public static RegistryObject<Item> KITCHEN_SHOVEL = ITEMS.register("kitchen_shovel", KitchenShovelItem::new);
+    public static RegistryObject<Item> SICKLE = ITEMS.register("sickle", SickleItem::new);
 
     // 服装
     public static RegistryObject<Item> STRAW_HAT = ITEMS.register("straw_hat", () -> new StrawHatItem(false));

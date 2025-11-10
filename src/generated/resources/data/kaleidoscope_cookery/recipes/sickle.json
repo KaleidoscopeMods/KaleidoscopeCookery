@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:iron_nugget"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAB",
+    "  C",
+    "  C"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:sickle"
+  },
+  "show_notification": true
+}

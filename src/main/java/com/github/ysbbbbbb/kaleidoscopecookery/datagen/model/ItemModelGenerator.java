@@ -33,6 +33,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         handheldItem(ModItems.GOLD_KITCHEN_KNIFE.get());
         handheldItem(ModItems.DIAMOND_KITCHEN_KNIFE.get());
         handheldItem(ModItems.NETHERITE_KITCHEN_KNIFE.get());
+        handheldItem(ModItems.SICKLE.get());
 
         basicItem(ModItems.OIL.get());
         basicItem(ModItems.FRIED_EGG.get());
