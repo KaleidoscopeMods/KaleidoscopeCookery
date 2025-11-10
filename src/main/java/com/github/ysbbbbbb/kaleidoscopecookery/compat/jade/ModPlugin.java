@@ -1,7 +1,10 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.jade;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.ChoppingBoardBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.EnamelBasinBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.MillstoneBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.ShawarmaSpitBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.RecipeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.TableBlockEntity;
@@ -27,7 +30,6 @@ public class ModPlugin implements IWailaPlugin {
     public static final ResourceLocation TABLE = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "table");
     public static final ResourceLocation FRUIT_BASKET = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "fruit_basket");
     public static final ResourceLocation KITCHENWARE_RACK = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "kitchenware_rack");
-    public static final ResourceLocation OIL_POT = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "oil_pot");
     public static final ResourceLocation RECIPE_BLOCK = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "recipe_block");
     public static final ResourceLocation STEAMER = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer");
 
@@ -46,7 +48,6 @@ public class ModPlugin implements IWailaPlugin {
         registration.registerBlockComponent(ShawarmaSpitComponentProvider.INSTANCE, ShawarmaSpitBlock.class);
         registration.registerBlockComponent(ChoppingBoardComponentProvider.INSTANCE, ChoppingBoardBlock.class);
         registration.registerBlockComponent(EnamelBasinComponentProvider.INSTANCE, EnamelBasinBlock.class);
-        registration.registerBlockComponent(OilPotComponentProvider.INSTANCE, OilPotBlock.class);
 
         registration.registerItemStorageClient(FruitBasketComponentProvider.INSTANCE);
         registration.registerItemStorageClient(KitchenwareRackComponentProvider.INSTANCE);

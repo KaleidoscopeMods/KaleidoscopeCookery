@@ -72,6 +72,22 @@ public class BaseAdvancement {
                                 ).build()
                         ))
                 ))
+                .addCriterion("zombified_piglin", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().of(EntityType.ZOMBIFIED_PIGLIN),
+                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
+                                EntityEquipmentPredicate.Builder.equipment().mainhand(
+                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE).build()
+                                ).build()
+                        ))
+                ))
+                .addCriterion("zoglin", KilledTrigger.TriggerInstance.playerKilledEntity(
+                        EntityPredicate.Builder.entity().of(EntityType.ZOGLIN),
+                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
+                                EntityEquipmentPredicate.Builder.equipment().mainhand(
+                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE).build()
+                                ).build()
+                        ))
+                ))
                 .requirements(RequirementsStrategy.OR)
                 .save(saver, modLoc("oil"), existingFileHelper);
 
@@ -278,11 +294,6 @@ public class BaseAdvancement {
                 .parent(root)
                 .addCriterion("drive_the_millstone", ModEventTrigger.create(ModEventTriggerType.DRIVE_THE_MILLSTONE))
                 .save(saver, modLoc("millstone"), existingFileHelper);
-
-        Advancement oilPot = makeTask(ModItems.OIL_POT.get(), "oil_pot")
-                .parent(millstone)
-                .addCriterion("use_millstone_get_oil_pot", ModEventTrigger.create(ModEventTriggerType.USE_MILLSTONE_GET_OIL_POT))
-                .save(saver, modLoc("oil_pot"), existingFileHelper);
 
         Advancement dough = makeTask(ModItems.RAW_DOUGH.get(), "dough")
                 .parent(millstone)

@@ -151,12 +151,13 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.ENAMEL_BASIN.get())
-                .pattern("OOO")
-                .pattern("OOO")
-                .pattern(" B ")
-                .define('O', TagMod.OIL)
+                .pattern("B")
+                .pattern("I")
+                .pattern("O")
                 .define('B', Items.BUCKET)
-                .unlockedBy("has_ingot_iron", has(Items.IRON_INGOT))
+                .define('I', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                .define('O', Items.STONE_BUTTON)
+                .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.KITCHENWARE_RACKS.get())

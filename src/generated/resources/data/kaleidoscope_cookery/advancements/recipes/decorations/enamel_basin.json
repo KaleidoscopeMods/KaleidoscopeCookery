@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ingot_iron": {
+    "has_bucket": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:bucket"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_ingot_iron",
+      "has_bucket",
       "has_the_recipe"
     ]
   ],
