@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -173,16 +174,32 @@ public class BlockLootTables extends BlockLootSubProvider {
         var chili = getSeed(ModItems.CHILI_SEED.get());
         var lettuce = getSeed(ModItems.LETTUCE_SEED.get());
         var rice = getSeed(ModItems.WILD_RICE_SEED.get());
-        LootTable.Builder dropSeed = LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
-                .add(tomato).add(chili).add(lettuce).add(rice));
+
+        // 原版其他几个种子也掉
+        // 甜菜、可可豆、南瓜、西瓜种子、火把花种子
+        var beetRootSeed = getSeed(Items.BEETROOT_SEEDS, 0.085F);
+        var cocoaBeans = getSeed(Items.COCOA_BEANS, 0.085F);
+        var pumpkinSeed = getSeed(Items.PUMPKIN_SEEDS, 0.085F);
+        var melonSeed = getSeed(Items.MELON_SEEDS, 0.085F);
+        var torchFlowerSeeds = getSeed(Items.TORCHFLOWER_SEEDS, 0.01F);
+
+        LootTable.Builder dropSeed = LootTable.lootTable().withPool(LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(tomato).add(chili).add(lettuce).add(rice)
+                .add(beetRootSeed).add(cocoaBeans).add(pumpkinSeed).add(melonSeed).add(torchFlowerSeeds)
+        );
         output.accept(modLoc("straw_hat_seed_drop"), dropSeed);
     }
 
     private LootPoolSingletonContainer.Builder<?> getSeed(ItemLike item) {
+        return getSeed(item, 0.125F);
+    }
+
+    private LootPoolSingletonContainer.Builder<?> getSeed(ItemLike item, float probability) {
         ItemPredicate hasHat = ItemPredicate.Builder.item().of(TagMod.STRAW_HAT).build();
         LootItemCondition.Builder hatMatches = AdvanceBlockMatchTool.toolMatches(EquipmentSlot.HEAD, hasHat);
         return LootItem.lootTableItem(item)
-                .when(LootItemRandomChanceCondition.randomChance(0.125F)).when(hatMatches)
+                .when(LootItemRandomChanceCondition.randomChance(probability)).when(hatMatches)
                 .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2));
     }
 

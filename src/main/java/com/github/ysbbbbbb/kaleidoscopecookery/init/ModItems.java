@@ -114,7 +114,7 @@ public final class ModItems {
     public static RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFoods.FRIED_EGG)));
     public static RegistryObject<Item> DONKEY_BURGER = ITEMS.register("donkey_burger", () -> new FoodWithEffectsItem(ModFoods.DONKEY_BURGER));
     public static RegistryObject<Item> BAOZI = ITEMS.register("baozi", () -> new FoodWithEffectsItem(ModFoods.BAOZI));
-    public static RegistryObject<Item> DUMPLING = ITEMS.register("dumpling", () -> new FoodWithEffectsItem(ModFoods.DUMPLING));
+    public static RegistryObject<Item> DUMPLING = ITEMS.register("dumpling", () -> new BowlFoodOnlyItem(ModFoods.DUMPLING));
     public static RegistryObject<Item> SAMSA = ITEMS.register("samsa", () -> new FoodWithEffectsItem(ModFoods.SAMSA));
     public static RegistryObject<Item> MANTOU = ITEMS.register("mantou", () -> new FoodWithEffectsItem(ModFoods.MANTOU));
     public static RegistryObject<Item> MEAT_PIE = ITEMS.register("meat_pie", () -> new FoodWithEffectsItem(ModFoods.MEAT_PIE));

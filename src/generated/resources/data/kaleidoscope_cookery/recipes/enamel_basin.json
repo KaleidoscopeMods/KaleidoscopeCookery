@@ -13,9 +13,9 @@
     }
   },
   "pattern": [
-    "B",
+    "O",
     "I",
-    "O"
+    "B"
   ],
   "result": {
     "item": "kaleidoscope_cookery:enamel_basin"

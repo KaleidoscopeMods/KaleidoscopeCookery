@@ -151,9 +151,9 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.ENAMEL_BASIN.get())
-                .pattern("B")
-                .pattern("I")
                 .pattern("O")
+                .pattern("I")
+                .pattern("B")
                 .define('B', Items.BUCKET)
                 .define('I', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
                 .define('O', Items.STONE_BUTTON)
