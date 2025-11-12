@@ -1,7 +1,7 @@
 {
   "type": "kaleidoscope_cookery:pot",
   "carrier": {
-    "item": "kaleidoscope_cookery:cooked_rice"
+    "tag": "forge:cooked_rice"
   },
   "ingredients": [
     {

@@ -8,6 +8,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.ItemContainerTo
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -39,8 +41,10 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class TransmutationLunchBagItem extends Item {
     public static final ResourceLocation HAS_ITEMS_PROPERTY = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "has_items");
@@ -146,17 +150,22 @@ public class TransmutationLunchBagItem extends Item {
     }
 
     @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        if (entity instanceof Player player && player.isSecondaryUseActive()) {
+            // 摆动动作时，取出物品
+            if (dropContents(stack, player)) {
+                this.playDropContentsSound(player);
+                return true;
+            }
+        }
+        return super.onEntitySwing(stack, entity);
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        // 潜行右键使用，取出物品
-        if (player.isSecondaryUseActive() && dropContents(itemInHand, player)) {
-            this.playDropContentsSound(player);
-            player.awardStat(Stats.ITEM_USED.get(this));
-            return InteractionResultHolder.sidedSuccess(itemInHand, level.isClientSide());
-        }
-
-        // 非潜行状态，并且里面有物品
-        if (!player.isSecondaryUseActive() && hasItems(itemInHand)) {
+        // 里面有物品
+        if (hasItems(itemInHand)) {
             boolean hasFood = false;
             ItemStackHandler items = getItems(itemInHand);
             for (int i = 0; i < items.getSlots(); i++) {
@@ -176,13 +185,12 @@ public class TransmutationLunchBagItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("all")
     public ItemStack finishUsingItem(ItemStack bag, Level level, LivingEntity entity) {
         if (!hasItems(bag)) {
             return bag;
         }
         ItemStack food = ItemStack.EMPTY;
-        List<Pair<MobEffectInstance, Float>> effects = Lists.newArrayList();
+        List<List<Pair<MobEffectInstance, Float>>> effects = Lists.newArrayList();
 
         ItemStackHandler items = getItems(bag);
         for (int i = 0; i < items.getSlots(); i++) {
@@ -192,10 +200,12 @@ public class TransmutationLunchBagItem extends Item {
             }
 
             // 先检查是不是食物
-            if (stackInSlot.getItem().getFoodProperties() != null) {
+            FoodProperties foodProperties = stackInSlot.getItem().getFoodProperties(stackInSlot, null);
+            if (foodProperties != null) {
                 // 第一个食物的效果不加入其中，避免重复
                 if (!food.isEmpty()) {
-                    effects.addAll(stackInSlot.getItem().getFoodProperties().getEffects());
+                    List<Pair<MobEffectInstance, Float>> foodEffects = foodProperties.getEffects();
+                    effects.add(foodEffects);
                 } else {
                     food = items.extractItem(i, 1, false);
                 }
@@ -206,8 +216,9 @@ public class TransmutationLunchBagItem extends Item {
             if (stackInSlot.is(Items.POTION)) {
                 // 第一个药水的效果不加入其中，避免重复
                 if (!food.isEmpty()) {
-                    PotionUtils.getMobEffects(stackInSlot).stream()
-                            .forEach(e -> effects.add(Pair.of(e, 1F)));
+                    List<Pair<MobEffectInstance, Float>> potionEffects = Lists.newArrayList();
+                    PotionUtils.getMobEffects(stackInSlot).forEach(e -> potionEffects.add(Pair.of(e, 1F)));
+                    effects.add(potionEffects);
                 } else {
                     food = items.extractItem(i, 1, false);
                 }
@@ -230,11 +241,35 @@ public class TransmutationLunchBagItem extends Item {
             }
 
             // 处理效果
-            for (Pair<MobEffectInstance, Float> effect : effects) {
-                if (level.isClientSide || effect.getSecond() <= 0.0F || level.random.nextFloat() >= effect.getSecond()) {
-                    continue;
+            // 随机选择三个食物的效果
+            boolean hasExtraEffects = false;
+            Collections.shuffle(effects, new Random());
+            int effectsToApply = Math.min(3, effects.size());
+            for (int i = 0; i < effectsToApply; i++) {
+                List<Pair<MobEffectInstance, Float>> selected = effects.get(i);
+                for (Pair<MobEffectInstance, Float> effect : selected) {
+                    if (level.isClientSide || effect.getSecond() <= 0.0F || level.random.nextFloat() >= effect.getSecond()) {
+                        continue;
+                    }
+                    entity.addEffect(new MobEffectInstance(effect.getFirst()));
+                    hasExtraEffects = true;
                 }
-                entity.addEffect(new MobEffectInstance(effect.getFirst()));
+            }
+
+            // 如果有额外效果，那么随机扣除一个物品
+            if (hasExtraEffects) {
+                IntList foodSlots = new IntArrayList();
+                for (int i = 0; i < items.getSlots(); i++) {
+                    ItemStack stackInSlot = items.getStackInSlot(i);
+                    if (!stackInSlot.isEmpty()) {
+                        foodSlots.add(i);
+                    }
+                }
+                if (!foodSlots.isEmpty()) {
+                    int randomIndex = level.random.nextInt(foodSlots.size());
+                    int slotToExtract = foodSlots.getInt(randomIndex);
+                    items.extractItem(slotToExtract, 1, false);
+                }
             }
 
             // 给予成就
@@ -272,9 +307,12 @@ public class TransmutationLunchBagItem extends Item {
             removeOne(bag).ifPresent(stack -> add(bag, slot.safeInsert(stack)));
         } else if (clickItem.getItem().canFitInsideContainerItems() && canAdd(clickItem)) {
             // 否则，放入食物
-            int addCount = add(bag, clickItem);
+            int addCount = add(bag, clickItem, true);
             if (addCount > 0) {
-                slot.safeTake(clickItem.getCount(), addCount, player);
+                ItemStack takeout = slot.safeTake(clickItem.getCount(), addCount, player);
+                if (!takeout.isEmpty()) {
+                    add(bag, takeout);
+                }
                 this.playInsertSound(player);
             }
         }
@@ -331,20 +369,23 @@ public class TransmutationLunchBagItem extends Item {
     }
 
     private static int add(ItemStack bag, ItemStack food) {
+        return add(bag, food, false);
+    }
+
+    private static int add(ItemStack bag, ItemStack food, boolean simulate) {
         if (food.isEmpty() || !food.getItem().canFitInsideContainerItems() || !canAdd(food)) {
             return 0;
         }
         int totalCount = food.getCount();
 
         ItemStackHandler items = getItems(bag);
-        ItemStack remaining = ItemHandlerHelper.insertItemStacked(items, food, false);
+        ItemStack remaining = ItemHandlerHelper.insertItemStacked(items, food, simulate);
 
         int addCount = totalCount - (remaining.isEmpty() ? 0 : remaining.getCount());
-        if (addCount > 0) {
+        if (!simulate && addCount > 0) {
             setItems(bag, items);
-            return addCount;
         }
-        return 0;
+        return addCount;
     }
 
     private static boolean dropContents(ItemStack bag, Player player) {

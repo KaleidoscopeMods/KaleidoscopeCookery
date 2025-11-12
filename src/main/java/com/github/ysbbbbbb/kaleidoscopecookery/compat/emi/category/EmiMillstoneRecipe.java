@@ -25,11 +25,10 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
     public static final int WIDTH = 176;
     public static final int HEIGHT = 95;
 
-    public EmiMillstoneRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> ingredients) {
+    public EmiMillstoneRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs) {
         super(CATEGORY, id, WIDTH, HEIGHT);
         this.inputs = inputs;
         this.outputs = outputs;
-        this.catalysts = ingredients;
     }
 
     public static void register(EmiRegistry registry) {
@@ -39,8 +38,7 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
         registry.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE).forEach(r -> {
             List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
             List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
-            List<EmiIngredient> catalysts = List.of(EmiIngredient.of(r.getCarrier()));
-            registry.addRecipe(new EmiMillstoneRecipe(r.getId(), inputs, outputs, catalysts));
+            registry.addRecipe(new EmiMillstoneRecipe(r.getId(), inputs, outputs));
         });
     }
 

@@ -33,6 +33,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         handheldItem(ModItems.GOLD_KITCHEN_KNIFE.get());
         handheldItem(ModItems.DIAMOND_KITCHEN_KNIFE.get());
         handheldItem(ModItems.NETHERITE_KITCHEN_KNIFE.get());
+        handheldItem(ModItems.SICKLE.get());
 
         basicItem(ModItems.OIL.get());
         basicItem(ModItems.FRIED_EGG.get());
@@ -99,6 +100,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.STUFFED_DOUGH_FOOD.get());
         basicItem(ModItems.DONKEY_BURGER.get());
         basicItem(ModItems.DONKEY_SOUP.get());
+        basicItem(ModItems.FLOUR.get());
+        basicItem(ModItems.RAW_CUT_SMALL_MEATS.get());
+        basicItem(ModItems.COOKED_CUT_SMALL_MEATS.get());
 
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.DUMPLING.get());
@@ -112,7 +116,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
-        basicItem(modLoc("raw_dough_in_millstone"));
         basicItem(modLoc("oil_in_millstone"));
 
         ResourceLocation chileRistra = ForgeRegistries.ITEMS.getKey(ModItems.CHILI_RISTRA.get());

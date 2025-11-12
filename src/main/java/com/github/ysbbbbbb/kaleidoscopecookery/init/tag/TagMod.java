@@ -73,9 +73,13 @@ public interface TagMod {
      */
     TagKey<Item> GLASS_BOTTLE_CONTAINER = itemTag("glass_bottle_container");
     /**
-     * 石磨取出面团所使用的容器
+     * 本模组所有可以进食的食物
      */
-    TagKey<Item> MILLSTONE_DOUGH_CONTAINER = itemTag("millstone_dough_container");
+    TagKey<Item> MEALS = itemTag("meals");
+    /**
+     * 本模组可以放置出来的食物
+     */
+    TagKey<Item> FEASTS = itemTag("feasts");
     /**
      * 寒带疾行效果可以提速的方块
      */
@@ -94,6 +98,22 @@ public interface TagMod {
      * 默认是任何具有 LIT 标签的方块或拥有此 tag 的方块，故这里需要添加的是没有 LIT 标签的热源方块
      */
     TagKey<Block> HEAT_SOURCE_BLOCKS_WITHOUT_LIT = blockTag("heat_source_blocks_without_lit");
+    /**
+     * 厨娘凳
+     */
+    TagKey<Block> COOK_STOOL = blockTag("cook_stool");
+    /**
+     * 椅子
+     */
+    TagKey<Block> CHAIR = blockTag("chair");
+    /**
+     * 餐桌
+     */
+    TagKey<Block> TABLE = blockTag("table");
+    /**
+     * 可以坐在上面的方块
+     */
+    TagKey<Block> SITTABLE = blockTag("sittable");
     /**
      * 被本模组当做猪油来源的实体
      */

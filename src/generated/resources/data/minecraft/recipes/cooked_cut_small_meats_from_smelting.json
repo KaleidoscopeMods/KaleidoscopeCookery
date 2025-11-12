@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:raw_cut_small_meats"
+  },
+  "result": "kaleidoscope_cookery:cooked_cut_small_meats"
+}

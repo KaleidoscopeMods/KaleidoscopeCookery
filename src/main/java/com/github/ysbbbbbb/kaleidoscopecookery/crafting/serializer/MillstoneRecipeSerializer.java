@@ -21,28 +21,19 @@ public class MillstoneRecipeSerializer implements RecipeSerializer<MillstoneReci
         }
         ItemStack result = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true, true);
 
-        Ingredient carrier;
-        if (json.has("carrier")) {
-            carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
-        } else {
-            carrier = Ingredient.EMPTY;
-        }
-
-        return new MillstoneRecipe(recipeId, ingredient, result, carrier);
+        return new MillstoneRecipe(recipeId, ingredient, result);
     }
 
     @Override
     public MillstoneRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
         Ingredient ingredient = Ingredient.fromNetwork(buffer);
         ItemStack result = buffer.readItem();
-        Ingredient carrier = Ingredient.fromNetwork(buffer);
-        return new MillstoneRecipe(recipeId, ingredient, result, carrier);
+        return new MillstoneRecipe(recipeId, ingredient, result);
     }
 
     @Override
     public void toNetwork(FriendlyByteBuf buffer, MillstoneRecipe recipe) {
         recipe.getIngredient().toNetwork(buffer);
         buffer.writeItem(recipe.getResult());
-        recipe.getCarrier().toNetwork(buffer);
     }
 }

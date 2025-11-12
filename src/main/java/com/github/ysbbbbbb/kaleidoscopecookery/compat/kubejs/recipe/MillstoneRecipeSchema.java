@@ -9,7 +9,6 @@ import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 public interface MillstoneRecipeSchema {
     RecipeKey<OutputItem> OUTPUT = ItemComponents.OUTPUT.key("result");
     RecipeKey<InputItem> INGREDIENT = ItemComponents.INPUT.key("ingredient");
-    RecipeKey<InputItem> CARRIER = ItemComponents.INPUT.key("carrier").optional(InputItem.EMPTY);
 
-    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INGREDIENT, CARRIER);
+    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INGREDIENT);
 }

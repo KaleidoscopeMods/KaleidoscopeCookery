@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.OilPotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -22,24 +23,22 @@ import java.util.List;
 
 public class OilPotItem extends BlockItem {
     public static final ResourceLocation HAS_OIL_PROPERTY = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "has_oil");
-    public static final int MAX_COUNT = 8;
 
-    private static final String BLOCK_STATE_TAG = "BlockStateTag";
     private static final String OIL_COUNT = "oil_count";
     private static final int NO_OIL = 0;
     private static final int HAS_OIL = 1;
 
     public OilPotItem() {
-        super(ModBlocks.OIL_POT.get(), new Item.Properties().stacksTo(16));
+        super(ModBlocks.OIL_POT.get(), new Item.Properties().stacksTo(1));
     }
 
     public static void setOilCount(ItemStack stack, int count) {
-        count = Mth.clamp(count, 0, MAX_COUNT);
-        stack.getOrCreateTagElement(BLOCK_STATE_TAG).putInt(OIL_COUNT, count);
+        count = Mth.clamp(count, 0, OilPotBlockEntity.MAX_OIL_COUNT);
+        stack.getOrCreateTag().putInt(OIL_COUNT, count);
     }
 
     public static int getOilCount(ItemStack stack) {
-        CompoundTag element = stack.getTagElement(BLOCK_STATE_TAG);
+        CompoundTag element = stack.getTag();
         if (element == null || !element.contains(OIL_COUNT)) {
             return 0;
         }
@@ -59,7 +58,7 @@ public class OilPotItem extends BlockItem {
 
     public static ItemStack getFullOilPot() {
         ItemStack stack = new ItemStack(ModBlocks.OIL_POT.get());
-        setOilCount(stack, MAX_COUNT);
+        setOilCount(stack, OilPotBlockEntity.MAX_OIL_COUNT);
         return stack;
     }
 

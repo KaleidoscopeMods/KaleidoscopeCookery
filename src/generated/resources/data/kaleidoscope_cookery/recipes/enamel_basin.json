@@ -5,14 +5,17 @@
     "B": {
       "item": "minecraft:bucket"
     },
+    "I": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
     "O": {
-      "tag": "kaleidoscope_cookery:oil"
+      "item": "minecraft:stone_button"
     }
   },
   "pattern": [
-    "OOO",
-    "OOO",
-    " B "
+    "O",
+    "I",
+    "B"
   ],
   "result": {
     "item": "kaleidoscope_cookery:enamel_basin"

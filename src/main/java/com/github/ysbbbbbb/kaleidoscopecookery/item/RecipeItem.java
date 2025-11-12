@@ -11,6 +11,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.RecipeItemTooltip;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
@@ -24,6 +25,7 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -144,7 +146,8 @@ public class RecipeItem extends BlockItem {
         if (hasRecipe(itemInHand)) {
             return this.onPutRecipe(blockEntity, player, itemInHand);
         } else {
-            return this.onRecordRecipe(context, blockEntity, recipeManager, itemInHand);
+            InteractionHand hand = context.getHand();
+            return this.onRecordRecipe(context.getLevel(), player, blockEntity, recipeManager, itemInHand, hand);
         }
     }
 
@@ -265,20 +268,28 @@ public class RecipeItem extends BlockItem {
         return InteractionResult.SUCCESS;
     }
 
-    private InteractionResult onRecordRecipe(UseOnContext context, BlockEntity blockEntity, RecipeManager recipeManager, ItemStack itemInHand) {
-        Level level = context.getLevel();
+    private InteractionResult onRecordRecipe(Level level, Player player, BlockEntity blockEntity, RecipeManager recipeManager,
+                                             ItemStack itemInHand, InteractionHand hand) {
         if (blockEntity instanceof PotBlockEntity pot && pot.getStatus() == IPot.PUT_INGREDIENT) {
             List<ItemStack> inputs = pot.getInputs().stream().filter(s -> !s.isEmpty()).toList();
             if (inputs.isEmpty()) {
                 return InteractionResult.PASS;
             }
+            // 如果数量大于 1，那么复制一个，其他的返回背包
+            ItemStack recordStack = itemInHand.copyWithCount(1);
+            int count = itemInHand.getCount();
+            if (count > 1) {
+                ItemStack returnStack = itemInHand.copyWithCount(count - 1);
+                ItemUtils.getItemToLivingEntity(player, returnStack);
+            }
             recipeManager.getRecipeFor(ModRecipes.POT_RECIPE, pot.getContainer(), level).ifPresentOrElse(recipe -> {
                 ItemStack resultItem = recipe.getResultItem(level.registryAccess());
-                setRecipe(itemInHand, new RecipeRecord(inputs, resultItem, POT));
+                setRecipe(recordStack, new RecipeRecord(inputs, resultItem, POT));
             }, () -> {
                 ItemStack instance = FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY).getDefaultInstance();
-                setRecipe(itemInHand, new RecipeRecord(inputs, instance, POT));
+                setRecipe(recordStack, new RecipeRecord(inputs, instance, POT));
             });
+            player.setItemInHand(hand, recordStack);
             return InteractionResult.SUCCESS;
         }
 
@@ -287,13 +298,21 @@ public class RecipeItem extends BlockItem {
             if (inputs.isEmpty()) {
                 return InteractionResult.PASS;
             }
+            // 如果数量大于 1，那么复制一个，其他的返回背包
+            ItemStack recordStack = itemInHand.copyWithCount(1);
+            int count = itemInHand.getCount();
+            if (count > 1) {
+                ItemStack returnStack = itemInHand.copyWithCount(count - 1);
+                ItemUtils.getItemToLivingEntity(player, returnStack);
+            }
             recipeManager.getRecipeFor(ModRecipes.STOCKPOT_RECIPE, stockpot.getContainer(), level).ifPresentOrElse(recipe -> {
                 ItemStack resultItem = recipe.getResultItem(level.registryAccess());
-                setRecipe(itemInHand, new RecipeRecord(inputs, resultItem, STOCKPOT));
+                setRecipe(recordStack, new RecipeRecord(inputs, resultItem, STOCKPOT));
             }, () -> {
                 ItemStack instance = Items.SUSPICIOUS_STEW.getDefaultInstance();
-                setRecipe(itemInHand, new RecipeRecord(inputs, instance, STOCKPOT));
+                setRecipe(recordStack, new RecipeRecord(inputs, instance, STOCKPOT));
             });
+            player.setItemInHand(hand, recordStack);
             return InteractionResult.SUCCESS;
         }
 

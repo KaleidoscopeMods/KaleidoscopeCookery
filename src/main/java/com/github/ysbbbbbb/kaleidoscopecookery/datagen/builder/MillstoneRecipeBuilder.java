@@ -24,7 +24,6 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     private Ingredient ingredient = Ingredient.EMPTY;
     private ItemStack result = ItemStack.EMPTY;
-    private Ingredient carrier = Ingredient.EMPTY;
 
     public static MillstoneRecipeBuilder builder() {
         return new MillstoneRecipeBuilder();
@@ -52,21 +51,6 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     public MillstoneRecipeBuilder setResult(ItemLike itemLike, int count) {
         this.result = new ItemStack(itemLike, count);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(ItemLike itemLike) {
-        this.carrier = Ingredient.of(itemLike);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(TagKey<Item> itemLike) {
-        this.carrier = Ingredient.of(itemLike);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(Ingredient ingredient) {
-        this.carrier = ingredient;
         return this;
     }
 
@@ -100,20 +84,18 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
-        recipeOutput.accept(new MillstoneRecipe(id, this.ingredient, this.result, this.carrier));
+        recipeOutput.accept(new MillstoneRecipe(id, this.ingredient, this.result));
     }
 
     public static class MillstoneRecipe implements FinishedRecipe {
         private final ResourceLocation id;
         private final Ingredient ingredient;
         private final ItemStack result;
-        private final Ingredient carrier;
 
-        public MillstoneRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, Ingredient carrier) {
+        public MillstoneRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result) {
             this.id = id;
             this.ingredient = ingredient;
             this.result = result;
-            this.carrier = carrier;
         }
 
         @Override
@@ -125,9 +107,6 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
                 itemJson.addProperty("count", this.result.getCount());
             }
             json.add("result", itemJson);
-            if (!this.carrier.isEmpty()) {
-                json.add("carrier", this.carrier.toJson());
-            }
         }
 
         @Override

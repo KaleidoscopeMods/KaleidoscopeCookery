@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cooked_cut_small_meats"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

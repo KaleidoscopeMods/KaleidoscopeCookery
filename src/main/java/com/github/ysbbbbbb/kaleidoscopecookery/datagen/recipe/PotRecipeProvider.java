@@ -27,7 +27,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.COOKED_EGGS, TagCommon.COOKED_EGGS,
                         TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get())
                 .save(consumer);
 
@@ -43,7 +43,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .addInput(ModItems.RAW_COW_OFFAL.get(), ModItems.RAW_COW_OFFAL.get())
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.STIR_FRIED_BEEF_OFFAL_RICE_BOWL.get())
                 .save(consumer);
 
@@ -56,7 +56,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_BEEF, TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.BRAISED_BEEF_RICE_BOWL.get())
                 .save(consumer);
 
@@ -72,7 +72,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.BRAISED_BEEF_RICE_BOWL.get(), 2)
                 .save(consumer, "braised_beef_rice_bowl_2");
 
@@ -86,7 +86,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder()
                 .addInput(ModItems.GREEN_CHILI.get(), ModItems.GREEN_CHILI.get(), ModItems.GREEN_CHILI.get())
                 .addInput(TagCommon.RAW_PORK, TagCommon.RAW_PORK)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.STIR_FRIED_PORK_WITH_PEPPERS_RICE_BOWL.get())
                 .save(consumer);
 
@@ -100,7 +100,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder()
                 .addInput(Items.SUGAR, Items.SUGAR, Items.SUGAR)
                 .addInput(TagCommon.RAW_PORK, TagCommon.RAW_PORK)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.SWEET_AND_SOUR_PORK_RICE_BOWL.get())
                 .save(consumer);
 
@@ -121,7 +121,7 @@ public class PotRecipeProvider extends ModRecipeProvider {
         PotRecipeBuilder.builder()
                 .addInput(Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, TagCommon.RAW_PORK,
                         TagCommon.RAW_PORK, TagCommon.CROPS_CHILI_PEPPER)
-                .setCarrier(ModItems.COOKED_RICE.get())
+                .setCarrier(TagCommon.COOKED_RICE)
                 .setResult(ModItems.FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL.get())
                 .save(consumer);
 

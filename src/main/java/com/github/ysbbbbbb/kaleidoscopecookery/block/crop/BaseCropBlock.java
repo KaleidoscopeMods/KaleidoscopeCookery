@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.crop;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -56,6 +57,10 @@ public class BaseCropBlock extends CropBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack itemInHand = player.getItemInHand(hand);
+        if (itemInHand.is(ModItems.SICKLE.get())) {
+            return InteractionResult.PASS;
+        }
         if (state.getValue(AGE) >= this.getMaxAge()) {
             Block.popResource(level, pos, this.result.get().getDefaultInstance());
             this.onUseBreakCrop(level, pos);

@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -30,6 +31,7 @@ public class TagItem extends ItemTagsProvider {
     }
 
     @Override
+    @SuppressWarnings("all")
     protected void addTags(HolderLookup.Provider provider) {
         // 模组 tag
         tag(OIL).add(ModItems.OIL.get());
@@ -67,20 +69,42 @@ public class TagItem extends ItemTagsProvider {
         this.tag(BUCKET_CONTAINER).add(WATER_BUCKET, LAVA_BUCKET, MILK_BUCKET,
                 SALMON_BUCKET, COD_BUCKET, TROPICAL_FISH_BUCKET, PUFFERFISH_BUCKET,
                 AXOLOTL_BUCKET, TADPOLE_BUCKET, POWDER_SNOW_BUCKET);
-        this.tag(MILLSTONE_DOUGH_CONTAINER).add(WATER_BUCKET);
+
+        // 给食物分类，简单分为食物和可放置食物
+        IntrinsicTagAppender<Item> meal = this.tag(MEALS);
+        IntrinsicTagAppender<Item> feasts = this.tag(FEASTS);
+        ForgeRegistries.ITEMS.getKeys().stream()
+                .filter(id -> id.getNamespace().equals(KaleidoscopeCookery.MOD_ID))
+                .forEach(id -> {
+                    Item item = ForgeRegistries.ITEMS.getValue(id);
+                    if (item == null) {
+                        return;
+                    }
+                    if (item.getFoodProperties() != null) {
+                        meal.add(item);
+                        if (item instanceof BowlFoodBlockItem) {
+                            feasts.add(item);
+                        }
+                    }
+                });
 
         this.addModItems();
         this.addPotIngredient();
 
         // 原版兼容
         tag(ItemTags.SHOVELS).add(ModItems.KITCHEN_SHOVEL.get());
-        tag(ItemTags.SWORDS).addTag(KITCHEN_KNIFE);
+        tag(ItemTags.SWORDS).addTag(KITCHEN_KNIFE).add(ModItems.SICKLE.get());
         tag(EXTINGUISH_STOVE).addTag(ItemTags.SHOVELS);
         tag(VILLAGER_PLANTABLE_SEEDS).add(ModItems.TOMATO_SEED.get(),
                 ModItems.CHILI_SEED.get(), ModItems.LETTUCE_SEED.get()
         );
-        tag(Tags.Items.SEEDS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
-                ModItems.LETTUCE_SEED.get());
+        tag(Tags.Items.SEEDS).add(
+                ModItems.CHILI_SEED.get(),
+                ModItems.TOMATO_SEED.get(),
+                ModItems.LETTUCE_SEED.get(),
+                ModItems.WILD_RICE_SEED.get(),
+                ModItems.RICE_SEED.get()
+        );
 
         // 社区兼容
         tag(TagCommon.CROPS_CHILI_PEPPER).add(ModItems.RED_CHILI.get(), ModItems.GREEN_CHILI.get());
@@ -129,6 +153,7 @@ public class TagItem extends ItemTagsProvider {
                 .addTag(TagCommon.RAW_FISHES_SALMON)
                 .addTag(TagCommon.RAW_FISHES_TROPICAL);
 
+        tag(TagCommon.FLOUR).add(ModItems.FLOUR.get());
         tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
 
         // 均衡饮食兼容
@@ -169,6 +194,7 @@ public class TagItem extends ItemTagsProvider {
                         TagCommon.SEEDS_RICE,
                         TagCommon.EGGS
                 ).add(
+                        ModItems.FLOUR.get(),
                         ModItems.RAW_DOUGH.get(),
                         ModItems.RAW_NOODLES.get(),
                         ModItems.STUFFED_DOUGH_FOOD.get()
