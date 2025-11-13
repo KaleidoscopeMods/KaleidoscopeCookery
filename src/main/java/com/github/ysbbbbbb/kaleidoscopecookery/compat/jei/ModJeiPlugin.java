@@ -9,6 +9,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 @JeiPlugin
 public class ModJeiPlugin implements IModPlugin {
@@ -37,13 +38,13 @@ public class ModJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(ModItems.POT.getDefaultInstance(), PotRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.CHOPPING_BOARD.getDefaultInstance(), ChoppingBoardRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.STOCKPOT.getDefaultInstance(), StockpotRecipeCategory.TYPE);
-//        registration.addRecipeCatalyst(ModItems.MILLSTONE, MillstoneRecipeCategory.TYPE);
-//        registration.addRecipeCatalyst(ModItems.STEAMER, SteamerRecipeCategory.TYPE);
+        registration.addRecipeCatalyst(ModItems.MILLSTONE, MillstoneRecipeCategory.TYPE);
+        registration.addRecipeCatalyst(ModItems.STEAMER, SteamerRecipeCategory.TYPE);
 
     }
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public @NotNull ResourceLocation getPluginUid() {
         return UID;
     }
 }
