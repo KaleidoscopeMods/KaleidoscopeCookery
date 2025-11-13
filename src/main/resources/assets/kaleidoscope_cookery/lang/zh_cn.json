@@ -316,5 +316,6 @@
   "item.kaleidoscope_cookery.sickle": "镰刀",
   "item.kaleidoscope_cookery.raw_cut_small_meats": "生切制小肉",
   "item.kaleidoscope_cookery.cooked_cut_small_meats": "熟切制小肉",
-  "item.kaleidoscope_cookery.flour": "面粉"
+  "item.kaleidoscope_cookery.flour": "面粉",
+  "entity.minecraft.villager.chef": "大厨"
 }

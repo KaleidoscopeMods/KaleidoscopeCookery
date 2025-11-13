@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
+
 public class FruitBasketItem extends BlockItem {
 
     private static final int MAX_SLOTS = 8;

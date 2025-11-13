@@ -316,5 +316,6 @@
   "item.kaleidoscope_cookery.sickle": "Sickle",
   "item.kaleidoscope_cookery.raw_cut_small_meats": "Raw Cut Small Meats",
   "item.kaleidoscope_cookery.cooked_cut_small_meats": "Cooked Cut Small Meats",
-  "item.kaleidoscope_cookery.flour": "Flour"
+  "item.kaleidoscope_cookery.flour": "Flour",
+  "entity.minecraft.villager.chef": "Chef"
 }
