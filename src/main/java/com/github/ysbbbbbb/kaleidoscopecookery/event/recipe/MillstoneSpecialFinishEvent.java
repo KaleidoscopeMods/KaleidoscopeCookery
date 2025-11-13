@@ -28,8 +28,8 @@ public class MillstoneSpecialFinishEvent {
                 onGetOilPot(millstone, level, output);
                 return;
             }
-            // 如果是生面团且下方是含水炼药锅，那么直接在炼药锅底部掉落面团
-            if (output.is(ModItems.RAW_DOUGH)) {
+            // 如果是面粉且下方是含水炼药锅，那么直接在炼药锅底部掉落吸水的面团
+            if (output.is(ModItems.FLOUR)) {
                 onGetRawDough(millstone, level, output);
             }
         });
@@ -42,11 +42,13 @@ public class MillstoneSpecialFinishEvent {
         if (!blockState.is(Blocks.WATER_CAULDRON)) {
             return;
         }
+        ItemStack outputs = ModItems.RAW_DOUGH.getDefaultInstance();
+        outputs.setCount(output.getCount());
         ItemEntity entity = new ItemEntity(level,
                 below.getX() + 0.5,
                 below.getY() + 0.2,
                 below.getZ() + 0.5,
-                output.copy());
+                outputs);
         entity.setDefaultPickUpDelay();
         level.addFreshEntity(entity);
         millstone.resetWhenTakeout();

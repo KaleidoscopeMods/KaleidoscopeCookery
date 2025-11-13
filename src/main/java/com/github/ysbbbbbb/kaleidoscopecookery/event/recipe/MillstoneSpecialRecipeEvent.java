@@ -35,7 +35,6 @@ public class MillstoneSpecialRecipeEvent {
             if (output.is(ModItems.RAW_DOUGH)) {
                 onGetRawDough(event, millstone, output);
             }
-            event.setCanceled(true);
         });
     }
 
