@@ -8,13 +8,17 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoundType;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -39,6 +43,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -49,6 +54,7 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_LID = BooleanProperty.create("has_lid");
     public static final BooleanProperty HAS_BASE = BooleanProperty.create("has_base");
+    public static final BooleanProperty HAS_CHAINS = BooleanProperty.create("has_chains");
 
     private static final VoxelShape AABB = Shapes.or(
             Block.box(2, 0, 2, 14, 5, 14),
@@ -66,7 +72,8 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
                 .setValue(FACING, Direction.SOUTH)
                 .setValue(WATERLOGGED, false)
                 .setValue(HAS_LID, false)
-                .setValue(HAS_BASE, false));
+                .setValue(HAS_BASE, false)
+                .setValue(HAS_CHAINS, false));
     }
 
     @Nullable
@@ -76,7 +83,7 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
 
@@ -88,19 +95,28 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor levelAccessor, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor levelAccessor, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
         }
-        // 如果下方是不完整方块，则添加基座
-        if (direction == Direction.DOWN) {
-            return state.setValue(HAS_BASE, !neighborState.isFaceSturdy(levelAccessor, neighborPos, Direction.UP));
+
+        // 上方无法支撑，取消锁链
+        // 下方无法支撑，添加基座
+        if (direction == Direction.DOWN && !state.getValue(HAS_CHAINS)) {
+            return state.setValue(HAS_CHAINS, canSupportCenter(levelAccessor, pos.above(), Direction.DOWN))
+                    .setValue(HAS_BASE, !neighborState.isFaceSturdy(levelAccessor, neighborPos, Direction.UP));
         }
+        if (direction == Direction.UP && !state.getValue(HAS_BASE)) {
+            BlockState belowState = levelAccessor.getBlockState(pos.below());
+            return state.setValue(HAS_CHAINS, canSupportCenter(levelAccessor, neighborPos, Direction.DOWN))
+                    .setValue(HAS_BASE, !belowState.isFaceSturdy(levelAccessor, pos.below(), Direction.UP));
+        }
+
         return super.updateShape(state, direction, neighborState, levelAccessor, pos, neighborPos);
     }
 
     @Override
-    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (hand != InteractionHand.MAIN_HAND) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -157,30 +173,40 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+        Level level = context.getLevel();
+        FluidState fluidState = level.getFluidState(context.getClickedPos());
+        Direction clickFace = context.getClickedFace();
         BlockState blockState = this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+
+        // 如果点击的是上方，那么依据是否是可支持方块添加锁链
+        BlockPos abovePos = context.getClickedPos().above();
+        if (clickFace == Direction.DOWN && canSupportCenter(level, abovePos, Direction.DOWN)) {
+            return blockState.setValue(HAS_CHAINS, true);
+        }
+
         // 如果下方是不完整方块，则添加基座
-        BlockState belowState = context.getLevel().getBlockState(context.getClickedPos().below());
-        if (!belowState.isFaceSturdy(context.getLevel(), context.getClickedPos().below(), Direction.UP)) {
+        BlockPos belowPos = context.getClickedPos().below();
+        BlockState belowState = level.getBlockState(belowPos);
+        if (!belowState.isFaceSturdy(level, belowPos, Direction.UP)) {
             return blockState.setValue(HAS_BASE, true);
         }
         return blockState;
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED, HAS_LID, HAS_BASE);
+        builder.add(FACING, WATERLOGGED, HAS_LID, HAS_BASE, HAS_CHAINS);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
         if (state.getValue(HAS_LID)) {
             return AABB_WITH_LID;
         }
@@ -188,7 +214,7 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootParams.Builder lootParamsBuilder) {
+    public @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder lootParamsBuilder) {
         List<ItemStack> drops = super.getDrops(state, lootParamsBuilder);
         if (state.getValue(HAS_LID)) {
             BlockEntity parameter = lootParamsBuilder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
@@ -207,5 +233,11 @@ public class StockpotBlock extends HorizontalDirectionalBlock implements EntityB
             });
         }
         return drops;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.stockpot").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.stockpot.fail").withStyle(ChatFormatting.GRAY));
     }
 }

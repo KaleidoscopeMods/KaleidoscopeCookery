@@ -11,18 +11,19 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public record StockpotRecipe(NonNullList<Ingredient> ingredients,
                              ResourceLocation soupBase, ItemStack result, int time,
-                             ResourceLocation cookingTexture, ResourceLocation finishedTexture,
+                             Ingredient carrier, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
                              int cookingBubbleColor, int finishedBubbleColor) implements BaseRecipe<StockpotInput> {
     public StockpotRecipe(List<Ingredient> ingredients, ResourceLocation soupBase, ItemStack result,
-                          int time, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
+                          int time, Ingredient carrier, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
                           int cookingBubbleColor, int finishedBubbleColor) {
         this(NonNullList.of(Ingredient.EMPTY, BaseRecipe.fillInputs(ingredients)),
-                soupBase, result, time, cookingTexture, finishedTexture,
+                soupBase, result, time, carrier, cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor);
     }
 
@@ -33,22 +34,22 @@ public record StockpotRecipe(NonNullList<Ingredient> ingredients,
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         return ingredients;
     }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider registryAccess) {
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider registryAccess) {
         return this.result;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return ModRecipes.STOCKPOT_SERIALIZER;
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return ModRecipes.STOCKPOT_RECIPE;
     }
 }

@@ -16,7 +16,9 @@ public class ModBlockRenderLayerMap {
                 ModBlocks.TOMATO_CROP,
                 ModBlocks.LETTUCE_CROP,
                 ModBlocks.RICE_CROP,
-                ModBlocks.CHILI_RISTRA
+                ModBlocks.CHILI_RISTRA,
+                ModBlocks.STEAMER,
+                ModBlocks.STOCKPOT
         );
 
         FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(id -> {

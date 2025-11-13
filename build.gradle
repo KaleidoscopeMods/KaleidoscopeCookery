@@ -17,6 +17,17 @@ fabricApi {
 }
 
 repositories {
+    maven { url "https://maven.shedaniel.me"}
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com/"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
     exclusiveContent {
         forRepository {
             maven {
@@ -55,6 +66,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     // modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}")
     modImplementation("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}")
+    modImplementation "curse.maven:jade-324717:6738760"
+    modImplementation "curse.maven:roughly-enough-items-310111:6199139"
+    modImplementation "curse.maven:cloth-config-348521:5729125"
+    modApi("me.shedaniel.cloth:basic-math:+")
+    modImplementation "curse.maven:architectury-api-419699:5786326"
 }
 
 processResources {

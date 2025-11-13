@@ -1,0 +1,31 @@
+{
+  "parent": "kaleidoscope_cookery:steamer",
+  "criteria": {
+    "meat_buns_beat_dogs": {
+      "conditions": {
+        "event": "meat_buns_beat_dogs"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.baozi.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "kaleidoscope_cookery:baozi"
+    },
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.baozi.title"
+    }
+  },
+  "requirements": [
+    [
+      "meat_buns_beat_dogs"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

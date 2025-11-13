@@ -5,13 +5,17 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.ShawarmaSpitB
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -32,6 +36,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -67,7 +72,7 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
     }
 
     @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
 
@@ -79,7 +84,7 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
     }
 
     @Override
-    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (player.isShiftKeyDown()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -105,12 +110,12 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
         return state.getValue(HALF) == DoubleBlockHalf.LOWER ? LOWER_AABB : UPPER_AABB;
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor levelAccessor, BlockPos currentPos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor levelAccessor, BlockPos currentPos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             levelAccessor.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
         }
@@ -133,6 +138,37 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
         boolean powered = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.relative(direction));
         if (!state.is(block) && powered != state.getValue(POWERED)) {
             level.setBlock(pos, state.setValue(POWERED, powered), Block.UPDATE_CLIENTS);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide && player.isCreative()) {
+            if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                BlockPos below = pos.below();
+                BlockState belowState = level.getBlockState(below);
+                if (belowState.is(state.getBlock()) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                    dropCookItems(level, below);
+                    BlockState airBlockState = belowState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                    level.setBlock(below, airBlockState, Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
+                    level.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, below, Block.getId(belowState));
+                }
+            } else {
+                dropCookItems(level, pos);
+            }
+        }
+        return super.playerWillDestroy(level, pos, state, player);
+    }
+
+    private void dropCookItems(Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof ShawarmaSpitBlockEntity shawarmaSpit) {
+            if (!shawarmaSpit.cookingItem.isEmpty()) {
+                popResource(level, pos, shawarmaSpit.cookingItem.copy());
+                shawarmaSpit.cookingItem = ItemStack.EMPTY;
+            } else if (!shawarmaSpit.cookedItem.isEmpty()) {
+                popResource(level, pos, shawarmaSpit.cookedItem.copy());
+                shawarmaSpit.cookedItem = ItemStack.EMPTY;
+            }
         }
     }
 
@@ -161,7 +197,7 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
@@ -176,7 +212,7 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootParams.Builder lootParamsBuilder) {
+    public @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder lootParamsBuilder) {
         List<ItemStack> drops;
         if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
             drops = super.getDrops(state, lootParamsBuilder);
@@ -192,5 +228,10 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
             }
         }
         return drops;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.shawarma_spit").withStyle(ChatFormatting.GRAY));
     }
 }

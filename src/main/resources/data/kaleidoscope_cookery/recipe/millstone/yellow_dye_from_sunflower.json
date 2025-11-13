@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:sunflower"
+  },
+  "result": {
+    "count": 3,
+    "id": "minecraft:yellow_dye"
+  }
+}

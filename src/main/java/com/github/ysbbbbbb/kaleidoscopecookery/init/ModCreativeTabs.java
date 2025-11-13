@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,11 +34,21 @@ public class ModCreativeTabs {
                     output.accept(ModItems.STOCKPOT);
                     output.accept(ModItems.STOCKPOT_LID);
                     output.accept(ModItems.CHOPPING_BOARD);
+                    output.accept(ModItems.MILLSTONE);
+                    output.accept(ModItems.STEAMER);
                     output.accept(ModItems.KITCHENWARE_RACKS);
                     output.accept(ModItems.FRUIT_BASKET);
                     output.accept(ModItems.SCARECROW);
                     output.accept(ModItems.ENAMEL_BASIN);
+                    output.accept(ModItems.OIL_POT);
+                    output.accept(OilPotItem.getFullOilPot());
                     output.accept(ModItems.OIL);
+                    output.accept(ModItems.RECIPE_ITEM);
+                    output.accept(ModItems.TRANSMUTATION_LUNCH_BAG);
+                    output.accept(ModItems.FLOUR);
+                    output.accept(ModItems.RAW_DOUGH);
+                    output.accept(ModItems.RAW_NOODLES);
+                    output.accept(ModItems.STUFFED_DOUGH_FOOD);
                     output.accept(ModItems.CHILI_RISTRA);
                     output.accept(ModItems.RICE_SEED);
                     output.accept(ModItems.WILD_RICE_SEED);
@@ -49,6 +60,7 @@ public class ModCreativeTabs {
                     output.accept(ModItems.IRON_KITCHEN_KNIFE);
                     output.accept(ModItems.DIAMOND_KITCHEN_KNIFE);
                     output.accept(ModItems.NETHERITE_KITCHEN_KNIFE);
+                    output.accept(ModItems.SICKLE);
                     output.accept(ModItems.STRAW_HAT);
                     output.accept(ModItems.STRAW_HAT_FLOWER);
                     output.accept(ModItems.FARMER_CHEST_PLATE);
@@ -106,6 +118,16 @@ public class ModCreativeTabs {
                     output.accept(ModItems.COOKED_COW_OFFAL);
                     output.accept(ModItems.RAW_PORK_BELLY);
                     output.accept(ModItems.COOKED_PORK_BELLY);
+                    output.accept(ModItems.RAW_CUT_SMALL_MEATS);
+                    output.accept(ModItems.COOKED_CUT_SMALL_MEATS);
+                    output.accept(ModItems.RAW_DONKEY_MEAT);
+                    output.accept(ModItems.COOKED_DONKEY_MEAT);
+                    output.accept(ModItems.DONKEY_BURGER);
+                    output.accept(ModItems.MANTOU);
+                    output.accept(ModItems.BAOZI);
+                    output.accept(ModItems.SAMSA);
+                    output.accept(ModItems.MEAT_PIE);
+                    output.accept(ModItems.DUMPLING);
                     output.accept(ModItems.FRIED_EGG);
                     output.accept(ModItems.COOKED_RICE);
                     output.accept(ModItems.EGG_FRIED_RICE);
@@ -137,6 +159,10 @@ public class ModCreativeTabs {
                     output.accept(ModItems.BORSCHT);
                     output.accept(ModItems.BEEF_MEATBALL_SOUP);
                     output.accept(ModItems.CHICKEN_AND_MUSHROOM_STEW);
+                    output.accept(ModItems.DONKEY_SOUP);
+                    output.accept(ModItems.BEEF_NOODLE);
+                    output.accept(ModItems.HUI_NOODLE);
+                    output.accept(ModItems.UDON_NOODLE);
 
                     FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
                         var foodItem = BuiltInRegistries.ITEM.get(foodName);

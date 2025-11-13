@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.NotNull;
 
 public record FlatulenceMessage() implements CustomPacketPayload, ServerPlayNetworking.PlayPayloadHandler<FlatulenceMessage> {
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "flatulence");
@@ -34,7 +35,7 @@ public record FlatulenceMessage() implements CustomPacketPayload, ServerPlayNetw
     }
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 }

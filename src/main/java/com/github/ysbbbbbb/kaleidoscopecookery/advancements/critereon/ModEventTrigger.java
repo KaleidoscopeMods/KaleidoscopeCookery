@@ -11,6 +11,7 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class ModEventTrigger extends SimpleCriterionTrigger<ModEventTrigger.Inst
     }
 
     @Override
-    public Codec<Instance> codec() {
+    public @NotNull Codec<Instance> codec() {
         return ModEventTrigger.Instance.CODEC;
     }
 

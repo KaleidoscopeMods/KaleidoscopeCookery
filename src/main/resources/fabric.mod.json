@@ -3,10 +3,11 @@
   "id": "kaleidoscope_cookery",
   "version": "${version}",
   "name": "Kaleidoscope Cookery",
-  "description": "",
-  "authors": ["ysbb", "tartaric_acid"],
+  "description": "Cook all kinds of delicious food!",
+  "authors": ["ysbb", "tartaric_acid", "NightEpiphany"],
   "contact": {},
   "license": "BSD-3-Clause + CC BY-NC-SA 4.0",
+  "icon": "assets/kaleidoscope_cookery/cover.png",
   "environment": "*",
   "entrypoints": {
     "main": ["com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery"],
@@ -16,6 +17,12 @@
     ],
     "jei_mod_plugin": [
       "com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.ModJeiPlugin"
+    ],
+    "rei_client": [
+      "com.github.ysbbbbbb.kaleidoscopecookery.compat.rei.ModREIClientPlugin"
+    ],
+    "jade": [
+      "com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.ModPlugin"
     ]
   },
   "mixins": ["kaleidoscope_cookery.mixins.json"],

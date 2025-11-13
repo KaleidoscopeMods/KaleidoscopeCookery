@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:raw_cow_offal"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cooked_cow_offal"
+  }
+}

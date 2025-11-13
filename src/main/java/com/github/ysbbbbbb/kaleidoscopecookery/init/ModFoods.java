@@ -38,6 +38,11 @@ public interface ModFoods {
             .nutrition(1).saturationModifier(0.5F)
             .alwaysEdible().build();
 
+    // 生切制小肉
+    FoodProperties RAW_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
     // 生牛杂
     FoodProperties RAW_COW_OFFAL = (new FoodProperties.Builder())
             .nutrition(2).saturationModifier(0.3F)
@@ -48,9 +53,19 @@ public interface ModFoods {
             .nutrition(2).saturationModifier(0.3F)
             .alwaysEdible().build();
 
+    // 生驴肉
+    FoodProperties RAW_DONKEY_MEAT = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
     // 熟羊排
     FoodProperties COOKED_LAMB_CHOPS = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.8F)
+            .alwaysEdible().build();
+
+    // 熟切制小肉
+    FoodProperties COOKED_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8F)
             .alwaysEdible().build();
 
     // 熟牛杂
@@ -61,6 +76,64 @@ public interface ModFoods {
     // 熟五花肉
     FoodProperties COOKED_PORK_BELLY = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0.8F)
+            .alwaysEdible().build();
+
+    // 熟驴肉
+    FoodProperties COOKED_DONKEY_MEAT = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.8F)
+            .alwaysEdible().build();
+
+    // 驴肉火烧
+    FoodProperties DONKEY_BURGER = (new FoodProperties.Builder())
+            .nutrition(12).saturationModifier(0.8F)
+            .effect(new MobEffectInstance(SATIATED_SHIELD, 45 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 包子
+    FoodProperties BAOZI = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(new MobEffectInstance(ABSORPTION, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 饺子
+    FoodProperties DUMPLING = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 烤包子
+    FoodProperties SAMSA = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(new MobEffectInstance(DIG_SPEED, 100 * 20, 1), 1.0F)
+            .alwaysEdible().build();
+
+    // 馒头
+    FoodProperties MANTOU = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.9F)
+            .fast().alwaysEdible().build();
+
+    // 馅饼
+    FoodProperties MEAT_PIE = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 牛肉面
+    FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
+            .nutrition(14).saturationModifier(0.643f)
+            .effect(new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 烩面
+    FoodProperties HUI_NOODLE = (new FoodProperties.Builder())
+            .nutrition(14).saturationModifier(0.643f)
+            .effect(new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 乌冬面
+    FoodProperties UDON_NOODLE = (new FoodProperties.Builder())
+            .nutrition(14).saturationModifier(0.643f)
+            .effect(new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
             .alwaysEdible().build();
 
     // 煎蛋
@@ -356,6 +429,17 @@ public interface ModFoods {
             .effect(new MobEffectInstance(VIGOR, 900), 1.0F)
             .alwaysEdible().build();
 
+    // 水煎包
+    FoodProperties SHENGJIAN_MANTOU_ITEM = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties SHENGJIAN_MANTOU_BLOCK = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(1)
+            .effect(new MobEffectInstance(WARMTH, 6000), 1.0F)
+            .alwaysEdible().build();
+
     // 番茄炒蛋
     FoodProperties SCRAMBLE_EGG_WITH_TOMATOES = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.3F)
@@ -555,5 +639,11 @@ public interface ModFoods {
     FoodProperties CHICKEN_AND_MUSHROOM_STEW = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0.4F)
             .effect(new MobEffectInstance(WARMTH, 5400), 1.0F)
+            .alwaysEdible().build();
+
+    // 驴肉汤
+    FoodProperties DONKEY_SOUP = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.667f)
+            .effect(new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
             .alwaysEdible().build();
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:raw_lamb_chops"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cooked_lamb_chops"
+  }
+}

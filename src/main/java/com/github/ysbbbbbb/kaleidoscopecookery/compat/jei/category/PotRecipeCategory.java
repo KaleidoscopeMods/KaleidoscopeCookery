@@ -25,6 +25,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -84,12 +85,12 @@ public class PotRecipeCategory implements IRecipeCategory<RecipeHolder<PotRecipe
     }
 
     @Override
-    public RecipeType<RecipeHolder<PotRecipe>> getRecipeType() {
+    public @NotNull RecipeType<RecipeHolder<PotRecipe>> getRecipeType() {
         return TYPE;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return TITLE;
     }
 

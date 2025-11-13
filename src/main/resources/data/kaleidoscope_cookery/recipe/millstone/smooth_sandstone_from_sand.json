@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:sand"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:smooth_sandstone"
+  }
+}

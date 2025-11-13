@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +26,10 @@ public interface TagMod {
      * 任意可以熄灭本模组炉灶的物品
      */
     TagKey<Item> EXTINGUISH_STOVE = itemTag("extinguish_stove");
+    /**
+     * 可以视作本模组锅铲炒菜的工具
+     */
+    TagKey<Item> KITCHEN_SHOVEL = itemTag("kitchen_shovel");
     /**
      * 任意可以用作炒锅油的物品
      */
@@ -72,6 +77,40 @@ public interface TagMod {
      * 被本模组当做猪油来源的实体
      */
     TagKey<EntityType<?>> PIG_OIL_SOURCE = entityTag("pig_oil_source");
+    /**
+     * 可以拉磨的生物，必须继承自 Mob
+     */
+    TagKey<EntityType<?>> MILLSTONE_BINDABLE = entityTag("millstone_bindable");
+    /**
+     * 可以促进本模组水稻生长的水生生物
+     */
+    TagKey<EntityType<?>> RICE_GROWTH_BOOSTER = entityTag("rice_growth_booster");
+    /**
+     * 饱腹代偿效果抵御效果较差的伤害来源
+     */
+    TagKey<DamageType> SATIATED_SHIELD_WEAKNESS = damageTypeTag("satiated_shield_weakness");
+    /**
+     * 返回碗容器的物品，程序内嵌了本模组和原版所有的碗装食物的支持
+     * <p>
+     * 所以这个 tag 只需要添加其他不符合上述设定的碗容器食物即可
+     */
+    TagKey<Item> BOWL_CONTAINER = itemTag("bowl_container");
+    /**
+     * 返回桶容器的物品
+     */
+    TagKey<Item> BUCKET_CONTAINER = itemTag("bucket_container");
+    /**
+     * 返回玻璃瓶容器的物品
+     */
+    TagKey<Item> GLASS_BOTTLE_CONTAINER = itemTag("glass_bottle_container");
+    /**
+     * 石磨取出面团所使用的容器
+     */
+    TagKey<Item> MILLSTONE_DOUGH_CONTAINER = itemTag("millstone_dough_container");
+
+    static TagKey<DamageType> damageTypeTag(String name) {
+        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, name));
+    }
 
     static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, name));

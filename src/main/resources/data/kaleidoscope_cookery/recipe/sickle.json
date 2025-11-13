@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:flint"
+    },
+    "B": {
+      "item": "minecraft:string"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAB",
+    " CA",
+    "C  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:sickle"
+  }
+}

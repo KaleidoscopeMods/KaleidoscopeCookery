@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#c:raw_beef",
+    "#c:raw_chicken",
+    "#c:raw_pork",
+    "#c:raw_mutton",
+    "#c:raw_donkey_meat",
+    "#c:raw_fishes/cod",
+    "#c:raw_fishes/salmon",
+    "#c:raw_fishes/tropical_fish"
+  ]
+}

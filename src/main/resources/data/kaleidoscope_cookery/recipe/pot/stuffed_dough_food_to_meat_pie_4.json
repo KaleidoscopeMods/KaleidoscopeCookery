@@ -1,0 +1,21 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "kaleidoscope_cookery:meat_pie"
+  }
+}
