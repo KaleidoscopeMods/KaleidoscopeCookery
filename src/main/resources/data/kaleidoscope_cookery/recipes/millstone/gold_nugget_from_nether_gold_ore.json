@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:nether_gold_ore"
+  },
+  "result": {
+    "count": 5,
+    "item": "minecraft:gold_nugget"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "kaleidoscope_cookery:oil"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "OOO",
+    "OOO"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:oil_block"
+  },
+  "show_notification": true
+}

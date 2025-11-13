@@ -1,0 +1,7 @@
+{
+  "type": "kaleidoscope_cookery:addition",
+  "conditions": [],
+  "loot_table_add": "kaleidoscope_cookery:hoglin",
+  "loot_table_id": "minecraft:entities/hoglin",
+  "loot_table_type": "minecraft:entity"
+}

@@ -9,6 +9,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 
 public final class ModItems {
+    // 显示用
+    public static final Item VIS_HONEY = new Item(new Item.Properties());
+    public static final Item VIS_EGG = new Item(new Item.Properties());
+    public static final Item VIS_MILLSTONE_OIL = new Item(new Item.Properties());
+    public static final Item VIS_MILLSTONE_DOUGH = new Item(new Item.Properties());
+
     // 厨具
     public static final Item STOVE = new BlockItem(ModBlocks.STOVE, new Item.Properties());
     public static final Item POT = new BlockItem(ModBlocks.POT, new Item.Properties());
@@ -19,6 +25,7 @@ public final class ModItems {
     public static final Item SHAWARMA_SPIT = new BlockItem(ModBlocks.SHAWARMA_SPIT, new Item.Properties());
     public static final Item MILLSTONE = new BlockItem(ModBlocks.MILLSTONE, new Item.Properties());
     public static final Item STEAMER = new BlockItem(ModBlocks.STEAMER, new Item.Properties());
+    public static final Item SICKLE = new SickleItem();
 
     // 油
     public static final Item OIL = new Item(new Item.Properties());
@@ -29,12 +36,10 @@ public final class ModItems {
     // 杂项
     public static final Item CHILI_RISTRA = new BlockItem(ModBlocks.CHILI_RISTRA, new Item.Properties());
     public static final Item STRAW_BLOCK = new BlockItem(ModBlocks.STRAW_BLOCK, new Item.Properties());
-    public static Item FRUIT_BASKET = Items.AIR;
-//    public static final Item FRUIT_BASKET = new FruitBasketItem();
+    public static final Item FRUIT_BASKET = new FruitBasketItem();
     public static final Item SCARECROW = new ScarecrowItem();
     public static final Item RECIPE_ITEM = new RecipeItem();
-    public static Item TRANSMUTATION_LUNCH_BAG = Items.AIR;
-//    public static final Item TRANSMUTATION_LUNCH_BAG = new TransmutationLunchBagItem();
+    public static final Item TRANSMUTATION_LUNCH_BAG = new TransmutationLunchBagItem();
 
     // 工具
     public static final Item IRON_KITCHEN_KNIFE = new KitchenKnifeItem(Tiers.IRON);
@@ -108,6 +113,7 @@ public final class ModItems {
     public static final Item RAW_DOUGH = new RawDoughItem();
     public static final Item RAW_NOODLES = new Item(new Item.Properties());
     public static final Item STUFFED_DOUGH_FOOD = new Item(new Item.Properties());
+    public static final Item FLOUR = new FlourItem(new Item.Properties());
 
     // 基础食物
     public static final Item FRIED_EGG = new Item(new Item.Properties().food(ModFoods.FRIED_EGG));
@@ -164,12 +170,14 @@ public final class ModItems {
     public static final Item RAW_COW_OFFAL = new Item(new Item.Properties().food(ModFoods.RAW_COW_OFFAL));
     public static final Item RAW_PORK_BELLY = new Item(new Item.Properties().food(ModFoods.RAW_PORK_BELLY));
     public static final Item RAW_DONKEY_MEAT = new Item(new Item.Properties().food(ModFoods.RAW_DONKEY_MEAT));
+    public static final Item RAW_CUT_SMALL_MEATS = new Item(new Item.Properties().food(ModFoods.RAW_CUT_SMALL_MEATS));
 
     // 熟肉类
     public static final Item COOKED_LAMB_CHOPS = new Item(new Item.Properties().food(ModFoods.COOKED_LAMB_CHOPS));
     public static final Item COOKED_COW_OFFAL = new Item(new Item.Properties().food(ModFoods.COOKED_COW_OFFAL));
     public static final Item COOKED_PORK_BELLY = new Item(new Item.Properties().food(ModFoods.COOKED_PORK_BELLY));
     public static final Item COOKED_DONKEY_MEAT = new Item(new Item.Properties().food(ModFoods.COOKED_DONKEY_MEAT));
+    public static final Item COOKED_CUT_SMALL_MEATS = new Item(new Item.Properties().food(ModFoods.COOKED_CUT_SMALL_MEATS));
 
     public static void registerItems() {
         // 厨具
@@ -182,6 +190,7 @@ public final class ModItems {
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "shawarma_spit"), SHAWARMA_SPIT);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "millstone"), MILLSTONE);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer"), STEAMER);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "sickle"), SICKLE);
 
         // 油
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "oil"), OIL);
@@ -192,10 +201,10 @@ public final class ModItems {
         // 杂项
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "chili_ristra"), CHILI_RISTRA);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "straw_block"), STRAW_BLOCK);
-//        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "fruit_basket"), FRUIT_BASKET);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "fruit_basket"), FRUIT_BASKET);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "scarecrow"), SCARECROW);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "recipe_item"), RECIPE_ITEM);
-//        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "transmutation_lunch_bag"), TRANSMUTATION_LUNCH_BAG);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "transmutation_lunch_bag"), TRANSMUTATION_LUNCH_BAG);
 
         // 工具
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "iron_kitchen_knife"), IRON_KITCHEN_KNIFE);
@@ -269,6 +278,7 @@ public final class ModItems {
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_dough"), RAW_DOUGH);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_noodles"), RAW_NOODLES);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "stuffed_dough_food"), STUFFED_DOUGH_FOOD);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "flour"), FLOUR);
 
         // 基础食物
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "fried_egg"), FRIED_EGG);
@@ -325,12 +335,19 @@ public final class ModItems {
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_cow_offal"), RAW_COW_OFFAL);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_pork_belly"), RAW_PORK_BELLY);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_donkey_meat"), RAW_DONKEY_MEAT);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_cut_small_meats"), RAW_CUT_SMALL_MEATS);
 
         // 熟肉类
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "cooked_lamb_chops"), COOKED_LAMB_CHOPS);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "cooked_cow_offal"), COOKED_COW_OFFAL);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "cooked_pork_belly"), COOKED_PORK_BELLY);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "cooked_donkey_meat"), COOKED_DONKEY_MEAT);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "cooked_cut_small_meats"), COOKED_CUT_SMALL_MEATS);
+
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "honey"), VIS_HONEY);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "egg"), VIS_EGG);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "raw_dough_in_millstone"), VIS_MILLSTONE_DOUGH);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "oil_in_millstone"), VIS_MILLSTONE_OIL);
     }
 }
 

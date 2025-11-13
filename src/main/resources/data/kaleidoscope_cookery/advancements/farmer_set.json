@@ -1,0 +1,90 @@
+{
+  "parent": "kaleidoscope_cookery:straw_hat",
+  "criteria": {
+    "has_farmer_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:farmer_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_farmer_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:farmer_chest_plate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_farmer_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:farmer_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_straw_hat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:straw_hat"
+            ]
+          },
+          {
+            "items": [
+              "kaleidoscope_cookery:straw_hat_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.farmer_set.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:farmer_chest_plate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.farmer_set.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_straw_hat"
+    ],
+    [
+      "has_farmer_chestplate"
+    ],
+    [
+      "has_farmer_leggings"
+    ],
+    [
+      "has_farmer_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

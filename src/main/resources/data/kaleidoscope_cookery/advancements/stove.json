@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:root",
+  "criteria": {
+    "lit_the_stove": {
+      "conditions": {
+        "event": "lit_the_stove"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.stove.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:stove"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.stove.title"
+    }
+  },
+  "requirements": [
+    [
+      "lit_the_stove"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

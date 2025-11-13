@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:deepslate_diamond_ore"
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:diamond"
+  }
+}

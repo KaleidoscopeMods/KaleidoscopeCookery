@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "O": {
+      "tag": "kaleidoscope_cookery:oil"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "OOO",
+    " B "
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:enamel_basin"
+  },
+  "show_notification": true
+}

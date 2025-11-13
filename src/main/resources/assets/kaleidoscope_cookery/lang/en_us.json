@@ -171,7 +171,7 @@
   "item.kaleidoscope_cookery.hui_noodle": "Lamb Hui Noodles",
   "item.kaleidoscope_cookery.udon_noodle": "Udon Noodle",
   "item.kaleidoscope_cookery.transmutation_lunch_bag": "Transmutation Lunch Bag",
-  "entity.minecraft.villager.chef": "Chef",
+  "entity.minecraft.villager.kaleidoscope_cookery.chef": "Chef",
   "entity.kaleidoscope_cookery.scarecrow": "Scarecrow",
   "tooltip.kaleidoscope_cookery.stove": "The heat source block of the kitchen utensils, lit with flint and steel",
   "tooltip.kaleidoscope_cookery.pot": "Place on heat source, add oil and ingredients sequentially, stir-fry, then serve",
@@ -312,5 +312,11 @@
   "advancements.kaleidoscope_cookery.steamer.title": "First Step of Steaming",
   "advancements.kaleidoscope_cookery.steamer.description": "Place the steamer on a heat source to steam food",
   "advancements.kaleidoscope_cookery.baozi.title": "Meat Bun Beats the Dog, No Return!",
-  "advancements.kaleidoscope_cookery.baozi.description": "Sneak and throw a baozi to hit a wolf and heal it"
+  "advancements.kaleidoscope_cookery.baozi.description": "Sneak and throw a baozi to hit a wolf and heal it",
+  "entity.minecraft.villager.chef": "Chef",
+  "item.kaleidoscope_cookery.sickle": "Sickle",
+  "item.kaleidoscope_cookery.raw_cut_small_meats": "Raw Cut Small Meats",
+  "item.kaleidoscope_cookery.cooked_cut_small_meats": "Cooked Cut Small Meats",
+  "item.kaleidoscope_cookery.flour": "Flour"
+
 }

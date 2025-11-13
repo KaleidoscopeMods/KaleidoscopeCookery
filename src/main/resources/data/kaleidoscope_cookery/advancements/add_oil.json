@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:pot",
+  "criteria": {
+    "put_oil_in_pot": {
+      "conditions": {
+        "event": "put_oil_in_pot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.add_oil.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:oil"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.add_oil.title"
+    }
+  },
+  "requirements": [
+    [
+      "put_oil_in_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

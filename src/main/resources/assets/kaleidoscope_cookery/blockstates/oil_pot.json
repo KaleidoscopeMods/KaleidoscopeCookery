@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "facing=east,oil_count=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 90
+    },
+    "facing=east,oil_count=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 90
+    },
+    "facing=east,oil_count=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=4,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=4,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=5,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=5,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=6,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=6,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=7,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=7,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=8,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=east,oil_count=8,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 90
+    },
+    "facing=north,oil_count=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot"
+    },
+    "facing=north,oil_count=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot"
+    },
+    "facing=north,oil_count=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=4,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=4,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=5,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=5,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=6,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=6,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=7,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=7,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=8,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=north,oil_count=8,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil"
+    },
+    "facing=south,oil_count=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 180
+    },
+    "facing=south,oil_count=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 180
+    },
+    "facing=south,oil_count=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=4,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=4,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=5,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=5,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=6,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=6,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=7,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=7,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=8,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=south,oil_count=8,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 180
+    },
+    "facing=west,oil_count=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 270
+    },
+    "facing=west,oil_count=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot",
+      "y": 270
+    },
+    "facing=west,oil_count=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=4,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=4,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=5,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=5,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=6,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=6,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=7,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=7,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=8,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    },
+    "facing=west,oil_count=8,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/oil_pot_with_oil",
+      "y": 270
+    }
+  }
+}

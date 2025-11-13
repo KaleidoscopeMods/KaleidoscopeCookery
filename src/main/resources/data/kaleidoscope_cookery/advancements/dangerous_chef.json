@@ -1,0 +1,50 @@
+{
+  "parent": "kaleidoscope_cookery:oil",
+  "criteria": {
+    "kill_piglin_brute": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:piglin_brute"
+            }
+          }
+        ],
+        "killing_blow": {
+          "direct_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "kaleidoscope_cookery:kitchen_knife"
+              }
+            }
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.dangerous_chef.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "kaleidoscope_cookery:oil"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.dangerous_chef.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_piglin_brute"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

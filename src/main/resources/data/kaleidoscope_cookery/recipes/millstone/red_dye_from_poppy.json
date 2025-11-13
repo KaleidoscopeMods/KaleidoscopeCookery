@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:poppy"
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:red_dye"
+  }
+}

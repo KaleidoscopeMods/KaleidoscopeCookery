@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:dough",
+  "criteria": {
+    "use_steamer": {
+      "conditions": {
+        "event": "use_steamer"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.steamer.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:steamer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.steamer.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_steamer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

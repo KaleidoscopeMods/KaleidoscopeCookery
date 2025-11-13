@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:rose_bush"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:red_dye"
+  }
+}

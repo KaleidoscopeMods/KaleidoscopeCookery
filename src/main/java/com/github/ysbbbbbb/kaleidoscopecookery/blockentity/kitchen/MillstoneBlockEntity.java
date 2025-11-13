@@ -7,18 +7,19 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.MillstoneRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.datamap.MillstoneBindableData;
 import com.github.ysbbbbbb.kaleidoscopecookery.datamap.resources.MillstoneBindableDataReloadListener;
+import com.github.ysbbbbbb.kaleidoscopecookery.event.recipe.MillstoneSpecialFinishEvent;
+import com.github.ysbbbbbb.kaleidoscopecookery.event.recipe.MillstoneSpecialRecipeEvent;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 //import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.MillstoneOutputHandler;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.forge.ItemStackHandler;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -35,6 +36,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -44,9 +46,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
@@ -98,7 +98,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
 
         // 每秒额外检查一次输出，强制触发 MillstoneFinishEvent 事件
         if (serverLevel.getGameTime() % 20 == 0 && this.input.isEmpty() && !this.output.isEmpty()) {
-            MillstoneFinishEvent.CALLBACK.invoker().post(new MillstoneFinishEvent(this, this.bindEntity));
+            MillstoneFinishEvent millstoneFinishEvent = new MillstoneFinishEvent(this, this.bindEntity);
+            MillstoneFinishEvent.CALLBACK.invoker().post(millstoneFinishEvent);
+            MillstoneSpecialFinishEvent.onMillstoneTakeItem(millstoneFinishEvent);
         }
 
         // 旋转一圈的时间 (ticks)
@@ -140,22 +142,22 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         this.bindEntity.moveTo(pos.x, pos.y, pos.z, -rot - 90, 0);
 //
 //        // 如果实体带有库存，那么可以尝试往磨盘里放物品
-//        if (this.bindEntity.tickCount % 10 == 0 && this.output.isEmpty() && this.input.isEmpty() && this.progress <= 0) {
-//            LazyOptional<IItemHandler> capability = this.bindEntity.getCapability(ForgeCapabilities.ITEM_HANDLER);
-//            capability.ifPresent(handler -> {
-//                for (int i = 0; i < handler.getSlots(); i++) {
-//                    ItemStack stackInSlot = handler.getStackInSlot(i);
-//                    if (stackInSlot.isEmpty()) {
-//                        continue;
-//                    }
-//                    ItemStack stack = handler.extractItem(i, MAX_INPUT_COUNT, true);
-//                    if (this.onPutItem(level, stack)) {
-//                        handler.extractItem(i, MAX_INPUT_COUNT, false);
-//                        return;
-//                    }
-//                }
-//            });
-//        }
+        if (this.bindEntity.tickCount % 10 == 0 && this.output.isEmpty() && this.input.isEmpty() && this.progress <= 0) {
+            if (bindEntity instanceof AbstractChestedHorse chestedHorse) {
+                ItemStackHandler handler = new ItemStackHandler(chestedHorse.inventory.items);
+                for (int i = 0; i < handler.getSlots(); i++) {
+                    ItemStack stackInSlot = handler.getStackInSlot(i);
+                    if (stackInSlot.isEmpty()) {
+                        continue;
+                    }
+                    ItemStack stack = handler.extractItem(i, MAX_INPUT_COUNT, true);
+                    if (this.onPutItem(level, stack)) {
+                        handler.extractItem(i, MAX_INPUT_COUNT, false);
+                        return;
+                    }
+                }
+            }
+        }
 
         // 释放粒子效果
         if (serverLevel.getGameTime() % 5 == 2) {
@@ -249,7 +251,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             // 事件系统处理特殊情况
             var event = new MillstoneTakeItemEvent(user, heldItem, this);
             event.post();
-//            MillstoneTakeItemEvent.CALLBACK.invoker().post(event);
+            MillstoneSpecialRecipeEvent.onMillstoneTakeItem(event);
             if (event.isCanceled()) {
                 return event.isSuccess();
             }
@@ -422,15 +424,6 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
 //            LazyOptional<?> oldHandler = this.outputHandler;
 //            this.outputHandler = null;
 //            oldHandler.invalidate();
-//        }
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-//        if (outputHandler != null) {
-//            outputHandler.invalidate();
-//            outputHandler = null;
 //        }
     }
 

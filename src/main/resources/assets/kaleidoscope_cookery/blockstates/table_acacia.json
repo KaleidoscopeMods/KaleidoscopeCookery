@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "axis=x,has_carpet=false,position=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=x,has_carpet=false,position=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=x,has_carpet=false,position=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 180
+    },
+    "axis=x,has_carpet=false,position=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 180
+    },
+    "axis=x,has_carpet=false,position=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 180
+    },
+    "axis=x,has_carpet=false,position=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 180
+    },
+    "axis=x,has_carpet=false,position=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 180
+    },
+    "axis=x,has_carpet=false,position=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=x,has_carpet=true,position=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=x,has_carpet=true,position=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 180
+    },
+    "axis=x,has_carpet=true,position=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 180
+    },
+    "axis=z,has_carpet=false,position=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=z,has_carpet=false,position=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=z,has_carpet=false,position=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 270
+    },
+    "axis=z,has_carpet=false,position=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 270
+    },
+    "axis=z,has_carpet=false,position=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 270
+    },
+    "axis=z,has_carpet=false,position=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 270
+    },
+    "axis=z,has_carpet=false,position=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 270
+    },
+    "axis=z,has_carpet=false,position=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=z,has_carpet=true,position=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_single"
+    },
+    "axis=z,has_carpet=true,position=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_left",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_middle",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=3,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 270
+    },
+    "axis=z,has_carpet=true,position=3,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/table/acacia_right",
+      "y": 270
+    }
+  }
+}

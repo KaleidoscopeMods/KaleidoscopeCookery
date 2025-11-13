@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:scarecrow",
+  "criteria": {
+    "place_head_on_scarecrow": {
+      "conditions": {
+        "event": "place_head_on_scarecrow"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.scarecrow_head.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:skeleton_skull"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.scarecrow_head.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_head_on_scarecrow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

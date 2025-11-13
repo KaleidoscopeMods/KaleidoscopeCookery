@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    " W ",
+    " S ",
+    "WWW"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:straw_hat"
+  },
+  "show_notification": true
+}

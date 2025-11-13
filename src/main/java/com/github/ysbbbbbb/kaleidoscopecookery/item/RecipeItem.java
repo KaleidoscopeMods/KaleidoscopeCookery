@@ -97,7 +97,6 @@ public class RecipeItem extends BlockItem {
         return tag != null && tag.contains(RECIPE_TAG);
     }
 
-//    @OnlyIn(Dist.CLIENT)
     @Environment(EnvType.CLIENT)
     public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
         if (hasRecipe(stack)) {
@@ -333,8 +332,7 @@ public class RecipeItem extends BlockItem {
 
 //        @SafeVarargs
         public static RecipeRecord pot(Item output, Item... input) {
-//        public static RecipeRecord pot(RegistryObject<Item> output, RegistryObject<Item>... input) {
-            List<ItemStack> inputList = Arrays.stream(input).map(s -> new ItemStack(s)).toList();
+            List<ItemStack> inputList = Arrays.stream(input).map(ItemStack::new).toList();
             return new RecipeRecord(inputList, new ItemStack(output), POT);
         }
 
@@ -345,7 +343,6 @@ public class RecipeItem extends BlockItem {
 
 //        @SafeVarargs
         public static RecipeRecord stockpot(Item output, Item... input) {
-//        public static RecipeRecord stockpot(RegistryObject<Item> output, RegistryObject<Item>... input) {
             List<ItemStack> inputList = Arrays.stream(input).map(ItemStack::new).toList();
             return new RecipeRecord(inputList, new ItemStack(output), STOCKPOT);
         }

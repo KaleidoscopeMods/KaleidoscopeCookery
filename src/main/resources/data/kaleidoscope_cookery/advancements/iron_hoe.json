@@ -1,0 +1,34 @@
+{
+  "parent": "kaleidoscope_cookery:tomato_seed",
+  "criteria": {
+    "use_hoe_on_water_field": {
+      "conditions": {
+        "event": "use_hoe_on_water_field"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.iron_hoe.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:iron_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.iron_hoe.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_hoe_on_water_field"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

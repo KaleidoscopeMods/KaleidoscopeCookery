@@ -6,6 +6,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.chat.Component;
@@ -20,6 +22,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 public class RawDoughItem extends Item {
@@ -29,17 +33,17 @@ public class RawDoughItem extends Item {
     public RawDoughItem() {
         super(new Properties());
     }
-//
-//    @OnlyIn(Dist.CLIENT)
-//    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-//        if (entity == null) {
-//            return 0;
-//        }
-//        if (entity.getUseItem() != stack) {
-//            return 0;
-//        }
-//        return entity.getTicksUsingItem() / 10F;
-//    }
+
+    @Environment(EnvType.CLIENT)
+    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
+        if (entity == null) {
+            return 0;
+        }
+        if (entity.getUseItem() != stack) {
+            return 0;
+        }
+        return entity.getTicksUsingItem() / 10F;
+    }
 
     @Override
     public int getUseDuration(ItemStack pStack) {

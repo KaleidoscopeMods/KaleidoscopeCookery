@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:large_fern"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:green_dye"
+  }
+}

@@ -171,7 +171,7 @@
   "item.kaleidoscope_cookery.hui_noodle": "羊肉烩面",
   "item.kaleidoscope_cookery.udon_noodle": "乌冬面",
   "item.kaleidoscope_cookery.transmutation_lunch_bag": "嬗变饭袋",
-  "entity.minecraft.villager.chef": "烹饪师",
+  "entity.minecraft.villager.kaleidoscope_cookery.chef": "烹饪师",
   "entity.kaleidoscope_cookery.scarecrow": "稻草人",
   "tooltip.kaleidoscope_cookery.stove": "厨房用具的热源，使用打火石点燃",
   "tooltip.kaleidoscope_cookery.pot": "需置于热源上，依次加油、加料、翻炒、盛菜",
@@ -312,5 +312,10 @@
   "advancements.kaleidoscope_cookery.steamer.title": "蒸制第一步",
   "advancements.kaleidoscope_cookery.steamer.description": "将蒸笼放置在热源上蒸制食物",
   "advancements.kaleidoscope_cookery.baozi.title": "肉包打狗，有去无回！",
-  "advancements.kaleidoscope_cookery.baozi.description": "潜行并抛出一个蒸包击中狼，使其回血"
+  "advancements.kaleidoscope_cookery.baozi.description": "潜行并抛出一个蒸包击中狼，使其回血",
+  "item.kaleidoscope_cookery.sickle": "镰刀",
+  "item.kaleidoscope_cookery.raw_cut_small_meats": "生切制小肉",
+  "item.kaleidoscope_cookery.cooked_cut_small_meats": "熟切制小肉",
+  "item.kaleidoscope_cookery.flour": "面粉",
+  "entity.minecraft.villager.chef": "大厨"
 }

@@ -1,0 +1,39 @@
+{
+  "parent": "kaleidoscope_cookery:tomato_seed",
+  "criteria": {
+    "has_caterpillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:caterpillar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.caterpillar.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:caterpillar"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.caterpillar.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_caterpillar"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

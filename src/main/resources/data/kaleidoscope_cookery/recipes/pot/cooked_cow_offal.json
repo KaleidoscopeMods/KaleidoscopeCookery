@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cooked_cow_offal"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

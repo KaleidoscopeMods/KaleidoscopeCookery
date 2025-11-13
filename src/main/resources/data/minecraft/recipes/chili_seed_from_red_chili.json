@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:red_chili"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:chili_seed"
+  }
+}

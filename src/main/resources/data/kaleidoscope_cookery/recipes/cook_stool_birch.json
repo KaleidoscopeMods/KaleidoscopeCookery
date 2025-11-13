@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:birch_planks"
+    }
+  },
+  "pattern": [
+    "   ",
+    "###",
+    "# #"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cook_stool_birch"
+  },
+  "show_notification": true
+}

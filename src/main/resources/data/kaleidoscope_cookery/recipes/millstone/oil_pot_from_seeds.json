@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "carrier": {
+    "item": "kaleidoscope_cookery:oil_pot"
+  },
+  "ingredient": {
+    "tag": "forge:seeds"
+  },
+  "result": {
+    "item": "kaleidoscope_cookery:oil_pot"
+  }
+}

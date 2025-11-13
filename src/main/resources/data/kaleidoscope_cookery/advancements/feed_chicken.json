@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:caterpillar",
+  "criteria": {
+    "use_caterpillar_feed_chicken": {
+      "conditions": {
+        "event": "use_caterpillar_feed_chicken"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.feed_chicken.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:caterpillar"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.feed_chicken.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_caterpillar_feed_chicken"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

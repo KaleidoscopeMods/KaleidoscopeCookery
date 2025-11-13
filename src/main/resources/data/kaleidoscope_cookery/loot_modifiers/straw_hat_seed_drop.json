@@ -1,0 +1,7 @@
+{
+  "type": "kaleidoscope_cookery:addition",
+  "conditions": [],
+  "loot_table_add": "kaleidoscope_cookery:straw_hat_seed_drop",
+  "loot_table_id": "minecraft:blocks/grass",
+  "loot_table_type": "minecraft:block"
+}
