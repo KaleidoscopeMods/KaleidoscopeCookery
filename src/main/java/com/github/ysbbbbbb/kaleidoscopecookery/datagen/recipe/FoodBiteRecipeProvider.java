@@ -260,6 +260,6 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
         String idInput = this.getRecipeIdWithCount(inputItem, count);
         String idOutput = this.getRecipeIdWithCount(output.getItem(), output.getCount());
         String id = String.format("%s_to_%s", idInput, idOutput);
-        PotRecipeBuilder.builder().addInput(inputs).setResult(output).setCarrier(carrier).save(consumer, id);
+        PotRecipeBuilder.builder().addInput((Object) inputs).setResult(output).setCarrier(carrier).save(consumer, id);
     }
 }
