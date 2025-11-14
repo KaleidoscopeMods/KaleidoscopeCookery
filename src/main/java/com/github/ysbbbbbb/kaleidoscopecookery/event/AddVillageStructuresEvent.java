@@ -91,6 +91,7 @@ public class AddVillageStructuresEvent {
                     rawTemplatesField.set(pool, newRawTemplates);
                     fieldFound = true;
                     KaleidoscopeCookery.LOGGER.debug("Successfully updated field '{}' for pool: {}", fieldName, poolId);
+                    initializationSuccessful = true;
                     break;
                 } catch (NoSuchFieldException e) {
                     KaleidoscopeCookery.LOGGER.debug("Field '{}' not found, trying next possible field name", fieldName);
@@ -101,7 +102,8 @@ public class AddVillageStructuresEvent {
 
             if (!fieldFound) {
                 KaleidoscopeCookery.LOGGER.error("Failed to find any valid field for rawTemplates in StructureTemplatePool. Tried: {}", String.join(", ", possibleFieldNames));
-                throw new NoSuchFieldException("Could not find rawTemplates field in StructureTemplatePool");
+                initializationSuccessful = false;
+                initializationAttempted = true;
             }
 
         } catch (Exception e) {
