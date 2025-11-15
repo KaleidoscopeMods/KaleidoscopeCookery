@@ -37,6 +37,13 @@ public class ModEvents {
                 }
             });
 
+    public static final Event<ActionEventCallback.LivingEntityHurt> LIVING_ENTITY_HURT =
+            EventFactory.createArrayBacked(ActionEventCallback.LivingEntityHurt.class, call -> action -> {
+                for (ActionEventCallback.LivingEntityHurt listener : call) {
+                    listener.onLivingEntityHurt(action);
+                }
+            });
+
     public static void init() {
         MillstoneSpecialRecipeEvent.onMillstoneTakeItem();
         MillstoneSpecialFinishEvent.onMillstoneTakeItem();

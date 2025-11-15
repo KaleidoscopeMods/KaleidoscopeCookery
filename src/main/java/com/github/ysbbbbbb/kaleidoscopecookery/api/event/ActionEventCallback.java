@@ -21,4 +21,9 @@ public interface ActionEventCallback {
     interface DeductSpecialItem{
         void onDeductItemEvent(RecipeItemEvent.DeductItem event);
     }
+
+    @FunctionalInterface
+    interface LivingEntityHurt {
+        void onLivingEntityHurt(LivingDamageEvent event);
+    }
 }

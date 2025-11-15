@@ -29,4 +29,9 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
     }
+
+    @Inject(method = "getDamageAfterMagicAbsorb", at = @At("RETURN"), cancellable = true)
+    private void onGetDamageAfterMagicAbsorb(CallbackInfoReturnable<Float> cir) {
+
+    }
 }
