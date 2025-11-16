@@ -2,7 +2,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.util;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.item.IHasContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
-import com.github.ysbbbbbb.kaleidoscopecookery.util.neo.ItemStackHandler;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.neo.IItemHandler;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.neo.PlayerMainInvWrapper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
@@ -48,7 +49,7 @@ public class ItemUtils {
             entity.setItemInHand(InteractionHand.MAIN_HAND, stack);
             entity.playSound(SoundEvents.ITEM_PICKUP, 0.2F, ((random.nextFloat() - random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         } else if (entity instanceof Player player) {
-            player.getInventory().add(preferredSlot, stack);
+            giveItemToPlayer(player, stack, preferredSlot);
         } else {
             // 否则直接在实体所处位置生成物品
             ItemEntity dropItem = entity.spawnAtLocation(stack);
@@ -75,7 +76,7 @@ public class ItemUtils {
 
     public static void giveItemToPlayer(Player player, ItemStack stack, int preferredSlot) {
         if (!stack.isEmpty()) {
-            ItemStackHandler inventory = new ItemStackHandler(player.getInventory());
+            IItemHandler inventory = new PlayerMainInvWrapper(player.getInventory());
             Level level = player.level();
             ItemStack remainder = stack;
             if (preferredSlot >= 0 && preferredSlot < inventory.getSlots()) {
@@ -87,20 +88,20 @@ public class ItemUtils {
             }
 
             if (remainder.isEmpty() || remainder.getCount() != stack.getCount()) {
-                level.playSound((Player)null, player.getX(), player.getY() + (double)0.5F, player.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((level.random.nextFloat() - level.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                level.playSound(null, player.getX(), player.getY() + (double)0.5F, player.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((level.random.nextFloat() - level.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
             }
 
             if (!remainder.isEmpty() && !level.isClientSide) {
-                ItemEntity entityitem = new ItemEntity(level, player.getX(), player.getY() + (double)0.5F, player.getZ(), remainder);
-                entityitem.setPickUpDelay(40);
-                entityitem.setDeltaMovement(entityitem.getDeltaMovement().multiply((double)0.0F, (double)1.0F, (double)0.0F));
-                level.addFreshEntity(entityitem);
+                ItemEntity entityItem = new ItemEntity(level, player.getX(), player.getY() + (double)0.5F, player.getZ(), remainder);
+                entityItem.setPickUpDelay(40);
+                entityItem.setDeltaMovement(entityItem.getDeltaMovement().multiply(0.0F, 1.0F, 0.0F));
+                level.addFreshEntity(entityItem);
             }
 
         }
     }
 
-    public static ItemStack insertItem(ItemStackHandler dest, ItemStack stack, boolean simulate) {
+    public static ItemStack insertItem(IItemHandler dest, ItemStack stack, boolean simulate) {
         if (dest != null && !stack.isEmpty()) {
             for(int i = 0; i < dest.getSlots(); ++i) {
                 stack = dest.insertItem(i, stack, simulate);
@@ -113,7 +114,7 @@ public class ItemUtils {
         return stack;
     }
 
-    public static ItemStack insertItemStacked(ItemStackHandler inventory, ItemStack stack, boolean simulate) {
+    public static ItemStack insertItemStacked(IItemHandler inventory, ItemStack stack, boolean simulate) {
         if (inventory != null && !stack.isEmpty()) {
             if (!stack.isStackable()) {
                 return insertItem(inventory, stack, simulate);

@@ -22,6 +22,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -303,7 +304,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
     }
 
     @Override
-    public boolean takeFood(Level level, LivingEntity user) {
+    public boolean takeFood(Level level, LivingEntity user, InteractionHand hand) {
         // 先检查这层是否是能交互的
         // 上层必须为空
         if (!level.isEmptyBlock(this.getBlockPos().above())) {

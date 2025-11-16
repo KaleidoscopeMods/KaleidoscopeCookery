@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,9 +26,10 @@ public interface ISteamer {
      *
      * @param level 使用者所处的 level
      * @param user  使用者
+     * @param hand 使用者使用的手
      * @return 如果取出成功则返回 true，否则返回 false
      */
-    boolean takeFood(Level level, LivingEntity user);
+    boolean takeFood(Level level, LivingEntity user, InteractionHand hand);
 
     /**
      * 放入食物

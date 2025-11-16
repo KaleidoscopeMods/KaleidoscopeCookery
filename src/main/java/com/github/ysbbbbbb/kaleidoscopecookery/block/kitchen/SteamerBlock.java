@@ -158,10 +158,8 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
                 if (place.consumesAction()) {
                     return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            } else {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         // 其他情况交给 BlockEntity 处理
@@ -171,7 +169,7 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             // 再尝试取出物品
-            if (steamer.takeFood(level, player)) {
+            if (steamer.takeFood(level, player, hand)) {
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
         }
