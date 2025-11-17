@@ -285,6 +285,7 @@
   "emi.category.kaleidoscope_cookery.stockpot": "Stockpot",
   "emi.category.kaleidoscope_cookery.chopping_board": "Chopping Board",
   "emi.category.kaleidoscope_cookery.millstone": "Millstone",
+  "emi.category.kaleidoscope_cookery.steamer": "Steamer",
   "jade.kaleidoscope_cookery.chopping_board.cut_count": "Cut Count: %d (max %d)",
   "jade.kaleidoscope_cookery.enamel_basin.oil_count": "Oil Count: %d",
   "config.jade.plugin_kaleidoscope_cookery.shawarma_spit": "Shawarma Spit",
