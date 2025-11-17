@@ -51,7 +51,7 @@ public class ModTradesEvent {
         addTrade(event, 2, EMERALD, 3, STOCKPOT_LID.get(), 1, 16, 4, 0.1f);
 
         addTrade(event, 2, EMERALD, 3,
-                RecipeItem.RecipeRecord.pot(SCRAMBLE_EGG_WITH_TOMATOES, FRIED_EGG, FRIED_EGG, TOMATO, TOMATO),
+                RecipeItem.RecipeRecord.pot(SCRAMBLE_EGG_WITH_TOMATOES, FRIED_EGG, FRIED_EGG, FRIED_EGG, TOMATO, TOMATO, TOMATO),
                 16, 4, 0.1f);
 
         addTrade(event, 2, EMERALD, 3,
@@ -79,7 +79,7 @@ public class ModTradesEvent {
                 16, 4, 0.1f);
 
         addTrade(event, 3, EMERALD, 3,
-                RecipeItem.RecipeRecord.stockpot(PUFFERFISH_SOUP.get(), PUFFERFISH, PUFFERFISH, PUFFERFISH, SEAGRASS),
+                RecipeItem.RecipeRecord.stockpot(PUFFERFISH_SOUP.get(), PUFFERFISH, PUFFERFISH, PUFFERFISH, SEAGRASS, SEAGRASS),
                 16, 4, 0.1f);
 
         addTrade(event, 3, EMERALD, 3,
@@ -87,7 +87,7 @@ public class ModTradesEvent {
                 16, 4, 0.1f);
 
         addTrade(event, 3, EMERALD, 3,
-                RecipeItem.RecipeRecord.stockpot(BRAISED_BEEF_WITH_POTATOES.get(), BEEF, BEEF, POTATO, POTATO, POTATO),
+                RecipeItem.RecipeRecord.stockpot(BRAISED_BEEF_WITH_POTATOES.get(), BEEF, BEEF, BEEF, POTATO, POTATO, POTATO, POTATO),
                 16, 4, 0.1f);
     }
 
@@ -106,31 +106,42 @@ public class ModTradesEvent {
         addTrade(event, 4, FEARSOME_THICK_SOUP.get(), 1, EMERALD, 5, 16, 10, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
-                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.DONGPO_PORK), BAMBOO, BAMBOO, PORKCHOP, PORKCHOP, PORKCHOP),
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.DONGPO_PORK),
+                        BAMBOO, BAMBOO,
+                        PORKCHOP, PORKCHOP, PORKCHOP,
+                        PORKCHOP, PORKCHOP, PORKCHOP),
                 16, 4, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
-                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.STARGAZY_PIE), COD, COD, COD, COD, COD, PUMPKIN_PIE),
+                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.STARGAZY_PIE),
+                        COD, COD, COD, COD, COD,
+                        PUMPKIN_PIE),
                 16, 4, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
                 RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.NETHER_STYLE_SASHIMI),
-                        CRIMSON_FUNGUS, CRIMSON_FUNGUS, WARPED_FUNGUS, WARPED_FUNGUS, TROPICAL_FISH, TROPICAL_FISH),
+                        CRIMSON_FUNGUS, CRIMSON_FUNGUS,
+                        WARPED_FUNGUS, WARPED_FUNGUS,
+                        TROPICAL_FISH, TROPICAL_FISH,
+                        TROPICAL_FISH, TROPICAL_FISH),
                 16, 4, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
                 RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL),
-                        SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL),
+                        SLIME_BALL, SLIME_BALL, SLIME_BALL, SLIME_BALL),
                 16, 4, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
                 RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.SPICY_CHICKEN),
-                        GREEN_CHILI.get(), GREEN_CHILI.get(), GREEN_CHILI.get(), CHICKEN, CHICKEN, CHICKEN, CHICKEN),
+                        RED_CHILI.get(), RED_CHILI.get(), RED_CHILI.get(),
+                        RED_CHILI.get(), RED_CHILI.get(),
+                        CHICKEN, CHICKEN, CHICKEN, CHICKEN),
                 16, 4, 0.1f);
 
         addTrade(event, 4, EMERALD, 5,
                 RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.YAKITORI),
-                        GREEN_CHILI.get(), GREEN_CHILI.get(), CHICKEN, CHICKEN, CHICKEN, CHICKEN),
+                        RED_CHILI.get(), RED_CHILI.get(),
+                        CHICKEN, CHICKEN, CHICKEN, CHICKEN),
                 16, 4, 0.1f);
     }
 
