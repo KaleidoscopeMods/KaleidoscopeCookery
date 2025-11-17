@@ -116,7 +116,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "chance": 0.085,
+              "chance": 0.02,
               "condition": "minecraft:random_chance"
             },
             {
@@ -143,34 +143,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "chance": 0.085,
-              "condition": "minecraft:random_chance"
-            },
-            {
-              "condition": "kaleidoscope_cookery:advance_block_match_tool",
-              "predicate": {
-                "tag": "kaleidoscope_cookery:straw_hat"
-              },
-              "slot": "head"
-            }
-          ],
-          "functions": [
-            {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:uniform_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "bonusMultiplier": 2
-              }
-            }
-          ],
-          "name": "minecraft:cocoa_beans"
-        },
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.085,
+              "chance": 0.02,
               "condition": "minecraft:random_chance"
             },
             {
@@ -197,7 +170,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "chance": 0.085,
+              "chance": 0.02,
               "condition": "minecraft:random_chance"
             },
             {
@@ -219,60 +192,6 @@
             }
           ],
           "name": "minecraft:melon_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.01,
-              "condition": "minecraft:random_chance"
-            },
-            {
-              "condition": "kaleidoscope_cookery:advance_block_match_tool",
-              "predicate": {
-                "tag": "kaleidoscope_cookery:straw_hat"
-              },
-              "slot": "head"
-            }
-          ],
-          "functions": [
-            {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:uniform_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "bonusMultiplier": 2
-              }
-            }
-          ],
-          "name": "minecraft:torchflower_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.01,
-              "condition": "minecraft:random_chance"
-            },
-            {
-              "condition": "kaleidoscope_cookery:advance_block_match_tool",
-              "predicate": {
-                "tag": "kaleidoscope_cookery:straw_hat"
-              },
-              "slot": "head"
-            }
-          ],
-          "functions": [
-            {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:uniform_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "bonusMultiplier": 2
-              }
-            }
-          ],
-          "name": "minecraft:pitcher_pod"
         }
       ],
       "rolls": 1.0

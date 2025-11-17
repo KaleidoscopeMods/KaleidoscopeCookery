@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import static com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.OilPotBlock.HAS_OIL;
 
 public class OilPotBlockEntity extends BaseBlockEntity {
-    public static final int MAX_OIL_COUNT = 4096;
+    public static final int MAX_OIL_COUNT = 256;
     private static final String OIL_COUNT = "OilCount";
     private LazyOptional<IItemHandler> invHandler;
     private int oilCount = 0;

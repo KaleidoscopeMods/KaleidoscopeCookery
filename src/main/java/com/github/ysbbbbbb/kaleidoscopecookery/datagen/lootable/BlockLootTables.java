@@ -175,21 +175,16 @@ public class BlockLootTables extends BlockLootSubProvider {
         var lettuce = getSeed(ModItems.LETTUCE_SEED.get());
         var rice = getSeed(ModItems.WILD_RICE_SEED.get());
 
-        // 原版其他几个种子也掉
-        // 甜菜、可可豆、南瓜、西瓜种子、火把花种子
-        var beetRootSeed = getSeed(Items.BEETROOT_SEEDS, 0.085F);
-        var cocoaBeans = getSeed(Items.COCOA_BEANS, 0.085F);
-        var pumpkinSeed = getSeed(Items.PUMPKIN_SEEDS, 0.085F);
-        var melonSeed = getSeed(Items.MELON_SEEDS, 0.085F);
-        var torchFlowerSeeds = getSeed(Items.TORCHFLOWER_SEEDS, 0.01F);
-        var pitcherPod = getSeed(Items.PITCHER_POD, 0.01F);
+        // 原版其他几个种子也掉，但是概率较低
+        // 甜菜、南瓜、西瓜种子
+        var beetRootSeed = getSeed(Items.BEETROOT_SEEDS, 0.02F);
+        var pumpkinSeed = getSeed(Items.PUMPKIN_SEEDS, 0.02F);
+        var melonSeed = getSeed(Items.MELON_SEEDS, 0.02F);
 
         LootTable.Builder dropSeed = LootTable.lootTable().withPool(LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
                 .add(tomato).add(chili).add(lettuce).add(rice)
-                .add(beetRootSeed).add(cocoaBeans).add(pumpkinSeed).add(melonSeed)
-                .add(torchFlowerSeeds).add(pitcherPod)
-        );
+                .add(beetRootSeed).add(pumpkinSeed).add(melonSeed));
         output.accept(modLoc("straw_hat_seed_drop"), dropSeed);
     }
 
