@@ -127,8 +127,7 @@ dependencies {
     runtimeOnly("mezz.jei:jei-1.21.1-neoforge:19.21.0.247")
 
     // EMI
-    compileOnly "dev.emi:emi-neoforge:1.1.22+1.21.1:api"
-    implementation "dev.emi:emi-neoforge:1.1.22+1.21.1"
+    implementation "maven.modrinth:emi:1.1.22+1.21.1+neoforge"
 
     // REI
     compileOnly "maven.modrinth:cloth-config:15.0.140+neoforge"
