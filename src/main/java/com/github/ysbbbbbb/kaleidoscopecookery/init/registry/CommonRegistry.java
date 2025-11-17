@@ -33,6 +33,7 @@ public class CommonRegistry {
         EntityJoinWorldEvent.register();
         HoeUseEvent.register();
         RightClickEvent.register();
+        LeftClickEvent.register();
         ExtraLootTableDrop.register();
         ArmorEffectEvent.register();
         AddVillageStructuresEvent.addVillageStructures();

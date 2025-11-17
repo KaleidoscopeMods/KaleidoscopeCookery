@@ -20,11 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-//import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
-//import javax.annotation.ParametersAreNonnullByDefault;
-
-//@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class ThrowableBaoziEntity extends ThrowableItemProjectile {
     public static final EntityType<ThrowableBaoziEntity> TYPE = EntityType.Builder
@@ -83,7 +80,7 @@ public class ThrowableBaoziEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    protected void onHitEntity(EntityHitResult entityHitResult) {
+    protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
         Entity hitEntity = entityHitResult.getEntity();
         hitEntity.hurt(this.damageSources().thrown(this, this.getOwner()), 0);
@@ -102,7 +99,7 @@ public class ThrowableBaoziEntity extends ThrowableItemProjectile {
     }
 
     @Override
-    protected void onHit(HitResult hitResult) {
+    protected void onHit(@NotNull HitResult hitResult) {
         super.onHit(hitResult);
         if (!this.level().isClientSide) {
             this.level().broadcastEntityEvent(this, EntityEvent.DEATH);
@@ -115,7 +112,5 @@ public class ThrowableBaoziEntity extends ThrowableItemProjectile {
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         Entity entity = this.getOwner();
         return new ClientboundAddEntityPacket(this, entity == null ? 0 : entity.getId());
-
-//        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
