@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cooked_rabbit"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

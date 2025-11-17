@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:farmer_set",
+  "criteria": {
+    "place_scarecrow": {
+      "conditions": {
+        "event": "place_scarecrow"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.scarecrow.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:scarecrow"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.scarecrow.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_scarecrow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

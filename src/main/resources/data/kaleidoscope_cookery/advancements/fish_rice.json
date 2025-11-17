@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:rice_panicle",
+  "criteria": {
+    "place_fish_in_rice_field": {
+      "conditions": {
+        "event": "place_fish_in_rice_field"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.fish_rice.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:salmon"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.fish_rice.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_fish_in_rice_field"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

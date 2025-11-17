@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:crimson_fence"
+    },
+    "S": {
+      "item": "minecraft:crimson_slab"
+    }
+  },
+  "pattern": [
+    "F  ",
+    "SSS",
+    "F F"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:chair_crimson"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "kaleidoscope_cookery:straw_hat",
+  "criteria": {
+    "has_flower_straw_hat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:straw_hat_flower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.flower_straw_hat.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:straw_hat_flower",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.flower_straw_hat.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_flower_straw_hat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

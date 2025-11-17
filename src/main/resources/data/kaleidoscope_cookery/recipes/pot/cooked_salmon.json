@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:salmon"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cooked_salmon"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "kaleidoscope_cookery:add_broth",
+  "criteria": {
+    "use_lid_on_stockpot": {
+      "conditions": {
+        "event": "use_lid_on_stockpot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.make_soup.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:stockpot_lid",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.make_soup.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_lid_on_stockpot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

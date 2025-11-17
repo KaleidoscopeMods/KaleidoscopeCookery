@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:chicken"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cooked_chicken"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

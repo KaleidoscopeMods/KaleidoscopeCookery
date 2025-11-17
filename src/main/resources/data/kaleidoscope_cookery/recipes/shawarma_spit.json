@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:campfire"
+    },
+    "I": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "ICI",
+    "ICI"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:shawarma_spit"
+  },
+  "show_notification": true
+}

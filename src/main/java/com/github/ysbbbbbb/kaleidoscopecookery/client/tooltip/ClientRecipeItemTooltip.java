@@ -1,6 +1,5 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.tooltip;
 
-
 import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.RecipeItemTooltip;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.RecipeItem;
 import net.minecraft.ChatFormatting;

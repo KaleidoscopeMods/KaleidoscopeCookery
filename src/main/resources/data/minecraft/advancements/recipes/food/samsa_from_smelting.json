@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stuffed_dough_food": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:stuffed_dough_food"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:samsa_from_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_stuffed_dough_food",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:samsa_from_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

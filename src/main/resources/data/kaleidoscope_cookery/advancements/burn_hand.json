@@ -1,0 +1,34 @@
+{
+  "parent": "kaleidoscope_cookery:stir_fry",
+  "criteria": {
+    "hurt_when_takeout_from_pot": {
+      "conditions": {
+        "event": "hurt_when_takeout_from_pot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.burn_hand.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:flint_and_steel",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.burn_hand.title"
+    }
+  },
+  "requirements": [
+    [
+      "hurt_when_takeout_from_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

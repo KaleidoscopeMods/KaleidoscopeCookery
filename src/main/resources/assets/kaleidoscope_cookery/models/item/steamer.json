@@ -1,0 +1,16 @@
+{
+  "overrides": [
+    {
+      "model": "kaleidoscope_cookery:item/steamer_no_items",
+      "predicate": {
+        "kaleidoscope_cookery:has_items": 0.0
+      }
+    },
+    {
+      "model": "kaleidoscope_cookery:item/steamer_has_items",
+      "predicate": {
+        "kaleidoscope_cookery:has_items": 1.0
+      }
+    }
+  ]
+}

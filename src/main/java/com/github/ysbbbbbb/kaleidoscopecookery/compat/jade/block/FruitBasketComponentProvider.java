@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.block;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.ModPlugin;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.forge.ItemStackHandler;
 import com.google.common.collect.Lists;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -25,10 +26,10 @@ public enum FruitBasketComponentProvider implements IServerExtensionProvider<Obj
     @Nullable
     public List<ViewGroup<ItemStack>> getGroups(ServerPlayer serverPlayer, ServerLevel serverLevel, Object target, boolean showDetails) {
         if (target instanceof FruitBasketBlockEntity fruitBasket) {
-            List<ItemStack> handler = fruitBasket.getItems();
+            ItemStackHandler handler = fruitBasket.getItems();
             List<ItemStack> list = Lists.newArrayList();
-            for (int i = 0; i < handler.size(); i++) {
-                ItemStack stack = handler.get(i);
+            for (int i = 0; i < handler.getSlots(); i++) {
+                ItemStack stack = handler.getStackInSlot(i);
                 list.add(stack.copy());
             }
             return List.of(new ViewGroup<>(list));

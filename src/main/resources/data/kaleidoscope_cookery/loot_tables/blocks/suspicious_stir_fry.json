@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "kaleidoscope_cookery:suspicious_stir_fry",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "bites": "0"
+                  }
+                }
+              ],
+              "name": "kaleidoscope_cookery:suspicious_stir_fry"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:bowl"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "kaleidoscope_cookery:blocks/suspicious_stir_fry"
+}

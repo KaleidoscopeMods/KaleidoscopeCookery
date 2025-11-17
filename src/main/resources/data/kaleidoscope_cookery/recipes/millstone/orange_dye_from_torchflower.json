@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:torchflower"
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:orange_dye"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:chiseled_quartz_block"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:quartz"
+  }
+}

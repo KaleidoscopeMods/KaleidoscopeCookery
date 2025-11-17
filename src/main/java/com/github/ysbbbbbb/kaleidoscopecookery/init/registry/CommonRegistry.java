@@ -1,6 +1,5 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init.registry;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.dispenser.OilPotDispenseBehavior;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
@@ -23,19 +22,21 @@ public class CommonRegistry {
         addComposter();
         registerFoodBiteBlocks();
         registerServerEvents();
-//        event.enqueueWork(CommonRegistry::addVillagerGift);
-//        event.enqueueWork(CommonRegistry::modCompat);
-//        event.enqueueWork(CommonRegistry::addDispenserBehavior);
+        addVillagerGift();
+        addDispenserBehavior();
+        modCompat();
     }
 
     public static void registerServerEvents() {
-//        SatiatedShieldEvent.register();
+        SatiatedShieldEvent.register();
         PreservationEvent.register();
-//        ArmorEffectHandler.register();
         EntityJoinWorldEvent.register();
         HoeUseEvent.register();
         RightClickEvent.register();
+        LeftClickEvent.register();
         ExtraLootTableDrop.register();
+        ArmorEffectEvent.register();
+        AddVillageStructuresEvent.addVillageStructures();
     }
 
     private static void registerFoodBiteBlocks() {
@@ -56,7 +57,7 @@ public class CommonRegistry {
     }
 
     private static void addVillagerGift() {
-//        GiveGiftToHero.GIFTS.put(ModVillager.CHEF.get(), GiftLootTables.CHEF_GIFT);
+        GiveGiftToHero.GIFTS.put(ModVillager.CHEF, GiftLootTables.CHEF_GIFT);
     }
 
     private static void addComposter() {

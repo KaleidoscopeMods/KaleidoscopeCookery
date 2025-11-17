@@ -1,0 +1,59 @@
+{
+  "parent": "kaleidoscope_cookery:nitrogen_100",
+  "criteria": {
+    "climb_300": {
+      "conditions": {
+        "distance": {
+          "y": {
+            "min": 300.0
+          }
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "y": {
+                    "max": 500.0
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "start_position": {
+          "position": {
+            "y": {
+              "min": -60.0
+            }
+          }
+        }
+      },
+      "trigger": "kaleidoscope_cookery:flatulence_fly_height"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.nitrogen_300.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:feather"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.nitrogen_300.title"
+    }
+  },
+  "requirements": [
+    [
+      "climb_300"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

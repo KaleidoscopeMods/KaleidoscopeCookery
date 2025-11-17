@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "has_pot": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "kaleidoscope_cookery:cookery_mod_items"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:pot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

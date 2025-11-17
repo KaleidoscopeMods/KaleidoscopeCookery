@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:stove",
+  "criteria": {
+    "place_pot_on_heat_source": {
+      "conditions": {
+        "event": "place_pot_on_heat_source"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.pot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:pot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.pot.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_pot_on_heat_source"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

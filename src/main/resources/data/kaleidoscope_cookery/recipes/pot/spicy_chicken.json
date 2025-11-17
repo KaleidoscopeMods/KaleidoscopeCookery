@@ -1,0 +1,34 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:spicy_chicken"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

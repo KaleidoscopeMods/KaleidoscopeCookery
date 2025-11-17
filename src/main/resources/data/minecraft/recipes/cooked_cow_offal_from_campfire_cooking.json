@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:raw_cow_offal"
+  },
+  "result": "kaleidoscope_cookery:cooked_cow_offal"
+}

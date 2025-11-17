@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "tag": "forge:cobblestone"
+    },
+    "F": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "pattern": [
+    "###",
+    "#F#",
+    "###"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:stove"
+  },
+  "show_notification": true
+}

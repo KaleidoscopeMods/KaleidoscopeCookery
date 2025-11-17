@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kaleidoscope_cookery:item/scramble_egg_with_tomatoes_rice_bowl"
+  }
+}

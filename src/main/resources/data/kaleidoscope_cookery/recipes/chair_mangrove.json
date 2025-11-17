@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:mangrove_fence"
+    },
+    "S": {
+      "item": "minecraft:mangrove_slab"
+    }
+  },
+  "pattern": [
+    "F  ",
+    "SSS",
+    "F F"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:chair_mangrove"
+  },
+  "show_notification": true
+}

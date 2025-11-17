@@ -1,0 +1,34 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:raw_fishes/tropical_fish"
+    },
+    {
+      "tag": "forge:raw_fishes/tropical_fish"
+    },
+    {
+      "tag": "forge:raw_fishes/tropical_fish"
+    },
+    {
+      "tag": "forge:raw_fishes/tropical_fish"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:end_style_sashimi"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

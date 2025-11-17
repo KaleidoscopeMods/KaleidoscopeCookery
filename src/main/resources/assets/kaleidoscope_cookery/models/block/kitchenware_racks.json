@@ -1,0 +1,83 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"3": "kaleidoscope_cookery:block/kitchenware_racks",
+		"particle": "kaleidoscope_cookery:block/kitchenware_racks"
+	},
+	"elements": [
+		{
+			"from": [1, 9, 14],
+			"to": [15, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 9, 14]},
+			"faces": {
+				"north": {"uv": [1, 4, 15, 9], "texture": "#3"},
+				"east": {"uv": [1, 4, 3, 9], "texture": "#3"},
+				"south": {"uv": [1, 4, 15, 9], "texture": "#3"},
+				"west": {"uv": [1, 4, 3, 9], "texture": "#3"},
+				"up": {"uv": [1, 4, 15, 6], "texture": "#3"},
+				"down": {"uv": [1, 4, 15, 6], "texture": "#3"}
+			}
+		},
+		{
+			"from": [1.8, 11, 11.75],
+			"to": [14.1, 13, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 12, 11]},
+			"faces": {
+				"north": {"uv": [1, 14, 13, 16], "texture": "#3"},
+				"east": {"uv": [1, 14, 3, 16], "texture": "#3"},
+				"west": {"uv": [1, 14, 3, 16], "texture": "#3"}
+			}
+		},
+		{
+			"from": [14.1, 11, 11.75],
+			"to": [1.8, 13, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [25.3, 12, 11]},
+			"faces": {
+				"north": {"uv": [1, 14, 13, 16], "texture": "#3"},
+				"east": {"uv": [1, 14, 3, 16], "texture": "#3"},
+				"west": {"uv": [1, 14, 3, 16], "texture": "#3"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [66, 0, 0],
+			"translation": [0, 0.5, -5],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [66, 0, 0],
+			"translation": [0, 0.5, -5],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"firstperson_righthand": {
+			"rotation": [-175.58, -79.14, -172.05],
+			"translation": [5.5, 1.75, 0],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-175.58, -79.14, -172.05],
+			"translation": [5.5, 1.75, 0],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"ground": {
+			"translation": [0, 2, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"translation": [0, -1.75, 0]
+		},
+		"head": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 13, 7]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"translation": [0, -4.25, 6.5]
+		}
+	},
+	"format_version": "1.21.6"
+}

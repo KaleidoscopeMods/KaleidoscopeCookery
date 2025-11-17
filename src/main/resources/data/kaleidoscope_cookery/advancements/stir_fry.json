@@ -1,0 +1,34 @@
+{
+  "parent": "kaleidoscope_cookery:add_oil",
+  "criteria": {
+    "stir_fry_in_pot": {
+      "conditions": {
+        "event": "stir_fry_in_pot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.stir_fry.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:kitchen_shovel",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.stir_fry.title"
+    }
+  },
+  "requirements": [
+    [
+      "stir_fry_in_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

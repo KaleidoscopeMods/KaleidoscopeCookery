@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:birch_fence"
+    },
+    "S": {
+      "item": "minecraft:birch_slab"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "F F"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:table_birch"
+  },
+  "show_notification": true
+}

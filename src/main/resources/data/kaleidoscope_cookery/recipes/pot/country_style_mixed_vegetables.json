@@ -1,0 +1,28 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:crops/lettuce"
+    },
+    {
+      "tag": "forge:crops/lettuce"
+    },
+    {
+      "tag": "forge:crops/tomato"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:country_style_mixed_vegetables"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

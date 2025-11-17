@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:warped_fence"
+    },
+    "S": {
+      "item": "minecraft:warped_slab"
+    }
+  },
+  "pattern": [
+    "F  ",
+    "SSS",
+    "F F"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:chair_warped"
+  },
+  "show_notification": true
+}

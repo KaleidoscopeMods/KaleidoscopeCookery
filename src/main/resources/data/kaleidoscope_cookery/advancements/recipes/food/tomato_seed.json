@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "kaleidoscope_cookery:tomato_seed"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tomato": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:tomato"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_tomato",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "kaleidoscope_cookery:tomato_seed"
+    ]
+  },
+  "sends_telemetry_event": false
+}

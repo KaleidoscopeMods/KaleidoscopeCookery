@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:chopping_board",
+  "cut_count": 4,
+  "ingredient": {
+    "item": "minecraft:mutton"
+  },
+  "model_id": "kaleidoscope_cookery:raw_lamb_chops",
+  "result": {
+    "count": 2,
+    "item": "kaleidoscope_cookery:raw_lamb_chops"
+  }
+}

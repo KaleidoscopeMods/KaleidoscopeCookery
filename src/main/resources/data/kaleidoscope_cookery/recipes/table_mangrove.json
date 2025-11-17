@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:mangrove_fence"
+    },
+    "S": {
+      "item": "minecraft:mangrove_slab"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "F F"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:table_mangrove"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:stockpot",
+  "criteria": {
+    "put_soup_base_in_stockpot": {
+      "conditions": {
+        "event": "put_soup_base_in_stockpot"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.add_broth.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:lava_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.add_broth.title"
+    }
+  },
+  "requirements": [
+    [
+      "put_soup_base_in_stockpot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

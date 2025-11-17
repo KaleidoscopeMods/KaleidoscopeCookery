@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_pork_belly"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cooked_pork_belly"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

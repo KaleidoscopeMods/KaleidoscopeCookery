@@ -1,0 +1,33 @@
+{
+  "parent": "kaleidoscope_cookery:iron_knife",
+  "criteria": {
+    "use_chopping_board": {
+      "conditions": {
+        "event": "use_chopping_board"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.chopping_board.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:chopping_board"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.chopping_board.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_chopping_board"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

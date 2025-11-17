@@ -9,17 +9,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -32,9 +27,9 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -47,7 +42,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     private static final VoxelShape AABB = Block.box(5, 0, 5, 11, 10, 11);
 
     public OilPotBlock() {
-        super(BlockBehaviour.Properties.of()
+        super(Properties.of()
                 .mapColor(MapColor.METAL)
                 .instrument(NoteBlockInstrument.BELL)
                 .instabreak()
@@ -60,8 +55,8 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState,
-                                  LevelAccessor levelAccessor, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState,
+                                           @NotNull LevelAccessor levelAccessor, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             levelAccessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
         }
@@ -87,7 +82,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
@@ -97,7 +92,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
         return AABB;
     }
 
@@ -112,7 +107,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull BlockState state) {
         ItemStack stack = super.getCloneItemStack(level, pos, state);
         int oilCount = state.getValue(OIL_COUNT);
         OilPotItem.setOilCount(stack, oilCount);
@@ -120,18 +115,18 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState pState, LootParams.Builder pParams) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState pState, LootParams.@NotNull Builder pParams) {
         List<ItemStack> stacks = super.getDrops(pState, pParams);
         BlockState state = pParams.getOptionalParameter(LootContextParams.BLOCK_STATE);
         if (state == null || !state.is(this)) {
             return stacks;
         }
-//        stacks.forEach(s -> {
-//            if (s.is(ModItems.OIL_POT)) {
-//                int oilCount = state.getValue(OIL_COUNT);
-//                OilPotItem.setOilCount(s, oilCount);
-//            }
-//        });
+        stacks.forEach(s -> {
+            if (s.is(ModItems.OIL_POT)) {
+                int oilCount = state.getValue(OIL_COUNT);
+                OilPotItem.setOilCount(s, oilCount);
+            }
+        });
         return stacks;
     }
 }

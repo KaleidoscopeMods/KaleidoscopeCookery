@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:straw_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "kaleidoscope_cookery:rice_panicle"
+  }
+}

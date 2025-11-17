@@ -40,10 +40,6 @@ public record ItemRenderReplacer(Map<ResourceLocation, ResourceLocation> pot,
     }
 
     private static Function<ResourceLocation, BakedModel> createNewCache() {
-//        return Util.memoize(id -> {
-//            ModelResourceLocation modelResourceLocation = new ModelResourceLocation(id, "inventory");
-//            return Minecraft.getInstance().getItemRenderer().getItemModelShaper().getModelManager().getModel(modelResourceLocation);
-//        });
 
         return Util.memoize(id -> {
             ModelManager modelManager = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getModelManager();
@@ -52,7 +48,6 @@ public record ItemRenderReplacer(Map<ResourceLocation, ResourceLocation> pot,
             }
             ModelResourceLocation modelResourceLocation = new ModelResourceLocation(id, "inventory");
             return modelManager.getModel(modelResourceLocation);
-//            return modelManager.getModel(id);
         });
     }
 

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:wither_skull",
+    "minecraft:wither",
+    "minecraft:sonic_boom",
+    "minecraft:indirect_magic",
+    "minecraft:in_wall",
+    "minecraft:freeze",
+    "#minecraft:is_explosion",
+    "#minecraft:is_lightning"
+  ]
+}

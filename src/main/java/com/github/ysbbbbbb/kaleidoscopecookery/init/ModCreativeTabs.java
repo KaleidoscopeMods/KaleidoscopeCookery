@@ -38,15 +38,17 @@ public class ModCreativeTabs {
                     output.accept(ModItems.MILLSTONE);
                 output.accept(ModItems.STEAMER);
                 output.accept(ModItems.KITCHENWARE_RACKS);
-//                    output.accept(ModItems.FRUIT_BASKET);
+                    output.accept(ModItems.FRUIT_BASKET);
                     output.accept(ModItems.SCARECROW);
                     output.accept(ModItems.ENAMEL_BASIN);
                     output.accept(ModItems.OIL_POT);
                 output.accept(OilPotItem.getFullOilPot());
                 output.accept(ModItems.OIL);
                     output.accept(ModItems.RECIPE_ITEM);
-//                output.accept(ModItems.TRANSMUTATION_LUNCH_BAG);
+                output.accept(ModItems.TRANSMUTATION_LUNCH_BAG);
+                output.accept(ModItems.SICKLE);
                 // 原材料
+                    output.accept(ModItems.FLOUR);
                 output.accept(ModItems.RAW_DOUGH);
                 output.accept(ModItems.RAW_NOODLES);
                 output.accept(ModItems.STUFFED_DOUGH_FOOD);
@@ -126,7 +128,9 @@ public class ModCreativeTabs {
                     output.accept(ModItems.RAW_PORK_BELLY);
                     output.accept(ModItems.COOKED_PORK_BELLY);
                     output.accept(ModItems.RAW_DONKEY_MEAT);
-                output.accept(ModItems.COOKED_DONKEY_MEAT);
+                    output.accept(ModItems.COOKED_DONKEY_MEAT);
+                    output.accept(ModItems.RAW_CUT_SMALL_MEATS);
+                    output.accept(ModItems.COOKED_CUT_SMALL_MEATS);
                 // 基础食物
                 output.accept(ModItems.DONKEY_BURGER);
                 output.accept(ModItems.MANTOU);

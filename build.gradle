@@ -93,9 +93,6 @@ repositories {
 }
 
 repositories {
-//    maven {
-//        url = uri('libs')  // 指向刚才创建的libs文件夹
-//    }
     maven {
         url = uri('libs')  // 指向重新组织后的libs文件夹
     }
@@ -113,15 +110,51 @@ repositories {
         }
     }
 
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+
+    maven { url = "https://mvn.devos.one/releases/" }
+
     // 添加Maven中央仓库用于下载其他依赖
     mavenCentral()
     // Fabric相关仓库
     maven { url "https://maven.fabricmc.net/" }
+
+    maven {
+        name = "Greenhouse Maven"
+        url = 'https://maven.greenhouse.lgbt/releases/'
+    }
+    maven { url "https://mvn.devos.one/releases/" } // Porting Lib
+    maven {
+        url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    maven {
+        url "https://jitpack.io/" // Fabric ASM
+        content {
+            excludeGroup "io.github.fabricators_of_create"
+        }
+    }
 }
 
 dependencies {
     // 此时可以像正常依赖一样声明（需保证文件名与坐标匹配）
-    modImplementation("vectorwing:FarmersDelight:1.20.1-2.4.0+refabricated")
+    modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
+        exclude(group: "net.fabricmc")
+    }
+
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:transfer:2.3.14+1.20.1"))
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:base:2.3.14+1.20.1"))
 }
 
 dependencies {
@@ -155,40 +188,8 @@ dependencies {
     modRuntimeOnly "dev.architectury:architectury-fabric:9.2.14"
     modRuntimeOnly "maven.modrinth:probejs:6.0.0"
 
-    // 背包
-//    modRuntimeOnly "maven.modrinth:sophisticated-core:1.20.1-1.2.0.843-fabric"
-//    modRuntimeOnly "maven.modrinth:sophisticated-backpacks:1.20.1-3.23.1.1184-fabric"
-//
-    // Farmer's Delight
-//    modImplementation "maven.modrinth:farmers-delight-refabricated:1.20.1-2.4.0"
-//    modImplementation("vectorwing:FarmersDelight-Refabricated:1.20.1-2.0.12") {
-//        exclude(group: "net.fabricmc")
-//    }
-//    modImplementation("libs:FarmersDelight:1.20.1-2.4.0+refabricated") {
-//        // 关联本地POM文件（用于处理依赖传递）
-//        pom file('libs/FarmersDelight-1.20.1-2.4.0+refabricated.pom')
-//        // 如果需要排除某些依赖，继续添加exclude
-//        exclude(group: "net.fabricmc")
-//    }
-
     modImplementation "maven.modrinth:harvest-with-ease:9.4.0-fabric,1.20.1"
     modRuntimeOnly "maven.modrinth:cobweb:1.0.1-fabric,1.20.1"
-//
-//    modRuntimeOnly "maven.modrinth:diet:2.1.1+1.20.1-fabric"
-//    modRuntimeOnly 'curse.maven:touhou-little-maid-355044:6440955-sources-6482784'
-//    modRuntimeOnly "maven.modrinth:appleskin:2.5.1+mc1.20.1-forge"
-//    modRuntimeOnly "maven.modrinth:better-advancements:0.4.2.25-forge"
-//    modRuntimeOnly "maven.modrinth:just-enough-effect-descriptions-jeed:1.20-2.2.5-forge"
-//    modRuntimeOnly "curse.maven:carry-on-274259:4882500"
-//    modRuntimeOnly "curse.maven:ecliptic-seasons-1118306:6838718"
-//
-//    modRuntimeOnly "maven.modrinth:nbtedit-reborn:5.0.3+mc1.20.1"
-//    modRuntimeOnly "maven.modrinth:kiwi:11.5.5"
-//
-//    modRuntimeOnly "maven.modrinth:food-effect-tooltips-fabric:1.3.0-forge,1.20.1"
-//
-//    // modRuntimeOnly "maven.modrinth:serene-seasons:9.1.0.2-forge"
-//    // modRuntimeOnly "maven.modrinth:glitchcore:0.0.1.1-forge"
 }
 
 processResources {

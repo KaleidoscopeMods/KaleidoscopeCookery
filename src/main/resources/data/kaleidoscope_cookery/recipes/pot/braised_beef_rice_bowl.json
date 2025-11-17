@@ -1,0 +1,22 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "kaleidoscope_cookery:cooked_rice"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:raw_beef"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:braised_beef_rice_bowl"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

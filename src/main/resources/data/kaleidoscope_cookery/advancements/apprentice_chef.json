@@ -1,0 +1,39 @@
+{
+  "parent": "kaleidoscope_cookery:make_soup",
+  "criteria": {
+    "has_borscht": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:borscht"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.apprentice_chef.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "kaleidoscope_cookery:borscht"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.apprentice_chef.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_borscht"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
