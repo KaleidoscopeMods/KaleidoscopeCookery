@@ -41,35 +41,12 @@ public class BaseAdvancement {
         AdvancementHolder oil = makeTask(ModItems.OIL.get(), "oil")
                 .parent(ironKnife)
                 .addCriterion("kill_pig", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().of(EntityType.PIG),
+                        EntityPredicate.Builder.entity().of(TagMod.PIG_OIL_SOURCE),
                         DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
                                 EntityEquipmentPredicate.Builder.equipment().mainhand(
                                         ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE))
                         ))
                 ))
-                .addCriterion("kill_piglin", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().of(EntityType.PIGLIN),
-                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
-                                EntityEquipmentPredicate.Builder.equipment().mainhand(
-                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE))
-                        ))
-                ))
-                .addCriterion("kill_piglin_brute", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().of(EntityType.PIGLIN_BRUTE),
-                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
-                                EntityEquipmentPredicate.Builder.equipment().mainhand(
-                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE)
-                                ).build()
-                        ))
-                ))
-                .addCriterion("kill_hoglin", KilledTrigger.TriggerInstance.playerKilledEntity(
-                        EntityPredicate.Builder.entity().of(EntityType.HOGLIN),
-                        DamageSourcePredicate.Builder.damageType().direct(EntityPredicate.Builder.entity().equipment(
-                                EntityEquipmentPredicate.Builder.equipment().mainhand(
-                                        ItemPredicate.Builder.item().of(TagMod.KITCHEN_KNIFE))
-                        ))
-                ))
-                .requirements(AdvancementRequirements.Strategy.OR)
                 .save(saver, modLoc("oil"), existingFileHelper);
 
         AdvancementHolder choppingBoard = makeTask(ModItems.CHOPPING_BOARD.get(), "chopping_board")
@@ -109,7 +86,9 @@ public class BaseAdvancement {
 
         AdvancementHolder farmerSet = makeTask(ModItems.FARMER_CHEST_PLATE.get(), "farmer_set")
                 .parent(strawHat)
-                .addCriterion("has_straw_hat", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW_HAT.get(), ModItems.STRAW_HAT_FLOWER.get()))
+                .addCriterion("has_straw_hat", InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ItemPredicate.Builder.item().of(TagMod.STRAW_HAT).build()
+                ))
                 .addCriterion("has_farmer_chestplate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FARMER_CHEST_PLATE.get()))
                 .addCriterion("has_farmer_leggings", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FARMER_LEGGINGS.get()))
                 .addCriterion("has_farmer_boots", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FARMER_BOOTS.get()))
@@ -274,11 +253,6 @@ public class BaseAdvancement {
                 .parent(root)
                 .addCriterion("drive_the_millstone", ModEventTrigger.create(ModEventTriggerType.DRIVE_THE_MILLSTONE))
                 .save(saver, modLoc("millstone"), existingFileHelper);
-
-        AdvancementHolder oilPot = makeTask(ModItems.OIL_POT.get(), "oil_pot")
-                .parent(millstone)
-                .addCriterion("use_millstone_get_oil_pot", ModEventTrigger.create(ModEventTriggerType.USE_MILLSTONE_GET_OIL_POT))
-                .save(saver, modLoc("oil_pot"), existingFileHelper);
 
         AdvancementHolder dough = makeTask(ModItems.RAW_DOUGH.get(), "dough")
                 .parent(millstone)

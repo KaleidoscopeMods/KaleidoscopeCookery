@@ -2,20 +2,12 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.MillstoneRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.CompoundIngredient;
-import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class MillstoneRecipeProvider extends ModRecipeProvider {
@@ -435,25 +427,15 @@ public class MillstoneRecipeProvider extends ModRecipeProvider {
                 .setResult(Items.STRING, 3)
                 .save(consumer, "string_from_yellow_wool");
 
-        Ingredient waterPotionIngredient = DataComponentIngredient.of(false,
-                DataComponents.POTION_CONTENTS,
-                new PotionContents(Potions.WATER), Items.POTION);
-        Ingredient tagIngredient = Ingredient.of(TagMod.MILLSTONE_DOUGH_CONTAINER);
-        CompoundIngredient anyIngredients = new CompoundIngredient(List.of(waterPotionIngredient, tagIngredient));
-
-        Ingredient rawDoughCarrier = new Ingredient(anyIngredients);
-
         MillstoneRecipeBuilder.builder()
                 .setIngredient(Items.WHEAT)
-                .setResult(ModItems.RAW_DOUGH.get())
-                .setCarrier(rawDoughCarrier)
-                .save(consumer, "raw_dough_from_wheat");
+                .setResult(ModItems.FLOUR.get())
+                .save(consumer, "flour_from_wheat");
 
         MillstoneRecipeBuilder.builder()
                 .setIngredient(Tags.Items.SEEDS)
-                .setResult(ModItems.OIL_POT.get())
-                .setCarrier(ModItems.OIL_POT.get())
-                .save(consumer, "oil_pot_from_seeds");
+                .setResult(ModItems.OIL.get())
+                .save(consumer, "oil_from_seeds");
 
         MillstoneRecipeBuilder.builder()
                 .setIngredient(ModItems.RICE_PANICLE.get())

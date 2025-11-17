@@ -11,6 +11,6 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 public class CapabilitiesRegistry {
     @SubscribeEvent
     public static void registerGenericItemHandlers(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlocks.MILLSTONE_BE.get(), (b, v) -> b.createHandler());
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlocks.OIL_POT_BE.get(), (b, v) -> b.createHandler());
     }
 }

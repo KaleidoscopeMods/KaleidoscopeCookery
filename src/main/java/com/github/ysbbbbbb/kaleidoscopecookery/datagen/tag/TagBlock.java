@@ -66,6 +66,35 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.LETTUCE_CROP.get());
         this.tag(BlockTags.BEE_GROWABLES).add(ModBlocks.RICE_CROP.get());
 
+        this.tag(TagMod.COOK_STOOL).add(
+                ModBlocks.COOK_STOOL_OAK.get(), ModBlocks.COOK_STOOL_SPRUCE.get(),
+                ModBlocks.COOK_STOOL_ACACIA.get(), ModBlocks.COOK_STOOL_BAMBOO.get(),
+                ModBlocks.COOK_STOOL_BIRCH.get(), ModBlocks.COOK_STOOL_CHERRY.get(),
+                ModBlocks.COOK_STOOL_CRIMSON.get(), ModBlocks.COOK_STOOL_DARK_OAK.get(),
+                ModBlocks.COOK_STOOL_JUNGLE.get(), ModBlocks.COOK_STOOL_MANGROVE.get(),
+                ModBlocks.COOK_STOOL_WARPED.get()
+        );
+
+        this.tag(TagMod.CHAIR).add(
+                ModBlocks.CHAIR_OAK.get(), ModBlocks.CHAIR_SPRUCE.get(),
+                ModBlocks.CHAIR_ACACIA.get(), ModBlocks.CHAIR_BAMBOO.get(),
+                ModBlocks.CHAIR_BIRCH.get(), ModBlocks.CHAIR_CHERRY.get(),
+                ModBlocks.CHAIR_CRIMSON.get(), ModBlocks.CHAIR_DARK_OAK.get(),
+                ModBlocks.CHAIR_JUNGLE.get(), ModBlocks.CHAIR_MANGROVE.get(),
+                ModBlocks.CHAIR_WARPED.get()
+        );
+
+        this.tag(TagMod.TABLE).add(
+                ModBlocks.TABLE_OAK.get(), ModBlocks.TABLE_SPRUCE.get(),
+                ModBlocks.TABLE_ACACIA.get(), ModBlocks.TABLE_BAMBOO.get(),
+                ModBlocks.TABLE_BIRCH.get(), ModBlocks.TABLE_CHERRY.get(),
+                ModBlocks.TABLE_CRIMSON.get(), ModBlocks.TABLE_DARK_OAK.get(),
+                ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
+                ModBlocks.TABLE_WARPED.get()
+        );
+
+        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR);
+
         // 兼容静谧四季模组
         this.tag(TagCommon.SPRING_CROPS_BLOCK).add(
                 ModBlocks.LETTUCE_CROP.get()

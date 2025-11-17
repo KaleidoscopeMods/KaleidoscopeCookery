@@ -51,9 +51,11 @@ public class EntityLootTables extends EntityLootSubProvider {
         LootTable.Builder moreDonkeyMeat = LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(2)).add(donkeyMeat).when(toolMatches));
 
         output.accept(modLoc("pig"), lessOil);
+        output.accept(modLoc("zombified_piglin"), lessOil);
         output.accept(modLoc("piglin"), moreOil);
         output.accept(modLoc("piglin_brute"), moreOil);
         output.accept(modLoc("hoglin"), moreOil);
+        output.accept(modLoc("zoglin"), moreOil);
         // 厨刀杀驴掉驴肉
         output.accept(modLoc("donkey"), moreDonkeyMeat);
     }

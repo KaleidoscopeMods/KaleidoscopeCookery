@@ -1,11 +1,13 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.crop;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -53,13 +55,17 @@ public class BaseCropBlock extends CropBlock {
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack itemInHand = player.getItemInHand(hand);
+        if (itemInHand.is(ModItems.SICKLE.get())) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         if (state.getValue(AGE) >= this.getMaxAge()) {
             Block.popResource(level, pos, this.result.get().getDefaultInstance());
             this.onUseBreakCrop(level, pos);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.useWithoutItem(state, level, pos, player, hitResult);
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
     protected void onUseBreakCrop(Level level, BlockPos pos) {

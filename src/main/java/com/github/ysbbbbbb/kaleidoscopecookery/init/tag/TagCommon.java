@@ -48,6 +48,7 @@ public interface TagCommon {
     TagKey<Item> RAW_FISHES_SALMON = itemTag("raw_fishes/salmon");
     TagKey<Item> RAW_FISHES_TROPICAL = itemTag("raw_fishes/tropical_fish");
 
+    TagKey<Item> FLOUR = itemTag("flour");
     TagKey<Item> DOUGH = itemTag("dough");
 
     // 均衡饮食模组

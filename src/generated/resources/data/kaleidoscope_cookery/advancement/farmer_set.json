@@ -35,10 +35,7 @@
       "conditions": {
         "items": [
           {
-            "items": "kaleidoscope_cookery:straw_hat"
-          },
-          {
-            "items": "kaleidoscope_cookery:straw_hat_flower"
+            "items": "#kaleidoscope_cookery:straw_hat"
           }
         ]
       },

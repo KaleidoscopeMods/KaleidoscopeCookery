@@ -17,12 +17,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 
@@ -51,6 +51,18 @@ public class ChoppingBoardBlockEntity extends BaseBlockEntity implements IChoppi
 
     public ChoppingBoardBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlocks.CHOPPING_BOARD_BE.get(), pos, blockState);
+    }
+
+    public static void popResource(Level level, BlockPos pos, ItemStack stack) {
+        if (!level.isClientSide && !stack.isEmpty()) {
+            ItemEntity entity = new ItemEntity(level,
+                    pos.getX() + 0.5,
+                    pos.getY() + 0.25,
+                    pos.getZ() + 0.5,
+                    stack, 0, 0, 0);
+            entity.setDefaultPickUpDelay();
+            level.addFreshEntity(entity);
+        }
     }
 
     @Override
@@ -85,7 +97,7 @@ public class ChoppingBoardBlockEntity extends BaseBlockEntity implements IChoppi
         }
         // 如果已经切完，执行取出逻辑
         if (this.currentCutCount >= this.maxCutCount) {
-            Block.popResource(level, worldPosition, this.result.copy());
+            popResource(level, worldPosition, this.result.copy());
             this.resetBoardData();
             level.playSound(null, this.worldPosition,
                     SoundEvents.WOOD_PLACE,
@@ -109,7 +121,7 @@ public class ChoppingBoardBlockEntity extends BaseBlockEntity implements IChoppi
             if (user instanceof Player player) {
                 ItemHandlerHelper.giveItemToPlayer(player, this.currentCutStack);
             } else {
-                Block.popResource(level, this.worldPosition, this.currentCutStack);
+                popResource(level, this.worldPosition, this.currentCutStack);
             }
             this.resetBoardData();
             level.playSound(null, this.worldPosition,

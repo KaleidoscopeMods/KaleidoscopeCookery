@@ -54,5 +54,15 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .requires(ModItems.RECIPE_ITEM.get())
                 .unlockedBy("has_recipe_item", has(ModItems.RECIPE_ITEM.get()))
                 .save(consumer, "reset_recipe_item");
+
+        for (int i = 0; i < 8; i++) {
+            int count = i + 1;
+            String name = "flour_from_" + count + "_wheat";
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.RAW_DOUGH.get(), count)
+                    .requires(Items.WATER_BUCKET)
+                    .requires(ModItems.FLOUR.get(), count)
+                    .unlockedBy("has_wheat", has(Items.WHEAT))
+                    .save(consumer, name);
+        }
     }
 }

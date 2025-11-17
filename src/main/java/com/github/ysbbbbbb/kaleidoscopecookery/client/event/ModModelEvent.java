@@ -33,8 +33,6 @@ public class ModModelEvent {
         event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "item/honey")));
         // 鸡蛋，用来替换锅内渲染
         event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "item/egg")));
-        // 面团
-        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "item/raw_dough_in_millstone")));
         // 油
         event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "item/oil_in_millstone")));
 

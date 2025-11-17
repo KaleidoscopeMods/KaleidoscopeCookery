@@ -1,12 +1,10 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.OilPotBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.OilPotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
-import com.google.common.collect.Maps;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -15,37 +13,32 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModDataComponents.OIL_POT_OIL_COUNT;
+
 public class OilPotItem extends BlockItem {
     public static final ResourceLocation HAS_OIL_PROPERTY = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "has_oil");
-    public static final int MAX_COUNT = 8;
 
+    private static final String OIL_COUNT = "oil_count";
     private static final int NO_OIL = 0;
     private static final int HAS_OIL = 1;
 
     public OilPotItem() {
-        super(ModBlocks.OIL_POT.get(), new Item.Properties().stacksTo(16));
+        super(ModBlocks.OIL_POT.get(), new Item.Properties().stacksTo(1));
     }
 
     public static void setOilCount(ItemStack stack, int count) {
-        count = Mth.clamp(count, 0, MAX_COUNT);
-        BlockItemStateProperties properties = new BlockItemStateProperties(Maps.newHashMap());
-        stack.set(DataComponents.BLOCK_STATE, properties.with(OilPotBlock.OIL_COUNT, count));
+        count = Mth.clamp(count, 0, OilPotBlockEntity.MAX_OIL_COUNT);
+        stack.set(OIL_POT_OIL_COUNT, count);
     }
 
     public static int getOilCount(ItemStack stack) {
-        BlockItemStateProperties properties = stack.get(DataComponents.BLOCK_STATE);
-        if (properties == null) {
-            return 0;
-        }
-        Integer i = properties.get(OilPotBlock.OIL_COUNT);
-        return i == null ? 0 : i;
+        return stack.getOrDefault(OIL_POT_OIL_COUNT, 0);
     }
 
     public static boolean hasOil(ItemStack stack) {
@@ -61,7 +54,7 @@ public class OilPotItem extends BlockItem {
 
     public static ItemStack getFullOilPot() {
         ItemStack stack = new ItemStack(ModBlocks.OIL_POT.get());
-        setOilCount(stack, MAX_COUNT);
+        setOilCount(stack, OilPotBlockEntity.MAX_OIL_COUNT);
         return stack;
     }
 

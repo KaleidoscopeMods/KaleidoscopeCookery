@@ -6,13 +6,18 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBaske
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -29,11 +34,19 @@ public class RightClickEvent {
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         ItemStack itemInHand = player.getItemInHand(hand);
-
+        Item item = itemInHand.getItem();
+        Item maidItem = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("touhou_little_maid", "smart_slab_has_maid"));
         if (player.isSecondaryUseActive() && hand == InteractionHand.MAIN_HAND
-            // FIXME: 目前仅排除调试棒，这导致其他方块无法潜行右击果篮使用
             && !itemInHand.is(Items.DEBUG_STICK)
+            && !itemInHand.is(Items.FIREWORK_ROCKET)
+            && (maidItem == null || !itemInHand.is(maidItem))
             && level.getBlockEntity(pos) instanceof FruitBasketBlockEntity fruitBasketBlock) {
+            if (item instanceof BlockItem) {
+                Direction clickedFace = event.getFace();
+                if (!(clickedFace == Direction.UP)) {
+                    return;
+                }
+            }
             fruitBasketBlock.takeOut(player);
             event.setCanceled(true);
         }

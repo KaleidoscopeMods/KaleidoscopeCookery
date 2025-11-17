@@ -1,33 +1,37 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.block;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.OilPotBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.OilPotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.ModPlugin;
-import net.minecraft.network.chat.Component;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.state.BlockState;
-import snownee.jade.api.BlockAccessor;
-import snownee.jade.api.IBlockComponentProvider;
-import snownee.jade.api.ITooltip;
-import snownee.jade.api.config.IPluginConfig;
-import snownee.jade.api.ui.IElementHelper;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+import snownee.jade.api.Accessor;
+import snownee.jade.api.view.*;
 
-public enum OilPotComponentProvider implements IBlockComponentProvider {
+import java.util.Collections;
+import java.util.List;
+
+public enum OilPotComponentProvider implements IServerExtensionProvider<ItemStack>, IClientExtensionProvider<ItemStack, ItemView> {
     INSTANCE;
 
     @Override
-    public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
-        BlockState blockState = blockAccessor.getBlockState();
-        if (!blockState.hasProperty(OilPotBlock.OIL_COUNT)) {
-            return;
+    public List<ClientViewGroup<ItemView>> getClientGroups(Accessor<?> accessor, List<ViewGroup<ItemStack>> list) {
+        return ClientViewGroup.map(list, ItemView::new, null);
+    }
+
+    @Override
+    @Nullable
+    public List<ViewGroup<ItemStack>> getGroups(Accessor<?> accessor) {
+        Object target = accessor.getTarget();
+        if (target instanceof OilPotBlockEntity oilPot) {
+            int oilCount = oilPot.getOilCount();
+            if (oilCount > 0) {
+                ItemStack stack = new ItemStack(ModItems.OIL.get(), oilCount);
+                return List.of(new ViewGroup<>(Collections.singletonList(stack)));
+            }
         }
-        int count = blockState.getValue(OilPotBlock.OIL_COUNT);
-        Component text;
-        if (count > 0) {
-            text = Component.translatable("tooltip.kaleidoscope_cookery.oil_pot.count", count);
-        } else {
-            text = Component.translatable("tooltip.kaleidoscope_cookery.oil_pot.empty");
-        }
-        iTooltip.add(IElementHelper.get().text(text));
+        return null;
     }
 
     @Override

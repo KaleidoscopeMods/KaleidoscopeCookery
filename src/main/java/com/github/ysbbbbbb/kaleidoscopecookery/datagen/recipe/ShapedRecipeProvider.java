@@ -152,12 +152,13 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.ENAMEL_BASIN.get())
-                .pattern("OOO")
-                .pattern("OOO")
-                .pattern(" B ")
-                .define('O', TagMod.OIL)
+                .pattern("O")
+                .pattern("I")
+                .pattern("B")
                 .define('B', Items.BUCKET)
-                .unlockedBy("has_ingot_iron", has(Items.IRON_INGOT))
+                .define('I', Items.HEAVY_WEIGHTED_PRESSURE_PLATE)
+                .define('O', Items.STONE_BUTTON)
+                .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.KITCHENWARE_RACKS.get())
@@ -261,6 +262,16 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('B', Items.BUCKET)
                 .define('S', Items.STICK)
                 .unlockedBy("has_bucket", has(Items.BUCKET))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.SICKLE.get())
+                .pattern("AAB")
+                .pattern(" CA")
+                .pattern("C  ")
+                .define('A', Items.FLINT)
+                .define('B', Items.STRING)
+                .define('C', Items.STICK)
+                .unlockedBy("has_flint", has(Items.FLINT))
                 .save(consumer);
     }
 }

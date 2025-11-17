@@ -26,9 +26,11 @@ public class GlobalLootModifier extends GlobalLootModifierProvider {
     @Override
     public void start() {
         addEntityLootModifier("pig", EntityType.PIG);
+        addEntityLootModifier("zombified_piglin", EntityType.ZOMBIFIED_PIGLIN);
         addEntityLootModifier("piglin", EntityType.PIGLIN);
         addEntityLootModifier("piglin_brute", EntityType.PIGLIN_BRUTE);
         addEntityLootModifier("hoglin", EntityType.HOGLIN);
+        addEntityLootModifier("zoglin", EntityType.ZOGLIN);
         addEntityLootModifier("donkey", EntityType.DONKEY);
 
         addBlockLootModifier("straw_hat_seed_drop", Blocks.SHORT_GRASS);

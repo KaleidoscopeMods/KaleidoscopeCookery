@@ -18,7 +18,8 @@ public class TagEntityType extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(TagMod.PIG_OIL_SOURCE).add(EntityType.PIG, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.HOGLIN);
+        this.tag(TagMod.PIG_OIL_SOURCE)
+                .add(EntityType.PIG, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.HOGLIN, EntityType.ZOMBIFIED_PIGLIN, EntityType.ZOGLIN);
 
         this.tag(TagMod.MILLSTONE_BINDABLE).add(
                 EntityType.MULE, EntityType.DONKEY,

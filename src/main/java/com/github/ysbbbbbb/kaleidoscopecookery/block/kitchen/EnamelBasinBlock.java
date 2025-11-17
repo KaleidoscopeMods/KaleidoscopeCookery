@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -32,6 +33,8 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -42,7 +45,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
-    public static final int MAX_OIL_COUNT = 12;
+    public static final int MAX_OIL_COUNT = 32;
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_LID = BooleanProperty.create("has_lid");
@@ -62,7 +65,7 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(WATERLOGGED, false)
                 .setValue(HAS_LID, true)
-                .setValue(OIL_COUNT, MAX_OIL_COUNT));
+                .setValue(OIL_COUNT, 0));
     }
 
     @Override
@@ -137,10 +140,9 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
             return ItemInteractionResult.SUCCESS;
         }
 
-        // 没有油时，取出或者破坏
+        // 没有油时，返回
         if (value == 0) {
-            level.destroyBlock(pos, true, player);
-            return ItemInteractionResult.SUCCESS;
+            return ItemInteractionResult.FAIL;
         }
 
         // 取油
@@ -179,7 +181,24 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        return state.getValue(OIL_COUNT);
+        int count = state.getValue(OIL_COUNT);
+        int baseValue = count > 0 ? 1 : 0;
+        double ratio = (double) count / MAX_OIL_COUNT;
+        return Mth.floor(ratio * 14.0) + baseValue;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootParams.Builder params) {
+        List<ItemStack> stacks = super.getDrops(pState, params);
+        BlockState state = params.getOptionalParameter(LootContextParams.BLOCK_STATE);
+        if (state == null || !state.is(this)) {
+            return stacks;
+        }
+        int oilCount = state.getValue(OIL_COUNT);
+        if (oilCount > 0) {
+            stacks.add(new ItemStack(ModItems.OIL.get(), oilCount));
+        }
+        return stacks;
     }
 
     @Override

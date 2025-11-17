@@ -52,12 +52,6 @@ public class ReiMillstoneRecipeCategory implements DisplayCategory<ReiMillstoneR
                 .entries(display.getOutputEntries().get(0))
                 .disableBackground()
                 .markOutput());
-        if (!display.carrier.isEmpty()) {
-            widgets.add(Widgets.createSlot(new Point(startX + 115, startY + 36))
-                    .entries(display.carrier)
-                    .disableBackground()
-                    .markInput());
-        }
 
         return widgets;
     }
@@ -94,18 +88,14 @@ public class ReiMillstoneRecipeCategory implements DisplayCategory<ReiMillstoneR
                 .forEach(r -> {
                     List<EntryIngredient> input = ReiUtil.ofIngredients(r.value().getIngredients());
                     List<EntryIngredient> output = ReiUtil.ofItemStacks(r.value().getResult());
-                    EntryIngredient carrier = r.value().getCarrier().isEmpty() ? EntryIngredient.empty() : ReiUtil.ofIngredient(r.value().getCarrier());
 
-                    registry.add(new MillstoneRecipeDisplay(r.id(), input, output, carrier));
+                    registry.add(new MillstoneRecipeDisplay(r.id(), input, output));
                 });
     }
 
     public static class MillstoneRecipeDisplay extends BasicDisplay {
-        public final EntryIngredient carrier;
-
-        public MillstoneRecipeDisplay(ResourceLocation location, List<EntryIngredient> inputs, List<EntryIngredient> outputs, EntryIngredient carrier) {
+        public MillstoneRecipeDisplay(ResourceLocation location, List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
             super(inputs, outputs, Optional.of(location));
-            this.carrier = carrier;
         }
 
         @Override

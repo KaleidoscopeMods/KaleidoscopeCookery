@@ -18,7 +18,6 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     private Ingredient ingredient = Ingredient.EMPTY;
     private ItemStack result = ItemStack.EMPTY;
-    private Ingredient carrier = Ingredient.EMPTY;
 
     public static MillstoneRecipeBuilder builder() {
         return new MillstoneRecipeBuilder();
@@ -46,21 +45,6 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     public MillstoneRecipeBuilder setResult(ItemLike itemLike, int count) {
         this.result = new ItemStack(itemLike, count);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(ItemLike itemLike) {
-        this.carrier = Ingredient.of(itemLike);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(TagKey<Item> itemLike) {
-        this.carrier = Ingredient.of(itemLike);
-        return this;
-    }
-
-    public MillstoneRecipeBuilder setCarrier(Ingredient ingredient) {
-        this.carrier = ingredient;
         return this;
     }
 
@@ -94,7 +78,7 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        MillstoneRecipe recipe = new MillstoneRecipe(this.ingredient, this.result, this.carrier);
+        MillstoneRecipe recipe = new MillstoneRecipe(this.ingredient, this.result);
         recipeOutput.accept(id, recipe, null);
     }
 }

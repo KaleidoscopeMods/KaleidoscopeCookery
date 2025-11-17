@@ -66,10 +66,6 @@ public class MillstoneRecipeCategory implements IRecipeCategory<RecipeHolder<Mil
 
         builder.addSlot(RecipeIngredientRole.INPUT, 69, 39).addIngredients(input).setStandardSlotBackground();
         builder.addSlot(RecipeIngredientRole.OUTPUT, 146, 47).addItemStack(output);
-
-        if (recipe.getCarrier() != Ingredient.EMPTY) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 115, 36).addIngredients(recipe.getCarrier());
-        }
     }
 
     @Override

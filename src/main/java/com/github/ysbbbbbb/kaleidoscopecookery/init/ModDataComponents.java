@@ -38,4 +38,10 @@ public class ModDataComponents {
                     .persistent(RecipeItem.RecipeRecord.CODEC)
                     .networkSynchronized(RecipeItem.RecipeRecord.STREAM_CODEC)
                     .build());
+
+    public static final Supplier<DataComponentType<Integer>> OIL_POT_OIL_COUNT = DATA_COMPONENT_TYPES.register("oil_pot_oil_count", () ->
+            DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .build());
 }

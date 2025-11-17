@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 public interface MillstoneRecipeSchema {
     RecipeKey<ItemStack> OUTPUT = ItemStackComponent.STRICT_ITEM_STACK.outputKey("result");
     RecipeKey<Ingredient> INGREDIENT = IngredientComponent.INGREDIENT.inputKey("ingredient");
-    RecipeKey<Ingredient> CARRIER = IngredientComponent.INGREDIENT.inputKey("carrier").optional(Ingredient.EMPTY);
 
-    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INGREDIENT, CARRIER);
+    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INGREDIENT);
 }

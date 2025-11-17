@@ -40,6 +40,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.RECIPE_ITEM.get());
                 output.accept(ModItems.TRANSMUTATION_LUNCH_BAG.get());
                 // 原材料
+                output.accept(ModItems.FLOUR.get());
                 output.accept(ModItems.RAW_DOUGH.get());
                 output.accept(ModItems.RAW_NOODLES.get());
                 output.accept(ModItems.STUFFED_DOUGH_FOOD.get());
@@ -51,6 +52,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.LETTUCE_SEED.get());
                 // 工具
                 output.accept(ModItems.KITCHEN_SHOVEL.get());
+                output.accept(ModItems.SICKLE.get());
                 output.accept(ModItems.GOLD_KITCHEN_KNIFE.get());
                 output.accept(ModItems.IRON_KITCHEN_KNIFE.get());
                 output.accept(ModItems.DIAMOND_KITCHEN_KNIFE.get());
@@ -121,6 +123,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.COOKED_PORK_BELLY.get());
                 output.accept(ModItems.RAW_DONKEY_MEAT.get());
                 output.accept(ModItems.COOKED_DONKEY_MEAT.get());
+                output.accept(ModItems.RAW_CUT_SMALL_MEATS.get());
+                output.accept(ModItems.COOKED_CUT_SMALL_MEATS.get());
                 // 基础食物
                 output.accept(ModItems.DONKEY_BURGER.get());
                 output.accept(ModItems.MANTOU.get());

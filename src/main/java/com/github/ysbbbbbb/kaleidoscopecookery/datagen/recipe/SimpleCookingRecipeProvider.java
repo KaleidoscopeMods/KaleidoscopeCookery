@@ -24,6 +24,7 @@ public class SimpleCookingRecipeProvider extends ModRecipeProvider {
         simpleCookingRecipe(ModItems.RAW_COW_OFFAL.get(), ModItems.COOKED_COW_OFFAL.get(), 0.35F, consumer);
         simpleCookingRecipe(ModItems.RAW_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get(), 0.35F, consumer);
         simpleCookingRecipe(ModItems.RAW_DONKEY_MEAT.get(), ModItems.COOKED_DONKEY_MEAT.get(), 0.35F, consumer);
+        simpleCookingRecipe(ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.COOKED_CUT_SMALL_MEATS.get(), 0.35F, consumer);
         vanillaCookingRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.SAMSA.get(), 0.35F, consumer);
     }
 

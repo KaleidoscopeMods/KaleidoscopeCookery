@@ -89,10 +89,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         });
 
         horizontalBlock(ModBlocks.OIL_POT.get(), blockState -> {
-            if (blockState.getValue(OilPotBlock.OIL_COUNT) <= 0) {
-                return new ModelFile.UncheckedModelFile(modLoc("block/oil_pot"));
-            } else {
+            if (blockState.getValue(OilPotBlock.HAS_OIL)) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/oil_pot_with_oil"));
+            } else {
+                return new ModelFile.UncheckedModelFile(modLoc("block/oil_pot"));
             }
         });
 
@@ -185,10 +185,10 @@ public class BlockStateGenerator extends BlockStateProvider {
             if (oilCount <= 0) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/empty"));
             }
-            if (oilCount <= 4) {
+            if (oilCount <= EnamelBasinBlock.MAX_OIL_COUNT / 3) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/low"));
             }
-            if (oilCount <= 8) {
+            if (oilCount <= EnamelBasinBlock.MAX_OIL_COUNT / 3 * 2) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/middle"));
             }
             return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/high"));

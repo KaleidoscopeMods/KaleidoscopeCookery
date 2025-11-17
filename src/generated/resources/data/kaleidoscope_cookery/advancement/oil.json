@@ -1,29 +1,6 @@
 {
   "parent": "kaleidoscope_cookery:iron_knife",
   "criteria": {
-    "kill_hoglin": {
-      "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": "minecraft:hoglin"
-            }
-          }
-        ],
-        "killing_blow": {
-          "direct_entity": {
-            "equipment": {
-              "mainhand": {
-                "items": "#kaleidoscope_cookery:kitchen_knife"
-              }
-            }
-          }
-        }
-      },
-      "trigger": "minecraft:player_killed_entity"
-    },
     "kill_pig": {
       "conditions": {
         "entity": [
@@ -31,53 +8,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "minecraft:pig"
-            }
-          }
-        ],
-        "killing_blow": {
-          "direct_entity": {
-            "equipment": {
-              "mainhand": {
-                "items": "#kaleidoscope_cookery:kitchen_knife"
-              }
-            }
-          }
-        }
-      },
-      "trigger": "minecraft:player_killed_entity"
-    },
-    "kill_piglin": {
-      "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": "minecraft:piglin"
-            }
-          }
-        ],
-        "killing_blow": {
-          "direct_entity": {
-            "equipment": {
-              "mainhand": {
-                "items": "#kaleidoscope_cookery:kitchen_knife"
-              }
-            }
-          }
-        }
-      },
-      "trigger": "minecraft:player_killed_entity"
-    },
-    "kill_piglin_brute": {
-      "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": "minecraft:piglin_brute"
+              "type": "#kaleidoscope_cookery:pig_oil_source"
             }
           }
         ],
@@ -109,10 +40,7 @@
   },
   "requirements": [
     [
-      "kill_pig",
-      "kill_piglin",
-      "kill_piglin_brute",
-      "kill_hoglin"
+      "kill_pig"
     ]
   ],
   "sends_telemetry_event": true

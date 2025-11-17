@@ -2,7 +2,6 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Items;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModEffects.*;
 import static net.minecraft.world.effect.MobEffects.*;
@@ -54,6 +53,11 @@ public interface ModFoods {
             .nutrition(2).saturationModifier(0.3F)
             .alwaysEdible().build();
 
+    // 生切制小肉
+    FoodProperties RAW_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
     // 熟羊排
     FoodProperties COOKED_LAMB_CHOPS = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.8F)
@@ -72,6 +76,11 @@ public interface ModFoods {
     // 熟驴肉
     FoodProperties COOKED_DONKEY_MEAT = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.8F)
+            .alwaysEdible().build();
+
+    // 熟切制小肉
+    FoodProperties COOKED_CUT_SMALL_MEATS = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8F)
             .alwaysEdible().build();
 
     // 驴肉火烧
