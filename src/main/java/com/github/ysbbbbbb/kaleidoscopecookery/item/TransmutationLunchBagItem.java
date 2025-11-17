@@ -219,7 +219,7 @@ public class TransmutationLunchBagItem extends Item {
                 // 第一个药水的效果不加入其中，避免重复
                 if (!food.isEmpty()) {
                     List<FoodProperties.PossibleEffect> potionEffects = Lists.newArrayList();
-                    potionContents.customEffects().forEach(e -> potionEffects.add(new FoodProperties.PossibleEffect(() -> e, 1F)));
+                    potionContents.forEachEffect(e -> potionEffects.add(new FoodProperties.PossibleEffect(() -> e, 1F)));
                     effects.add(potionEffects);
                 } else {
                     food = items.extractItem(i, 1, false);
