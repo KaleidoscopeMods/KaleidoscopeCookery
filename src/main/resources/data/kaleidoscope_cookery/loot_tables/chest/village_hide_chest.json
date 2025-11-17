@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:seafood_miso_soup",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:chicken_and_mushroom_stew",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:pork_bone_soup",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:braised_beef_with_potatoes",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:beef_meatball_soup",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:suspicious_stir_fry_rice_bowl",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:egg_fried_rice",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "kaleidoscope_cookery:slime_ball_meal",
+          "weight": 10
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 2.0
+      }
+    }
+  ],
+  "random_sequence": "kaleidoscope_cookery:chest/village_hide_chest"
+}

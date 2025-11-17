@@ -2,11 +2,11 @@ package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.forge.ItemStackHandler;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,6 +15,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class FruitBasketBlockEntity extends BaseBlockEntity {
     public static final String ITEMS = "BasketItems";
@@ -68,13 +69,13 @@ public class FruitBasketBlockEntity extends BaseBlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
+    protected void saveAdditional(@NotNull CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put(ITEMS, ContainerHelper.saveAllItems(new CompoundTag(), this.items.items));
     }
 
     @Override
-    public void load(CompoundTag tag) {
+    public void load(@NotNull CompoundTag tag) {
         super.load(tag);
         if (tag.contains(ITEMS)) {
             CompoundTag compound = tag.getCompound(ITEMS);
@@ -82,7 +83,7 @@ public class FruitBasketBlockEntity extends BaseBlockEntity {
         }
     }
 
-    public NonNullList<ItemStack> getItems() {
-        return items.items;
+    public ItemStackHandler getItems() {
+        return new ItemStackHandler(items.items);
     }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:coal_ore"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:coal"
+  }
+}

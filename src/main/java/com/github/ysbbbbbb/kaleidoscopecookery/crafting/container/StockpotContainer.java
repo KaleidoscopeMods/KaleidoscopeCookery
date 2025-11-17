@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.crafting.container;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
@@ -19,5 +20,9 @@ public class StockpotContainer extends SimpleContainer {
 
     public ResourceLocation getSoupBase() {
         return soupBase;
+    }
+
+    public NonNullList<ItemStack> getItems() {
+        return items;
     }
 }

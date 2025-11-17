@@ -16,4 +16,10 @@ public interface ModEventTriggerType {
     String HURT_WHEN_TAKEOUT_FROM_STOCKPOT = "hurt_when_takeout_from_stockpot";
     String PLACE_SCARECROW = "place_scarecrow";
     String PLACE_HEAD_ON_SCARECROW = "place_head_on_scarecrow";
+    String DRIVE_THE_MILLSTONE = "drive_the_millstone";
+    String USE_MILLSTONE_GET_OIL_POT = "use_millstone_get_oil_pot";
+    String PULL_THE_DOUGH = "pull_the_dough";
+    String USE_STEAMER = "use_steamer";
+    String MEAT_BUNS_BEAT_DOGS = "meat_buns_beat_dogs";
+    String USE_TRANSMUTATION_LUNCH_BAG = "use_transmutation_lunch_bag";
 }

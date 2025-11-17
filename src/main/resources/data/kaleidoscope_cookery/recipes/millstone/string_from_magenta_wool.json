@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:magenta_wool"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:string"
+  }
+}

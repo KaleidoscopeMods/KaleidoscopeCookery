@@ -60,6 +60,9 @@ public class CookStoolBlock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (player.isSecondaryUseActive()) {
+            return InteractionResult.PASS;
+        }
         List<SitEntity> entities = level.getEntitiesOfClass(SitEntity.class, new AABB(pos));
         if (entities.isEmpty()) {
             SitEntity entitySit = new SitEntity(level, pos);

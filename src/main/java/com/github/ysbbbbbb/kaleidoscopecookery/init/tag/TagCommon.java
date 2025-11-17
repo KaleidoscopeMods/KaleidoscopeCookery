@@ -12,11 +12,13 @@ import net.minecraft.world.level.block.Block;
  * 蔬菜类的有两种，本模组遵循农夫乐事规范，采用 crops/前缀
  */
 public interface TagCommon {
+    TagKey<Item> CROPS = itemTag("crops");
     TagKey<Item> CROPS_CHILI_PEPPER = itemTag("crops/chilipepper");
     TagKey<Item> CROPS_TOMATO = itemTag("crops/tomato");
     TagKey<Item> CROPS_LETTUCE = itemTag("crops/lettuce");
     TagKey<Item> CROPS_RICE = itemTag("crops/rice");
 
+    TagKey<Item> VEGETABLES = itemTag("vegetables");
     TagKey<Item> VEGETABLES_CHILI_PEPPER = itemTag("vegetables/chilipepper");
     TagKey<Item> VEGETABLES_TOMATO = itemTag("vegetables/tomato");
     TagKey<Item> VEGETABLES_LETTUCE = itemTag("vegetables/lettuce");
@@ -34,6 +36,9 @@ public interface TagCommon {
     TagKey<Item> COOKED_EGGS = itemTag("cooked_eggs");
     TagKey<Item> COOKED_RICE = itemTag("cooked_rice");
 
+    // forge:raw_meats 生肉
+    TagKey<Item> RAW_MEATS = itemTag("raw_meats");
+
     TagKey<Item> RAW_BEEF = itemTag("raw_beef");
     TagKey<Item> RAW_CHICKEN = itemTag("raw_chicken");
     TagKey<Item> RAW_PORK = itemTag("raw_pork");
@@ -45,11 +50,62 @@ public interface TagCommon {
 
     TagKey<Item> MUSHROOMS = itemTag("mushroom");
 
+    TagKey<Item> DOUGH = itemTag("dough");
+
+    // 均衡饮食模组
+    TagKey<Item> FRUITS = dietTag("fruits");
+    TagKey<Item> GRAINS = dietTag("grains");
+    TagKey<Item> PROTEINS = dietTag("proteins");
+    TagKey<Item> SUGARS = dietTag("sugars");
+    TagKey<Item> DIET_VEGETABLES = dietTag("vegetables");
+
+    // 静谧四季模组
+    TagKey<Item> SPRING_CROPS = seasonsItemTag("spring_crops");
+    TagKey<Item> SUMMER_CROPS = seasonsItemTag("summer_crops");
+    TagKey<Item> AUTUMN_CROPS = seasonsItemTag("autumn_crops");
+    TagKey<Item> WINTER_CROPS = seasonsItemTag("winter_crops");
+
+    TagKey<Block> SPRING_CROPS_BLOCK = seasonsBlockTag("spring_crops");
+    TagKey<Block> SUMMER_CROPS_BLOCK = seasonsBlockTag("summer_crops");
+    TagKey<Block> AUTUMN_CROPS_BLOCK = seasonsBlockTag("autumn_crops");
+    TagKey<Block> WINTER_CROPS_BLOCK = seasonsBlockTag("winter_crops");
+
+    // 节气模组
+    TagKey<Block> DRY_AVERAGE = eclipticSeasonsTag("crops/dry_average");
+    TagKey<Block> AVERAGE_MOIST = eclipticSeasonsTag("crops/average_moist");
+    TagKey<Block> MOIST_HUMID = eclipticSeasonsTag("crops/moist_humid");
+    TagKey<Block> HUMID_HUMID = eclipticSeasonsTag("crops/humid_humid");
+
+    // 农夫乐事
+    TagKey<Item> FD_KNIVES = TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight:tools/knives"));
+
     static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation("c", name));
     }
 
+    /**
+     * 兼容均衡饮食模组
+     */
+    static TagKey<Item> dietTag(String name) {
+        return TagKey.create(Registries.ITEM, new ResourceLocation("diet", name));
+    }
+
+    /**
+     * 静谧四季模组兼容
+     */
+    static TagKey<Item> seasonsItemTag(String name) {
+        return TagKey.create(Registries.ITEM, new ResourceLocation("sereneseasons", name));
+    }
+
+    static TagKey<Block> seasonsBlockTag(String name) {
+        return TagKey.create(Registries.BLOCK, new ResourceLocation("sereneseasons", name));
+    }
+
     static TagKey<Block> blockTag(String name) {
         return TagKey.create(Registries.BLOCK, new ResourceLocation("c", name));
+    }
+
+    static TagKey<Block> eclipticSeasonsTag(String name) {
+        return TagKey.create(Registries.BLOCK, new ResourceLocation("eclipticseasons", name));
     }
 }

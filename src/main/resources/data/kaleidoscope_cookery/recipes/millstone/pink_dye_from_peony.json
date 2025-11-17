@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:peony"
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:pink_dye"
+  }
+}

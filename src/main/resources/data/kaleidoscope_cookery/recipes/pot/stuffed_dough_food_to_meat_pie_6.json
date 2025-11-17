@@ -1,0 +1,29 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "kaleidoscope_cookery:meat_pie"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

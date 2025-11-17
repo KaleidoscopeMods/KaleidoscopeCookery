@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#forge:raw_beef",
+    "#forge:raw_chicken",
+    "#forge:raw_pork",
+    "#forge:raw_mutton",
+    "#forge:raw_fishes/cod",
+    "#forge:raw_fishes/salmon",
+    "#forge:raw_fishes/tropical_fish"
+  ]
+}

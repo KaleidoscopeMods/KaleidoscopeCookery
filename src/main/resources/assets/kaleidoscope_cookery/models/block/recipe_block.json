@@ -1,0 +1,26 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "kaleidoscope_cookery:block/recipe_block",
+		"particle": "kaleidoscope_cookery:block/recipe_block"
+	},
+	"elements": [
+		{
+			"from": [2, 0.1, 0.95],
+			"to": [14, 0.1, 14.95],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0.1, 7.45]},
+			"faces": {
+				"up": {"uv": [0, 9, 6, 16], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [0, 0, 6, 7], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"fixed": {
+			"translation": [0, 65.5, -14.25],
+			"scale": [2, 2, 2]
+		}
+	}
+}

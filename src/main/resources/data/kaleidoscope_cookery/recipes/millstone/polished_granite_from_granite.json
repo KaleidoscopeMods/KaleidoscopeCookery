@@ -1,0 +1,9 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:granite"
+  },
+  "result": {
+    "item": "minecraft:polished_granite"
+  }
+}

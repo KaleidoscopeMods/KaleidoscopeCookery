@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:millstone",
+  "ingredient": {
+    "item": "minecraft:cactus"
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:green_dye"
+  }
+}

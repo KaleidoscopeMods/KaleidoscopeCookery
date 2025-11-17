@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:raw_meats"
+    },
+    {
+      "tag": "forge:vegetables"
+    },
+    {
+      "tag": "forge:dough"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:stuffed_dough_food"
+  }
+}

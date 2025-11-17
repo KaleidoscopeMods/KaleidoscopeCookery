@@ -4,13 +4,16 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IShawarmaSpit;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.ShawarmaSpitBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.google.common.collect.Lists;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -63,6 +66,37 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
                 .setValue(HALF, DoubleBlockHalf.LOWER)
                 .setValue(WATERLOGGED, false)
                 .setValue(POWERED, false));
+    }
+
+    @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide && player.isCreative()) {
+            if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                BlockPos below = pos.below();
+                BlockState belowState = level.getBlockState(below);
+                if (belowState.is(state.getBlock()) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                    dropCookItems(level, below);
+                    BlockState airBlockState = belowState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                    level.setBlock(below, airBlockState, Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
+                    level.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, below, Block.getId(belowState));
+                }
+            } else {
+                dropCookItems(level, pos);
+            }
+        }
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
+    private void dropCookItems(Level level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof ShawarmaSpitBlockEntity shawarmaSpit) {
+            if (!shawarmaSpit.cookingItem.isEmpty()) {
+                popResource(level, pos, shawarmaSpit.cookingItem.copy());
+                shawarmaSpit.cookingItem = ItemStack.EMPTY;
+            } else if (!shawarmaSpit.cookedItem.isEmpty()) {
+                popResource(level, pos, shawarmaSpit.cookedItem.copy());
+                shawarmaSpit.cookedItem = ItemStack.EMPTY;
+            }
+        }
     }
 
     @Nullable
@@ -189,5 +223,10 @@ public class ShawarmaSpitBlock extends HorizontalDirectionalBlock implements Sim
             }
         }
         return drops;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @org.jetbrains.annotations.Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.shawarma_spit").withStyle(ChatFormatting.GRAY));
     }
 }

@@ -16,6 +16,15 @@
     ],
     "jei_mod_plugin": [
       "com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.ModJeiPlugin"
+    ],
+    "rei_client": [
+      "com.github.ysbbbbbb.kaleidoscopecookery.compat.rei.ModREIClientPlugin"
+    ],
+    "emi": [
+      "com.github.ysbbbbbb.kaleidoscopecookery.compat.emi.ModEmiPlugin"
+    ],
+    "jade": [
+      "com.github.ysbbbbbb.kaleidoscopecookery.compat.jade.ModPlugin"
     ]
   },
   "mixins": ["kaleidoscope_cookery.mixins.json"],

@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -30,6 +31,10 @@ public class StrawBlocks extends RotatedPillarBlock {
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (level.isClientSide()) {
+            return;
+        }
+        // 只有普通生物才会触发
+        if (!(entity instanceof LivingEntity)) {
             return;
         }
         level.playSound(null, pos, SoundEvents.GRASS_FALL, entity.getSoundSource(), 1.0F, 1.0F);

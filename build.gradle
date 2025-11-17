@@ -17,6 +17,9 @@ fabricApi {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     exclusiveContent {
         forRepository {
             maven {
@@ -43,6 +46,115 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven {
+        url = "https://maven.shedaniel.me"
+    }
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
+    maven {
+        url = "https://maven.architectury.dev"
+        content {
+            includeGroup "dev.architectury"
+        }
+    }
+
+
+//    maven {
+//        name = "Greenhouse Maven"
+//        url = 'https://repo.greenhouse.house/releases/'
+//    }
+//    maven {
+//        url "https://mvn.devos.one/releases/" // Porting Lib
+////        content {
+////            excludeGroup "io.github.fabricators_of_create"
+////        }
+//    }
+//    maven {
+//        url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
+//        content {
+//            includeGroup "com.jamieswhiteshirt"
+//        }
+//    }
+//    maven {
+//        url "https://jitpack.io/" // Fabric ASM
+//        content {
+//            excludeGroup "io.github.fabricators_of_create"
+//        }
+//    }
+}
+
+repositories {
+    maven {
+        url = uri('libs')  // 指向重新组织后的libs文件夹
+    }
+    maven { url "https://mvn.devos.one/releases/" } // Porting Lib
+    maven {
+        url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    maven {
+        url "https://jitpack.io/" // Fabric ASM
+        content {
+            excludeGroup "io.github.fabricators_of_create"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+
+    maven { url = "https://mvn.devos.one/releases/" }
+
+    // 添加Maven中央仓库用于下载其他依赖
+    mavenCentral()
+    // Fabric相关仓库
+    maven { url "https://maven.fabricmc.net/" }
+
+    maven {
+        name = "Greenhouse Maven"
+        url = 'https://maven.greenhouse.lgbt/releases/'
+    }
+    maven { url "https://mvn.devos.one/releases/" } // Porting Lib
+    maven {
+        url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    maven {
+        url "https://jitpack.io/" // Fabric ASM
+        content {
+            excludeGroup "io.github.fabricators_of_create"
+        }
+    }
+}
+
+dependencies {
+    // 此时可以像正常依赖一样声明（需保证文件名与坐标匹配）
+    modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
+        exclude(group: "net.fabricmc")
+    }
+
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:transfer:2.3.14+1.20.1"))
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:base:2.3.14+1.20.1"))
 }
 
 dependencies {
@@ -55,6 +167,29 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}")
     modImplementation("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}")
+
+    // REI 前置
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:11.1.106"
+    modImplementation "dev.architectury:architectury-fabric:9.2.14"
+    // REI API for Forge (ForgeGradle)
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:12.1.785"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:12.1.785"
+    modRuntimeOnly "maven.modrinth:rei:12.1.785+fabric-fabric,1.20.1"
+
+    // EMI
+    modCompileOnly "dev.emi:emi-fabric:1.1.22+1.20.1:api"
+    modCompileOnly "dev.emi:emi-fabric:1.1.22+1.20.1"
+
+    modImplementation "maven.modrinth:jade:11.13.1+fabric"
+
+    // KubeJS
+    modImplementation "dev.latvian.mods:kubejs-fabric:2001.6.5-build.16"
+    modImplementation "dev.latvian.mods:rhino-fabric:2001.2.3-build.10"
+    modRuntimeOnly "dev.architectury:architectury-fabric:9.2.14"
+    modRuntimeOnly "maven.modrinth:probejs:6.0.0"
+
+    modImplementation "maven.modrinth:harvest-with-ease:9.4.0-fabric,1.20.1"
+    modRuntimeOnly "maven.modrinth:cobweb:1.0.1-fabric,1.20.1"
 }
 
 processResources {
