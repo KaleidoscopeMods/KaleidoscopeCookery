@@ -1,5 +1,9 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.api.event;
 
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.Nullable;
+
 public interface ActionEventCallback {
 
     @FunctionalInterface
@@ -25,5 +29,10 @@ public interface ActionEventCallback {
     @FunctionalInterface
     interface LivingEntityHurt {
         void onLivingEntityHurt(LivingDamageEvent event);
+    }
+
+    @FunctionalInterface
+    interface PlayerLeftClick {
+        void onPlayerLeftClick(@Nullable Player player, InteractionHand hand);
     }
 }

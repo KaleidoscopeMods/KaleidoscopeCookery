@@ -32,6 +32,9 @@ public class MillstoneSpecialFinishEvent {
             if (output.is(ModItems.FLOUR)) {
                 onGetRawDough(millstone, level, output);
             }
+
+            //最后考虑可能底下有漏斗，那么尝试把物品塞进漏斗
+            handleWithHopper(millstone, level, output);
         });
 
     }
@@ -45,9 +48,9 @@ public class MillstoneSpecialFinishEvent {
         ItemStack outputs = ModItems.RAW_DOUGH.getDefaultInstance();
         outputs.setCount(output.getCount());
         ItemEntity entity = new ItemEntity(level,
-                below.getX() + 0.5,
-                below.getY() + 0.2,
-                below.getZ() + 0.5,
+                below.getX() + 0.5f,
+                below.getY() + 0.2f,
+                below.getZ() + 0.5f,
                 outputs);
         entity.setDefaultPickUpDelay();
         level.addFreshEntity(entity);
@@ -71,6 +74,22 @@ public class MillstoneSpecialFinishEvent {
         if (random.nextInt(8) < output.getCount()) {
             level.setBlockAndUpdate(below, blockState.setValue(OilPotBlock.OIL_COUNT, oilCount + 1));
         }
+        millstone.resetWhenTakeout();
+    }
+
+    private static void handleWithHopper(MillstoneBlockEntity millstone, Level level, ItemStack output) {
+        BlockPos below = millstone.getBlockPos().below();
+        BlockState blockState = level.getBlockState(below);
+        if (!blockState.is(Blocks.HOPPER)) {
+            return;
+        }
+        ItemEntity entity = new ItemEntity(level,
+                below.getX() + 0.5f,
+                below.getY() + 0.35f,
+                below.getZ() + 0.5f,
+                output);
+        entity.setDefaultPickUpDelay();
+        level.addFreshEntity(entity);
         millstone.resetWhenTakeout();
     }
 }

@@ -285,6 +285,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         return false;
     }
 
+    //可惜Fabric没办法这么玩 QAQ
     @Nullable
     public IItemHandler createHandler() {
         BlockState state = this.getBlockState();

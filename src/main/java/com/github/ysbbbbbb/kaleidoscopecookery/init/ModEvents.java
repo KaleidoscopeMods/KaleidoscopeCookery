@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.event.recipe.MillstoneSpecialReci
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
+// 所有的自定义事件
 public class ModEvents {
 
     public static final Event<ActionEventCallback.MillstoneFinish> MILLSTONE_FINISH =
@@ -37,10 +38,19 @@ public class ModEvents {
                 }
             });
 
+
+
     public static final Event<ActionEventCallback.LivingEntityHurt> LIVING_ENTITY_HURT =
             EventFactory.createArrayBacked(ActionEventCallback.LivingEntityHurt.class, call -> action -> {
                 for (ActionEventCallback.LivingEntityHurt listener : call) {
                     listener.onLivingEntityHurt(action);
+                }
+            });
+
+    public static final Event<ActionEventCallback.PlayerLeftClick> PLAYER_LEFT_CLICK =
+            EventFactory.createArrayBacked(ActionEventCallback.PlayerLeftClick.class, call -> (player, hand) -> {
+                for (ActionEventCallback.PlayerLeftClick listener : call) {
+                    listener.onPlayerLeftClick(player, hand);
                 }
             });
 
