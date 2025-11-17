@@ -1,11 +1,11 @@
 {
   "values": [
-    "#c:raw_beef",
-    "#c:raw_chicken",
-    "#c:raw_pork",
-    "#c:raw_mutton",
-    "#c:raw_fishes/cod",
-    "#c:raw_fishes/salmon",
-    "#c:raw_fishes/tropical_fish"
+    "#c:foods/raw_beef",
+    "#c:foods/raw_chicken",
+    "#c:foods/raw_pork",
+    "#c:foods/raw_mutton",
+    "#c:foods/raw_cod",
+    "#c:foods/raw_salmon",
+    "#c:foods/tropical_fish"
   ]
 }

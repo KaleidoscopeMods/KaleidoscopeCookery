@@ -2,13 +2,13 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "tag": "c:raw_fishes/salmon"
+      "tag": "c:foods/raw_salmon"
     },
     {
-      "tag": "c:raw_fishes/salmon"
+      "tag": "c:foods/raw_salmon"
     },
     {
-      "tag": "c:raw_fishes/salmon"
+      "tag": "c:foods/raw_salmon"
     },
     {
       "item": "minecraft:kelp"

@@ -2,10 +2,10 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "tag": "c:raw_mutton"
+      "tag": "c:foods/raw_mutton"
     },
     {
-      "tag": "c:raw_mutton"
+      "tag": "c:foods/raw_mutton"
     },
     {
       "item": "kaleidoscope_cookery:fried_egg"

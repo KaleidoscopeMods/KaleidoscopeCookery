@@ -2,13 +2,13 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "tag": "c:raw_chicken"
+      "tag": "c:foods/raw_chicken"
     },
     {
-      "tag": "c:raw_chicken"
+      "tag": "c:foods/raw_chicken"
     },
     {
-      "tag": "c:raw_chicken"
+      "tag": "c:foods/raw_chicken"
     },
     {
       "tag": "c:mushrooms"

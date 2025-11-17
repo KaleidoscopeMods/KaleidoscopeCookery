@@ -14,10 +14,10 @@
       "item": "kaleidoscope_cookery:green_chili"
     },
     {
-      "tag": "c:raw_pork"
+      "tag": "c:foods/raw_pork"
     },
     {
-      "tag": "c:raw_pork"
+      "tag": "c:foods/raw_pork"
     }
   ],
   "result": {

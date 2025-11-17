@@ -2,13 +2,13 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "tag": "c:raw_beef"
+      "tag": "c:foods/raw_beef"
     },
     {
-      "tag": "c:raw_beef"
+      "tag": "c:foods/raw_beef"
     },
     {
-      "tag": "c:raw_beef"
+      "tag": "c:foods/raw_beef"
     },
     {
       "tag": "c:crops/tomato"
