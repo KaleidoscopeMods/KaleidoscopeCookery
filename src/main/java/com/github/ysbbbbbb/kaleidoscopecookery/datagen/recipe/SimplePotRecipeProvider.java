@@ -44,7 +44,7 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
             ItemStack output = new ItemStack(outputItem, i);
             String idOutput = this.getRecipeIdWithCount(outputItem, i);
             String id = String.format("%s_to_%s", idInput, idOutput);
-            PotRecipeBuilder.builder().addInput(inputs).setResult(output).setCarrier(carrier).save(consumer, id);
+            PotRecipeBuilder.builder().addInput((Object) inputs).setResult(output).setCarrier(carrier).save(consumer, id);
         }
     }
 }

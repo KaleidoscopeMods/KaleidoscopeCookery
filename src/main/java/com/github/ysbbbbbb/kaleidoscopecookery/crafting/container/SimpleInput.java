@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.crafting.container;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class SimpleInput implements RecipeInput {
     }
 
     @Override
-    public ItemStack getItem(int index) {
+    public @NotNull ItemStack getItem(int index) {
         return this.inputs.get(index);
     }
 

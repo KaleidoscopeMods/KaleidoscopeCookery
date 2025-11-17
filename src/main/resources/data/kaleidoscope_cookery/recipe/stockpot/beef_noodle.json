@@ -1,0 +1,30 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "tag": "c:raw_beef"
+    },
+    {
+      "tag": "c:raw_beef"
+    },
+    {
+      "tag": "c:raw_beef"
+    },
+    {
+      "tag": "c:raw_beef"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "kaleidoscope_cookery:beef_noodle"
+  }
+}

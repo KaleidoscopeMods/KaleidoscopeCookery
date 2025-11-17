@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModDataComponents;
 import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.ItemContainerTooltip;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.neo.ItemStackHandler;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -12,18 +13,36 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
+
 public class FruitBasketItem extends BlockItem {
+
+    private static final int MAX_SLOTS = 8;
+
     public FruitBasketItem() {
         super(ModBlocks.FRUIT_BASKET, new Properties().stacksTo(1));
     }
 
+    public static ItemStackHandler getItems(ItemStack stack) {
+        ItemContainer container = stack.get(ModDataComponents.FRUIT_BASKET_ITEMS);
+        if (container != null) {
+            return new ItemStackHandler(container.items());
+        }
+        return new ItemStackHandler(MAX_SLOTS);
+    }
+
+    public static void saveItems(ItemStack stack, ItemStackHandler items) {
+        stack.set(ModDataComponents.FRUIT_BASKET_ITEMS, new ItemContainer(items.getStacks()));
+    }
+
     @Override
-    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         if (stack.has(ModDataComponents.FRUIT_BASKET_ITEMS)) {
             ItemContainer handler = stack.get(ModDataComponents.FRUIT_BASKET_ITEMS);
+            assert handler != null;
             return Optional.of(new ItemContainerTooltip(handler.items));
         }
         return Optional.empty();

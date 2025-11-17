@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "tag": "c:fences/wooden"
+    },
+    "G": {
+      "item": "minecraft:grindstone"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "pattern": [
+    " F ",
+    "SG ",
+    "TTT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:millstone"
+  }
+}

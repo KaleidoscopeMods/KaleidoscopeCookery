@@ -1,12 +1,13 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.util;
 
-import com.mojang.datafixers.util.Function8;
+import com.mojang.datafixers.util.Function9;
 import net.minecraft.network.codec.StreamCodec;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
 public interface StreamCodecUtil {
-    static <B, C, T1, T2, T3, T4, T5, T6, T7, T8> StreamCodec<B, C> composite(
+    static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9> StreamCodec<B, C> composite(
             final StreamCodec<? super B, T1> codec1,
             final Function<C, T1> getter1,
             final StreamCodec<? super B, T2> codec2,
@@ -23,11 +24,13 @@ public interface StreamCodecUtil {
             final Function<C, T7> getter7,
             final StreamCodec<? super B, T8> codec8,
             final Function<C, T8> getter8,
-            final Function8<T1, T2, T3, T4, T5, T6, T7, T8, C> factory
+            final StreamCodec<? super B, T9> codec9,
+            final Function<C, T9> getter9,
+            final Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, C> factory
     ) {
         return new StreamCodec<>() {
             @Override
-            public C decode(B buf) {
+            public @NotNull C decode(B buf) {
                 T1 v1 = codec1.decode(buf);
                 T2 v2 = codec2.decode(buf);
                 T3 v3 = codec3.decode(buf);
@@ -36,7 +39,8 @@ public interface StreamCodecUtil {
                 T6 v6 = codec6.decode(buf);
                 T7 v7 = codec7.decode(buf);
                 T8 v8 = codec8.decode(buf);
-                return factory.apply(v1, v2, v3, v4, v5, v6, v7, v8);
+                T9 v9 = codec9.decode(buf);
+                return factory.apply(v1, v2, v3, v4, v5, v6, v7, v8, v9);
             }
 
             @Override
@@ -49,6 +53,7 @@ public interface StreamCodecUtil {
                 codec6.encode(buf, getter6.apply(value));
                 codec7.encode(buf, getter7.apply(value));
                 codec8.encode(buf, getter8.apply(value));
+                codec9.encode(buf, getter9.apply(value));
             }
         };
     }

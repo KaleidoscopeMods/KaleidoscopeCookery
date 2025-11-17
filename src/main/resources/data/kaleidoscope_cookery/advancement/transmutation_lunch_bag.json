@@ -1,0 +1,31 @@
+{
+  "parent": "kaleidoscope_cookery:root",
+  "criteria": {
+    "use_transmutation_lunch_bag": {
+      "conditions": {
+        "event": "use_transmutation_lunch_bag"
+      },
+      "trigger": "kaleidoscope_cookery:mod_event"
+    }
+  },
+  "display": {
+    "background": "kaleidoscope_cookery:textures/advancement/background.png",
+    "description": {
+      "translate": "advancements.kaleidoscope_cookery.transmutation_lunch_bag.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "kaleidoscope_cookery:transmutation_lunch_bag"
+    },
+    "title": {
+      "translate": "advancements.kaleidoscope_cookery.transmutation_lunch_bag.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_transmutation_lunch_bag"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

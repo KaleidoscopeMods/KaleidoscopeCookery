@@ -8,7 +8,6 @@ import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 
-
 public class KaleidoscopeCookery implements ModInitializer {
     public static final String MOD_ID = "kaleidoscope_cookery";
     public static final Logger LOGGER = LogUtils.getLogger();
@@ -36,6 +35,8 @@ public class KaleidoscopeCookery implements ModInitializer {
         ModTrades.registerTrades();
         ModSoupBases.registerSoupBases();
         ModDataComponents.registerDataComponents();
+        // 事件
+        ModEvents.init();
 
         // 注册额外的战利品表事件
         ExtraLootTableDrop.register();

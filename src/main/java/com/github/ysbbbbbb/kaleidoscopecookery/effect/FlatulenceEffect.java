@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModAttachmentType;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.phys.Vec3;
 
 public class FlatulenceEffect extends BaseEffect {
@@ -13,6 +14,10 @@ public class FlatulenceEffect extends BaseEffect {
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+        // 最后 3 tick 移除记录
+        if (duration < 5) {
+
+        }
         // 每 10 秒检查一次距离
         return duration % 10 == 5;
     }
@@ -30,5 +35,10 @@ public class FlatulenceEffect extends BaseEffect {
             }
         }
         return true;
+    }
+
+    @Override
+    public void removeAttributeModifiers(AttributeMap attributeMap) {
+        super.removeAttributeModifiers(attributeMap);
     }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:steamer",
+  "ingredient": {
+    "tag": "c:dough"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:mantou"
+  }
+}

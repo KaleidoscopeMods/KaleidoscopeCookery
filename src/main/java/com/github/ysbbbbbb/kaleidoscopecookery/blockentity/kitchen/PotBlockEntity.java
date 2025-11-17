@@ -10,6 +10,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -31,6 +32,7 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -217,13 +219,21 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
     @Override
     public boolean onPlaceOil(Level level, LivingEntity user, ItemStack stack) {
         if (stack.is(TagMod.OIL)) {
+            // 普通情况油脂
             placeOil(level, user, level.random);
             stack.shrink(1);
             ModTrigger.EVENT.trigger(user, ModEventTriggerType.PUT_OIL_IN_POT);
             return true;
         } else if (stack.is(ModItems.KITCHEN_SHOVEL) && KitchenShovelItem.hasOil(stack)) {
+            // 带油锅铲特判
             placeOil(level, user, level.random);
             KitchenShovelItem.setHasOil(stack, false);
+            ModTrigger.EVENT.trigger(user, ModEventTriggerType.PUT_OIL_IN_POT);
+            return true;
+        } else if (stack.is(ModItems.OIL_POT) && OilPotItem.hasOil(stack)) {
+            // 油壶特判
+            placeOil(level, user, level.random);
+            OilPotItem.shrinkOilCount(stack);
             ModTrigger.EVENT.trigger(user, ModEventTriggerType.PUT_OIL_IN_POT);
             return true;
         }
@@ -463,6 +473,33 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
 
     public List<ItemStack> getInputs() {
         return inputs;
+    }
+
+    public SimpleInput getInput() {
+        return new SimpleInput(this.inputs);
+    }
+
+    public void addAllIngredients(List<ItemStack> ingredients, LivingEntity user) {
+        if (this.level == null) {
+            return;
+        }
+        if (this.status != PUT_INGREDIENT) {
+            return;
+        }
+        for (int i = 0; i < Math.min(ingredients.size(), this.inputs.size()); i++) {
+            ItemStack stack = ingredients.get(i);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            // 如果带有容器，此时返还容器
+            Item containerItem = ItemUtils.getContainerItem(stack);
+            if (containerItem != Items.AIR) {
+                ItemUtils.getItemToLivingEntity(user, containerItem.getDefaultInstance());
+            }
+            this.inputs.set(i, stack.copyWithCount(1));
+        }
+        level.playSound(null, this.worldPosition, SoundEvents.LANTERN_PLACE, SoundSource.BLOCKS, 1.0F, 0.5F);
+        this.refresh();
     }
 
     public SimpleContainer getContainer() {
