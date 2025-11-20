@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public interface SteamerRecipeSchema {
-    RecipeKey<ItemStack> OUTPUT = ItemStackComponent.STRICT_ITEM_STACK.outputKey("result");
+    RecipeKey<ItemStack> OUTPUT = ItemStackComponent.ITEM_STACK.outputKey("result");
     RecipeKey<Ingredient> INGREDIENT = IngredientComponent.INGREDIENT.inputKey("ingredient");
     RecipeKey<Integer> COOK_TICK = NumberComponent.INT.otherKey("cook_tick").optional(60 * 20);
 
