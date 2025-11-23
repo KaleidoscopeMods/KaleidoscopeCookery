@@ -1,10 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.kubejs.recipe;
 
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
-import dev.latvian.mods.kubejs.recipe.component.IngredientComponent;
-import dev.latvian.mods.kubejs.recipe.component.ItemStackComponent;
-import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
-import dev.latvian.mods.kubejs.recipe.component.StringComponent;
+import dev.latvian.mods.kubejs.recipe.component.*;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,8 +11,8 @@ import java.util.List;
 import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.*;
 
 public interface StockpotRecipeSchema {
-    RecipeKey<ItemStack> OUTPUT = ItemStackComponent.STRICT_ITEM_STACK.outputKey("result");
-    RecipeKey<List<Ingredient>> INGREDIENTS = IngredientComponent.INGREDIENT.asList().inputKey("ingredients");
+    RecipeKey<ItemStack> OUTPUT = ItemStackComponent.ITEM_STACK.outputKey("result");
+    RecipeKey<List<Ingredient>> INGREDIENTS = ListRecipeComponent.create(IngredientComponent.INGREDIENT.instance(), true, false).inputKey("ingredients"); //IngredientComponent.INGREDIENT.asList().inputKey("ingredients");
     RecipeKey<String> SOUP_BASE = StringComponent.ID.inputKey("soup_base").optional(DEFAULT_SOUP_BASE.toString());
     RecipeKey<Integer> TIME = NumberComponent.INT.otherKey("time").optional(DEFAULT_TIME);
     RecipeKey<Ingredient> CARRIER = IngredientComponent.INGREDIENT.inputKey("carrier").optional(DEFAULT_CARRIER);
