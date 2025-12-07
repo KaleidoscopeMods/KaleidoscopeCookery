@@ -151,14 +151,17 @@ public class TagItem extends ItemTagsProvider {
                 .addTag(TagCommon.RAW_MUTTON)
                 .addTag(TagCommon.RAW_FISHES_COD)
                 .addTag(TagCommon.RAW_FISHES_SALMON)
-                .addTag(TagCommon.RAW_FISHES_TROPICAL);
+                .addTag(TagCommon.RAW_FISHES_TROPICAL)
+                .add(ModItems.RAW_DONKEY_MEAT.get())
+                .add(ModItems.RAW_CUT_SMALL_MEATS.get());
 
         tag(TagCommon.FLOUR).add(ModItems.FLOUR.get());
         tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
+        tag(TagCommon.DOUGHS).add(ModItems.RAW_DOUGH.get());
 
         // 均衡饮食兼容
         tag(TagCommon.GRAINS).add(ModItems.RICE_SEED.get(), ModItems.RICE_PANICLE.get());
-        tag(TagCommon.PROTEINS).add(ModItems.CATERPILLAR.get());
+        tag(TagCommon.PROTEINS).add(ModItems.CATERPILLAR.get(), ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.RAW_DONKEY_MEAT.get(), ModItems.COOKED_DONKEY_MEAT.get());
         tag(TagCommon.DIET_VEGETABLES).addTag(TagCommon.VEGETABLES);
 
         // 兼容静谧四季

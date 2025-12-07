@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -95,6 +96,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
             ItemStack oilStack = new ItemStack(ModItems.OIL.get(), needOilCount);
             player.setItemInHand(hand, oilStack);
             oilPot.setOilCount(currentOilCount - needOilCount);
+            player.playSound(SoundEvents.LANTERN_HIT, 1.0F, player.getRandom().nextFloat() * 0.2F + 0.8F);
             return InteractionResult.SUCCESS;
         }
 
@@ -110,6 +112,7 @@ public class OilPotBlock extends HorizontalDirectionalBlock implements SimpleWat
             if (!player.isCreative()) {
                 mainHandItem.shrink(addOilCount);
             }
+            player.playSound(SoundEvents.LANTERN_HIT, 1.0F, player.getRandom().nextFloat() * 0.2F + 0.4F);
             return InteractionResult.SUCCESS;
         }
 

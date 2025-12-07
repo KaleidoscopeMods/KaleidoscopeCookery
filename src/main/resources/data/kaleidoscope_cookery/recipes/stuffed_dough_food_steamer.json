@@ -20,31 +20,6 @@
   ],
   "result": {
     "item": "kaleidoscope_cookery:steamer",
-    "nbt": {
-      "BlockEntityTag": {
-        "Items": [
-          {
-            "Count": 1,
-            "Slot": 0,
-            "id": "kaleidoscope_cookery:stuffed_dough_food"
-          },
-          {
-            "Count": 1,
-            "Slot": 1,
-            "id": "kaleidoscope_cookery:stuffed_dough_food"
-          },
-          {
-            "Count": 1,
-            "Slot": 2,
-            "id": "kaleidoscope_cookery:stuffed_dough_food"
-          },
-          {
-            "Count": 1,
-            "Slot": 3,
-            "id": "kaleidoscope_cookery:stuffed_dough_food"
-          }
-        ]
-      }
-    }
+    "nbt": "{BlockEntityTag:{CookingProgress:[I;0,0,0,0],CookingTime:[I;1200,1200,1200,1200],Items:[{Count:1b,Slot:0b,id:\"kaleidoscope_cookery:stuffed_dough_food\"},{Count:1b,Slot:1b,id:\"kaleidoscope_cookery:stuffed_dough_food\"},{Count:1b,Slot:2b,id:\"kaleidoscope_cookery:stuffed_dough_food\"},{Count:1b,Slot:3b,id:\"kaleidoscope_cookery:stuffed_dough_food\"}]}}"
   }
 }

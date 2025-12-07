@@ -17,6 +17,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -164,8 +165,8 @@ public class MillstoneBlock extends HorizontalDirectionalBlock implements Entity
             BlockEntity blockEntity = pLevel.getBlockEntity(centerPos);
             if (blockEntity instanceof MillstoneBlockEntity millstone && !millstone.hasEntity() && millstone.canBindEntity(mob)) {
                 millstone.bindEntity(mob);
-                // 检查实体的乘客是不是玩家，如果是，那么给予成就
-                if (mob.getFirstPassenger() instanceof ServerPlayer player) {
+                // 检查实体是否有主人，有那么尝试寻找主人给予成就
+                if (mob instanceof OwnableEntity ownable && ownable.getOwner() instanceof ServerPlayer player) {
                     ModTrigger.EVENT.trigger(player, ModEventTriggerType.DRIVE_THE_MILLSTONE);
                 }
             }
