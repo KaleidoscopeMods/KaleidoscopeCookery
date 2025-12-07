@@ -126,5 +126,9 @@ public class TagBlock extends BlockTagsProvider {
         this.tag(TagCommon.HUMID_HUMID).add(
                 ModBlocks.RICE_CROP.get()
         );
+
+        // FTB 连锁模组黑名单
+        this.tag(TagCommon.FTB_SINGLE_CROP_HARVESTING_BLACKLIST).add(ModBlocks.RICE_CROP.get());
+        this.tag(TagCommon.FTB_EXCLUDED_BLOCKS).add(ModBlocks.RICE_CROP.get());
     }
 }

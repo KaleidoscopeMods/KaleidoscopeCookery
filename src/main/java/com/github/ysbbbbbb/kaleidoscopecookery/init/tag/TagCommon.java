@@ -80,6 +80,11 @@ public interface TagCommon {
     // 农夫乐事
     TagKey<Item> FD_KNIVES = TagKey.create(Registries.ITEM, new ResourceLocation("farmersdelight:tools/knives"));
 
+    // FTB 连锁
+    TagKey<Block> FTB_SINGLE_CROP_HARVESTING_BLACKLIST = TagKey.create(Registries.BLOCK, new ResourceLocation("ftbultimine", "single_crop_harvesting_blacklist"));
+    TagKey<Block> FTB_EXCLUDED_BLOCKS = TagKey.create(Registries.BLOCK, new ResourceLocation("ftbultimine", "excluded_blocks"));
+
+
     static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation("forge", name));
     }
