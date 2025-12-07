@@ -253,6 +253,13 @@ public class BlockStateGenerator extends BlockStateProvider {
     private void table(DeferredBlock<Block> block, String name) {
         ModelFile.UncheckedModelFile leftModel = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_left".formatted(name)));
         ModelFile.UncheckedModelFile rightModel = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_right".formatted(name)));
+        ModelFile.UncheckedModelFile middleModel = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_middle".formatted(name)));
+
+        ModelFile.UncheckedModelFile leftModelRot = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_left_rot".formatted(name)));
+        ModelFile.UncheckedModelFile rightModelRot = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_right_rot".formatted(name)));
+        ModelFile.UncheckedModelFile middleModelRot = new ModelFile.UncheckedModelFile(modLoc("block/table/%s_middle_rot".formatted(name)));
+
+
         getVariantBuilder(block.get()).forAllStates(blockState -> {
             int position = blockState.getValue(TableBlock.POSITION);
             if (position == TableBlock.SINGLE) {
@@ -260,17 +267,26 @@ public class BlockStateGenerator extends BlockStateProvider {
                         .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/table/%s_single".formatted(name))))
                         .build();
             }
-            int rotation = blockState.getValue(TableBlock.AXIS) == Direction.Axis.X ? 180 : 270;
+            boolean isRotation = blockState.getValue(TableBlock.AXIS) == Direction.Axis.Z;
             if (position == TableBlock.LEFT) {
-                return ConfiguredModel.builder().modelFile(leftModel).rotationY(rotation).build();
+                if (isRotation) {
+                    return ConfiguredModel.builder().modelFile(rightModelRot).build();
+                } else {
+                    return ConfiguredModel.builder().modelFile(rightModel).build();
+                }
             }
             if (position == TableBlock.RIGHT) {
-                return ConfiguredModel.builder().modelFile(rightModel).rotationY(rotation).build();
+                if (isRotation) {
+                    return ConfiguredModel.builder().modelFile(leftModelRot).build();
+                } else {
+                    return ConfiguredModel.builder().modelFile(leftModel).build();
+                }
             }
-            return ConfiguredModel.builder()
-                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/table/%s_middle".formatted(name))))
-                    .rotationY(rotation)
-                    .build();
+            if (isRotation) {
+                return ConfiguredModel.builder().modelFile(middleModelRot).build();
+            } else {
+                return ConfiguredModel.builder().modelFile(middleModel).build();
+            }
         });
     }
 

@@ -60,12 +60,20 @@ public class BlockModelGenerator extends BlockModelProvider {
         String tableSingle = "block/table/" + name + "_single";
         ResourceLocation tableTexture = modLoc("block/table/" + name);
         withExistingParent(tableSingle, modLoc("block/table/single")).texture("particle", tableTexture);
+
         String tableLeft = "block/table/" + name + "_left";
         withExistingParent(tableLeft, modLoc("block/table/left")).texture("particle", tableTexture);
         String tableRight = "block/table/" + name + "_right";
         withExistingParent(tableRight, modLoc("block/table/right")).texture("particle", tableTexture);
         String tableMiddle = "block/table/" + name + "_middle";
         withExistingParent(tableMiddle, modLoc("block/table/middle")).texture("particle", tableTexture);
+
+        String tableLeftRot = "block/table/" + name + "_left_rot";
+        withExistingParent(tableLeftRot, modLoc("block/table/left_rot")).texture("particle", tableTexture);
+        String tableRightRot = "block/table/" + name + "_right_rot";
+        withExistingParent(tableRightRot, modLoc("block/table/right_rot")).texture("particle", tableTexture);
+        String tableMiddleRot = "block/table/" + name + "_middle_rot";
+        withExistingParent(tableMiddleRot, modLoc("block/table/middle_rot")).texture("particle", tableTexture);
     }
 
     public void carpet() {

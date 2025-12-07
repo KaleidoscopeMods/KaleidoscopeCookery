@@ -1,6 +1,8 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.api.event.SickleHarvestEvent;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -25,6 +27,7 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.SimpleTier;
 
 import java.util.List;
@@ -61,19 +64,19 @@ public class SickleItem extends SwordItem {
         }
 
         BlockPos pos = context.getClickedPos();
+        ItemStack stack = context.getItemInHand();
         int breakCount = 0;
         // 搜索方块的 5x5x2 范围内的可收割作物、草丛、灌木等并收割
         for (int x = -2; x <= 2; x++) {
             for (int y = 0; y <= 1; y++) {
                 for (int z = -2; z <= 2; z++) {
-                    if (harvest(pos, x, y, z, level, player)) {
+                    if (harvest(pos, x, y, z, level, player, stack)) {
                         breakCount++;
                     }
                 }
             }
         }
 
-        ItemStack stack = context.getItemInHand();
         serverLevel.playSound(null,
                 player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_ATTACK_SWEEP, player.getSoundSource(),
@@ -84,7 +87,7 @@ public class SickleItem extends SwordItem {
         return InteractionResult.SUCCESS;
     }
 
-    private boolean harvest(BlockPos pos, int x, int y, int z, Level level, Player player) {
+    private boolean harvest(BlockPos pos, int x, int y, int z, Level level, Player player, ItemStack stack) {
         BlockPos newPos = pos.offset(x, y, z);
         if (!level.mayInteract(player, newPos)) {
             return false;
@@ -93,8 +96,17 @@ public class SickleItem extends SwordItem {
         if (blockState.isAir()) {
             return false;
         }
+        // 黑名单
+        if (blockState.is(TagMod.SICKLE_HARVEST_BLACKLIST)) {
+            return false;
+        }
 
         Block block = blockState.getBlock();
+        // 触发事件
+        SickleHarvestEvent event = new SickleHarvestEvent(player, stack, newPos, blockState);
+        if (NeoForge.EVENT_BUS.post(event).isCanceled()) {
+            return event.isCostDurability();
+        }
 
         // 如果是作物，那么检查是否成熟
         if (block instanceof CropBlock cropBlock) {

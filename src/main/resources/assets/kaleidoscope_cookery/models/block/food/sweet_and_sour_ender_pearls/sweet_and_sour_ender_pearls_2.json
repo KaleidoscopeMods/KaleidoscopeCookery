@@ -1,6 +1,5 @@
 {
 	"credit": "Made with Blockbench",
-	"ambientocclusion": false,
 	"render_type": "cutout",
 	"texture_size": [32, 32],
 	"textures": {

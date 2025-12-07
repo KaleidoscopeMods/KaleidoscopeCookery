@@ -98,6 +98,10 @@ public class TagBlock extends BlockTagsProvider {
 
         this.tag(TagMod.RICE_PLANTABLE).addOptional(ResourceLocation.parse("farmersdelight:rich_soil_farmland"));
 
+        this.tag(TagMod.SICKLE_HARVEST_BLACKLIST)
+                .add(Blocks.MELON_STEM, Blocks.PUMPKIN_STEM)
+                .add(Blocks.ATTACHED_MELON_STEM, Blocks.ATTACHED_PUMPKIN_STEM);
+
         // 兼容静谧四季模组
         this.tag(TagCommon.SPRING_CROPS_BLOCK).add(
                 ModBlocks.LETTUCE_CROP.get()

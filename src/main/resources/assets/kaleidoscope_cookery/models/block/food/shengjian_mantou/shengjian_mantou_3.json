@@ -1,7 +1,5 @@
 {
-	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
-	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "kaleidoscope_cookery:block/plate",

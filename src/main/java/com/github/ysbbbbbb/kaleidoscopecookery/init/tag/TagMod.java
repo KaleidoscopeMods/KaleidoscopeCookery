@@ -119,6 +119,10 @@ public interface TagMod {
      */
     TagKey<Block> RICE_PLANTABLE = blockTag("rice_plantable");
     /**
+     * 镰刀收割黑名单
+     */
+    TagKey<Block> SICKLE_HARVEST_BLACKLIST = blockTag("sickle_harvest_blacklist");
+    /**
      * 被本模组当做猪油来源的实体
      */
     TagKey<EntityType<?>> PIG_OIL_SOURCE = entityTag("pig_oil_source");
