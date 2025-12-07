@@ -16,6 +16,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -362,15 +363,23 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         super.loadAdditional(tag, registries);
         this.items.clear();
         ContainerHelper.loadAllItems(tag, this.items, registries);
-        if (tag.contains(COOKING_PROGRESS_TAG, 11)) {
+        if (tag.contains(COOKING_PROGRESS_TAG, Tag.TAG_INT_ARRAY)) {
             int[] times = tag.getIntArray(COOKING_PROGRESS_TAG);
             int length = Math.min(this.cookingTime.length, times.length);
             System.arraycopy(times, 0, this.cookingProgress, 0, length);
         }
-        if (tag.contains(COOKING_TIME_TAG, 11)) {
+
+        if (tag.contains(COOKING_TIME_TAG, Tag.TAG_INT_ARRAY)) {
             int[] times = tag.getIntArray(COOKING_TIME_TAG);
             int length = Math.min(this.cookingTime.length, times.length);
             System.arraycopy(times, 0, this.cookingTime, 0, length);
+        } else if (tag.contains(COOKING_TIME_TAG, Tag.TAG_LIST)) {
+            // 这里是为了兼容合成表里 json 书写的 cooking time
+            ListTag list = tag.getList(COOKING_TIME_TAG, Tag.TAG_SHORT);
+            int length = Math.min(this.cookingTime.length, list.size());
+            for (int i = 0; i < length; i++) {
+                this.cookingTime[i] = list.getShort(i);
+            }
         }
     }
 

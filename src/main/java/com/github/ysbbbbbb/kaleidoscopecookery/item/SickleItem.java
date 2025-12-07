@@ -44,6 +44,11 @@ public class SickleItem extends SwordItem {
     }
 
     @Override
+    public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
+        return true;
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         // 生成挥动音效和粒子
         Player player = context.getPlayer();

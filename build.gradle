@@ -162,6 +162,10 @@ dependencies {
     runtimeOnly "maven.modrinth:nbtedit-reborn:5.2.11+mc1.21.1-neoforge"
     runtimeOnly "maven.modrinth:kiwi:15.6.1+neoforge"
 
+    runtimeOnly "curse.maven:architectury-api-419699:5786327"
+    runtimeOnly "curse.maven:ftb-library-forge-404465:7260617"
+    runtimeOnly "curse.maven:ftb-ultimine-forge-386134:7188395"
+
     runtimeOnly "maven.modrinth:food-effect-tooltips-forge:1.4.0-neoforge,1.21.1"
 }
 

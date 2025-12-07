@@ -32,6 +32,8 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -130,6 +132,19 @@ public class ChoppingBoardBlock extends HorizontalDirectionalBlock implements En
             return NORTH_SOUTH;
         }
         return EAST_WEST;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        var drops = super.getDrops(state, params);
+        BlockEntity parameter = params.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        if (parameter instanceof ChoppingBoardBlockEntity choppingBoard) {
+            // 如果切制次数还是 0，那么上面的东西正常掉落
+            if (choppingBoard.getCurrentCutCount() == 0 && !choppingBoard.getCurrentCutStack().isEmpty()) {
+                drops.add(choppingBoard.getCurrentCutStack().copyWithCount(1));
+            }
+        }
+        return drops;
     }
 
     @Override

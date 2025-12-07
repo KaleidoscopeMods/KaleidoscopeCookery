@@ -115,6 +115,10 @@ public interface TagMod {
      */
     TagKey<Block> SITTABLE = blockTag("sittable");
     /**
+     * 可以种植水稻的方块
+     */
+    TagKey<Block> RICE_PLANTABLE = blockTag("rice_plantable");
+    /**
      * 被本模组当做猪油来源的实体
      */
     TagKey<EntityType<?>> PIG_OIL_SOURCE = entityTag("pig_oil_source");

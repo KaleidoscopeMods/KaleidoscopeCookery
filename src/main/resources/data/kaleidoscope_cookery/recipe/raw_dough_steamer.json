@@ -24,6 +24,7 @@
     "components": {
       "minecraft:block_entity_data": {
         "id": "kaleidoscope_cookery:steamer",
+        "CookingTime": [1200, 1200, 1200, 1200],
         "Items": [
           {
             "Count": 1,

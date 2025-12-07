@@ -6,6 +6,8 @@
     "#c:foods/raw_mutton",
     "#c:foods/raw_cod",
     "#c:foods/raw_salmon",
-    "#c:foods/tropical_fish"
+    "#c:foods/tropical_fish",
+    "kaleidoscope_cookery:raw_donkey_meat",
+    "kaleidoscope_cookery:raw_cut_small_meats"
   ]
 }

@@ -50,6 +50,8 @@ public interface TagCommon {
 
     TagKey<Item> FLOUR = itemTag("flour");
     TagKey<Item> DOUGH = itemTag("dough");
+    // 虽然面团是不可数名词，但为了兼容性……
+    TagKey<Item> DOUGHS = itemTag("doughs");
 
     // 均衡饮食模组
     TagKey<Item> FRUITS = dietTag("fruits");
@@ -80,6 +82,10 @@ public interface TagCommon {
 
     // carry on
     TagKey<Block> CARRYON_BLOCK_BLACKLIST = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("carryon", "block_blacklist"));
+
+    // FTB 连锁
+    TagKey<Block> FTB_SINGLE_CROP_HARVESTING_BLACKLIST = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("ftbultimine", "single_crop_harvesting_blacklist"));
+    TagKey<Block> FTB_EXCLUDED_BLOCKS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("ftbultimine", "excluded_blocks"));
 
     static TagKey<Item> itemTag(String name) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
