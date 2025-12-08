@@ -158,8 +158,9 @@ public class TagItem extends ItemTagsProvider {
                 .add(ModItems.RAW_CUT_SMALL_MEATS.get());
 
         tag(TagCommon.FLOUR).add(ModItems.FLOUR.get());
-        tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
-        tag(TagCommon.DOUGHS).add(ModItems.RAW_DOUGH.get());
+        tag(TagCommon.DOUGHS);
+        tag(TagCommon.FOODS_DOUGH);
+        tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get()).addTags(TagCommon.DOUGHS, TagCommon.FOODS_DOUGH);
 
         // 均衡饮食兼容
         tag(TagCommon.GRAINS).add(ModItems.RICE_SEED.get(), ModItems.RICE_PANICLE.get());

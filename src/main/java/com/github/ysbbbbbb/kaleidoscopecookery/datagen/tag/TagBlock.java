@@ -65,7 +65,6 @@ public class TagBlock extends BlockTagsProvider {
         this.tag(BlockTags.CROPS).add(ModBlocks.TOMATO_CROP.get(),
                 ModBlocks.RICE_CROP.get(), ModBlocks.CHILI_CROP.get(),
                 ModBlocks.LETTUCE_CROP.get());
-        this.tag(BlockTags.BEE_GROWABLES).add(ModBlocks.RICE_CROP.get());
 
         this.tag(TagMod.COOK_STOOL).add(
                 ModBlocks.COOK_STOOL_OAK.get(), ModBlocks.COOK_STOOL_SPRUCE.get(),
@@ -141,5 +140,8 @@ public class TagBlock extends BlockTagsProvider {
         // FTB 连锁模组黑名单
         this.tag(TagCommon.FTB_SINGLE_CROP_HARVESTING_BLACKLIST).add(ModBlocks.RICE_CROP.get());
         this.tag(TagCommon.FTB_EXCLUDED_BLOCKS).add(ModBlocks.RICE_CROP.get());
+
+        // 排除蜜蜂催熟水稻
+        tag(BlockTags.BEE_GROWABLES).remove(ModBlocks.RICE_CROP.get());
     }
 }

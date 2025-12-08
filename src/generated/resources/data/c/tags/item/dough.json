@@ -1,5 +1,7 @@
 {
   "values": [
-    "kaleidoscope_cookery:raw_dough"
+    "kaleidoscope_cookery:raw_dough",
+    "#c:doughs",
+    "#c:foods/dough"
   ]
 }
