@@ -9,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -156,8 +157,8 @@ public class TagItem extends ItemTagsProvider {
                 .add(ModItems.RAW_CUT_SMALL_MEATS.get());
 
         tag(TagCommon.FLOUR).add(ModItems.FLOUR.get());
-        tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get());
-        tag(TagCommon.DOUGHS).add(ModItems.RAW_DOUGH.get());
+        tag(TagCommon.DOUGHS);
+        tag(TagCommon.DOUGH).add(ModItems.RAW_DOUGH.get()).addTag(TagCommon.DOUGHS);
 
         // 均衡饮食兼容
         tag(TagCommon.GRAINS).add(ModItems.RICE_SEED.get(), ModItems.RICE_PANICLE.get());

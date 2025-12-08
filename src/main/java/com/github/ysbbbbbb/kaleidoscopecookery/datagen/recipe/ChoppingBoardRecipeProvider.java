@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.ChoppingBoardBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
@@ -119,5 +120,12 @@ public class ChoppingBoardRecipeProvider extends ModRecipeProvider {
                 .setCutCount(4)
                 .setModelId(modLoc("cooked_rabbit"))
                 .save(consumer, "cooked_cut_small_meats_from_rabbit");
+
+        ChoppingBoardBuilder.builder()
+                .setIngredient(TagCommon.DOUGH)
+                .setResult(ModItems.RAW_NOODLES.get(), 2)
+                .setCutCount(4)
+                .setModelId(modLoc("raw_dough"))
+                .save(consumer, "raw_noodles_from_raw_dough");
     }
 }
