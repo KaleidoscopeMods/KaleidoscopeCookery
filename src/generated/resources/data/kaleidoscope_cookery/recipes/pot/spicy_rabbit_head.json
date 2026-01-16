@@ -1,0 +1,31 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:spicy_rabbit_head"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

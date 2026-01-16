@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -59,6 +60,15 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .requires(TagCommon.RAW_MEATS)
                 .requires(TagCommon.VEGETABLES)
                 .unlockedBy("has_raw_meats", has(TagCommon.RAW_MEATS))
+                .save(consumer);
+
+        // 水果拼盘: 2苹果+2发光浆果+2甜浆果+1碗
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.FRUIT_PLATTER), 1)
+                .requires(Items.APPLE, 2)
+                .requires(Items.GLOW_BERRIES, 2)
+                .requires(Items.SWEET_BERRIES, 2)
+                .requires(Items.BOWL)
+                .unlockedBy("has_apple", has(Items.APPLE))
                 .save(consumer);
 
         for (int i = 0; i < 8; i++) {

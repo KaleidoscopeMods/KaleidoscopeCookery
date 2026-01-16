@@ -1,0 +1,37 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:green_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:green_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:green_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:green_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:stuffed_tiger_skin_pepper"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

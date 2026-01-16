@@ -13,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -245,6 +246,48 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                         Items.SNOWBALL, Blocks.SPRUCE_SAPLING)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.COLD_STYLE_SASHIMI)
+                .save(consumer);
+
+        // 糖醋土豆: 4土豆+2糖
+        PotRecipeBuilder.builder()
+                .addInput(Items.POTATO, Items.POTATO, Items.POTATO, Items.POTATO,
+                        Items.SUGAR, Items.SUGAR)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.CANDIED_POTATO)
+                .save(consumer);
+
+        // 虎皮青椒酿肉: 4青椒+4切制小肉
+        PotRecipeBuilder.builder()
+                .addInput(ModItems.GREEN_CHILI.get(), ModItems.GREEN_CHILI.get(),
+                        ModItems.GREEN_CHILI.get(), ModItems.GREEN_CHILI.get(),
+                        ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.RAW_CUT_SMALL_MEATS.get(),
+                        ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.RAW_CUT_SMALL_MEATS.get())
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.STUFFED_TIGER_SKIN_PEPPER)
+                .save(consumer);
+
+        // 麻辣兔头: 3兔肉+3辣椒
+        PotRecipeBuilder.builder()
+                .addInput(Items.RABBIT, Items.RABBIT, Items.RABBIT,
+                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.SPICY_RABBIT_HEAD)
+                .save(consumer);
+
+        // 油炸猪儿虫: 3猪儿虫
+        PotRecipeBuilder.builder()
+                .addInput(ModItems.CATERPILLAR.get(), ModItems.CATERPILLAR.get(), ModItems.CATERPILLAR.get())
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.FRIED_CATERPILLAR)
+                .save(consumer);
+
+        // 炸春卷: 2幻翼膜+4猪肉+2香菇
+        PotRecipeBuilder.builder()
+                .addInput(Items.PHANTOM_MEMBRANE, Items.PHANTOM_MEMBRANE,
+                        TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK,
+                        Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.FRIED_SPRING_ROLL)
                 .save(consumer);
 
         Item slimeBallMeal = FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL);

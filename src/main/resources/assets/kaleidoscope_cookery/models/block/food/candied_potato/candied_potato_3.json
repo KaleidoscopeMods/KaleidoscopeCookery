@@ -1,0 +1,40 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "kaleidoscope_cookery:block/candied_potato",
+		"particle": "kaleidoscope_cookery:block/porcelain_plate"
+	},
+	"elements": [
+		{
+			"name": "bb_main",
+			"from": [1, 0, 1],
+			"to": [15, 2, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0.5, 7, 7.5, 8], "texture": "#0"},
+				"east": {"uv": [0.5, 7, 7.5, 8], "texture": "#0"},
+				"south": {"uv": [0.5, 7, 7.5, 8], "texture": "#0"},
+				"west": {"uv": [0.5, 7, 7.5, 8], "texture": "#0"},
+				"up": {"uv": [0.5, 0.5, 7.5, 7.5], "texture": "#0"},
+				"down": {"uv": [0.5, 0.5, 7.5, 7.5], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "bb_main2",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "bb_main",
+			"origin": [8, 0, 8],
+			"color": 1,
+			"children": [0]
+		}
+	]
+}

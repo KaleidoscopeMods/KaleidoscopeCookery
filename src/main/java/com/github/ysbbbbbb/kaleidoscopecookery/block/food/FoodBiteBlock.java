@@ -27,16 +27,22 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class FoodBiteBlock extends FoodBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
     private final FoodProperties foodProperties;
     private final IntegerProperty bites;
     private final int maxBites;
+
+    private VoxelShape aabb = FoodBlock.AABB;
     private FoodBiteAnimateTicks.AnimateTick animateTick = null;
 
-    public FoodBiteBlock(FoodProperties foodProperties, int maxBites, FoodBiteAnimateTicks.AnimateTick animateTick) {
+    public FoodBiteBlock(FoodProperties foodProperties, int maxBites,
+                         @Nullable FoodBiteAnimateTicks.AnimateTick animateTick) {
         super();
         this.maxBites = maxBites;
         this.foodProperties = foodProperties;
@@ -51,6 +57,11 @@ public class FoodBiteBlock extends FoodBlock {
 
     public FoodBiteBlock(FoodProperties foodProperties) {
         this(foodProperties, 3, null);
+    }
+
+    public FoodBiteBlock setAABB(VoxelShape aabb) {
+        this.aabb = aabb;
+        return this;
     }
 
     public IntegerProperty getBites() {
@@ -105,6 +116,11 @@ public class FoodBiteBlock extends FoodBlock {
             level.setBlock(pos, state.setValue(this.bites, bites + 1), Block.UPDATE_ALL);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return this.aabb;
     }
 
     @Override

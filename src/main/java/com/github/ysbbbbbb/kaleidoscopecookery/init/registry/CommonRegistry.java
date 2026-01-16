@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -37,8 +38,14 @@ public class CommonRegistry {
     public static void onBlockRegistryEvent(RegisterEvent event) {
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS)) {
             FoodBiteRegistry.FOOD_DATA_MAP.forEach((resourceLocation, data) ->
-                    event.register(ForgeRegistries.Keys.BLOCKS, resourceLocation,
-                            () -> new FoodBiteBlock(data.blockFood(), data.maxBites(), data.animateTick())));
+                    event.register(ForgeRegistries.Keys.BLOCKS, resourceLocation, () -> {
+                        FoodBiteBlock biteBlock = new FoodBiteBlock(data.blockFood(), data.maxBites(), data.animateTick());
+                        VoxelShape aabb = data.getAABB();
+                        if (aabb != null) {
+                            biteBlock.setAABB(aabb);
+                        }
+                        return biteBlock;
+                    }));
         }
 
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS)) {

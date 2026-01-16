@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -70,7 +71,16 @@ public class BowlFoodBlockItem extends BlockItem implements IHasContainer {
         ResourceLocation id = ForgeRegistries.ITEMS.getKey(stack.getItem());
         if (id != null) {
             String key = "tooltip.%s.%s.maxim".formatted(id.getNamespace(), id.getPath());
-            tooltip.add(Component.translatable(key).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+            MutableComponent full = Component.translatable(key).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC);
+            // 先拿到纯文本，再按 \n 切
+            String text = full.getString();
+            for (String line : text.split("\n")) {
+                if (!line.isEmpty()) {
+                    tooltip.add(Component.literal(line).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+                } else {
+                    tooltip.add(CommonComponents.EMPTY);
+                }
+            }
         }
         if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS) {
             tooltip.add(CommonComponents.space());
