@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:raw_meats"
+    },
+    {
+      "tag": "forge:raw_meats"
+    },
+    {
+      "tag": "forge:vegetables"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:raw_meatball"
+  }
+}

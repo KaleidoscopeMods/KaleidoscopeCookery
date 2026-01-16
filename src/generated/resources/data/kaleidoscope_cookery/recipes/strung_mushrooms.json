@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "kaleidoscope_cookery:red_chili"
+    "M": {
+      "item": "minecraft:brown_mushroom"
     }
   },
   "pattern": [
-    "CC",
-    "CC",
-    "CC"
+    "MM",
+    "MM",
+    "MM"
   ],
   "result": {
-    "item": "kaleidoscope_cookery:chili_ristra"
+    "item": "kaleidoscope_cookery:strung_mushrooms"
   },
   "show_notification": true
 }

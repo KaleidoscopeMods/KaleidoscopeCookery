@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
@@ -129,6 +130,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         FoodBiteRegistry.FOOD_DATA_MAP.forEach(this::dropFoodBite);
 
         this.add(ModBlocks.CHILI_RISTRA.get(), createChiliRistraLootTable());
+        this.add(ModBlocks.STRUNG_MUSHROOMS.get(), createStrungMushroomsLootTable());
     }
 
     private LootTable.Builder createChiliRistraLootTable() {
@@ -142,6 +144,23 @@ public class BlockLootTables extends BlockLootSubProvider {
 
         LootPoolSingletonContainer.Builder<?> normalLoot = LootItem.lootTableItem(ModItems.RED_CHILI.get()).apply(normalDrop);
         LootPoolSingletonContainer.Builder<?> shearedLoot = LootItem.lootTableItem(ModItems.RED_CHILI.get()).apply(shearedDrop);
+
+        builder.add(shearedLoot.when(condition).otherwise(normalLoot));
+
+        return LootTable.lootTable().withPool(builder.when(ExplosionCondition.survivesExplosion()));
+    }
+
+    private LootTable.Builder createStrungMushroomsLootTable() {
+        LootPool.Builder builder = LootPool.lootPool();
+
+        StatePropertiesPredicate.Builder isSheared = StatePropertiesPredicate.Builder.properties().hasProperty(StrungMushroomsBlock.SHEARED, true);
+        LootItemCondition.Builder condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.STRUNG_MUSHROOMS.get()).setProperties(isSheared);
+
+        LootItemConditionalFunction.Builder<?> normalDrop = SetItemCountFunction.setCount(ConstantValue.exactly(6));
+        LootItemConditionalFunction.Builder<?> shearedDrop = SetItemCountFunction.setCount(ConstantValue.exactly(3));
+
+        LootPoolSingletonContainer.Builder<?> normalLoot = LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(normalDrop);
+        LootPoolSingletonContainer.Builder<?> shearedLoot = LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(shearedDrop);
 
         builder.add(shearedLoot.when(condition).otherwise(normalLoot));
 

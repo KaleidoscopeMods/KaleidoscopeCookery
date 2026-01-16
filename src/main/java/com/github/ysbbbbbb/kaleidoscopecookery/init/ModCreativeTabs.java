@@ -43,6 +43,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.RAW_NOODLES.get());
                 output.accept(ModItems.STUFFED_DOUGH_FOOD.get());
                 output.accept(ModItems.CHILI_RISTRA.get());
+                output.accept(ModItems.STRUNG_MUSHROOMS.get());
                 output.accept(ModItems.RICE_SEED.get());
                 output.accept(ModItems.WILD_RICE_SEED.get());
                 output.accept(ModItems.TOMATO_SEED.get());
@@ -123,6 +124,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.COOKED_DONKEY_MEAT.get());
                 output.accept(ModItems.RAW_CUT_SMALL_MEATS.get());
                 output.accept(ModItems.COOKED_CUT_SMALL_MEATS.get());
+                output.accept(ModItems.RAW_MEATBALL.get());
+                output.accept(ModItems.COOKED_MEATBALL.get());
                 // 基础食物
                 output.accept(ModItems.DONKEY_BURGER.get());
                 output.accept(ModItems.MANTOU.get());

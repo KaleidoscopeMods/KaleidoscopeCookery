@@ -6,6 +6,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import net.minecraft.core.Direction;
@@ -207,6 +208,20 @@ public class BlockStateGenerator extends BlockStateProvider {
                     return new ModelFile.UncheckedModelFile(modLoc("block/chili_ristra/body_sheared"));
                 }
                 return new ModelFile.UncheckedModelFile(modLoc("block/chili_ristra/body"));
+            }
+        });
+
+        variantBlock(ModBlocks.STRUNG_MUSHROOMS.get(), blockState -> {
+            if (blockState.getValue(StrungMushroomsBlock.IS_HEAD)) {
+                if (blockState.getValue(StrungMushroomsBlock.SHEARED)) {
+                    return new ModelFile.UncheckedModelFile(modLoc("block/strung_mushrooms/head_sheared"));
+                }
+                return new ModelFile.UncheckedModelFile(modLoc("block/strung_mushrooms/head"));
+            } else {
+                if (blockState.getValue(StrungMushroomsBlock.SHEARED)) {
+                    return new ModelFile.UncheckedModelFile(modLoc("block/strung_mushrooms/body_sheared"));
+                }
+                return new ModelFile.UncheckedModelFile(modLoc("block/strung_mushrooms/body"));
             }
         });
     }

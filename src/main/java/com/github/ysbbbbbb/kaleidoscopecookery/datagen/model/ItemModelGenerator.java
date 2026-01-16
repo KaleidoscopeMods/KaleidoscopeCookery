@@ -103,6 +103,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.FLOUR.get());
         basicItem(ModItems.RAW_CUT_SMALL_MEATS.get());
         basicItem(ModItems.COOKED_CUT_SMALL_MEATS.get());
+        basicItem(ModItems.RAW_MEATBALL.get());
+        basicItem(ModItems.COOKED_MEATBALL.get());
 
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.DUMPLING.get());
@@ -122,6 +124,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         if (chileRistra != null) {
             getBuilder(chileRistra.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
                     .texture("layer0", new ResourceLocation(KaleidoscopeCookery.MOD_ID, "block/chili_ristra/head"));
+        }
+
+        ResourceLocation strungMushrooms = ForgeRegistries.ITEMS.getKey(ModItems.STRUNG_MUSHROOMS.get());
+        if (strungMushrooms != null) {
+            getBuilder(strungMushrooms.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+                    .texture("layer0", new ResourceLocation(KaleidoscopeCookery.MOD_ID, "block/strung_mushrooms/head"));
         }
 
         ResourceLocation shovel = ForgeRegistries.ITEMS.getKey(ModItems.KITCHEN_SHOVEL.get());
