@@ -56,6 +56,11 @@ public class FoodBiteRegistry {
     public static ResourceLocation FRIED_SPRING_ROLL;
     public static ResourceLocation SPICY_BLOOD_STEW;
     public static ResourceLocation FRUIT_PLATTER;
+
+    public static ResourceLocation BRAISED_PORK_RIBS;
+    public static ResourceLocation COLD_ROASTED_MEAT;
+    public static ResourceLocation OIL_SPLASHED_FISH;
+
     public static ResourceLocation BROWN_MUSHROOM_POT_SOUP;
     public static ResourceLocation RED_MUSHROOM_POT_SOUP;
     public static ResourceLocation WARPED_FUNGUS_POT_SOUP;
@@ -181,6 +186,21 @@ public class FoodBiteRegistry {
         FRUIT_PLATTER = registry.registerFoodData("fruit_platter", FoodData
                 .create(4, FRUIT_PLATTER_BLOCK, FRUIT_PLATTER_ITEM));
 
+        // ========================== 1x2 食物 ==========================
+
+        BRAISED_PORK_RIBS = registry.registerFoodData("braised_pork_ribs", FoodData
+                .createOneByTwo(4, BRAISED_PORK_RIBS_BLOCK, BRAISED_PORK_RIBS_ITEM)
+                .addLootItems(Items.BONE));
+
+        COLD_ROASTED_MEAT = registry.registerFoodData("cold_roasted_meat", FoodData
+                .createOneByTwo(3, COLD_ROASTED_MEAT_BLOCK, COLD_ROASTED_MEAT_ITEM));
+
+        OIL_SPLASHED_FISH = registry.registerFoodData("oil_splashed_fish", FoodData
+                .createOneByTwo(5, OIL_SPLASHED_FISH_BLOCK, OIL_SPLASHED_FISH_ITEM)
+                .addLootItems(Items.BONE_MEAL));
+
+        // ========================== 瓦罐汤 ==========================
+
         BROWN_MUSHROOM_POT_SOUP = registry.registerFoodData("brown_mushroom_pot_soup", FoodData
                 .create(2, BROWN_MUSHROOM_POT_SOUP_BLOCK, BROWN_MUSHROOM_POT_SOUP_ITEM)
                 .setLootItem(Items.FLOWER_POT)
@@ -236,6 +256,7 @@ public class FoodBiteRegistry {
     }
 
     public static final class FoodData {
+        private final BlockType blockType;
         private final int maxBites;
         private final List<ItemLike> lootItems = Lists.newArrayList();
         private final FoodProperties blockFood;
@@ -243,7 +264,8 @@ public class FoodBiteRegistry {
         private @Nullable FoodBiteAnimateTicks.AnimateTick animateTick = null;
         private @Nullable VoxelShape aabb = null;
 
-        private FoodData(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+        private FoodData(BlockType blockType, int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+            this.blockType = blockType;
             this.maxBites = maxBites;
             this.lootItems.add(Items.BOWL);
             this.blockFood = blockFood;
@@ -251,7 +273,11 @@ public class FoodBiteRegistry {
         }
 
         public static FoodData create(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
-            return new FoodData(maxBites, blockFood, itemFood);
+            return new FoodData(BlockType.SINGLE, maxBites, blockFood, itemFood);
+        }
+
+        public static FoodData createOneByTwo(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+            return new FoodData(BlockType.ONE_BY_TWO, maxBites, blockFood, itemFood);
         }
 
         public FoodData setAnimateTick(FoodBiteAnimateTicks.AnimateTick animateTick) {
@@ -293,6 +319,10 @@ public class FoodBiteRegistry {
             return this;
         }
 
+        public BlockType blockType() {
+            return blockType;
+        }
+
         public int maxBites() {
             return maxBites;
         }
@@ -318,5 +348,10 @@ public class FoodBiteRegistry {
         public FoodProperties itemFood() {
             return itemFood;
         }
+    }
+
+    public enum BlockType {
+        SINGLE,
+        ONE_BY_TWO
     }
 }

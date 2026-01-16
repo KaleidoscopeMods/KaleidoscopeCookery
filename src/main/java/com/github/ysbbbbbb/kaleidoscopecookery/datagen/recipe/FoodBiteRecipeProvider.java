@@ -290,6 +290,40 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .setResult(FoodBiteRegistry.FRIED_SPRING_ROLL)
                 .save(consumer);
 
+        // 油泼鱼：6任意鱼+2任意辣椒
+        PotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_FISHES, TagCommon.RAW_FISHES,
+                        TagCommon.RAW_FISHES, TagCommon.RAW_FISHES,
+                        TagCommon.RAW_FISHES, TagCommon.RAW_FISHES,
+                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.OIL_SPLASHED_FISH)
+                .save(consumer);
+
+        // 红烧排骨：4五花肉+4骨头
+        PotRecipeBuilder.builder()
+                .addInput(ModItems.RAW_PORK_BELLY.get(), ModItems.RAW_PORK_BELLY.get(),
+                        ModItems.RAW_PORK_BELLY.get(), ModItems.RAW_PORK_BELLY.get(),
+                        Items.BONE, Items.BONE, Items.BONE, Items.BONE)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.BRAISED_PORK_RIBS)
+                .save(consumer);
+
+        // 冷肉炙：4熟驴肉/4熟牛肉
+        PotRecipeBuilder.builder()
+                .addInput(ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get(),
+                        ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get())
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.COLD_ROASTED_MEAT)
+                .save(consumer, "cold_roasted_donkey_meat");
+
+        PotRecipeBuilder.builder()
+                .addInput(TagCommon.COOKED_BEEF, TagCommon.COOKED_BEEF,
+                        TagCommon.COOKED_BEEF, TagCommon.COOKED_BEEF)
+                .setBowlCarrier()
+                .setResult(FoodBiteRegistry.COLD_ROASTED_MEAT)
+                .save(consumer, "cold_roasted_beef");
+
         Item slimeBallMeal = FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL);
         addSameItemRecipe(Items.SLIME_BALL, 4, slimeBallMeal.getDefaultInstance(), Items.BOWL, consumer);
         addSameItemRecipe(Items.SLIME_BALL, 5, slimeBallMeal.getDefaultInstance(), Items.BOWL, consumer);

@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init.registry;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.dispenser.OilPotDispenseBehavior;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.harvest.HarvestCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.lootable.GiftLootTables;
@@ -39,7 +40,13 @@ public class CommonRegistry {
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS)) {
             FoodBiteRegistry.FOOD_DATA_MAP.forEach((resourceLocation, data) ->
                     event.register(ForgeRegistries.Keys.BLOCKS, resourceLocation, () -> {
-                        FoodBiteBlock biteBlock = new FoodBiteBlock(data.blockFood(), data.maxBites(), data.animateTick());
+                        FoodBiteBlock biteBlock;
+                        if (data.blockType() == FoodBiteRegistry.BlockType.ONE_BY_TWO) {
+                            biteBlock = new FoodBiteOneByTwoBlock(data.blockFood(), data.maxBites(), data.animateTick());
+                        } else {
+                            biteBlock = new FoodBiteBlock(data.blockFood(), data.maxBites(), data.animateTick());
+                        }
+
                         VoxelShape aabb = data.getAABB();
                         if (aabb != null) {
                             biteBlock.setAABB(aabb);

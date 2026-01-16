@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
@@ -124,7 +125,11 @@ public class BlockStateGenerator extends BlockStateProvider {
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {
             Block block = ForgeRegistries.BLOCKS.getValue(key);
             if (block != null) {
-                addFoodBiteBlock(block, key);
+                if (value.blockType() == FoodBiteRegistry.BlockType.ONE_BY_TWO) {
+                    addOneByTwoFoodBiteBlock(block, key);
+                } else {
+                    addFoodBiteBlock(block, key);
+                }
             }
         });
 
@@ -314,6 +319,23 @@ public class BlockStateGenerator extends BlockStateProvider {
             }
             int bites = blockState.getValue(foodBiteBlock.getBites());
             ResourceLocation model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_%d".formatted(id.getPath(), id.getPath(), bites));
+            return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    public void addOneByTwoFoodBiteBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof FoodBiteOneByTwoBlock foodBiteBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of OneByTwoFoodBiteBlock");
+            }
+            int bites = blockState.getValue(foodBiteBlock.getBites());
+            int position = blockState.getValue(FoodBiteOneByTwoBlock.POSITION);
+            ResourceLocation model;
+            if (position == FoodBiteOneByTwoBlock.LEFT) {
+                model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_left_%d".formatted(id.getPath(), id.getPath(), bites));
+            } else {
+                model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_right_%d".formatted(id.getPath(), id.getPath(), bites));
+            }
             return new ModelFile.UncheckedModelFile(model);
         });
     }

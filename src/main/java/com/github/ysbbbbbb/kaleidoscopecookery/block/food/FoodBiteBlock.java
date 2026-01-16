@@ -34,12 +34,12 @@ import org.jetbrains.annotations.Nullable;
 public class FoodBiteBlock extends FoodBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    private final FoodProperties foodProperties;
-    private final IntegerProperty bites;
-    private final int maxBites;
+    protected final FoodProperties foodProperties;
+    protected final IntegerProperty bites;
+    protected final int maxBites;
+    protected final @Nullable FoodBiteAnimateTicks.AnimateTick animateTick;
 
-    private VoxelShape aabb = FoodBlock.AABB;
-    private FoodBiteAnimateTicks.AnimateTick animateTick = null;
+    protected VoxelShape aabb = FoodBlock.AABB;
 
     public FoodBiteBlock(FoodProperties foodProperties, int maxBites,
                          @Nullable FoodBiteAnimateTicks.AnimateTick animateTick) {
@@ -47,12 +47,13 @@ public class FoodBiteBlock extends FoodBlock {
         this.maxBites = maxBites;
         this.foodProperties = foodProperties;
         this.bites = IntegerProperty.create("bites", 0, maxBites);
+        this.animateTick = animateTick;
+
         // 重置一遍 BlockState，因为在父类 FoodBlock 中已经创建了一个默认的 BlockStateDefinition
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
         this.createBitesBlockStateDefinition(builder);
         this.stateDefinition = builder.create(Block::defaultBlockState, BlockState::new);
         this.registerDefaultState(this.stateDefinition.any().setValue(bites, 0).setValue(FACING, Direction.SOUTH));
-        this.animateTick = animateTick;
     }
 
     public FoodBiteBlock(FoodProperties foodProperties) {
@@ -128,7 +129,7 @@ public class FoodBiteBlock extends FoodBlock {
         builder.add(FACING);
     }
 
-    private void createBitesBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBitesBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(bites, FACING);
     }
 

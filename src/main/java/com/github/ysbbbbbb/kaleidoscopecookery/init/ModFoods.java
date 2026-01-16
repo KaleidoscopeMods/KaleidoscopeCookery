@@ -683,7 +683,7 @@ public interface ModFoods {
             .alwaysEat().build();
 
     FoodProperties FRIED_CATERPILLAR_ITEM = (new FoodProperties.Builder())
-            .nutrition(4).saturationMod(0.8F)
+            .nutrition(12).saturationMod(0.8F)
             .effect(() -> new MobEffectInstance(FLATULENCE.get(), 10 * 20), 1.0F)
             .alwaysEat().build();
 
@@ -725,7 +725,7 @@ public interface ModFoods {
             .alwaysEat().build();
 
     FoodProperties BROWN_MUSHROOM_POT_SOUP_ITEM = (new FoodProperties.Builder())
-            .nutrition(6).saturationMod(0.667F)
+            .nutrition(18).saturationMod(0.667F)
             .effect(() -> new MobEffectInstance(WARMTH.get(), 5 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
@@ -736,7 +736,7 @@ public interface ModFoods {
             .alwaysEat().build();
 
     FoodProperties RED_MUSHROOM_POT_SOUP_ITEM = (new FoodProperties.Builder())
-            .nutrition(6).saturationMod(0.667F)
+            .nutrition(18).saturationMod(0.667F)
             .effect(() -> new MobEffectInstance(WARMTH.get(), 5 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
@@ -747,7 +747,7 @@ public interface ModFoods {
             .alwaysEat().build();
 
     FoodProperties WARPED_FUNGUS_POT_SOUP_ITEM = (new FoodProperties.Builder())
-            .nutrition(6).saturationMod(0.667F)
+            .nutrition(18).saturationMod(0.667F)
             .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
@@ -758,18 +758,49 @@ public interface ModFoods {
             .alwaysEat().build();
 
     FoodProperties CRIMSON_FUNGUS_POT_SOUP_ITEM = (new FoodProperties.Builder())
-            .nutrition(6).saturationMod(0.667F)
+            .nutrition(18).saturationMod(0.667F)
             .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     // 佛跳墙
     FoodProperties BUDDHA_JUMPS_OVER_THE_WALL_BLOCK = (new FoodProperties.Builder())
-            .nutrition(3).saturationMod(0.521F)
+            .nutrition(7).saturationMod(0.521f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD.get(), 3 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     FoodProperties BUDDHA_JUMPS_OVER_THE_WALL_ITEM = (new FoodProperties.Builder())
-            .nutrition(3).saturationMod(0.55F)
+            .nutrition(20).saturationMod(0.55F)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD.get(), 3 * 60 * 20), 1.0F)
+            .alwaysEat().build();
+
+    // 红烧排骨
+    FoodProperties BRAISED_PORK_RIBS_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.8f)
+            .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
+            .alwaysEat().build();
+
+    FoodProperties BRAISED_PORK_RIBS_ITEM = (new FoodProperties.Builder())
+            .nutrition(16).saturationMod(0.8f)
+            .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
+            .alwaysEat().build();
+
+    // 冷肉炙
+    FoodProperties COLD_ROASTED_MEAT_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.8f)
+            .alwaysEat().build();
+
+    FoodProperties COLD_ROASTED_MEAT_ITEM = (new FoodProperties.Builder())
+            .nutrition(16).saturationMod(0.8f)
+            .alwaysEat().build();
+
+    // 油泼鱼: oil_splashed_fish
+    FoodProperties OIL_SPLASHED_FISH_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationMod(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
+            .alwaysEat().build();
+
+    FoodProperties OIL_SPLASHED_FISH_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationMod(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
             .alwaysEat().build();
 }

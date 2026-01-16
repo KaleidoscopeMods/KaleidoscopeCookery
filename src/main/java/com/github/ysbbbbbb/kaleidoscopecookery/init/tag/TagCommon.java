@@ -44,6 +44,7 @@ public interface TagCommon {
     TagKey<Item> RAW_PORK = itemTag("raw_pork");
     TagKey<Item> RAW_MUTTON = itemTag("raw_mutton");
     TagKey<Item> EGGS = itemTag("eggs");
+    TagKey<Item> RAW_FISHES = itemTag("raw_fishes");
     TagKey<Item> RAW_FISHES_COD = itemTag("raw_fishes/cod");
     TagKey<Item> RAW_FISHES_SALMON = itemTag("raw_fishes/salmon");
     TagKey<Item> RAW_FISHES_TROPICAL = itemTag("raw_fishes/tropical_fish");

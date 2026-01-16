@@ -1,0 +1,25 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cold_roasted_meat"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

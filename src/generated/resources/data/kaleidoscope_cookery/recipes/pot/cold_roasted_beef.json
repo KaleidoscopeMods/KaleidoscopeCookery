@@ -1,0 +1,25 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:cooked_beef"
+    },
+    {
+      "tag": "forge:cooked_beef"
+    },
+    {
+      "tag": "forge:cooked_beef"
+    },
+    {
+      "tag": "forge:cooked_beef"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cold_roasted_meat"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

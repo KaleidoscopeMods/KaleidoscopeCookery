@@ -9,7 +9,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -145,6 +144,10 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.RAW_FISHES_TROPICAL).add(ModItems.SASHIMI.get());
         tag(TagCommon.RAW_FISHES_COD).add(COD);
         tag(TagCommon.RAW_FISHES_SALMON).add(SALMON);
+
+        tag(TagCommon.RAW_FISHES).addTag(TagCommon.RAW_FISHES_COD)
+                .addTag(TagCommon.RAW_FISHES_SALMON)
+                .addTag(TagCommon.RAW_FISHES_TROPICAL);
 
         tag(TagCommon.RAW_MEATS).addTag(TagCommon.RAW_BEEF)
                 .addTag(TagCommon.RAW_CHICKEN)
