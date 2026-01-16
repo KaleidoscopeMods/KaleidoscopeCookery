@@ -128,6 +128,8 @@ public class BlockLootTables extends BlockLootSubProvider {
                 LootTable.lootTable().withPool(ricePanicle).withPool(extraRiceSeeds)));
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach(this::dropFoodBite);
+        // 特殊的方块食物
+        dropFoodBite(ModBlocks.COLD_CUT_HAM_SLICES.get(), ModItems.COLD_CUT_HAM_SLICES.get(), Items.BOWL);
 
         this.add(ModBlocks.CHILI_RISTRA.get(), createChiliRistraLootTable());
         this.add(ModBlocks.STRUNG_MUSHROOMS.get(), createStrungMushroomsLootTable());
@@ -222,10 +224,15 @@ public class BlockLootTables extends BlockLootSubProvider {
     private void dropFoodBite(ResourceLocation id, FoodBiteRegistry.FoodData data) {
         Block block = ForgeRegistries.BLOCKS.getValue(id);
         Item food = ForgeRegistries.ITEMS.getValue(id);
-        if (!(block instanceof FoodBiteBlock foodBiteBlock)) {
+        if (block == null || food == null) {
             return;
         }
-        if (food == null) {
+        ItemLike[] lootItems = data.getLootItems().toArray(new ItemLike[0]);
+        dropFoodBite(block, food, lootItems);
+    }
+
+    private void dropFoodBite(Block block, Item food, ItemLike... lootItems) {
+        if (!(block instanceof FoodBiteBlock foodBiteBlock)) {
             return;
         }
         ConstantValue exactly = ConstantValue.exactly(1);
@@ -233,8 +240,8 @@ public class BlockLootTables extends BlockLootSubProvider {
         LootItemCondition.Builder builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(foodBiteBlock).setProperties(notBite);
 
         LootTable.Builder lootTable = LootTable.lootTable();
-        for (int i = 0; i < data.getLootItems().size(); i++) {
-            ItemLike itemLike = data.getLootItems().get(i);
+        for (int i = 0; i < lootItems.length; i++) {
+            ItemLike itemLike = lootItems[i];
             LootPool.Builder rolls = LootPool.lootPool().setRolls(exactly).when(ExplosionCondition.survivesExplosion());
             if (i == 0) {
                 rolls.add(LootItem.lootTableItem(food).when(builder).otherwise(LootItem.lootTableItem(itemLike)));
@@ -243,6 +250,7 @@ public class BlockLootTables extends BlockLootSubProvider {
             }
             lootTable.withPool(rolls);
         }
+
         this.add(block, lootTable);
     }
 

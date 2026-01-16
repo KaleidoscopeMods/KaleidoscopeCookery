@@ -803,4 +803,9 @@ public interface ModFoods {
             .nutrition(13).saturationMod(0.615F)
             .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
             .alwaysEat().build();
+
+    // 冷切火腿片，只有方块形态才能进食
+    FoodProperties COLD_CUT_HAM_SLICES_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.8f)
+            .alwaysEat().build();
 }

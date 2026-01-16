@@ -173,6 +173,10 @@ public class ModCreativeTabs {
                 output.accept(ModItems.UDON_NOODLE.get());
                 // 硬菜
                 FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
+                    // 棕色蘑菇汤之前加入厚切火腿片
+                    if (foodName.equals(FoodBiteRegistry.BROWN_MUSHROOM_POT_SOUP)) {
+                        output.accept(ModItems.COLD_CUT_HAM_SLICES.get());
+                    }
                     var foodItem = ForgeRegistries.ITEMS.getValue(foodName);
                     if (foodItem != null) {
                         output.accept(foodItem);

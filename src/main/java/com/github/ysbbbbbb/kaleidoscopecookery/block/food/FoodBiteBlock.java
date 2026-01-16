@@ -99,7 +99,7 @@ public class FoodBiteBlock extends FoodBlock {
         return eat(level, pos, state, player);
     }
 
-    private InteractionResult eat(Level level, BlockPos pos, BlockState state, Player player) {
+    protected InteractionResult eat(Level level, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(foodProperties.canAlwaysEat())) {
             return InteractionResult.PASS;
         }

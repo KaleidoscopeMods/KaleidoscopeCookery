@@ -263,6 +263,18 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .perspective(ItemDisplayContext.GUI, fruitBasketItem)
                 .perspective(ItemDisplayContext.FIXED, fruitBasketItem)
                 .perspective(ItemDisplayContext.GROUND, fruitBasketItem);
+
+        ItemModelBuilder flatColdCutHamSlices = new ItemModelBuilder(modLoc("cold_cut_ham_slices"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/cold_cut_ham_slices_gui"));
+        ItemModelBuilder blockColdCutHamSlices = new ItemModelBuilder(modLoc("cold_cut_ham_slices"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile(modLoc("item/cold_cut_ham_slices_block")));
+        getBuilder("cold_cut_ham_slices")
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .customLoader(SeparateTransformsModelBuilder::begin).base(blockColdCutHamSlices)
+                .perspective(ItemDisplayContext.GUI, flatColdCutHamSlices)
+                .perspective(ItemDisplayContext.FIXED, flatColdCutHamSlices);
+
     }
 
     public ItemModelBuilder handheldItem(Item item) {
