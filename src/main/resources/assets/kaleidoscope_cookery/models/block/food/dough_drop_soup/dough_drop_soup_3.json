@@ -1,8 +1,8 @@
 {
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
-	"texture_size": [32, 32],
 	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
 	"textures": {
 		"0": "kaleidoscope_cookery:block/dough_drop_soup",
 		"particle": "kaleidoscope_cookery:block/porcelain_plate"
@@ -53,8 +53,8 @@
 		{
 			"name": "bb_main",
 			"from": [3, 1, 3],
-			"to": [13, 3, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"to": [13, 2, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, -1, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 4, 0], "texture": "#0"},
 				"east": {"uv": [0, 0, 4, 0], "texture": "#0"},
@@ -108,9 +108,9 @@
 		},
 		{
 			"name": "bb_main",
-			"from": [9, 2, 9],
-			"to": [11, 4, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [13, -2, 6]},
+			"from": [9, 1, 9],
+			"to": [11, 3, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, -3, 6]},
 			"faces": {
 				"north": {"uv": [2, 10, 3, 11], "texture": "#0"},
 				"east": {"uv": [2, 10, 3, 11], "texture": "#0"},
