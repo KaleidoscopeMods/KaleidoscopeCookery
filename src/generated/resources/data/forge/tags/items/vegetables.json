@@ -2,6 +2,10 @@
   "values": [
     "#forge:vegetables/chilipepper",
     "#forge:vegetables/tomato",
-    "#forge:vegetables/lettuce"
+    "#forge:vegetables/lettuce",
+    {
+      "id": "#forge:crops/cabbage",
+      "required": false
+    }
   ]
 }

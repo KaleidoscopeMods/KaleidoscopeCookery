@@ -125,7 +125,11 @@ public class TagItem extends ItemTagsProvider {
                 COD_BUCKET,
                 TROPICAL_FISH_BUCKET,
                 AXOLOTL_BUCKET,
-                TADPOLE_BUCKET
+                TADPOLE_BUCKET,
+                // 碗
+                BOWL,
+                // 本模组的食谱
+                ModItems.RECIPE_ITEM.get()
         );
 
         // 原版兼容
@@ -158,7 +162,8 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.VEGETABLES_LETTUCE).add(ModItems.LETTUCE.get());
         tag(TagCommon.VEGETABLES).addTag(TagCommon.VEGETABLES_CHILI_PEPPER)
                 .addTag(TagCommon.VEGETABLES_TOMATO)
-                .addTag(TagCommon.VEGETABLES_LETTUCE);
+                .addTag(TagCommon.VEGETABLES_LETTUCE)
+                .addOptionalTag(TagCommon.CROPS_CABBAGE); // 兼容农夫乐事卷心菜
 
         tag(TagCommon.SEEDS_CHILI_PEPPER).add(ModItems.CHILI_SEED.get());
         tag(TagCommon.SEEDS_TOMATO).add(ModItems.TOMATO_SEED.get());

@@ -198,6 +198,7 @@
   "item.kaleidoscope_cookery.transmutation_lunch_bag": "Transmutation Lunch Bag",
   "item.kaleidoscope_cookery.sickle": "Sickle",
   "entity.minecraft.villager.kaleidoscope_cookery.chef": "Chef",
+  "entity.minecraft.villager.chef": "Chef",
   "entity.kaleidoscope_cookery.scarecrow": "Scarecrow",
   "tooltip.kaleidoscope_cookery.stove": "The heat source block of the kitchen utensils, lit with flint and steel",
   "tooltip.kaleidoscope_cookery.pot": "Place on heat source, add oil and ingredients sequentially, stir-fry, then serve",

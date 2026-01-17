@@ -275,13 +275,7 @@ public class RecipeItem extends BlockItem {
             if (inputs.isEmpty()) {
                 return InteractionResult.PASS;
             }
-            // 如果数量大于 1，那么复制一个，其他的返回背包
-            ItemStack recordStack = itemInHand.copyWithCount(1);
-            int count = itemInHand.getCount();
-            if (count > 1) {
-                ItemStack returnStack = itemInHand.copyWithCount(count - 1);
-                ItemUtils.getItemToLivingEntity(player, returnStack);
-            }
+            ItemStack recordStack = itemInHand.split(1);
             recipeManager.getRecipeFor(ModRecipes.POT_RECIPE, pot.getContainer(), level).ifPresentOrElse(recipe -> {
                 ItemStack resultItem = recipe.getResultItem(level.registryAccess());
                 setRecipe(recordStack, new RecipeRecord(inputs, resultItem, POT));
@@ -289,7 +283,7 @@ public class RecipeItem extends BlockItem {
                 ItemStack instance = FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY).getDefaultInstance();
                 setRecipe(recordStack, new RecipeRecord(inputs, instance, POT));
             });
-            player.setItemInHand(hand, recordStack);
+            ItemUtils.getItemToLivingEntity(player, recordStack);
             return InteractionResult.SUCCESS;
         }
 
