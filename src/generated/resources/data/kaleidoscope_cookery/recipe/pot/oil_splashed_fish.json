@@ -1,0 +1,36 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:oil_splashed_fish"
+  }
+}

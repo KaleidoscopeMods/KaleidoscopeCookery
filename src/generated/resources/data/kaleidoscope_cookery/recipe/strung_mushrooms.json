@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "minecraft:brown_mushroom"
+    }
+  },
+  "pattern": [
+    "MM",
+    "MM",
+    "MM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:strung_mushrooms"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_apple": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:apple"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "kaleidoscope_cookery:fruit_platter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_apple"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "kaleidoscope_cookery:fruit_platter"
+    ]
+  }
+}

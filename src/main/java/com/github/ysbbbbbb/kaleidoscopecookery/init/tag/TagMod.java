@@ -51,9 +51,9 @@ public interface TagMod {
      */
     TagKey<Item> FARMER_ARMOR = itemTag("farmer_armor");
     /**
-     * 可以加入汤锅炒锅的原料
+     * 不允许加入汤锅、炒锅的物品
      */
-    TagKey<Item> POT_INGREDIENT = itemTag("pot_ingredient");
+    TagKey<Item> INGREDIENT_BLOCKLIST = itemTag("ingredient_blocklist");
     /**
      * 取出原料所识别的容器
      */

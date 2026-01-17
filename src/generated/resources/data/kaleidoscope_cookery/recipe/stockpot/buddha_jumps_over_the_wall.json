@@ -1,0 +1,36 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "carrier": {
+    "item": "minecraft:flower_pot"
+  },
+  "ingredients": [
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:buddha_jumps_over_the_wall"
+  }
+}

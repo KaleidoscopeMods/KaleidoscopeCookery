@@ -1,0 +1,37 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:spicy_blood_stew"
+  },
+  "soup_base": "minecraft:lava"
+}

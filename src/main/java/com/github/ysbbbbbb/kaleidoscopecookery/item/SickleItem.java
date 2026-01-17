@@ -13,10 +13,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -42,8 +40,16 @@ public class SickleItem extends SwordItem {
             () -> Ingredient.of(Items.FLINT)
     );
 
+    public SickleItem(Tier tier, Properties properties) {
+        super(tier, properties);
+    }
+
+    public SickleItem(Tier tier, Properties properties, Tool toolComponentData) {
+        super(tier, properties, toolComponentData);
+    }
+
     public SickleItem() {
-        super(SICKLE_TIER, new Properties());
+        this(SICKLE_TIER, new Properties());
     }
 
     @Override

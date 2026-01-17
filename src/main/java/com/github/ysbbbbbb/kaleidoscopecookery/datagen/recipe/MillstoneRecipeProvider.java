@@ -198,7 +198,7 @@ public class MillstoneRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "polished_granite_from_granite");
 
         MillstoneRecipeBuilder.builder()
-                .setIngredient(Items.GRAVEL)
+                .setIngredient(Tags.Items.GRAVELS)
                 .setResult(Items.SAND, 1)
                 .save(consumer, "sand_from_gravel");
 
@@ -333,7 +333,7 @@ public class MillstoneRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "quartz_from_quartz_pillar");
 
         MillstoneRecipeBuilder.builder()
-                .setIngredient(Items.RED_SAND)
+                .setIngredient(Tags.Items.SANDS_RED)
                 .setResult(Items.SMOOTH_RED_SANDSTONE, 1)
                 .save(consumer, "smooth_red_sandstone_from_red_sand");
 
@@ -363,7 +363,7 @@ public class MillstoneRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "red_dye_from_rose_bush");
 
         MillstoneRecipeBuilder.builder()
-                .setIngredient(Items.SAND)
+                .setIngredient(Tags.Items.SANDS_COLORLESS)
                 .setResult(Items.SMOOTH_SANDSTONE, 1)
                 .save(consumer, "smooth_sandstone_from_sand");
 

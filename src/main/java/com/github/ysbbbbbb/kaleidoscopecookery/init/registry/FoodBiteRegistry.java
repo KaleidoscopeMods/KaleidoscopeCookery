@@ -10,6 +10,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -44,6 +46,26 @@ public class FoodBiteRegistry {
     public static ResourceLocation TUNDRA_STYLE_SASHIMI;
     public static ResourceLocation COLD_STYLE_SASHIMI;
     public static ResourceLocation SHENGJIAN_MANTOU;
+    public static ResourceLocation CANDIED_POTATO;
+    public static ResourceLocation DOUGH_DROP_SOUP;
+    public static ResourceLocation STUFFED_TIGER_SKIN_PEPPER;
+    public static ResourceLocation SPICY_RABBIT_HEAD;
+    public static ResourceLocation FOUR_JOY_MEATBALL_SOUP;
+    public static ResourceLocation NUMBING_SPICY_CHICKEN;
+    public static ResourceLocation FRIED_CATERPILLAR;
+    public static ResourceLocation FRIED_SPRING_ROLL;
+    public static ResourceLocation SPICY_BLOOD_STEW;
+    public static ResourceLocation FRUIT_PLATTER;
+
+    public static ResourceLocation BRAISED_PORK_RIBS;
+    public static ResourceLocation COLD_ROASTED_MEAT;
+    public static ResourceLocation OIL_SPLASHED_FISH;
+
+    public static ResourceLocation BROWN_MUSHROOM_POT_SOUP;
+    public static ResourceLocation RED_MUSHROOM_POT_SOUP;
+    public static ResourceLocation WARPED_FUNGUS_POT_SOUP;
+    public static ResourceLocation CRIMSON_FUNGUS_POT_SOUP;
+    public static ResourceLocation BUDDHA_JUMPS_OVER_THE_WALL;
 
     public static void init() {
         FoodBiteRegistry registry = new FoodBiteRegistry();
@@ -128,6 +150,86 @@ public class FoodBiteRegistry {
 
         SHENGJIAN_MANTOU = registry.registerFoodData("shengjian_mantou", FoodData
                 .create(4, SHENGJIAN_MANTOU_BLOCK, SHENGJIAN_MANTOU_ITEM));
+
+        CANDIED_POTATO = registry.registerFoodData("candied_potato", FoodData
+                .create(3, CANDIED_POTATO_BLOCK, CANDIED_POTATO_ITEM));
+
+        DOUGH_DROP_SOUP = registry.registerFoodData("dough_drop_soup", FoodData
+                .create(3, DOUGH_DROP_SOUP_BLOCK, DOUGH_DROP_SOUP_ITEM)
+                .bowlAABB());
+
+        STUFFED_TIGER_SKIN_PEPPER = registry.registerFoodData("stuffed_tiger_skin_pepper", FoodData
+                .create(5, STUFFED_TIGER_SKIN_PEPPER_BLOCK, STUFFED_TIGER_SKIN_PEPPER_ITEM));
+
+        SPICY_RABBIT_HEAD = registry.registerFoodData("spicy_rabbit_head", FoodData
+                .create(3, SPICY_RABBIT_HEAD_BLOCK, SPICY_RABBIT_HEAD_ITEM));
+
+        FOUR_JOY_MEATBALL_SOUP = registry.registerFoodData("four_joy_meatball_soup", FoodData
+                .create(4, FOUR_JOY_MEATBALL_SOUP_BLOCK, FOUR_JOY_MEATBALL_SOUP_ITEM)
+                .bowlAABB());
+
+        NUMBING_SPICY_CHICKEN = registry.registerFoodData("numbing_spicy_chicken", FoodData
+                .create(3, NUMBING_SPICY_CHICKEN_BLOCK, NUMBING_SPICY_CHICKEN_ITEM)
+                .bowlAABB());
+
+        FRIED_CATERPILLAR = registry.registerFoodData("fried_caterpillar", FoodData
+                .create(3, FRIED_CATERPILLAR_BLOCK, FRIED_CATERPILLAR_ITEM)
+                .setAABB(Block.box(1, 0, 3, 15, 4, 13)));
+
+        FRIED_SPRING_ROLL = registry.registerFoodData("fried_spring_roll", FoodData
+                .create(3, FRIED_SPRING_ROLL_BLOCK, FRIED_SPRING_ROLL_ITEM));
+
+        SPICY_BLOOD_STEW = registry.registerFoodData("spicy_blood_stew", FoodData
+                .create(3, SPICY_BLOOD_STEW_BLOCK, SPICY_BLOOD_STEW_ITEM)
+                .bowlAABB());
+
+        FRUIT_PLATTER = registry.registerFoodData("fruit_platter", FoodData
+                .create(4, FRUIT_PLATTER_BLOCK, FRUIT_PLATTER_ITEM));
+
+        // ========================== 1x2 食物 ==========================
+
+        BRAISED_PORK_RIBS = registry.registerFoodData("braised_pork_ribs", FoodData
+                .createOneByTwo(4, BRAISED_PORK_RIBS_BLOCK, BRAISED_PORK_RIBS_ITEM)
+                .addLootItems(Items.BONE));
+
+        COLD_ROASTED_MEAT = registry.registerFoodData("cold_roasted_meat", FoodData
+                .createOneByTwo(3, COLD_ROASTED_MEAT_BLOCK, COLD_ROASTED_MEAT_ITEM));
+
+        OIL_SPLASHED_FISH = registry.registerFoodData("oil_splashed_fish", FoodData
+                .createOneByTwo(5, OIL_SPLASHED_FISH_BLOCK, OIL_SPLASHED_FISH_ITEM)
+                .addLootItems(Items.BONE_MEAL));
+
+        // ========================== 瓦罐汤 ==========================
+
+        BROWN_MUSHROOM_POT_SOUP = registry.registerFoodData("brown_mushroom_pot_soup", FoodData
+                .create(2, BROWN_MUSHROOM_POT_SOUP_BLOCK, BROWN_MUSHROOM_POT_SOUP_ITEM)
+                .setLootItem(Items.FLOWER_POT)
+                .soupPotAABB()
+                .potSoupAnimateTick());
+
+        RED_MUSHROOM_POT_SOUP = registry.registerFoodData("red_mushroom_pot_soup", FoodData
+                .create(2, RED_MUSHROOM_POT_SOUP_BLOCK, RED_MUSHROOM_POT_SOUP_ITEM)
+                .setLootItem(Items.FLOWER_POT)
+                .soupPotAABB()
+                .potSoupAnimateTick());
+
+        WARPED_FUNGUS_POT_SOUP = registry.registerFoodData("warped_fungus_pot_soup", FoodData
+                .create(2, WARPED_FUNGUS_POT_SOUP_BLOCK, WARPED_FUNGUS_POT_SOUP_ITEM)
+                .setLootItem(Items.FLOWER_POT)
+                .soupPotAABB()
+                .potSoupAnimateTick());
+
+        CRIMSON_FUNGUS_POT_SOUP = registry.registerFoodData("crimson_fungus_pot_soup", FoodData
+                .create(2, CRIMSON_FUNGUS_POT_SOUP_BLOCK, CRIMSON_FUNGUS_POT_SOUP_ITEM)
+                .setLootItem(Items.FLOWER_POT)
+                .soupPotAABB()
+                .potSoupAnimateTick());
+
+        BUDDHA_JUMPS_OVER_THE_WALL = registry.registerFoodData("buddha_jumps_over_the_wall", FoodData
+                .create(2, BUDDHA_JUMPS_OVER_THE_WALL_BLOCK, BUDDHA_JUMPS_OVER_THE_WALL_ITEM)
+                .setLootItem(Items.FLOWER_POT)
+                .soupPotAABB()
+                .potSoupAnimateTick());
     }
 
     public ResourceLocation registerFoodData(ResourceLocation foodName, FoodData data) {
@@ -154,24 +256,37 @@ public class FoodBiteRegistry {
     }
 
     public static final class FoodData {
+        private final BlockType blockType;
         private final int maxBites;
         private final List<ItemLike> lootItems = Lists.newArrayList();
         private final FoodProperties blockFood;
         private final FoodProperties itemFood;
         private @Nullable FoodBiteAnimateTicks.AnimateTick animateTick = null;
+        private @Nullable VoxelShape aabb = null;
 
-        private FoodData(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+        private FoodData(BlockType blockType, int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+            this.blockType = blockType;
             this.maxBites = maxBites;
+            this.lootItems.add(Items.BOWL);
             this.blockFood = blockFood;
             this.itemFood = itemFood;
         }
 
         public static FoodData create(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
-            return new FoodData(maxBites, blockFood, itemFood);
+            return new FoodData(BlockType.SINGLE, maxBites, blockFood, itemFood);
+        }
+
+        public static FoodData createOneByTwo(int maxBites, FoodProperties blockFood, FoodProperties itemFood) {
+            return new FoodData(BlockType.ONE_BY_TWO, maxBites, blockFood, itemFood);
         }
 
         public FoodData setAnimateTick(FoodBiteAnimateTicks.AnimateTick animateTick) {
             this.animateTick = animateTick;
+            return this;
+        }
+
+        public FoodData potSoupAnimateTick() {
+            this.animateTick = FoodBiteAnimateTicks.POT_SOUP_ANIMATE_TICK;
             return this;
         }
 
@@ -180,8 +295,41 @@ public class FoodBiteRegistry {
             return this;
         }
 
+        public FoodData setLootItem(ItemLike lootItem) {
+            this.lootItems.clear();
+            this.lootItems.add(lootItem);
+            return this;
+        }
+
+        public FoodData setAABB(VoxelShape aabb) {
+            this.aabb = aabb;
+            return this;
+        }
+
+        public FoodData bowlAABB() {
+            this.aabb = Block.box(2, 0, 2, 14, 6, 14);
+            return this;
+        }
+
+        public FoodData soupPotAABB() {
+            this.aabb = Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(4, 1, 4, 12, 7, 12)
+            );
+            return this;
+        }
+
+        public BlockType blockType() {
+            return blockType;
+        }
+
         public int maxBites() {
             return maxBites;
+        }
+
+        @Nullable
+        public VoxelShape getAABB() {
+            return aabb;
         }
 
         @Nullable
@@ -200,5 +348,10 @@ public class FoodBiteRegistry {
         public FoodProperties itemFood() {
             return itemFood;
         }
+    }
+
+    public enum BlockType {
+        SINGLE,
+        ONE_BY_TWO
     }
 }

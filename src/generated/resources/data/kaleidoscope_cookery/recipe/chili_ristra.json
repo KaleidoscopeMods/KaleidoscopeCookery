@@ -7,9 +7,9 @@
     }
   },
   "pattern": [
-    "CC ",
-    "CC ",
-    "CC "
+    "CC",
+    "CC",
+    "CC"
   ],
   "result": {
     "count": 1,

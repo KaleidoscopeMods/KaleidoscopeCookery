@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.event.effect;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModEffects;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.tags.DamageTypeTags;
@@ -20,6 +21,11 @@ public class SatiatedShieldEvent {
         int amount = Math.round(event.getContainer().getNewDamage()) * 2;
         DamageSource source = event.getSource();
         if (event.getEntity() instanceof Player player && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            // 如果没有开启饱腹代偿，直接返回
+            if (!GeneralConfig.SATIATED_SHIELD_ABSORB_ENABLED.get()) {
+                return;
+            }
+
             if (player.getFoodData().getFoodLevel() > 0 && player.hasEffect(ModEffects.SATIATED_SHIELD)) {
                 // 部分特殊伤害，扣除的 Exhaustion 翻倍
                 if (source.is(TagMod.SATIATED_SHIELD_WEAKNESS)) {

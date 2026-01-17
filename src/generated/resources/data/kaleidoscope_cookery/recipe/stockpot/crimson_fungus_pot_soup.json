@@ -1,0 +1,30 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "carrier": {
+    "item": "minecraft:flower_pot"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_fungus"
+    },
+    {
+      "item": "minecraft:crimson_fungus"
+    },
+    {
+      "item": "minecraft:crimson_fungus"
+    },
+    {
+      "item": "minecraft:crimson_fungus"
+    },
+    {
+      "item": "minecraft:crimson_fungus"
+    },
+    {
+      "item": "minecraft:crimson_fungus"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:crimson_fungus_pot_soup"
+  }
+}

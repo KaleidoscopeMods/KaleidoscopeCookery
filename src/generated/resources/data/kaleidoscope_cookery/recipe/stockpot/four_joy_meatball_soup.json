@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:four_joy_meatball_soup"
+  }
+}

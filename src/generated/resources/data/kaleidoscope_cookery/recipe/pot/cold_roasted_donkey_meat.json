@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_donkey_meat"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cold_roasted_meat"
+  }
+}

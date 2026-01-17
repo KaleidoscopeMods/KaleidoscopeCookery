@@ -1,7 +1,7 @@
 {
   "type": "kaleidoscope_cookery:millstone",
   "ingredient": {
-    "item": "minecraft:gravel"
+    "tag": "c:gravels"
   },
   "result": {
     "count": 1,

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_meatball": {
+      "conditions": {
+        "items": [
+          {
+            "items": "kaleidoscope_cookery:raw_meatball"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:cooked_meatball_from_campfire_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_meatball"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:cooked_meatball_from_campfire_cooking"
+    ]
+  }
+}

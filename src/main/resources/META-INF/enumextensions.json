@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "KALEIDOSCOPE_COOKERY_LIFT",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/github/ysbbbbbb/kaleidoscopecookery/client/animation/CustomArmPose",
+        "field": "LIFT_POSE"
+      }
+    }
+  ]
+}

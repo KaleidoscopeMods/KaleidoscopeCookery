@@ -364,7 +364,7 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         if (this.status != PUT_INGREDIENT) {
             return false;
         }
-        if (!itemStack.has(DataComponents.FOOD) && !itemStack.is(TagMod.POT_INGREDIENT)) {
+        if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
             return false;
         }
         // 检查是否有足够的空间放入食材

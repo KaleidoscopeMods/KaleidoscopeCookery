@@ -103,6 +103,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.FLOUR.get());
         basicItem(ModItems.RAW_CUT_SMALL_MEATS.get());
         basicItem(ModItems.COOKED_CUT_SMALL_MEATS.get());
+        basicItem(ModItems.RAW_MEATBALL.get());
+        basicItem(ModItems.COOKED_MEATBALL.get());
 
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.DUMPLING.get());
@@ -121,6 +123,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         ResourceLocation chileRistra = BuiltInRegistries.ITEM.getKey(ModItems.CHILI_RISTRA.get());
         getBuilder(chileRistra.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "block/chili_ristra/head"));
+
+        ResourceLocation strungMushrooms = BuiltInRegistries.ITEM.getKey(ModItems.STRUNG_MUSHROOMS.get());
+        getBuilder(strungMushrooms.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "block/strung_mushrooms/head"));
 
         ResourceLocation shovel = BuiltInRegistries.ITEM.getKey(ModItems.KITCHEN_SHOVEL.get());
         ItemModelBuilder shovelNoOil = handheldItem(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "kitchen_shovel_no_oil"));
@@ -247,6 +253,18 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .perspective(ItemDisplayContext.GUI, fruitBasketItem)
                 .perspective(ItemDisplayContext.FIXED, fruitBasketItem)
                 .perspective(ItemDisplayContext.GROUND, fruitBasketItem);
+
+        ItemModelBuilder flatColdCutHamSlices = new ItemModelBuilder(modLoc("cold_cut_ham_slices"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/cold_cut_ham_slices_gui"));
+        ItemModelBuilder blockColdCutHamSlices = new ItemModelBuilder(modLoc("cold_cut_ham_slices"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile(modLoc("item/cold_cut_ham_slices_block")));
+        getBuilder("cold_cut_ham_slices")
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .customLoader(SeparateTransformsModelBuilder::begin).base(blockColdCutHamSlices)
+                .perspective(ItemDisplayContext.GUI, flatColdCutHamSlices)
+                .perspective(ItemDisplayContext.FIXED, flatColdCutHamSlices);
+
     }
 
     @Override

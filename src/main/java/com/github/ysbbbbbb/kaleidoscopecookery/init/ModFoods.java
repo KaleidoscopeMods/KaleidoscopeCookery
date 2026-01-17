@@ -58,6 +58,11 @@ public interface ModFoods {
             .nutrition(2).saturationModifier(0.3F)
             .alwaysEdible().build();
 
+    // 生丸子
+    FoodProperties RAW_MEATBALL = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
     // 熟羊排
     FoodProperties COOKED_LAMB_CHOPS = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.8F)
@@ -81,6 +86,11 @@ public interface ModFoods {
     // 熟切制小肉
     FoodProperties COOKED_CUT_SMALL_MEATS = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0.8F)
+            .alwaysEdible().build();
+
+    // 熟丸子
+    FoodProperties COOKED_MEATBALL = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(0.8F)
             .alwaysEdible().build();
 
     // 驴肉火烧
@@ -598,5 +608,204 @@ public interface ModFoods {
     FoodProperties DONKEY_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 拔丝土豆
+    FoodProperties CANDIED_POTATO_BLOCK = (new FoodProperties.Builder())
+            .nutrition(5).saturationModifier(0.55F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties CANDIED_POTATO_ITEM = (new FoodProperties.Builder())
+            .nutrition(20).saturationModifier(0.55F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 疙瘩汤
+    FoodProperties DOUGH_DROP_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(1)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties DOUGH_DROP_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(1)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 虎皮青椒酿肉
+    FoodProperties STUFFED_TIGER_SKIN_PEPPER_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties STUFFED_TIGER_SKIN_PEPPER_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 麻辣兔头
+    FoodProperties SPICY_RABBIT_HEAD_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties SPICY_RABBIT_HEAD_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 四喜丸子汤
+    FoodProperties FOUR_JOY_MEATBALL_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties FOUR_JOY_MEATBALL_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 椒麻鸡
+    FoodProperties NUMBING_SPICY_CHICKEN_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties NUMBING_SPICY_CHICKEN_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 油炸猪儿虫
+    FoodProperties FRIED_CATERPILLAR_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8F)
+            .effect(() -> new MobEffectInstance(FLATULENCE, 10 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties FRIED_CATERPILLAR_ITEM = (new FoodProperties.Builder())
+            .nutrition(12).saturationModifier(0.8F)
+            .effect(() -> new MobEffectInstance(FLATULENCE, 10 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 炸春卷
+    FoodProperties FRIED_SPRING_ROLL_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties FRIED_SPRING_ROLL_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 毛血旺
+    FoodProperties SPICY_BLOOD_STEW_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties SPICY_BLOOD_STEW_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 水果拼盘
+    FoodProperties FRUIT_PLATTER_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .alwaysEdible().build();
+
+    FoodProperties FRUIT_PLATTER_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .alwaysEdible().build();
+
+    // 棕色蘑菇瓦罐汤
+    FoodProperties BROWN_MUSHROOM_POT_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties BROWN_MUSHROOM_POT_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(18).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 红色蘑菇瓦罐汤
+    FoodProperties RED_MUSHROOM_POT_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties RED_MUSHROOM_POT_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(18).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 诡异菌瓦罐汤
+    FoodProperties WARPED_FUNGUS_POT_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties WARPED_FUNGUS_POT_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(18).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 绯红菌瓦罐汤
+    FoodProperties CRIMSON_FUNGUS_POT_SOUP_BLOCK = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties CRIMSON_FUNGUS_POT_SOUP_ITEM = (new FoodProperties.Builder())
+            .nutrition(18).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 2 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 佛跳墙
+    FoodProperties BUDDHA_JUMPS_OVER_THE_WALL_BLOCK = (new FoodProperties.Builder())
+            .nutrition(7).saturationModifier(0.521f)
+            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties BUDDHA_JUMPS_OVER_THE_WALL_ITEM = (new FoodProperties.Builder())
+            .nutrition(20).saturationModifier(0.55F)
+            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 红烧排骨
+    FoodProperties BRAISED_PORK_RIBS_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8f)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties BRAISED_PORK_RIBS_ITEM = (new FoodProperties.Builder())
+            .nutrition(16).saturationModifier(0.8f)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 冷肉炙
+    FoodProperties COLD_ROASTED_MEAT_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8f)
+            .alwaysEdible().build();
+
+    FoodProperties COLD_ROASTED_MEAT_ITEM = (new FoodProperties.Builder())
+            .nutrition(16).saturationModifier(0.8f)
+            .alwaysEdible().build();
+
+    // 油泼鱼: oil_splashed_fish
+    FoodProperties OIL_SPLASHED_FISH_BLOCK = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.667F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    FoodProperties OIL_SPLASHED_FISH_ITEM = (new FoodProperties.Builder())
+            .nutrition(13).saturationModifier(0.615F)
+            .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 冷切火腿片，只有方块形态才能进食
+    FoodProperties COLD_CUT_HAM_SLICES_BLOCK = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.8f)
             .alwaysEdible().build();
 }

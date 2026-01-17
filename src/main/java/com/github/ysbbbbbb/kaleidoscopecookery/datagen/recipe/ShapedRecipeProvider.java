@@ -171,11 +171,19 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.CHILI_RISTRA.get())
-                .pattern("CC ")
-                .pattern("CC ")
-                .pattern("CC ")
+                .pattern("CC")
+                .pattern("CC")
+                .pattern("CC")
                 .define('C', ModItems.RED_CHILI.get())
                 .unlockedBy("has_red_chili", has(ModItems.RED_CHILI.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.STRUNG_MUSHROOMS.get())
+                .pattern("MM")
+                .pattern("MM")
+                .pattern("MM")
+                .define('M', Items.BROWN_MUSHROOM)
+                .unlockedBy("has_brown_mushroom", has(Items.BROWN_MUSHROOM))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.STRAW_BLOCK.get())

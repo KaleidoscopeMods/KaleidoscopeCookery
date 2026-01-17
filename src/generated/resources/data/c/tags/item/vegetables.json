@@ -2,6 +2,10 @@
   "values": [
     "#c:vegetables/chilipepper",
     "#c:vegetables/tomato",
-    "#c:vegetables/lettuce"
+    "#c:vegetables/lettuce",
+    {
+      "id": "#c:crops/cabbage",
+      "required": false
+    }
   ]
 }

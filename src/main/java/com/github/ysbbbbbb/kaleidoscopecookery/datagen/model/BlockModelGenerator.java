@@ -28,6 +28,11 @@ public class BlockModelGenerator extends BlockModelProvider {
         cross("block/chili_ristra/head_sheared", modLoc("block/chili_ristra/head_sheared")).renderType("cutout");
         cross("block/chili_ristra/body_sheared", modLoc("block/chili_ristra/body_sheared")).renderType("cutout");
 
+        cross("block/strung_mushrooms/head", modLoc("block/strung_mushrooms/head")).renderType("cutout");
+        cross("block/strung_mushrooms/body", modLoc("block/strung_mushrooms/body")).renderType("cutout");
+        cross("block/strung_mushrooms/head_sheared", modLoc("block/strung_mushrooms/head_sheared")).renderType("cutout");
+        cross("block/strung_mushrooms/body_sheared", modLoc("block/strung_mushrooms/body_sheared")).renderType("cutout");
+
         cubeColumn("straw_block", modLoc("block/straw_block_side"), modLoc("block/straw_block_end"));
 
         wood("oak");
@@ -98,7 +103,8 @@ public class BlockModelGenerator extends BlockModelProvider {
     public void crop(String name, int stage) {
         IntStream.range(0, stage).forEach(i -> {
             String id = "block/crop/%s/stage%d".formatted(name, i);
-            cross(id, modLoc(id)).renderType("cutout");
+            singleTexture(id, modLoc("block/cross"), "cross", modLoc(id))
+                    .renderType("cutout");
         });
     }
 

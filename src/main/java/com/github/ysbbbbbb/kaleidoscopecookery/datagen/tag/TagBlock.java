@@ -17,6 +17,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon.FD_HEAT_SOURCES;
+
 public class TagBlock extends BlockTagsProvider {
     public TagBlock(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, KaleidoscopeCookery.MOD_ID, existingFileHelper);
@@ -61,7 +63,10 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.CHAIR_CRIMSON.get(), ModBlocks.CHAIR_DARK_OAK.get(),
                 ModBlocks.CHAIR_JUNGLE.get(), ModBlocks.CHAIR_MANGROVE.get(),
                 ModBlocks.CHAIR_WARPED.get());
-        this.tag(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT).add(Blocks.FIRE, Blocks.SOUL_FIRE, Blocks.LAVA, Blocks.MAGMA_BLOCK);
+        this.tag(FD_HEAT_SOURCES).add(ModBlocks.STOVE.get());
+        this.tag(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT)
+                .add(Blocks.FIRE, Blocks.SOUL_FIRE, Blocks.LAVA, Blocks.MAGMA_BLOCK)
+                .addTag(FD_HEAT_SOURCES);
         this.tag(BlockTags.CROPS).add(ModBlocks.TOMATO_CROP.get(),
                 ModBlocks.RICE_CROP.get(), ModBlocks.CHILI_CROP.get(),
                 ModBlocks.LETTUCE_CROP.get());

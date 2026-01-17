@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
@@ -133,8 +134,11 @@ public class BlockLootTables extends BlockLootSubProvider {
                 LootTable.lootTable().withPool(ricePanicle).withPool(extraRiceSeeds)));
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach(this::dropFoodBite);
+        // 特殊的方块食物
+        dropFoodBite(ModBlocks.COLD_CUT_HAM_SLICES.get(), ModItems.COLD_CUT_HAM_SLICES.get(), Items.BOWL);
 
         this.add(ModBlocks.CHILI_RISTRA.get(), createChiliRistraLootTable());
+        this.add(ModBlocks.STRUNG_MUSHROOMS.get(), createStrungMushroomsLootTable());
     }
 
     private LootTable.Builder createChiliRistraLootTable() {
@@ -148,6 +152,23 @@ public class BlockLootTables extends BlockLootSubProvider {
 
         LootPoolSingletonContainer.Builder<?> normalLoot = LootItem.lootTableItem(ModItems.RED_CHILI.get()).apply(normalDrop);
         LootPoolSingletonContainer.Builder<?> shearedLoot = LootItem.lootTableItem(ModItems.RED_CHILI.get()).apply(shearedDrop);
+
+        builder.add(shearedLoot.when(condition).otherwise(normalLoot));
+
+        return LootTable.lootTable().withPool(builder.when(ExplosionCondition.survivesExplosion()));
+    }
+
+    private LootTable.Builder createStrungMushroomsLootTable() {
+        LootPool.Builder builder = LootPool.lootPool();
+
+        StatePropertiesPredicate.Builder isSheared = StatePropertiesPredicate.Builder.properties().hasProperty(StrungMushroomsBlock.SHEARED, true);
+        LootItemCondition.Builder condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.STRUNG_MUSHROOMS.get()).setProperties(isSheared);
+
+        LootItemConditionalFunction.Builder<?> normalDrop = SetItemCountFunction.setCount(ConstantValue.exactly(6));
+        LootItemConditionalFunction.Builder<?> shearedDrop = SetItemCountFunction.setCount(ConstantValue.exactly(3));
+
+        LootPoolSingletonContainer.Builder<?> normalLoot = LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(normalDrop);
+        LootPoolSingletonContainer.Builder<?> shearedLoot = LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(shearedDrop);
 
         builder.add(shearedLoot.when(condition).otherwise(normalLoot));
 
@@ -210,6 +231,11 @@ public class BlockLootTables extends BlockLootSubProvider {
     private void dropFoodBite(ResourceLocation id, FoodBiteRegistry.FoodData data) {
         Block block = BuiltInRegistries.BLOCK.get(id);
         Item food = BuiltInRegistries.ITEM.get(id);
+        ItemLike[] lootItems = data.getLootItems().toArray(new ItemLike[0]);
+        dropFoodBite(block, food, lootItems);
+    }
+
+    private void dropFoodBite(Block block, Item food, ItemLike... lootItems) {
         if (!(block instanceof FoodBiteBlock foodBiteBlock)) {
             return;
         }
@@ -218,8 +244,8 @@ public class BlockLootTables extends BlockLootSubProvider {
         LootItemCondition.Builder builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(foodBiteBlock).setProperties(notBite);
 
         LootTable.Builder lootTable = LootTable.lootTable();
-        for (int i = 0; i < data.getLootItems().size(); i++) {
-            ItemLike itemLike = data.getLootItems().get(i);
+        for (int i = 0; i < lootItems.length; i++) {
+            ItemLike itemLike = lootItems[i];
             LootPool.Builder rolls = LootPool.lootPool().setRolls(exactly).when(ExplosionCondition.survivesExplosion());
             if (i == 0) {
                 rolls.add(LootItem.lootTableItem(food).when(builder).otherwise(LootItem.lootTableItem(itemLike)));
@@ -228,6 +254,7 @@ public class BlockLootTables extends BlockLootSubProvider {
             }
             lootTable.withPool(rolls);
         }
+
         this.add(block, lootTable);
     }
 

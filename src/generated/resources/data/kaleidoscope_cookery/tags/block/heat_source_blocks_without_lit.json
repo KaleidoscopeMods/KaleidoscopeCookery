@@ -3,6 +3,7 @@
     "minecraft:fire",
     "minecraft:soul_fire",
     "minecraft:lava",
-    "minecraft:magma_block"
+    "minecraft:magma_block",
+    "#farmersdelight:heat_sources"
   ]
 }

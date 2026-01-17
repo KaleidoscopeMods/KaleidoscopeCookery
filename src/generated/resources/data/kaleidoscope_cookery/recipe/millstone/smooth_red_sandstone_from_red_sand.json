@@ -1,7 +1,7 @@
 {
   "type": "kaleidoscope_cookery:millstone",
   "ingredient": {
-    "item": "minecraft:red_sand"
+    "tag": "c:sands/red"
   },
   "result": {
     "count": 1,

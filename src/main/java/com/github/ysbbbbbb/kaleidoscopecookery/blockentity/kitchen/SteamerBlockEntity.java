@@ -12,6 +12,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
@@ -271,8 +272,9 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
     @Override
     public boolean placeFood(Level level, LivingEntity user, ItemStack food) {
         // 先检查这层是否是能交互的
-        // 上层必须为空
-        if (!level.isEmptyBlock(this.getBlockPos().above())) {
+        // 上层必须不能阻拦
+        BlockPos above = this.getBlockPos().above();
+        if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
             return false;
         }
         // 且自己必须开着盖子
@@ -306,8 +308,9 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
     @Override
     public boolean takeFood(Level level, LivingEntity user) {
         // 先检查这层是否是能交互的
-        // 上层必须为空
-        if (!level.isEmptyBlock(this.getBlockPos().above())) {
+        // 上层必须不能阻拦
+        BlockPos above = this.getBlockPos().above();
+        if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
             return false;
         }
         BlockState blockState = this.getBlockState();

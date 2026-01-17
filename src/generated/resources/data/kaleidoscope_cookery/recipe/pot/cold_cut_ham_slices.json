@@ -1,0 +1,36 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cold_cut_ham_slices"
+  }
+}

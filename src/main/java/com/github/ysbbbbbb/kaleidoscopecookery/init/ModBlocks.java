@@ -9,12 +9,11 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.ChairBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.OilBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.RecipeBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrawBlocks;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByThreeBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +36,7 @@ public class ModBlocks {
     public static DeferredBlock<Block> ENAMEL_BASIN = BLOCKS.register("enamel_basin", EnamelBasinBlock::new);
     public static DeferredBlock<Block> KITCHENWARE_RACKS = BLOCKS.register("kitchenware_racks", KitchenwareRacksBlock::new);
     public static DeferredBlock<Block> CHILI_RISTRA = BLOCKS.register("chili_ristra", ChiliRistraBlock::new);
+    public static DeferredBlock<Block> STRUNG_MUSHROOMS = BLOCKS.register("strung_mushrooms", StrungMushroomsBlock::new);
     public static DeferredBlock<Block> STRAW_BLOCK = BLOCKS.register("straw_block", StrawBlocks::new);
     public static DeferredBlock<Block> SHAWARMA_SPIT = BLOCKS.register("shawarma_spit", ShawarmaSpitBlock::new);
     public static DeferredBlock<Block> MILLSTONE = BLOCKS.register("millstone", MillstoneBlock::new);
@@ -86,6 +86,10 @@ public class ModBlocks {
     public static DeferredBlock<Block> TABLE_MANGROVE = BLOCKS.register("table_mangrove", TableBlock::new);
     public static DeferredBlock<Block> TABLE_WARPED = BLOCKS.register("table_warped", TableBlock::new);
 
+    public static DeferredBlock<Block> COLD_CUT_HAM_SLICES = BLOCKS.register("cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
+            ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
+    ));
+
     public static Supplier<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));
 
@@ -115,6 +119,9 @@ public class ModBlocks {
 
     public static Supplier<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));
+
+    public static Supplier<BlockEntityType<FoodBiteThreeByThreeBlockEntity>> FOOD_BITE_THREE_BY_THREE_BE = BLOCK_ENTITIES.register("food_bite_three_by_three",
+            () -> BlockEntityType.Builder.of(FoodBiteThreeByThreeBlockEntity::new, COLD_CUT_HAM_SLICES.get()).build(null));
 
     public static Supplier<BlockEntityType<ChairBlockEntity>> CHAIR_BE = BLOCK_ENTITIES.register("chair", () -> BlockEntityType.Builder.of(ChairBlockEntity::new,
             CHAIR_OAK.get(), CHAIR_SPRUCE.get(), CHAIR_ACACIA.get(), CHAIR_BAMBOO.get(),

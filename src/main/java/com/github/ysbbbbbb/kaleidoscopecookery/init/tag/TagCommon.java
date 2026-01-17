@@ -17,6 +17,7 @@ public interface TagCommon {
     TagKey<Item> CROPS_TOMATO = itemTag("crops/tomato");
     TagKey<Item> CROPS_LETTUCE = itemTag("crops/lettuce");
     TagKey<Item> CROPS_RICE = itemTag("crops/rice");
+    TagKey<Item> CROPS_CABBAGE = itemTag("crops/cabbage");
 
     TagKey<Item> VEGETABLES = itemTag("vegetables");
     TagKey<Item> VEGETABLES_CHILI_PEPPER = itemTag("vegetables/chilipepper");
@@ -44,6 +45,7 @@ public interface TagCommon {
     TagKey<Item> RAW_PORK = itemTag("foods/raw_pork");
     TagKey<Item> RAW_MUTTON = itemTag("foods/raw_mutton");
     TagKey<Item> EGGS = itemTag("eggs");
+    TagKey<Item> RAW_FISHES = itemTag("raw_fishes");
     TagKey<Item> RAW_FISHES_COD = itemTag("foods/raw_cod");
     TagKey<Item> RAW_FISHES_SALMON = itemTag("foods/raw_salmon");
     TagKey<Item> RAW_FISHES_TROPICAL = itemTag("foods/tropical_fish");
@@ -79,6 +81,7 @@ public interface TagCommon {
     TagKey<Block> HUMID_HUMID = eclipticSeasonsTag("crops/humid_humid");
 
     // 农夫乐事
+    TagKey<Block> FD_HEAT_SOURCES = TagKey.create(Registries.BLOCK, ResourceLocation.parse("farmersdelight:heat_sources"));
     TagKey<Item> FD_KNIVES = TagKey.create(Registries.ITEM, ResourceLocation.parse("farmersdelight:tools/knives"));
 
     // carry on
