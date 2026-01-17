@@ -324,6 +324,16 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .setResult(FoodBiteRegistry.COLD_ROASTED_MEAT)
                 .save(consumer, "cold_roasted_beef");
 
+        // 冷切火腿片：8熟五花肉
+        PotRecipeBuilder.builder()
+                .addInput(ModItems.COOKED_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get(),
+                        ModItems.COOKED_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get(),
+                        ModItems.COOKED_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get(),
+                        ModItems.COOKED_PORK_BELLY.get(), ModItems.COOKED_PORK_BELLY.get())
+                .setBowlCarrier()
+                .setResult(ModItems.COLD_CUT_HAM_SLICES.get())
+                .save(consumer);
+
         Item slimeBallMeal = FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL);
         addSameItemRecipe(Items.SLIME_BALL, 4, slimeBallMeal.getDefaultInstance(), Items.BOWL, consumer);
         addSameItemRecipe(Items.SLIME_BALL, 5, slimeBallMeal.getDefaultInstance(), Items.BOWL, consumer);

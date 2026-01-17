@@ -1,0 +1,37 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cold_cut_ham_slices"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

@@ -408,8 +408,8 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         if (this.status != PUT_INGREDIENT) {
             return false;
         }
-        // 只允许食物和特定 tag 的东西放入
-        if (!itemStack.isEdible() && !itemStack.is(TagMod.POT_INGREDIENT)) {
+        // 黑名单物品不可放入
+        if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
             return false;
         }
         for (int i = 0; i < this.inputs.size(); i++) {
