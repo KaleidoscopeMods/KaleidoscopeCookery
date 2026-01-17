@@ -179,6 +179,6 @@ public final class ModItems {
     public static RegistryObject<Item> COOKED_MEATBALL = ITEMS.register("cooked_meatball", () -> new Item(new Item.Properties().food(ModFoods.COOKED_MEATBALL)));
 
     // 特殊
-    public static RegistryObject<Item> COLD_CUT_HAM_SLICES = ITEMS.register("cold_cut_ham_slices", () -> new WithTooltipsBlockItem(ModBlocks.COLD_CUT_HAM_SLICES.get(), "cold_cut_ham_slices"));
+    public static RegistryObject<Item> COLD_CUT_HAM_SLICES = ITEMS.register("cold_cut_ham_slices", () -> new LiftBlockItem(ModBlocks.COLD_CUT_HAM_SLICES.get(), "cold_cut_ham_slices"));
 }
 
