@@ -365,7 +365,7 @@
   "advancements.kaleidoscope_cookery.tomato_seed.title": "Seed Project",
   "advancements.kaleidoscope_cookery.tomato_seed.description": "Don't forget to wear a straw hat when clearing grass, besides grass seeds, there might be other discoveries",
   "advancements.kaleidoscope_cookery.iron_hoe.title": "Intensive Farming",
-  "advancements.kaleidoscope_cookery.iron_hoe.description": "Use a hoe to cultivate paddy fields in water for rice planting",
+  "advancements.kaleidoscope_cookery.iron_hoe.description": "Use a hoe to till dirt under water to create paddy fields for rice",
   "advancements.kaleidoscope_cookery.rice_panicle.title": "Dreams Under the Rice",
   "advancements.kaleidoscope_cookery.rice_panicle.description": "The harvest season, increasingly missing the late gentleman...",
   "advancements.kaleidoscope_cookery.fish_rice.title": "Fish-Rice Symbiosis",
@@ -423,5 +423,5 @@
   "advancements.kaleidoscope_cookery.steamer.title": "First Step of Steaming",
   "advancements.kaleidoscope_cookery.steamer.description": "Place the steamer on a heat source to steam food",
   "advancements.kaleidoscope_cookery.baozi.title": "Meat Bun Beats the Dog, No Return!",
-  "advancements.kaleidoscope_cookery.baozi.description": "Sneak and throw a baozi on a wolf to heal it"
+  "advancements.kaleidoscope_cookery.baozi.description": "Sneak and throw a baozi at a wolf to heal it"
 }
