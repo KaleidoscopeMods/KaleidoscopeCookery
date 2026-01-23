@@ -244,7 +244,7 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         return new StockpotInput(this.inputs, this.soupBaseId);
     }
 
-    private void setRecipe(Level levelIn) {
+    public void setRecipe(Level levelIn) {
         StockpotInput container = this.getContainer();
 
         // 触发事件，允许其他 mod 修改配方
@@ -534,6 +534,8 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
     public int getStatus() {
         return status;
     }
+
+    public void setStatus(int status) { this.status = status; }
 
     public int getTakeoutCount() {
         return takeoutCount;

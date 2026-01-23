@@ -119,6 +119,13 @@ repositories {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
     }
+    maven {url = "https://maven.aliyun.com/repository/public"}
+    maven {url = "https://libraries.minecraft.net/"}
+    maven {url = "https://neoforged.forgecdn.net/releases"}
+    maven {url = "https://neoforged.forgecdn.net/mojang-meta"}
+    maven {url = "https://cursemaven.com"}
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    maven { url = "https://maven.createmod.net" }
 }
 
 dependencies {
@@ -167,6 +174,9 @@ dependencies {
     runtimeOnly "curse.maven:ftb-ultimine-forge-386134:7188395"
 
     runtimeOnly "maven.modrinth:food-effect-tooltips-forge:1.4.0-neoforge,1.21.1"
+
+    implementation("net.createmod.ponder:Ponder-NeoForge-1.21.1:1.0.69")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1:1.0.4")
 }
 
 tasks.withType(ProcessResources).configureEach {
