@@ -390,6 +390,8 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         return this.cacheRot;
     }
 
+    public void setCacheRot(float cacheRot) { this.cacheRot = cacheRot; }
+
     public float getLiftAngle() {
         return this.liftAngle;
     }
