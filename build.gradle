@@ -74,10 +74,6 @@ mixin {
 }
 
 repositories {
-    maven { url = "https://maven.aliyun.com/repository/public" }
-    maven { url = "https://libraries.minecraft.net/" }
-    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
-    maven { url = "https://maven.createmod.net" }
     maven {
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
@@ -124,6 +120,13 @@ repositories {
     maven {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        url = "https://maven.createmod.net"
+        content {
+            includeGroup "net.createmod.ponder"
+            includeGroup "dev.engine-room.flywheel"
+        }
     }
 }
 
@@ -182,8 +185,8 @@ dependencies {
 
     runtimeOnly fg.deobf("maven.modrinth:food-effect-tooltips-forge:1.3.0-forge,1.20.1")
 
-    implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-1.20.1:1.0.69"))
-    compileOnly fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-1.20.1:1.0.4")
+    implementation fg.deobf("net.createmod.ponder:Ponder-Forge-1.20.1:1.0.80")
+    runtimeOnly fg.deobf("maven.modrinth:create:1.20.1-6.0.6")
 
     // runtimeOnly fg.deobf("maven.modrinth:serene-seasons:9.1.0.2-forge")
     // runtimeOnly fg.deobf("maven.modrinth:glitchcore:0.0.1.1-forge")

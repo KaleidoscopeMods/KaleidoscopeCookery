@@ -1,8 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.KitchenBlockPonderScreen;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.KitchenBlockPonderTag;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -16,12 +14,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class KitchenPonderPlugin implements PonderPlugin {
     @Override
-    public String getModId(){
+    public String getModId() {
         return KaleidoscopeCookery.MOD_ID;
     }
 
     @Override
-    public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper){
+    public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         KitchenBlockPonderScreen.register(helper);
     }
 
@@ -30,7 +28,7 @@ public class KitchenPonderPlugin implements PonderPlugin {
         KitchenBlockPonderTag.register(helper);
     }
 
-    public static void Init(){
+    public static void init() {
         PonderIndex.addPlugin(new KitchenPonderPlugin());
     }
 }

@@ -79,7 +79,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public float getRotation(Level level, float partialTick) {
         float degPerTick = 360f / Math.max(this.rotSpeedTick, 1);
         float gameTime = level.getGameTime() + partialTick;
-        return (this.cacheRot + gameTime * degPerTick) % 360;
+        return Math.abs(this.cacheRot + gameTime * degPerTick) % 360;
     }
 
     public void tick(Level level) {
@@ -348,7 +348,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putUUID(ENTITY_ID_KEY, entityId);
-        tag.putFloat(CACHE_ROT_KEY, cacheRot);
+        tag.putFloat(CACHE_ROT_KEY, fixRot(cacheRot));
         tag.putFloat(ROT_SPEED_TICK_KEY, rotSpeedTick);
         tag.putFloat(LIFT_ANGLE_KEY, liftAngle);
         if (!input.isEmpty()) {
@@ -368,7 +368,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public void load(CompoundTag tag) {
         super.load(tag);
         this.entityId = tag.getUUID(ENTITY_ID_KEY);
-        this.cacheRot = tag.getFloat(CACHE_ROT_KEY);
+        this.cacheRot = fixRot(tag.getFloat(CACHE_ROT_KEY));
         this.rotSpeedTick = tag.getFloat(ROT_SPEED_TICK_KEY);
         this.liftAngle = tag.getFloat(LIFT_ANGLE_KEY);
         this.input = tag.getCompound(INPUT_ITEM_KEY).isEmpty() ? ItemStack.EMPTY : ItemStack.of(tag.getCompound(INPUT_ITEM_KEY));
@@ -390,7 +390,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         return this.cacheRot;
     }
 
-    public void setCacheRot(float cacheRot) { this.cacheRot = cacheRot; }
+    public void setCacheRot(float cacheRot) {
+        this.cacheRot = cacheRot;
+    }
 
     public float getLiftAngle() {
         return this.liftAngle;
@@ -407,5 +409,15 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public float getProgressPercent() {
         float total = Math.max(this.rotSpeedTick, 1);
         return (total - this.progress) / total;
+    }
+
+    /**
+     * 修正 cacheRot 的值，此值应该在 0-360 之间，过大或过小都会导致动画异常
+     */
+    private float fixRot(float value) {
+        if (Float.isNaN(value) || Float.isInfinite(value)) {
+            return 0f;
+        }
+        return Math.abs(value) % 360;
     }
 }

@@ -534,7 +534,9 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         return status;
     }
 
-    public void setStatus(int status) { this.status = status; }
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getTakeoutCount() {
         return takeoutCount;
