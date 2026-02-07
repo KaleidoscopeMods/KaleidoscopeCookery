@@ -84,8 +84,9 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
     }
 
     // 合并物品，仅在放置时调用
-    public void mergeItem(ItemStack stack, Level level) {
+    public CompoundTag mergeItem(ItemStack stack, Level level) {
         CompoundTag data = stack.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY).copyTag();
+        CompoundTag finalData = new CompoundTag();
 
         NonNullList<ItemStack> merge = NonNullList.withSize(8, ItemStack.EMPTY);
         int[] mergeCookingProgress = new int[8];
@@ -119,11 +120,11 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
 
         // 写进 data
         ContainerHelper.saveAllItems(data, merge, false, level.registryAccess());
-        data.putIntArray(COOKING_PROGRESS_TAG, mergeCookingProgress);
-        data.putIntArray(COOKING_TIME_TAG, mergeCookingTime);
+        finalData.putIntArray(COOKING_PROGRESS_TAG, mergeCookingProgress);
+        finalData.putIntArray(COOKING_TIME_TAG, mergeCookingTime);
 
         // 写回物品
-        BlockItem.setBlockEntityData(stack, this.getType(), data);
+        return finalData;
     }
 
     public List<ItemStack> dropAsItem(Level level) {
