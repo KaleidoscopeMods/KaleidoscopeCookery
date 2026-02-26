@@ -21,6 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MillstoneScenes {
     public static void introduction(SceneBuilder scene, SceneBuildingUtil util) {
@@ -82,16 +83,27 @@ public class MillstoneScenes {
                 (lvl) -> new Donkey(EntityType.DONKEY, lvl));
         scene.world().modifyEntity(donkey, (e) -> {
             e.setPos(grid.at(2, 5, 2).getCenter());
-            e.setDeltaMovement(0, -0.2f, 0);
-            Donkey d = (Donkey) e;
-            d.setTamed(true);
-            d.setOwnerUUID(UUID.randomUUID());
-            d.equipSaddle(null);
         });
-        for (int i = 0; i < 15; i++) {
-            scene.world().modifyEntity(donkey, (e) -> e.move(MoverType.SELF, e.getDeltaMovement()));
+        for (int i = 0;i < 10;i++) {
+            int j = i;
+            scene.world().modifyEntity(donkey, (e) -> {
+                e.setDeltaMovement(0, fallingSpeed(j,0.08D,0.98D), 0);
+                e.move(MoverType.SELF, e.getDeltaMovement());
+            });
             scene.idle(1);
         }
+
+        AtomicReference<Vec3> pre = new AtomicReference<>();
+
+        scene.world().modifyEntity(donkey,(e)->{
+            Vec3 pos = (new Vec3(0.0F, 0.0F, 2.5F))
+                    .yRot(0)
+                    .add(millstonePos.getCenter().relative(Direction.DOWN, 0.5f));
+            e.moveTo(pos.x, pos.y, pos.z);
+            (e).setYBodyRot(-90);
+            (e).setYHeadRot(-90);
+            pre.set(pos);
+        });
 
         for (int i = 0; i < 200; i++) {
             if (i == 20) {
@@ -103,20 +115,23 @@ public class MillstoneScenes {
                         .placeNearTarget();
             }
 
-            scene.world().modifyEntity(donkey, (e) -> {
-                float rot = getCacheRot();
-                Vec3 center = millstonePos.getCenter();
-                center = new Vec3(center.x, center.y - 0.5f, center.z);
-                Vec3 pos = new Vec3(0.0F, 0.0F, 2.0F)
-                        .yRot(rot * ((float) Math.PI / 180F))
-                        .add(center);
-                e.moveTo(pos.x, pos.y, pos.z);
-                LivingEntity living = (LivingEntity) e;
-                living.setYBodyRot(-rot - 90);
-                living.setYHeadRot(-rot - 90);
+            int j = i;
+            scene.world().modifyEntity(donkey,(e)->{
+                float rot = (j * 1.8f) % 360;
+                Vec3 pos = (new Vec3(0.0F, 0.0F, 2.5F))
+                        .yRot(rot * ((float)Math.PI / 180F))
+                        .add(millstonePos.getCenter().relative(Direction.DOWN, 0.5f));
+                Vec3 vec = new Vec3(pos.x() - pre.get().x(),
+                        0,
+                        pos.z() - pre.get().z());
+                e.setDeltaMovement(vec);
+                e.move(MoverType.SELF, e.getDeltaMovement());
+                (e).setYBodyRot(-rot - 90);
+                (e).setYHeadRot(-rot - 90);
+                pre.set(pos);
             });
-            scene.world().modifyBlockEntity(millstonePos, MillstoneBlockEntity.class, (e) -> {
-                e.setCacheRot(cacheRot);
+            scene.world().modifyBlockEntity(millstonePos, MillstoneBlockEntity.class, (e)->{
+                e.setCacheRot((j * 1.8f) % 360);
             });
             scene.idle(1);
         }
@@ -136,14 +151,19 @@ public class MillstoneScenes {
         scene.world().createItemEntity(
                 vector.blockSurface(millstonePos.west(), Direction.UP),
                 new Vec3(-0.1f, 0, -0.05f), new ItemStack(Items.GUNPOWDER));
-        scene.idle(20);
-        scene.idle(20);
+        for (int i = 0;i < 40;i++) {
+            scene.world().modifyEntity(donkey,(e)->{
+                (e).setYBodyRot(-90);
+                (e).setYHeadRot(-90);
+            });
+            scene.idle(1);
+        }
+        scene.world().modifyEntity(donkey,(e)->{
+            e.setInvisible(true);
+        });
     }
 
-    public static float getCacheRot() {
-        cacheRot += 1.8f;
-        return (cacheRot % 360);
+    private static double fallingSpeed(int tick, double gravity, double drag) {
+        return (Math.pow(drag, tick) - 1) * (gravity / (1 - drag));
     }
-
-    public static float cacheRot;
 }
