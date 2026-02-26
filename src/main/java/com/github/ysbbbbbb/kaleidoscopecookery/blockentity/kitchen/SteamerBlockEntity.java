@@ -265,42 +265,6 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         return this.quickCheck.getRecipeFor(new SimpleContainer(stack), level);
     }
 
-//    @Override
-//    public boolean placeFood(Level level, LivingEntity user, ItemStack food) {
-//        // 先检查这层是否是能交互的
-//        // 上层必须不能阻拦
-//        BlockPos above = this.getBlockPos().above();
-//        if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
-//            return false;
-//        }
-//        // 且自己必须开着盖子
-//        if (this.getBlockState().getValue(SteamerBlock.HAS_LID)) {
-//            return false;
-//        }
-//        // 然后检查配方
-//        Optional<SteamerRecipe> steamerRecipe = getSteamerRecipe(level, food);
-//        if (steamerRecipe.isEmpty()) {
-//            return false;
-//        }
-//        int cookTime = steamerRecipe.get().getCookTick();
-//        if (cookTime <= 0) {
-//            return false;
-//        }
-//        boolean half = this.getBlockState().getValue(SteamerBlock.HALF);
-//        int startIndex = half ? 0 : 4;
-//        // 一次性放入一层的
-//        for (int i = startIndex; i < startIndex + 4; i++) {
-//            ItemStack itemstack = this.items.get(i);
-//            if (itemstack.isEmpty()) {
-//                this.cookingTime[i] = cookTime;
-//                this.cookingProgress[i] = 0;
-//                this.items.set(i, food.split(1));
-//            }
-//        }
-//        this.refresh();
-//        return true;
-//    }
-
     @Override
     public boolean placeFood(Level level, LivingEntity user, ItemStack food) {
         // 先检查这层是否是能交互的
@@ -335,58 +299,6 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         //只有成功放入才返回 true
         return added;
     }
-
-//    @Override
-//    public boolean takeFood(Level level, LivingEntity user) {
-//        // 先检查这层是否是能交互的
-//        // 上层必须不能阻拦
-//        BlockPos above = this.getBlockPos().above();
-//        if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
-//            return false;
-//        }
-//        BlockState blockState = this.getBlockState();
-//        // 且自己必须开着盖子
-//        if (blockState.getValue(SteamerBlock.HAS_LID)) {
-//            return false;
-//        }
-//        boolean isAllEmpty = true;
-//        boolean half = blockState.getValue(SteamerBlock.HALF);
-//        int startIndex = half ? 4 : 8;
-//        // 一次性取出一层的
-//        for (int i = startIndex - 1; i >= (startIndex - 4); i--) {
-//            ItemStack stack = this.items.get(i);
-//            if (stack.isEmpty()) {
-//                continue;
-//            }
-//            isAllEmpty = false;
-//            ItemUtils.getItemToLivingEntity(user, stack);
-//            this.items.set(i, ItemStack.EMPTY);
-//            this.cookingTime[i] = 0;
-//            this.cookingProgress[i] = 0;
-//        }
-//        // 全为空，还是双层，那么拆掉一层
-//        if (isAllEmpty) {
-//            int preferredSlot = user instanceof Player player ? player.getInventory().selected : -1;
-//            ItemUtils.getItemToLivingEntity(user, ModItems.STEAMER.get().getDefaultInstance(), preferredSlot);
-//            // 把 4-8 全部清空
-//            for (int i = 4; i < 8; i++) {
-//                this.items.set(i, ItemStack.EMPTY);
-//                this.cookingTime[i] = 0;
-//                this.cookingProgress[i] = 0;
-//            }
-//            // 释放粒子效果
-//            level.playSound(null, this.getBlockPos(), blockState.getSoundType().getBreakSound(), SoundSource.BLOCKS);
-//            if (half) {
-//                level.setBlockAndUpdate(this.getBlockPos(), Blocks.AIR.defaultBlockState());
-//            } else {
-//                setChanged();
-//                level.setBlockAndUpdate(this.getBlockPos(), blockState.setValue(SteamerBlock.HALF, true));
-//            }
-//        } else {
-//            this.refresh();
-//        }
-//        return true;
-//    }
 
     @Override
     public boolean takeFood(Level level, LivingEntity user) {
