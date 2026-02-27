@@ -145,8 +145,32 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
 
         // 手持蒸笼，右击可以摞上去
         if (itemInHand.is(this.asItem())) {
-            if (state.getValue(HALF) && itemInHand.getItem() instanceof SteamerItem steamerItem) {
-                return steamerItem.place(new BlockPlaceContext(player, hand, itemInHand, hit));
+            SteamerItem item = (SteamerItem) itemInHand.getItem();
+            //使用复制以避免创造模式下不正确地修改手中物品的 NBT
+            ItemStack toUse = player.getAbilities().instabuild ? itemInHand.copy() : itemInHand;
+            BlockPos placePos = hit.getBlockPos();
+            BlockState blockState = state;
+            //当目标是完整的未加盖蒸笼方块，继续向上搜索
+            while (blockState.is(this.asBlock()) && !blockState.getValue(HAS_LID) && !blockState.getValue(HALF)){
+                placePos = placePos.above();
+                blockState = level.getBlockState(placePos);
+            }
+            //当最终位置为可替换方块，放置蒸笼
+            if (blockState.canBeReplaced()) {
+                return item.place(new BlockPlaceContext(
+                        player,
+                        hand,
+                        toUse,
+                        hit.withDirection(Direction.UP).withPosition(placePos)
+                ));
+            //当最终位置为未加盖的单层蒸笼方块，放置蒸笼
+            } else if (blockState.is(this.asBlock()) && blockState.getValue(HALF) && !blockState.getValue(HAS_LID)) {
+                return item.place(new BlockPlaceContext(
+                        player,
+                        hand,
+                        toUse,
+                        hit.withDirection(Direction.UP).withPosition(placePos)
+                ));
             } else {
                 return InteractionResult.PASS;
             }

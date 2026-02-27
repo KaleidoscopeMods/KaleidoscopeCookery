@@ -92,8 +92,8 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
     @Override
     public boolean hasHeatSource(Level level) {
         BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT)) {
-            return true;
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
         }
         return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }

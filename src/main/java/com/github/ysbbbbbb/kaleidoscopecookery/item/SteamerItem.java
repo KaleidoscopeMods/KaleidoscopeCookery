@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -45,7 +47,8 @@ public class SteamerItem extends BlockItem {
         }
         BlockEntity blockEntity = level.getBlockEntity(clickedPos);
         ItemStack stack = context.getItemInHand();
-        if (blockEntity instanceof SteamerBlockEntity steamer && stack.is(this) && stack.getCount() == 1) {
+        boolean hasData = BlockItem.getBlockEntityData(stack) != null;
+        if (blockEntity instanceof SteamerBlockEntity steamer && stack.is(this) && hasData && stack.getCount() == 1) {
             steamer.mergeItem(stack);
         }
         return super.placeBlock(context, state);

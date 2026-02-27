@@ -40,8 +40,8 @@ public class StockpotScenes {
         Selection potSel = select.position(potPos);
         LivingEntity pig = new Pig(EntityType.PIG, level);
 
-        scene.world().modifyBlock(litPos, (s) -> ModBlocks.STOVE.get().defaultBlockState()
-                .setValue(StoveBlock.FACING, Direction.NORTH)
+        scene.world().modifyBlock(litPos, (s) ->
+                s.setValue(StoveBlock.FACING, Direction.NORTH)
                 .setValue(StoveBlock.LIT, false), false);
         scene.idle(20);
 
@@ -56,9 +56,8 @@ public class StockpotScenes {
                 .rightClick()
                 .withItem(new ItemStack(Items.FLINT_AND_STEEL));
         scene.idle(7);
-        scene.world().modifyBlock(litPos, (s) -> ModBlocks.STOVE.get().defaultBlockState()
-                .setValue(StoveBlock.FACING, Direction.NORTH)
-                .setValue(StoveBlock.LIT, true), false);
+        scene.world().modifyBlock(litPos, (s) ->
+                s.setValue(StoveBlock.LIT, true), false);
         scene.idle(48);
 
         scene.addKeyframe();
@@ -103,8 +102,8 @@ public class StockpotScenes {
                 .rightClick()
                 .withItem(new ItemStack(ModItems.STOCKPOT_LID.get()));
         scene.idle(7);
-        scene.world().modifyBlock(potPos, (s) -> ModBlocks.STOCKPOT.get().defaultBlockState()
-                .setValue(StockpotBlock.HAS_LID, true), false);
+        scene.world().modifyBlock(potPos, (s) ->
+                s.setValue(StockpotBlock.HAS_LID, true), false);
         scene.idle(48);
 
         scene.addKeyframe();
@@ -122,8 +121,8 @@ public class StockpotScenes {
         scene.overlay().showControls(vector.blockSurface(potPos, Direction.UP), Pointing.DOWN, 35)
                 .rightClick();
         scene.idle(7);
-        scene.world().modifyBlock(potPos, (s) -> ModBlocks.STOCKPOT.get().defaultBlockState()
-                .setValue(StockpotBlock.HAS_LID, false), false);
+        scene.world().modifyBlock(potPos, (s) ->
+                s.setValue(StockpotBlock.HAS_LID, false), false);
         scene.world().modifyBlockEntity(potPos, StockpotBlockEntity.class, (e) -> {
             e.setRecipe(level);
             e.setStatus(3);
