@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.StockpotBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.particle.StockpotParticleOptions;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.StockpotContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer;
@@ -362,6 +363,10 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
             return false;
         }
         if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
+            return false;
+        }
+        // Tetra 兼容
+        if (TetraCompat.isModularItem(itemStack)) {
             return false;
         }
         // 检查是否有足够的空间放入食材

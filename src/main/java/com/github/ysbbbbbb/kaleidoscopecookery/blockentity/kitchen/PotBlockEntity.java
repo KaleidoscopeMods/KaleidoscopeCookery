@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IPot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.PotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
@@ -410,6 +411,10 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         }
         // 黑名单物品不可放入
         if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
+            return false;
+        }
+        // Tetra 兼容
+        if (TetraCompat.isModularItem(itemStack)) {
             return false;
         }
         for (int i = 0; i < this.inputs.size(); i++) {

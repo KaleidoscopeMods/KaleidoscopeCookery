@@ -23,7 +23,7 @@ public final class ModItems {
     public static RegistryObject<Item> STEAMER = ITEMS.register("steamer", SteamerItem::new);
 
     // 油
-    public static RegistryObject<Item> OIL = ITEMS.register("oil", () -> new WithTooltipsItem(new Item.Properties(), "oil"));
+    public static RegistryObject<Item> OIL = ITEMS.register("oil", OilItem::new);
     public static RegistryObject<Item> OIL_POT = ITEMS.register("oil_pot", OilPotItem::new);
     public static RegistryObject<Item> OIL_BLOCK = ITEMS.register("oil_block", () -> new BlockItem(ModBlocks.OIL_BLOCK.get(), new Item.Properties()));
     public static RegistryObject<Item> ENAMEL_BASIN = ITEMS.register("enamel_basin", () -> new BlockItem(ModBlocks.ENAMEL_BASIN.get(), new Item.Properties()));

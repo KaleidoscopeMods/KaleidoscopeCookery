@@ -128,6 +128,8 @@ public class TagItem extends ItemTagsProvider {
                 TADPOLE_BUCKET,
                 // 碗
                 BOWL,
+                // 玻璃瓶
+                GLASS_BOTTLE,
                 // 本模组的食谱
                 ModItems.RECIPE_ITEM.get()
         );
@@ -176,7 +178,9 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.COOKED_PORK).add(ModItems.COOKED_PORK_BELLY.get(), COOKED_PORKCHOP);
         tag(TagCommon.COOKED_MUTTON).add(ModItems.COOKED_LAMB_CHOPS.get(), COOKED_MUTTON);
         tag(TagCommon.COOKED_EGGS).add(ModItems.FRIED_EGG.get());
-        tag(TagCommon.COOKED_RICE).add(ModItems.COOKED_RICE.get());
+        tag(TagCommon.COOKED_RICE).add(ModItems.COOKED_RICE.get())
+                // 农夫乐事没加此标签，只能我们来主动修正了……
+                .addOptional(new ResourceLocation("farmersdelight:cooked_rice"));
 
         tag(TagCommon.RAW_BEEF).add(ModItems.RAW_COW_OFFAL.get(), BEEF);
         tag(TagCommon.RAW_CHICKEN).add(CHICKEN);

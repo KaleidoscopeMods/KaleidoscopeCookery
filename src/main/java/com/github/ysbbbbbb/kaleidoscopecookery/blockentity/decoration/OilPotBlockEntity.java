@@ -46,8 +46,10 @@ public class OilPotBlockEntity extends BaseBlockEntity {
     }
 
     public void setOilCount(int oilCount) {
-        this.oilCount = oilCount;
-        this.refresh();
+        if (this.oilCount != oilCount) {
+            this.oilCount = oilCount;
+            this.refresh();
+        }
 
         if (this.level == null) {
             return;
