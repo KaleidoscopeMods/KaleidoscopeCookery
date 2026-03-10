@@ -135,6 +135,7 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemInHand = player.getItemInHand(hand);
+
         // 空手 Shift 右击盖盖子、去掉盖子
         // 需要检查上方是否有方块，如果有方块则不能盖盖子
         Boolean hasLid = state.getValue(HAS_LID);
@@ -144,33 +145,27 @@ public class SteamerBlock extends FallingBlock implements EntityBlock, SimpleWat
         }
 
         // 手持蒸笼，右击可以摞上去
-        if (itemInHand.is(this.asItem())) {
-            SteamerItem item = (SteamerItem) itemInHand.getItem();
-            //使用复制以避免创造模式下不正确地修改手中物品的 NBT
-            ItemStack toUse = player.getAbilities().instabuild ? itemInHand.copy() : itemInHand;
+        if (itemInHand.getItem() instanceof SteamerItem steamerItem) {
             BlockPos placePos = hit.getBlockPos();
             BlockState blockState = state;
-            //当目标是完整的未加盖蒸笼方块，继续向上搜索
-            while (blockState.is(this.asBlock()) && !blockState.getValue(HAS_LID) && !blockState.getValue(HALF)){
+
+            // 当目标是完整的未加盖蒸笼方块，继续向上搜索
+            while (blockState.is(this) && !blockState.getValue(HAS_LID) && !blockState.getValue(HALF)) {
                 placePos = placePos.above();
                 blockState = level.getBlockState(placePos);
             }
-            //当最终位置为可替换方块，放置蒸笼
+
+            // 使用复制以避免创造模式下不正确地修改手中物品的 NBT
+            ItemStack toUse = player.isCreative() ? itemInHand.copy() : itemInHand;
+            BlockHitResult hitResult = hit.withDirection(Direction.UP).withPosition(placePos);
+            BlockPlaceContext placeContext = new BlockPlaceContext(player, hand, toUse, hitResult);
+
             if (blockState.canBeReplaced()) {
-                return item.place(new BlockPlaceContext(
-                        player,
-                        hand,
-                        toUse,
-                        hit.withDirection(Direction.UP).withPosition(placePos)
-                ));
-            //当最终位置为未加盖的单层蒸笼方块，放置蒸笼
-            } else if (blockState.is(this.asBlock()) && blockState.getValue(HALF) && !blockState.getValue(HAS_LID)) {
-                return item.place(new BlockPlaceContext(
-                        player,
-                        hand,
-                        toUse,
-                        hit.withDirection(Direction.UP).withPosition(placePos)
-                ));
+                // 当最终位置为可替换方块，放置蒸笼
+                return steamerItem.place(placeContext);
+            } else if (blockState.is(this) && blockState.getValue(HALF) && !blockState.getValue(HAS_LID)) {
+                // 当最终位置为未加盖的单层蒸笼方块，放置蒸笼
+                return steamerItem.place(placeContext);
             } else {
                 return InteractionResult.PASS;
             }

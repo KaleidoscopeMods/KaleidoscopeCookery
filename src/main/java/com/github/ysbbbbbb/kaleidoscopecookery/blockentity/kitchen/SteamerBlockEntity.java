@@ -58,6 +58,44 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         super(ModBlocks.STEAMER_BE.get(), pos, state);
     }
 
+    // 将蒸笼数据一分为二，分别保存到两个 tag 里
+    public static void saveSplit(CompoundTag tag1, CompoundTag tag2,
+                                 NonNullList<ItemStack> items,
+                                 int[] cookingProgress,
+                                 int[] cookingTime) {
+        // 保存两部分
+        NonNullList<ItemStack> first = NonNullList.withSize(4, ItemStack.EMPTY);
+        NonNullList<ItemStack> second = NonNullList.withSize(4, ItemStack.EMPTY);
+        for (int i = 0; i < 4; i++) {
+            first.set(i, items.get(i));
+            second.set(i, items.get(i + 4));
+        }
+
+        int[] firstCookingProgress = new int[4];
+        int[] secondCookingProgress = new int[4];
+
+        int[] firstCookingTime = new int[4];
+        int[] secondCookingTime = new int[4];
+
+        System.arraycopy(cookingProgress, 0, firstCookingProgress, 0, 4);
+        System.arraycopy(cookingProgress, 4, secondCookingProgress, 0, 4);
+
+        System.arraycopy(cookingTime, 0, firstCookingTime, 0, 4);
+        System.arraycopy(cookingTime, 4, secondCookingTime, 0, 4);
+
+        ContainerHelper.saveAllItems(tag1, first, false);
+        if (!tag1.isEmpty()) {
+            tag1.putIntArray(COOKING_PROGRESS_TAG, firstCookingProgress);
+            tag1.putIntArray(COOKING_TIME_TAG, firstCookingTime);
+        }
+
+        ContainerHelper.saveAllItems(tag2, second, false);
+        if (!tag2.isEmpty()) {
+            tag2.putIntArray(COOKING_PROGRESS_TAG, secondCookingProgress);
+            tag2.putIntArray(COOKING_TIME_TAG, secondCookingTime);
+        }
+    }
+
     public void tick(Level level) {
         // 蒸笼每火力每 5 tick 更新一次
         if (level.getGameTime() % 5 == 0) {
@@ -273,18 +311,22 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
             return false;
         }
+
         // 然后检查配方
         Optional<SteamerRecipe> steamerRecipe = getSteamerRecipe(level, food);
         if (steamerRecipe.isEmpty()) {
             return false;
         }
+
         int cookTime = steamerRecipe.get().getCookTick();
         if (cookTime <= 0) {
             return false;
         }
+
         boolean added = false;
         boolean half = this.getBlockState().getValue(SteamerBlock.HALF);
         int endIndex = half ? 4 : 8;
+
         // 一次性放入
         for (int i = 0; i < endIndex && !food.isEmpty(); i++) {
             ItemStack itemstack = this.items.get(i);
@@ -295,6 +337,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
                 added = true;
             }
         }
+
         this.refresh();
         //只有成功放入才返回 true
         return added;
@@ -308,11 +351,14 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         if (level.getBlockState(above).isFaceSturdy(level, above, Direction.DOWN)) {
             return false;
         }
+
         BlockState blockState = this.getBlockState();
         boolean isAllEmpty = true;
+
         boolean half = blockState.getValue(SteamerBlock.HALF);
         int preferredSlot = user instanceof Player player ? player.getInventory().selected : -1;
         int endIndex = half ? 4 : 8;
+
         // 一次性取出所有物品
         for (int i = 0; i < endIndex; i++) {
             ItemStack stack = this.items.get(i);
@@ -328,6 +374,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
 
         boolean hasLid = blockState.getValue(SteamerBlock.HAS_LID);
         boolean isAboveSteamer = level.getBlockState(this.getBlockPos().above()).is(this.getBlockState().getBlock());
+
         // 全为空，未加盖且上层不是蒸笼，那么拆掉一层
         if (isAllEmpty && !hasLid && !isAboveSteamer) {
             ItemUtils.getItemToLivingEntity(user, ModItems.STEAMER.get().getDefaultInstance(), preferredSlot);
@@ -349,7 +396,8 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         } else {
             this.refresh();
         }
-        //只有成功取出或拆下蒸笼才返回 true
+
+        // 只有成功取出或拆下蒸笼才返回 true
         return !isAllEmpty;
     }
 
@@ -380,44 +428,6 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
         ContainerHelper.saveAllItems(tag, this.items, true);
         tag.putIntArray(COOKING_PROGRESS_TAG, this.cookingProgress);
         tag.putIntArray(COOKING_TIME_TAG, this.cookingTime);
-    }
-
-    // 将蒸笼数据一分为二，分别保存到两个 tag 里
-    public static void saveSplit(CompoundTag tag1, CompoundTag tag2,
-                                 NonNullList<ItemStack> items,
-                                 int[] cookingProgress,
-                                 int[] cookingTime) {
-        // 保存两部分
-        NonNullList<ItemStack> first = NonNullList.withSize(4, ItemStack.EMPTY);
-        NonNullList<ItemStack> second = NonNullList.withSize(4, ItemStack.EMPTY);
-        for (int i = 0; i < 4; i++) {
-            first.set(i, items.get(i));
-            second.set(i, items.get(i + 4));
-        }
-
-        int[] firstCookingProgress = new int[4];
-        int[] secondCookingProgress = new int[4];
-
-        int[] firstCookingTime = new int[4];
-        int[] secondCookingTime = new int[4];
-
-        System.arraycopy(cookingProgress, 0, firstCookingProgress, 0, 4);
-        System.arraycopy(cookingProgress, 4, secondCookingProgress, 0, 4);
-
-        System.arraycopy(cookingTime, 0, firstCookingTime, 0, 4);
-        System.arraycopy(cookingTime, 4, secondCookingTime, 0, 4);
-
-        ContainerHelper.saveAllItems(tag1, first, false);
-        if (!tag1.isEmpty()) {
-            tag1.putIntArray(COOKING_PROGRESS_TAG, firstCookingProgress);
-            tag1.putIntArray(COOKING_TIME_TAG, firstCookingTime);
-        }
-
-        ContainerHelper.saveAllItems(tag2, second, false);
-        if (!tag2.isEmpty()) {
-            tag2.putIntArray(COOKING_PROGRESS_TAG, secondCookingProgress);
-            tag2.putIntArray(COOKING_TIME_TAG, secondCookingTime);
-        }
     }
 
     public int[] getCookingProgress() {

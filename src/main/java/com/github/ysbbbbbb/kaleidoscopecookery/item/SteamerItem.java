@@ -11,7 +11,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,6 +32,15 @@ public class SteamerItem extends BlockItem {
 
     public SteamerItem() {
         super(ModBlocks.STEAMER.get(), new Item.Properties());
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
+        CompoundTag data = BlockItem.getBlockEntityData(stack);
+        if (data != null) {
+            return HAS;
+        }
+        return NONE;
     }
 
     @Override
@@ -60,15 +67,6 @@ public class SteamerItem extends BlockItem {
             return 1;
         }
         return super.getMaxStackSize(stack);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        CompoundTag data = BlockItem.getBlockEntityData(stack);
-        if (data != null) {
-            return HAS;
-        }
-        return NONE;
     }
 
     @Override
