@@ -55,7 +55,6 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     private static final String LIFT_ANGLE_KEY = "LiftAngle";
     private static final String INPUT_ITEM_KEY = "InputItem";
     private static final String OUTPUT_ITEM_KEY = "OutputItem";
-    private static final String CARRIER_INGREDIENT_KEY = "CarrierIngredient";
     private static final String PROGRESS_KEY = "Progress";
 
     private final RecipeManager.CachedCheck<Container, MillstoneRecipe> quickCheck = RecipeManager.createCheck(ModRecipes.MILLSTONE_RECIPE);
@@ -327,7 +326,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         this.bindEntity = mob;
         // 缓存角度纠正
         float rot = this.getRotation(this.level, 0);
-        this.cacheRot = this.cacheRot - (rot - this.cacheRot);
+        this.cacheRot = fixRot(this.cacheRot - (rot - this.cacheRot));
 
         // 读取数据地图，获取抬升角度
         MillstoneBindableData data = MillstoneBindableDataReloadListener.INSTANCE.getOrDefault(mob.getType(), MillstoneBindableData.DEFAULT);
