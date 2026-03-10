@@ -54,8 +54,8 @@ public class PotScenes {
                 .rightClick()
                 .withItem(new ItemStack(Items.FLINT_AND_STEEL));
         scene.idle(7);
-        scene.world().modifyBlock(litPos, (s) -> ModBlocks.STOVE.get().defaultBlockState()
-                .setValue(StoveBlock.FACING, Direction.NORTH)
+        scene.world().modifyBlock(litPos, (s) ->
+                s.setValue(StoveBlock.FACING, Direction.NORTH)
                 .setValue(StoveBlock.LIT, true), false);
         scene.idle(48);
 
@@ -68,10 +68,9 @@ public class PotScenes {
                 .rightClick()
                 .withItem(new ItemStack(ModItems.OIL.get()));
         scene.idle(7);
-        scene.world().modifyBlock(potPos, (s) -> ModBlocks.POT.get().defaultBlockState()
-                .setValue(PotBlock.HAS_OIL, true)
-                .setValue(PotBlock.SHOW_OIL, true)
-                .setValue(PotBlock.FACING, Direction.NORTH), false);
+        scene.world().modifyBlock(potPos, (s) ->
+                s.setValue(PotBlock.HAS_OIL, true)
+                .setValue(PotBlock.SHOW_OIL, true), false);
         scene.idle(48);
 
         scene.addKeyframe();
@@ -164,9 +163,8 @@ public class PotScenes {
                 .withItem(new ItemStack(Items.BOWL));
         scene.idle(7);
         scene.world().modifyBlockEntity(potPos, PotBlockEntity.class, PotBlockEntity::reset);
-        scene.world().modifyBlock(potPos, (s) -> ModBlocks.POT.get().defaultBlockState()
-                .setValue(PotBlock.FACING, Direction.NORTH)
-                .setValue(PotBlock.HAS_OIL, false)
+        scene.world().modifyBlock(potPos, (s) ->
+                s.setValue(PotBlock.HAS_OIL, false)
                 .setValue(PotBlock.SHOW_OIL, false), false);
         scene.idle(43);
         scene.overlay().showControls(vector.blockSurface(potPos, Direction.UP), Pointing.DOWN, 35)

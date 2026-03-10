@@ -17,7 +17,7 @@ public class SitEntity extends Entity {
     public static final EntityType<SitEntity> TYPE = EntityType.Builder.<SitEntity>of(SitEntity::new, MobCategory.MISC)
             .sized(0.5f, 0.1f)
             .clientTrackingRange(10)
-            .noSave().noSummon()
+            .noSummon()
             .build("sit");
     private int passengerTick = 0;
 

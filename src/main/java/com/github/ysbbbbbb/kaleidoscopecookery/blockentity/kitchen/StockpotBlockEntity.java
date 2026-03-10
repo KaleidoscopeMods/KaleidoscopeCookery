@@ -61,6 +61,12 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
 
     private final RecipeManager.CachedCheck<StockpotContainer, StockpotRecipe> quickCheck = RecipeManager.createCheck(ModRecipes.STOCKPOT_RECIPE);
 
+    /**
+     * 主要用于客户端渲染的字段，recipe 里缓存了数据包中定义的部分客户端渲染需要的东西
+     */
+    public StockpotRecipe recipe = StockpotRecipeSerializer.getEmptyRecipe();
+    public @Nullable Entity renderEntity = null;
+
     private NonNullList<ItemStack> inputs = NonNullList.withSize(StockpotRecipe.RECIPES_SIZE, ItemStack.EMPTY);
     private ResourceLocation recipeId = StockpotRecipeSerializer.EMPTY_ID;
     private ResourceLocation soupBaseId = ModSoupBases.WATER;
@@ -72,12 +78,6 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
      * 盖子，因为盖子可以当做盾牌，所以会记录很多额外内容，需要专门保存
      */
     private ItemStack lidItem = ItemStack.EMPTY;
-
-    /**
-     * 主要用于客户端渲染的字段，recipe 里缓存了数据包中定义的部分客户端渲染需要的东西
-     */
-    public StockpotRecipe recipe = StockpotRecipeSerializer.getEmptyRecipe();
-    public @Nullable Entity renderEntity = null;
 
     public StockpotBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlocks.STOCKPOT_BE.get(), pPos, pBlockState);
@@ -92,8 +92,8 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
     @Override
     public boolean hasHeatSource(Level level) {
         BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT)) {
-            return true;
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
         }
         return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }

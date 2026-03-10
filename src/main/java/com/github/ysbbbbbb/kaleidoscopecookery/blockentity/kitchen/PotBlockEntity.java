@@ -57,18 +57,18 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
     private static final String STIR_FRY_COUNT = "StirFryCount";
     private static final String SEED = "Seed";
 
+    /**
+     * 用于渲染动画时数据
+     */
+    public long seed;
+    public StirFryAnimationData animationData = new StirFryAnimationData();
+
     private NonNullList<ItemStack> inputs = NonNullList.withSize(PotRecipe.RECIPES_SIZE, ItemStack.EMPTY);
     private Ingredient carrier = Ingredient.EMPTY;
     private ItemStack result = ItemStack.EMPTY;
     private int status = PUT_INGREDIENT;
     private int currentTick = 0;
     private int stirFryCount = 0;
-
-    /**
-     * 用于渲染动画时数据
-     */
-    public long seed;
-    public StirFryAnimationData animationData = new StirFryAnimationData();
 
     public PotBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlocks.POT_BE.get(), pPos, pBlockState);
@@ -78,8 +78,8 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
     @Override
     public boolean hasHeatSource(Level level) {
         BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT)) {
-            return true;
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
         }
         return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }
