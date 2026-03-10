@@ -34,6 +34,14 @@ public class SteamerItem extends BlockItem {
         super(ModBlocks.STEAMER.get(), new Item.Properties());
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
+        if (stack.has(DataComponents.BLOCK_ENTITY_DATA)) {
+            return HAS;
+        }
+        return NONE;
+    }
+
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
         Level level = context.getLevel();
@@ -45,7 +53,8 @@ public class SteamerItem extends BlockItem {
         }
         BlockEntity blockEntity = level.getBlockEntity(clickedPos);
         ItemStack stack = context.getItemInHand();
-        if (blockEntity instanceof SteamerBlockEntity steamer && stack.is(this) && stack.getCount() == 1) {
+        boolean hasData = stack.has(DataComponents.BLOCK_ENTITY_DATA);
+        if (blockEntity instanceof SteamerBlockEntity steamer && stack.is(this) && hasData && stack.getCount() == 1) {
             steamer.mergeItem(stack, context.getLevel());
         }
         return super.placeBlock(context, state);
@@ -57,14 +66,6 @@ public class SteamerItem extends BlockItem {
             return 1;
         }
         return super.getMaxStackSize(stack);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static float getTexture(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-        if (stack.has(DataComponents.BLOCK_ENTITY_DATA)) {
-            return HAS;
-        }
-        return NONE;
     }
 
     @Override

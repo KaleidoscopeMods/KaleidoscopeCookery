@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IPot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.SimpleInput;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.PotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
@@ -14,7 +15,6 @@ import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
@@ -58,18 +58,18 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
     private static final String STIR_FRY_COUNT = "StirFryCount";
     private static final String SEED = "Seed";
 
+    /**
+     * 用于渲染动画时数据
+     */
+    public long seed;
+    public StirFryAnimationData animationData = new StirFryAnimationData();
+
     private NonNullList<ItemStack> inputs = NonNullList.withSize(PotRecipe.RECIPES_SIZE, ItemStack.EMPTY);
     private Ingredient carrier = Ingredient.EMPTY;
     private ItemStack result = ItemStack.EMPTY;
     private int status = PUT_INGREDIENT;
     private int currentTick = 0;
     private int stirFryCount = 0;
-
-    /**
-     * 用于渲染动画时数据
-     */
-    public long seed;
-    public StirFryAnimationData animationData = new StirFryAnimationData();
 
     public PotBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlocks.POT_BE.get(), pPos, pBlockState);
@@ -79,8 +79,8 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
     @Override
     public boolean hasHeatSource(Level level) {
         BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT)) {
-            return true;
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
         }
         return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }
@@ -412,6 +412,10 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         }
         // 黑名单物品不可放入
         if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
+            return false;
+        }
+        // Tetra 兼容
+        if (TetraCompat.isModularItem(itemStack)) {
             return false;
         }
         for (int i = 0; i < this.inputs.size(); i++) {

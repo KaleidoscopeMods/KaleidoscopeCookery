@@ -54,7 +54,6 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     private static final String LIFT_ANGLE_KEY = "LiftAngle";
     private static final String INPUT_ITEM_KEY = "InputItem";
     private static final String OUTPUT_ITEM_KEY = "OutputItem";
-    private static final String CARRIER_INGREDIENT_KEY = "CarrierIngredient";
     private static final String PROGRESS_KEY = "Progress";
 
     private final RecipeManager.CachedCheck<SingleRecipeInput, MillstoneRecipe> quickCheck = RecipeManager.createCheck(ModRecipes.MILLSTONE_RECIPE);
@@ -78,7 +77,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public float getRotation(Level level, float partialTick) {
         float degPerTick = 360f / Math.max(this.rotSpeedTick, 1);
         float gameTime = level.getGameTime() + partialTick;
-        return (this.cacheRot + gameTime * degPerTick) % 360;
+        return Math.abs(this.cacheRot + gameTime * degPerTick) % 360;
     }
 
     public void tick(Level level) {
@@ -322,7 +321,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         this.bindEntity = mob;
         // 缓存角度纠正
         float rot = this.getRotation(this.level, 0);
-        this.cacheRot = this.cacheRot - (rot - this.cacheRot);
+        this.cacheRot = fixRot(this.cacheRot - (rot - this.cacheRot));
 
         // 读取数据地图，获取抬升角度
         MillstoneBindableData data = MillstoneBindableDataReloadListener.INSTANCE.getOrDefault(mob.getType(), MillstoneBindableData.DEFAULT);
@@ -343,7 +342,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putUUID(ENTITY_ID_KEY, entityId);
-        tag.putFloat(CACHE_ROT_KEY, cacheRot);
+        tag.putFloat(CACHE_ROT_KEY, fixRot(cacheRot));
         tag.putFloat(ROT_SPEED_TICK_KEY, rotSpeedTick);
         tag.putFloat(LIFT_ANGLE_KEY, liftAngle);
         if (!input.isEmpty()) {
@@ -363,7 +362,7 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         this.entityId = tag.getUUID(ENTITY_ID_KEY);
-        this.cacheRot = tag.getFloat(CACHE_ROT_KEY);
+        this.cacheRot = fixRot(tag.getFloat(CACHE_ROT_KEY));
         this.rotSpeedTick = tag.getFloat(ROT_SPEED_TICK_KEY);
         this.liftAngle = tag.getFloat(LIFT_ANGLE_KEY);
         this.input = ItemStack.parseOptional(registries, tag.getCompound(INPUT_ITEM_KEY));
@@ -377,6 +376,10 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
 
     public float getCacheRot() {
         return this.cacheRot;
+    }
+
+    public void setCacheRot(float cacheRot) {
+        this.cacheRot = cacheRot;
     }
 
     public float getLiftAngle() {
@@ -394,5 +397,15 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
     public float getProgressPercent() {
         float total = Math.max(this.rotSpeedTick, 1);
         return (total - this.progress) / total;
+    }
+
+    /**
+     * 修正 cacheRot 的值，此值应该在 0-360 之间，过大或过小都会导致动画异常
+     */
+    private float fixRot(float value) {
+        if (Float.isNaN(value) || Float.isInfinite(value)) {
+            return 0f;
+        }
+        return Math.abs(value) % 360;
     }
 }

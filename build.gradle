@@ -119,6 +119,14 @@ repositories {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
     }
+    maven {
+        url = "https://maven.createmod.net"
+        content {
+            includeGroup "net.createmod.ponder"
+            includeGroup "dev.engine-room.flywheel"
+        }
+    }
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
 }
 
 dependencies {
@@ -167,6 +175,11 @@ dependencies {
     runtimeOnly "curse.maven:ftb-ultimine-forge-386134:7188395"
 
     runtimeOnly "maven.modrinth:food-effect-tooltips-forge:1.4.0-neoforge,1.21.1"
+
+    implementation "net.createmod.ponder:Ponder-NeoForge-1.21.1:1.0.56"
+    runtimeOnly "maven.modrinth:create:1.21.1-6.0.6"
+
+    runtimeOnly "maven.modrinth:item-banning:1.21.1-1.1.4-neoforge"
 }
 
 tasks.withType(ProcessResources).configureEach {

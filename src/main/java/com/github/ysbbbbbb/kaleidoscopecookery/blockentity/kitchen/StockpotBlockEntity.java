@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.StockpotBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.particle.StockpotParticleOptions;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.StockpotInput;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer;
@@ -19,7 +20,6 @@ import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -64,6 +64,12 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
 
     private final RecipeManager.CachedCheck<StockpotInput, StockpotRecipe> quickCheck = RecipeManager.createCheck(ModRecipes.STOCKPOT_RECIPE);
 
+    /**
+     * 主要用于客户端渲染的字段，recipe 里缓存了数据包中定义的部分客户端渲染需要的东西
+     */
+    public RecipeHolder<StockpotRecipe> recipe = StockpotRecipeSerializer.getEmptyRecipe();
+    public @Nullable Entity renderEntity = null;
+
     private NonNullList<ItemStack> inputs = NonNullList.withSize(StockpotRecipe.RECIPES_SIZE, ItemStack.EMPTY);
     private ResourceLocation recipeId = StockpotRecipeSerializer.EMPTY_ID;
     private ResourceLocation soupBaseId = ModSoupBases.WATER;
@@ -75,12 +81,6 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
      * 盖子，因为盖子可以当做盾牌，所以会记录很多额外内容，需要专门保存
      */
     private ItemStack lidItem = ItemStack.EMPTY;
-
-    /**
-     * 主要用于客户端渲染的字段，recipe 里缓存了数据包中定义的部分客户端渲染需要的东西
-     */
-    public RecipeHolder<StockpotRecipe> recipe = StockpotRecipeSerializer.getEmptyRecipe();
-    public @Nullable Entity renderEntity = null;
 
     public StockpotBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlocks.STOCKPOT_BE.get(), pPos, pBlockState);
@@ -95,8 +95,8 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
     @Override
     public boolean hasHeatSource(Level level) {
         BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT)) {
-            return true;
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
         }
         return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }
@@ -244,7 +244,7 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         return new StockpotInput(this.inputs, this.soupBaseId);
     }
 
-    private void setRecipe(Level levelIn) {
+    public void setRecipe(Level levelIn) {
         StockpotInput container = this.getContainer();
 
         // 触发事件，允许其他 mod 修改配方
@@ -365,6 +365,10 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
             return false;
         }
         if (itemStack.is(TagMod.INGREDIENT_BLOCKLIST)) {
+            return false;
+        }
+        // Tetra 兼容
+        if (TetraCompat.isModularItem(itemStack)) {
             return false;
         }
         // 检查是否有足够的空间放入食材
@@ -533,6 +537,10 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
     @Override
     public int getStatus() {
         return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getTakeoutCount() {

@@ -52,8 +52,10 @@ public class OilPotBlockEntity extends BaseBlockEntity {
      * 仅给 OilPotHandler 使用，避免循环调用
      */
     public void setOilCountWithoutCapUpdate(int oilCount) {
-        this.oilCount = oilCount;
-        this.refresh();
+        if (this.oilCount != oilCount) {
+            this.oilCount = oilCount;
+            this.refresh();
+        }
 
         if (this.level == null) {
             return;
