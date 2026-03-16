@@ -1,4 +1,4 @@
-# Kaleidoscope Cookery 森罗物语：烹燃心动
+# Kaleidoscope Cookery 森罗物语：厨房
 
 > A Minecraft mod that adds immersive cooking systems and delicious recipes to enhance your culinary adventure.
 
