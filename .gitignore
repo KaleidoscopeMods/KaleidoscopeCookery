@@ -119,3 +119,9 @@ runs/
 !gradle-wrapper.jar
 
 **.cache
+
+.ref/
+.settings/
+.classpath
+.factorypath
+.project
