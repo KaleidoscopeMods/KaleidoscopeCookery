@@ -9,6 +9,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.compat.harvest.HarvestCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.lootable.GiftLootTables;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModVillager;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
@@ -30,6 +31,7 @@ public class CommonRegistry {
         event.enqueueWork(CommonRegistry::addComposter);
         event.enqueueWork(NetworkHandler::init);
         event.enqueueWork(ModSoupBases::registerAll);
+        event.enqueueWork(ModTeaTypes::registerAll);
         event.enqueueWork(CommonRegistry::addVillagerGift);
         event.enqueueWork(CommonRegistry::modCompat);
         event.enqueueWork(CommonRegistry::addDispenserBehavior);

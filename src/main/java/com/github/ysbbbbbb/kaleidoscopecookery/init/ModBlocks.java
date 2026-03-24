@@ -39,6 +39,7 @@ public class ModBlocks {
     public static RegistryObject<Block> SHAWARMA_SPIT = BLOCKS.register("shawarma_spit", ShawarmaSpitBlock::new);
     public static RegistryObject<Block> MILLSTONE = BLOCKS.register("millstone", MillstoneBlock::new);
     public static RegistryObject<Block> STEAMER = BLOCKS.register("steamer", SteamerBlock::new);
+    public static RegistryObject<Block> TEAPOT = BLOCKS.register("teapot", TeapotBlock::new);
 
     public static RegistryObject<Block> OIL_POT = BLOCKS.register("oil_pot", OilPotBlock::new);
     public static RegistryObject<Block> RECIPE_BLOCK = BLOCKS.register("recipe_block", RecipeBlock::new);
@@ -114,6 +115,9 @@ public class ModBlocks {
 
     public static RegistryObject<BlockEntityType<SteamerBlockEntity>> STEAMER_BE = BLOCK_ENTITIES.register("steamer",
             () -> BlockEntityType.Builder.of(SteamerBlockEntity::new, STEAMER.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<TeapotBlockEntity>> TEAPOT_BE = BLOCK_ENTITIES.register("teapot",
+            () -> BlockEntityType.Builder.of(TeapotBlockEntity::new, TEAPOT.get()).build(null));
 
     public static RegistryObject<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));

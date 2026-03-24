@@ -21,6 +21,7 @@ public final class ModItems {
     public static RegistryObject<Item> SHAWARMA_SPIT = ITEMS.register("shawarma_spit", () -> new BlockItem(ModBlocks.SHAWARMA_SPIT.get(), new Item.Properties()));
     public static RegistryObject<Item> MILLSTONE = ITEMS.register("millstone", () -> new BlockItem(ModBlocks.MILLSTONE.get(), new Item.Properties()));
     public static RegistryObject<Item> STEAMER = ITEMS.register("steamer", SteamerItem::new);
+    public static RegistryObject<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
 
     // 油
     public static RegistryObject<Item> OIL = ITEMS.register("oil", OilItem::new);

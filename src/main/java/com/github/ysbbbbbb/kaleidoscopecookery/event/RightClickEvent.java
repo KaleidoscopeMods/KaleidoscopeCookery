@@ -2,9 +2,11 @@ package com.github.ysbbbbbb.kaleidoscopecookery.event;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,6 +15,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -57,8 +60,9 @@ public class RightClickEvent {
         Player player = event.getEntity();
         Entity target = event.getTarget();
         Level level = event.getLevel();
+        ItemStack mainHandItem = player.getMainHandItem();
         if (target instanceof Chicken chicken && chicken.isBaby()
-            && player.getMainHandItem().is(ModItems.CATERPILLAR.get())) {
+            && mainHandItem.is(ModItems.CATERPILLAR.get())) {
             // 让鸡瞬间成年
             chicken.setAge(0);
             // 加一些特性和音效
@@ -75,6 +79,17 @@ public class RightClickEvent {
             }
             player.getMainHandItem().shrink(1);
             ModTrigger.EVENT.trigger(player, ModEventTriggerType.USE_CATERPILLAR_FEED_CHICKEN);
+        } else if (!level.isClientSide() && event.getHand() == InteractionHand.MAIN_HAND
+                && target instanceof LivingEntity living && mainHandItem.getItem() instanceof TeapotItem) {
+            ITeaType teaType = TeapotItem.getTeaType(mainHandItem);
+            if (TeapotItem.getFluidAmount(mainHandItem) > 0) {
+                int consumed = teaType.onPouredOnEntity(level, living, player, mainHandItem);
+                if (consumed != 0) {
+                    TeapotItem.shrinkFluidAmount(mainHandItem, consumed);
+                    player.swing(InteractionHand.MAIN_HAND);
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 }
