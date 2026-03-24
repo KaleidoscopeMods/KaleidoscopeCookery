@@ -14,20 +14,13 @@ import net.minecraftforge.fml.common.Mod;
 public class HinderEvent {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        if (event.getEntity().level().isClientSide()) {
+        LivingEntity target = event.getEntity();
+        if (target.level().isClientSide()) {
             return;
         }
-
         DamageSource source = event.getSource();
-        if (source.getEntity() instanceof LivingEntity living && living.hasEffect(ModEffects.HINDER.get())) {
-            LivingEntity target = event.getEntity();
-            target.addEffect(new MobEffectInstance(
-                    MobEffects.MOVEMENT_SLOWDOWN,
-                    100,
-                    1,
-                    true,
-                    false
-            ));
+        if (source.getEntity() instanceof LivingEntity attacker && attacker.hasEffect(ModEffects.HINDER.get())) {
+            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 1));
         }
     }
 }
