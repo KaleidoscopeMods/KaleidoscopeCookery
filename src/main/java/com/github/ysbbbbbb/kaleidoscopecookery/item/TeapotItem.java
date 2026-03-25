@@ -12,21 +12,23 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class TeapotItem extends BlockItem {
     private static final String FLUID_AMOUNT = "fluid_amount";
@@ -81,6 +83,11 @@ public class TeapotItem extends BlockItem {
     }
 
     @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -88,10 +95,9 @@ public class TeapotItem extends BlockItem {
         ItemStack itemInHand = context.getItemInHand();
         ITeaType teaType = getTeaType(itemInHand);
 
-        // 潜行时只尝试倒茶
-        if (player != null && player.isSecondaryUseActive()) {
-            InteractionResult result = this.use(context.getLevel(), player, context.getHand()).getResult();
-            return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
+        // 潜行时只尝试放置方块
+        if (player == null || player.isSecondaryUseActive()) {
+            return super.useOn(context);
         }
 
         FluidState fluidState = level.getFluidState(pos);
@@ -116,6 +122,12 @@ public class TeapotItem extends BlockItem {
             }
         }
 
+        // 开始倒茶
+        if (TeapotItem.getFluidAmount(itemInHand) > 0) {
+            InteractionResult result = this.use(context.getLevel(), player, context.getHand()).getResult();
+            return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
+        }
+
         return super.useOn(context);
     }
 
@@ -126,22 +138,67 @@ public class TeapotItem extends BlockItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        // 尝试对着方块倒茶
         if (getFluidAmount(stack) > 0) {
-//            BlockHitResult hitResult = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
-//            int consumed = teaType.onPouredOnBlock(level, hitResult, player, itemInHand);
-//            if (consumed != 0) {
-//                shrinkFluidAmount(itemInHand, consumed);
-//                return InteractionResult.SUCCESS;
-//            }
+            HitResult result = getHitResult(entity, 4.5);
+            ITeaType teaType = getTeaType(stack);
+            // 尝试向方块倒茶
+            if (result instanceof BlockHitResult blockHit) {
+                int consumed = teaType.onPouredOnBlock(level, blockHit, entity, stack);
+                if (consumed != 0) {
+                    shrinkFluidAmount(stack, consumed);
+                }
+            } // 尝试向实体倒茶
+            else if (result instanceof EntityHitResult entityHit && entityHit.getEntity() instanceof LivingEntity living) {
+                int consumed = teaType.onPouredOnEntity(level, living, entity, stack);
+                if (consumed != 0) {
+                    TeapotItem.shrinkFluidAmount(stack, consumed);
+                    entity.swing(InteractionHand.MAIN_HAND);
+                }
+            }
         }
         return stack;
+    }
+
+    @Nullable
+    private static HitResult getHitResult(LivingEntity entity, double maxDistance) {
+        Level level = entity.level();
+        Vec3 start = entity.getEyePosition();
+        Vec3 direction = entity.getViewVector(1.0F);
+        Vec3 end = start.add(direction.scale(maxDistance));
+
+        // 1. 检测实体
+        AABB aabb = new AABB(start, end).inflate(1.0D);
+        List<Entity> entities = level.getEntities(entity, aabb, e -> e != entity && e.isPickable());
+        EntityHitResult entityHit = null;
+        double closestDistSq = Double.MAX_VALUE;
+        for (Entity e : entities) {
+            AABB box = e.getBoundingBox().inflate(e.getPickRadius());
+            Optional<Vec3> hitPos = box.clip(start, end);
+            if (hitPos.isPresent()) {
+                double distSq = start.distanceToSqr(hitPos.get());
+                if (distSq < closestDistSq) {
+                    closestDistSq = distSq;
+                    entityHit = new EntityHitResult(e, hitPos.get());
+                }
+            }
+        }
+        if (entityHit != null) {
+            return entityHit;
+        }
+
+        // 2. 检测方块
+        BlockHitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity));
+        if (blockHit.getType() == HitResult.Type.BLOCK) {
+            return blockHit;
+        }
+
+        return null;
     }
 
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
         Player player = context.getPlayer();
-        if (player != null && player.isSecondaryUseActive()) {
+        if (player != null && !player.isSecondaryUseActive()) {
             return false;
         }
 

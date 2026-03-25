@@ -1,8 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.TeacupBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -16,8 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
 
 public class TeacupBlockItem extends BlockItem {
     public TeacupBlockItem(Block block) {
@@ -52,7 +48,7 @@ public class TeacupBlockItem extends BlockItem {
     }
 
     protected boolean tryIncreaseCount(Block self, BlockState state, Level level, BlockPos pos, ItemStack stack, Player player) {
-        if (self instanceof TeacupBlock drink && (state.is(self) || state.getBlock() instanceof TeaDrinkBlock) && drink.tryIncreaseCount(level, pos, state, stack)) {
+        if (self instanceof TeacupBlock && state.getBlock() instanceof TeacupBlock block && block.tryIncreaseCount(level, pos, state, stack)) {
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);
             level.playSound(
@@ -66,14 +62,5 @@ public class TeacupBlockItem extends BlockItem {
             return true;
         }
         return false;
-    }
-
-    @Override
-    protected boolean updateCustomBlockEntityTag(BlockPos pos, Level level, @Nullable Player player, ItemStack stack, BlockState state) {
-        // 首次放置需要添加物品信息
-        if (level.getBlockEntity(pos) instanceof TeacupBlockEntity be && be.addItem(stack)) {
-            be.refresh();
-        }
-        return super.updateCustomBlockEntityTag(pos, level, player, stack, state);
     }
 }

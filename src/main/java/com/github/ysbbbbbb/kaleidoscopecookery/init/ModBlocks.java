@@ -16,7 +16,6 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByThreeBlockEntity;
-import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.TeacupBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -93,7 +92,7 @@ public class ModBlocks {
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
-    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", () -> new TeacupBlock(4,
+    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", () -> new TeacupBlock(4, ModItems.TEACUP,
             Shapes.or(
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(5, 0, 5, 11, 4, 11)
@@ -114,7 +113,7 @@ public class ModBlocks {
             )
     ));
 
-    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaDrinkBlock.create().maxCount(4).teaTypeId(ModTeaTypes.TIEGUANYIN).shapes(
+    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaDrinkBlock.create().maxCount(4).shapes(
             Shapes.or(
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(5, 0, 5, 11, 4, 11)
@@ -133,7 +132,7 @@ public class ModBlocks {
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
             )
-    ).build());
+    ).teaTypeId(ModTeaTypes.TIEGUANYIN).teacupItem(ModItems.TEACUP).teaDrinkItem(ModItems.TIEGUANYIN).build());
 
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));
@@ -167,10 +166,6 @@ public class ModBlocks {
 
     public static RegistryObject<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));
-
-    public static RegistryObject<BlockEntityType<TeacupBlockEntity>> TEACUP_BE = BLOCK_ENTITIES.register("teacup", () -> BlockEntityType.Builder.of(TeacupBlockEntity::new,
-            TEACUP.get()
-    ).build(null));
 
     public static RegistryObject<BlockEntityType<FoodBiteThreeByThreeBlockEntity>> FOOD_BITE_THREE_BY_THREE_BE = BLOCK_ENTITIES.register("food_bite_three_by_three",
             () -> BlockEntityType.Builder.of(FoodBiteThreeByThreeBlockEntity::new, COLD_CUT_HAM_SLICES.get()).build(null));

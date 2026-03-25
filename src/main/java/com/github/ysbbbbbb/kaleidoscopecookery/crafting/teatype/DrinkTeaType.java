@@ -4,12 +4,15 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class DrinkTeaType implements ITeaType {
@@ -39,7 +42,16 @@ public class DrinkTeaType implements ITeaType {
         BlockPos pos = hit.getBlockPos();
         BlockState state = level.getBlockState(pos);
         if (state.getBlock() instanceof TeacupBlock block) {
-            block.tryPourTea(level, pos, state, this);
+            if (block.tryPourTea(level, pos, state, this) && level instanceof ServerLevel serverLevel) {
+                Vec3 vec3 = pos.getCenter();
+                serverLevel.sendParticles(ParticleTypes.GLOW,
+                        vec3.x(), vec3.y(), vec3.z(),
+                        10,
+                        (level.random.nextFloat() - 0.5) * 0.05F,
+                        (level.random.nextFloat() - 0.5) * 0.05F,
+                        (level.random.nextFloat() - 0.5) * 0.05F,
+                        0.02);
+            }
         }
 
         return 1;
