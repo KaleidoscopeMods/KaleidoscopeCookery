@@ -9,17 +9,20 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,6 +76,11 @@ public class TeapotItem extends BlockItem {
     }
 
     @Override
+    public int getUseDuration(ItemStack stack) {
+        return 12;
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -82,16 +90,8 @@ public class TeapotItem extends BlockItem {
 
         // 潜行时只尝试倒茶
         if (player != null && player.isSecondaryUseActive()) {
-            // 尝试对着方块倒茶
-            if (getFluidAmount(itemInHand) > 0) {
-                BlockHitResult hitResult = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
-                int consumed = teaType.onPouredOnBlock(level, hitResult, player, itemInHand);
-                if (consumed != 0) {
-                    shrinkFluidAmount(itemInHand, consumed);
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            return super.useOn(context);
+            InteractionResult result = this.use(context.getLevel(), player, context.getHand()).getResult();
+            return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
         }
 
         FluidState fluidState = level.getFluidState(pos);
@@ -117,6 +117,25 @@ public class TeapotItem extends BlockItem {
         }
 
         return super.useOn(context);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(level, player, hand);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        // 尝试对着方块倒茶
+        if (getFluidAmount(stack) > 0) {
+//            BlockHitResult hitResult = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
+//            int consumed = teaType.onPouredOnBlock(level, hitResult, player, itemInHand);
+//            if (consumed != 0) {
+//                shrinkFluidAmount(itemInHand, consumed);
+//                return InteractionResult.SUCCESS;
+//            }
+        }
+        return stack;
     }
 
     @Override

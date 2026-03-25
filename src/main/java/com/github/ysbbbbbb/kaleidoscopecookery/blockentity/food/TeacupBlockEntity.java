@@ -9,6 +9,8 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.function.Predicate;
+
 public class TeacupBlockEntity extends BaseBlockEntity {
     private final NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
 
@@ -39,6 +41,19 @@ public class TeacupBlockEntity extends BaseBlockEntity {
         }
         // 没有物品了，返回空的 ItemStack
         return ItemStack.EMPTY;
+    }
+
+    public boolean replaceLast(Predicate<ItemStack> predicate, ItemStack itemStack) {
+        // 替换最后一个符合要求的物品
+        for (int i = items.size() - 1; i >= 0; i--) {
+            ItemStack stack = items.get(i);
+            if (predicate.test(stack)) {
+                items.set(i, itemStack);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override

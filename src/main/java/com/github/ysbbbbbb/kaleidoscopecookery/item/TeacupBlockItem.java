@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.TeacupBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -51,7 +52,7 @@ public class TeacupBlockItem extends BlockItem {
     }
 
     protected boolean tryIncreaseCount(Block self, BlockState state, Level level, BlockPos pos, ItemStack stack, Player player) {
-        if (self instanceof TeacupBlock drink && state.is(self) && drink.tryIncreaseCount(level, pos, state, stack)) {
+        if (self instanceof TeacupBlock drink && (state.is(self) || state.getBlock() instanceof TeaDrinkBlock) && drink.tryIncreaseCount(level, pos, state, stack)) {
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);
             level.playSound(

@@ -5,6 +5,6 @@
     "item": "minecraft:iron_nugget"
   },
   "ingredient_count": 12,
-  "result_tea_type": "minecraft:lava",
+  "result_tea_type": "kaleidoscope_cookery:tieguanyin",
   "time": 100
 }

@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "count=1,facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 90
+    },
+    "count=1,facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 90
+    },
+    "count=1,facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1"
+    },
+    "count=1,facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1"
+    },
+    "count=1,facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 180
+    },
+    "count=1,facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 180
+    },
+    "count=1,facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 270
+    },
+    "count=1,facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count1",
+      "y": 270
+    },
+    "count=2,facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 90
+    },
+    "count=2,facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 90
+    },
+    "count=2,facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2"
+    },
+    "count=2,facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2"
+    },
+    "count=2,facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 180
+    },
+    "count=2,facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 180
+    },
+    "count=2,facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 270
+    },
+    "count=2,facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count2",
+      "y": 270
+    },
+    "count=3,facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 90
+    },
+    "count=3,facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 90
+    },
+    "count=3,facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3"
+    },
+    "count=3,facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3"
+    },
+    "count=3,facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 180
+    },
+    "count=3,facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 180
+    },
+    "count=3,facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 270
+    },
+    "count=3,facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count3",
+      "y": 270
+    },
+    "count=4,facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 90
+    },
+    "count=4,facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 90
+    },
+    "count=4,facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4"
+    },
+    "count=4,facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4"
+    },
+    "count=4,facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 180
+    },
+    "count=4,facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 180
+    },
+    "count=4,facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 270
+    },
+    "count=4,facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/tea/teacup/count4",
+      "y": 270
+    }
+  }
+}

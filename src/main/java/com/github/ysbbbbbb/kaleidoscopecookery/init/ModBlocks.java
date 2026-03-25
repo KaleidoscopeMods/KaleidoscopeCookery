@@ -10,6 +10,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
@@ -92,14 +93,46 @@ public class ModBlocks {
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
-    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", TeacupBlock.create().maxCount(4).shapes(
-            Block.box(6, 0, 6, 10, 6, 10),
-            Block.box(2, 0, 6, 14, 6, 10),
+    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", () -> new TeacupBlock(4,
             Shapes.or(
-                    Block.box(2, 0, 10, 14, 6, 14),
-                    Block.box(6, 0, 2, 10, 6, 14)
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
             ),
-            Block.box(2, 0, 2, 14, 6, 14)
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
+    ));
+
+    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaDrinkBlock.create().maxCount(4).teaTypeId(ModTeaTypes.TIEGUANYIN).shapes(
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
     ).build());
 
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",

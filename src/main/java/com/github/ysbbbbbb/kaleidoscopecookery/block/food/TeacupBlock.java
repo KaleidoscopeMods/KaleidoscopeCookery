@@ -1,6 +1,9 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.food;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.TeacupBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.DrinkTeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,7 +36,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import javax.annotation.Nullable;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlock {
@@ -80,6 +82,30 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
             level.setBlockAndUpdate(pos, state.cycle(this.countProperty));
             return true;
         }
+        return false;
+    }
+
+    public boolean tryPourTea(Level level, BlockPos pos, BlockState state, ITeaType teaType) {
+        if (!(teaType instanceof DrinkTeaType drinkTeaType)) {
+            return false;
+        }
+
+        if (level.getBlockEntity(pos) instanceof TeacupBlockEntity be) {
+            List<ItemStack> items = be.getItems();
+            TeaDrinkBlock block = drinkTeaType.getBlock();
+            BlockState newState = block.defaultBlockState()
+                    .setValue(TeaDrinkBlock.FACING, state.getValue(FACING))
+                    .setValue(TeaDrinkBlock.WATERLOGGED, state.getValue(WATERLOGGED))
+                    .setValue(block.getCountProperty(), state.getValue(countProperty))
+                    .setValue(block.getFilledCountProperty(), 1);
+            level.setBlockAndUpdate(pos, newState);
+            TeacupBlockEntity blockEntity = new TeacupBlockEntity(pos, newState);
+            items.forEach(blockEntity::addItem);
+            blockEntity.replaceLast(s -> s.is(ModItems.TEACUP.get()), block.asItem().getDefaultInstance());
+            level.setBlockEntity(blockEntity);
+            return true;
+        }
+
         return false;
     }
 
@@ -170,32 +196,5 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
 
     public int getMaxCount() {
         return maxCount;
-    }
-
-    public static Builder create() {
-        return new Builder();
-    }
-
-    public static class Builder {
-        private int maxCount;
-        private VoxelShape[] shapes;
-
-        public Builder maxCount(int maxCount) {
-            this.maxCount = maxCount;
-            return this;
-        }
-
-        public Builder shapes(VoxelShape... shapes) {
-            this.shapes = shapes;
-            return this;
-        }
-
-        public Supplier<? extends Block> build() {
-            return () -> new TeacupBlock(maxCount, shapes);
-        }
-
-        public Supplier<? extends Block> build(Properties properties) {
-            return () -> new TeacupBlock(properties, maxCount, shapes);
-        }
     }
 }

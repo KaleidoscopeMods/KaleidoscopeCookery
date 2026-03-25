@@ -29,6 +29,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.MILLSTONE.get());
                 output.accept(ModItems.STEAMER.get());
                 output.accept(ModItems.TEAPOT.get());
+                output.accept(ModItems.TEACUP.get());
                 output.accept(ModItems.KITCHENWARE_RACKS.get());
                 output.accept(ModItems.FRUIT_BASKET.get());
                 output.accept(ModItems.SCARECROW.get());
@@ -184,6 +185,6 @@ public class ModCreativeTabs {
                     }
                 });
                 // 茶
-                output.accept(ModItems.TEACUP.get());
+                output.accept(ModItems.TIEGUANYIN.get());
             }).build());
 }

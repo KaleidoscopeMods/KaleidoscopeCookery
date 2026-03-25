@@ -1,12 +1,21 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"2": "kaleidoscope_cookery:block/teacup",
-		"particle": "kaleidoscope_cookery:block/teacup"
+		"2": "kaleidoscope_cookery:block/tieguanyin",
+		"particle": "kaleidoscope_cookery:block/tieguanyin"
 	},
 	"elements": [
+		{
+			"from": [3.5, 0.5, 8],
+			"to": [6.5, 3.5, 11],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [5, 2.375, 9.5]},
+			"faces": {
+				"up": {"uv": [8, 3, 9.5, 4.5], "rotation": 90, "texture": "#2"}
+			}
+		},
 		{
 			"from": [2.5, 1, 7],
 			"to": [7.5, 4, 12],
@@ -57,6 +66,14 @@
 				"west": {"uv": [11.5, 6, 13, 7.5], "texture": "#2"},
 				"up": {"uv": [13, 6, 14.5, 7.5], "texture": "#2"},
 				"down": {"uv": [13.5, 6, 15, 7.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [8, 0.5, 3.5],
+			"to": [11, 3.5, 6.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 2.375, 5]},
+			"faces": {
+				"up": {"uv": [8, 3, 9.5, 4.5], "texture": "#2"}
 			}
 		},
 		{
@@ -135,21 +152,24 @@
 		{
 			"name": "group",
 			"origin": [5, -1, 10],
+			"scope": 0,
 			"color": 0,
-			"children": [0, 1]
+			"children": [0, 1, 2]
 		},
 		{
 			"name": "group",
 			"origin": [11, -1, 10],
+			"scope": 0,
 			"color": 0,
-			"children": [2, 3]
+			"children": [3, 4]
 		},
 		{
 			"name": "group",
 			"origin": [9.5, 2.375, 5],
+			"scope": 0,
 			"color": 0,
-			"children": [4, 5]
+			"children": [5, 6, 7]
 		},
-		6
+		8
 	]
 }
