@@ -23,32 +23,40 @@ public class VitalityEvent {
             return;
         }
 
+        // FIXME：可能存在其他 mod 取消 LivingDeathEvent 事件，导致幼年实体刷出
+        // TODO：是否添加粒子效果和音效？
+
         Entity entity = event.getEntity();
         if (event.getSource().getEntity() instanceof LivingEntity living && living.hasEffect(ModEffects.VITALITY.get())) {
             EntityType<?> type = entity.getType();
             Vec3 pos = entity.position();
-            // 如果继承AgeableMod且成年
+
+            // 如果继承 AgeableMob 且成年
             if (entity instanceof AgeableMob mob && !mob.isBaby()) {
                 if (type.create(level) instanceof AgeableMob ageableMob) {
                     ageableMob.setBaby(true);
                     ageableMob.setPos(pos);
                     level.addFreshEntity(ageableMob);
                 }
-            } // 或者是僵尸
-            else if (entity instanceof Zombie mob && !mob.isBaby()) {
+                return;
+            }
+
+            // 或者是僵尸
+            if (entity instanceof Zombie mob && !mob.isBaby()) {
                 // 5% 概率生成小村民
                 if (level.getRandom().nextInt(20) == 0) {
                     Villager villager = new Villager(EntityType.VILLAGER, level);
                     villager.setBaby(true);
                     villager.setPos(pos);
                     level.addFreshEntity(villager);
-                } // 否则生成幼体
-                else {
-                    if (type.create(level) instanceof Zombie zombie) {
-                        zombie.setBaby(true);
-                        zombie.setPos(pos);
-                        level.addFreshEntity(zombie);
-                    }
+                    return;
+                }
+
+                // 否则生成幼体
+                if (type.create(level) instanceof Zombie zombie) {
+                    zombie.setBaby(true);
+                    zombie.setPos(pos);
+                    level.addFreshEntity(zombie);
                 }
             }
         }

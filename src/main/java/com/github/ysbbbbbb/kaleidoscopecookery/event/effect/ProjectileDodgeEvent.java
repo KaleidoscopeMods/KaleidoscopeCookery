@@ -20,7 +20,9 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = KaleidoscopeCookery.MOD_ID)
 public class ProjectileDodgeEvent {
-    // 闪避消耗的持续时间 (tick)
+    /**
+     * 闪避消耗的持续时间 (tick)
+     */
     private static final int DODGE_COST = 200;
 
     @SubscribeEvent
@@ -30,21 +32,26 @@ public class ProjectileDodgeEvent {
         }
 
         HitResult hit = event.getRayTraceResult();
-        if (hit.getType().equals(HitResult.Type.ENTITY) && ((EntityHitResult) hit).getEntity() instanceof LivingEntity living) {
-            if (living.hasEffect(ModEffects.PROJECTILE_DODGE.get())) {
-                // 取消弹射物碰撞并随机传送
-                event.setImpactResult(ProjectileImpactEvent.ImpactResult.SKIP_ENTITY);
-                randomTeleport(living.level(), living, 3, 16);
+        if (hit instanceof EntityHitResult hitResult
+            && hitResult.getEntity() instanceof LivingEntity living
+            && living.hasEffect(ModEffects.PROJECTILE_DODGE.get())
+        ) {
+            // 取消弹射物碰撞并随机传送
+            event.setImpactResult(ProjectileImpactEvent.ImpactResult.SKIP_ENTITY);
+            randomTeleport(living.level(), living, 3, 16);
 
-                // 消耗持续时间
-                MobEffectInstance instance = living.getEffect(ModEffects.PROJECTILE_DODGE.get());
-                if (instance != null) {
-                    if (instance.getDuration() <= DODGE_COST) {
-                        living.removeEffect(ModEffects.PROJECTILE_DODGE.get());
-                    } else {
-                        instance.duration -= DODGE_COST;
-                        living.forceAddEffect(instance, null);
-                    }
+            // 消耗持续时间
+            MobEffectInstance instance = living.getEffect(ModEffects.PROJECTILE_DODGE.get());
+            if (instance != null) {
+                // 如果是无限时间，不扣除
+                if (instance.isInfiniteDuration()){
+                    return;
+                }
+                if (instance.getDuration() <= DODGE_COST) {
+                    living.removeEffect(ModEffects.PROJECTILE_DODGE.get());
+                } else {
+                    instance.duration -= DODGE_COST;
+                    living.forceAddEffect(instance, null);
                 }
             }
         }
@@ -59,27 +66,32 @@ public class ProjectileDodgeEvent {
      * @param maxAttempts 最大尝试次数
      */
     public static void randomTeleport(Level level, LivingEntity living, double range, int maxAttempts) {
-        if (!level.isClientSide) {
-            double d0 = living.getX();
-            double d1 = living.getY();
-            double d2 = living.getZ();
+        if (level.isClientSide) {
+            return;
+        }
 
-            for(int i = 0; i < maxAttempts; ++i) {
-                double d3 = living.getX() + (living.getRandom().nextDouble() - 0.5F) * range;
-                double d4 = Mth.clamp(living.getY() + (living.getRandom().nextDouble() - 0.5D) * range, level.getMinBuildHeight(), (level.getMinBuildHeight() + ((ServerLevel)level).getLogicalHeight() - 1));
-                double d5 = living.getZ() + (living.getRandom().nextDouble() - 0.5D) * range;
-                if (living.isPassenger()) {
-                    living.stopRiding();
-                }
+        double x = living.getX();
+        double y = living.getY();
+        double z = living.getZ();
+        int minH = level.getMinBuildHeight();
+        int maxH = ((ServerLevel) level).getLogicalHeight();
 
-                Vec3 vec3 = living.position();
-                level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(living));
-                if (living.randomTeleport(d3, d4, d5, true)) {
-                    SoundEvent soundevent = SoundEvents.ENDERMAN_TELEPORT;
-                    level.playSound(null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
-                    living.playSound(soundevent, 1.0F, 1.0F);
-                    break;
-                }
+        for (int i = 0; i < maxAttempts; ++i) {
+            double targetX = x + (living.getRandom().nextDouble() - 0.5) * range;
+            double targetY = Mth.clamp(y + (living.getRandom().nextDouble() - 0.5) * range, minH, minH + maxH - 1);
+            double targetZ = z + (living.getRandom().nextDouble() - 0.5) * range;
+
+            if (living.isPassenger()) {
+                living.stopRiding();
+            }
+
+            Vec3 previousPos = living.position();
+            level.gameEvent(GameEvent.TELEPORT, previousPos, GameEvent.Context.of(living));
+            if (living.randomTeleport(targetX, targetY, targetZ, true)) {
+                SoundEvent soundEvent = SoundEvents.ENDERMAN_TELEPORT;
+                level.playSound(null, x, y, z, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
+                living.playSound(soundEvent, 1.0F, 1.0F);
+                break;
             }
         }
     }
