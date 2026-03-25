@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
@@ -185,6 +186,8 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         riceCrop();
 
+        teacup(ModBlocks.TEACUP.get(), "teacup");
+
         variantBlock(ModBlocks.ENAMEL_BASIN.get(), blockState -> {
             if (blockState.getValue(EnamelBasinBlock.HAS_LID)) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/base"));
@@ -338,5 +341,15 @@ public class BlockStateGenerator extends BlockStateProvider {
             }
             return new ModelFile.UncheckedModelFile(model);
         });
+    }
+
+    public void teacup(Block block, String name) {
+        if (block instanceof TeacupBlock drinkBlock) {
+            horizontalBlock(block, blockState -> {
+                int count = blockState.getValue(drinkBlock.getCountProperty());
+                ResourceLocation file = modLoc("block/teacup/%s/count%d".formatted(name, count));
+                return new ModelFile.UncheckedModelFile(file);
+            });
+        }
     }
 }

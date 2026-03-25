@@ -10,13 +10,16 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByThreeBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.TeacupBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -89,6 +92,16 @@ public class ModBlocks {
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
+    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", TeacupBlock.create().maxCount(4).shapes(
+            Block.box(6, 0, 6, 10, 6, 10),
+            Block.box(2, 0, 6, 14, 6, 10),
+            Shapes.or(
+                    Block.box(2, 0, 10, 14, 6, 14),
+                    Block.box(6, 0, 2, 10, 6, 14)
+            ),
+            Block.box(2, 0, 2, 14, 6, 14)
+    ).build());
+
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));
 
@@ -121,6 +134,10 @@ public class ModBlocks {
 
     public static RegistryObject<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<TeacupBlockEntity>> TEACUP_BE = BLOCK_ENTITIES.register("teacup", () -> BlockEntityType.Builder.of(TeacupBlockEntity::new,
+            TEACUP.get()
+    ).build(null));
 
     public static RegistryObject<BlockEntityType<FoodBiteThreeByThreeBlockEntity>> FOOD_BITE_THREE_BY_THREE_BE = BLOCK_ENTITIES.register("food_bite_three_by_three",
             () -> BlockEntityType.Builder.of(FoodBiteThreeByThreeBlockEntity::new, COLD_CUT_HAM_SLICES.get()).build(null));

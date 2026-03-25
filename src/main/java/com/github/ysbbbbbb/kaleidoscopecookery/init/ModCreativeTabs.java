@@ -183,5 +183,7 @@ public class ModCreativeTabs {
                         output.accept(foodItem);
                     }
                 });
+                // 茶
+                output.accept(ModItems.TEACUP.get());
             }).build());
 }

@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.api.ITipProvider;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.ITeapot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
@@ -12,8 +13,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
+public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipProvider {
     public static final int MAX_FLUID_AMOUNT = 12;
 
     private static final String INPUT = "Input";
@@ -113,12 +114,12 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
     }
 
     private void spawnParticleIdle(Level level) {
-        if (level instanceof ServerLevel serverLevel && level.random.nextFloat() < 0.1F) {
+        if (level instanceof ServerLevel serverLevel && level.random.nextFloat() < 0.05F) {
             RandomSource random = serverLevel.random;
-            serverLevel.sendParticles(ParticleTypes.CLOUD,
-                    worldPosition.getX() + 0.5 + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+            serverLevel.sendParticles(ModParticles.COOKING.get(),
+                    worldPosition.getX() + 0.5 + random.nextDouble() / 4 * (random.nextBoolean() ? 1 : -1),
                     worldPosition.getY() + 0.5 + random.nextDouble() / 3,
-                    worldPosition.getZ() + 0.5 + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+                    worldPosition.getZ() + 0.5 + random.nextDouble() / 4 * (random.nextBoolean() ? 1 : -1),
                     1,
                     (level.random.nextFloat() - 0.5) * 0.05F,
                     0.1,
@@ -128,11 +129,11 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
     }
 
     private void spawnParticleBoiling(Level level) {
-        if (level instanceof ServerLevel serverLevel && serverLevel.random.nextFloat() < 0.25F) {
-            serverLevel.sendParticles(ParticleTypes.CLOUD,
-                    worldPosition.getX() + 0.5 + (level.random.nextFloat() - 0.5F) * 0.3F,
-                    worldPosition.getY() + 0.65,
-                    worldPosition.getZ() + 0.5 + (level.random.nextFloat() - 0.5F) * 0.3F,
+        if (level instanceof ServerLevel serverLevel && serverLevel.random.nextFloat() < 0.15F) {
+            serverLevel.sendParticles(ModParticles.COOKING.get(),
+                    worldPosition.getX() + 0.5 + (level.random.nextFloat() - 0.5F) * 0.2F,
+                    worldPosition.getY() + 0.5 + level.random.nextDouble() / 3,
+                    worldPosition.getZ() + 0.5 + (level.random.nextFloat() - 0.5F) * 0.2F,
                     2,
                     (level.random.nextFloat() - 0.5) * 0.05F,
                     0.1,
@@ -240,6 +241,20 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
         }
         drops.add(this.dropAsItem());
         return drops;
+    }
+
+    @Override
+    public Component getTip() {
+        Component inputText = input.getHoverName();
+        if (input.isEmpty()) {
+            return Component.literal("未添加物品");
+        }
+
+        if (status == BOILING) {
+            return Component.literal("%d x".formatted(this.input.getCount())).append(inputText).append("，正在煮茶中");
+        }
+
+        return Component.literal("%d x".formatted(this.input.getCount())).append(inputText);
     }
 
     @Override

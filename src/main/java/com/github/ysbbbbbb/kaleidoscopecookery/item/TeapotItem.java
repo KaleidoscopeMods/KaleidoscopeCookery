@@ -80,15 +80,23 @@ public class TeapotItem extends BlockItem {
         ItemStack itemInHand = context.getItemInHand();
         ITeaType teaType = getTeaType(itemInHand);
 
-        // 潜行时只尝试放置
+        // 潜行时只尝试倒茶
         if (player != null && player.isSecondaryUseActive()) {
+            // 尝试对着方块倒茶
+            if (getFluidAmount(itemInHand) > 0) {
+                BlockHitResult hitResult = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
+                int consumed = teaType.onPouredOnBlock(level, hitResult, player, itemInHand);
+                if (consumed != 0) {
+                    shrinkFluidAmount(itemInHand, consumed);
+                    return InteractionResult.SUCCESS;
+                }
+            }
             return super.useOn(context);
         }
 
-
         FluidState fluidState = level.getFluidState(pos);
         FluidState fluidState1 = level.getFluidState(pos.relative(context.getClickedFace()));
-        // 若茶壶为空，遍历检查所有绑定的流体类型，尝试给茶壶装满对应流体
+        // 若茶壶为空，遍历检查所有绑定的流体类型
         if (teaType.getName().equals(ModTeaTypes.EMPTY)) {
             for (Map.Entry<ResourceLocation, FluidType> entry : TeaTypeManager.getBoundFluidTypes().entrySet()) {
                 ITeaType type = TeaTypeManager.getTeaType(entry.getKey());
@@ -99,21 +107,11 @@ public class TeapotItem extends BlockItem {
                     return InteractionResult.SUCCESS;
                 }
             }
-        } // 否则检查目标位置的流体，若和茶壶中装的相同，则装满对应流体
+        } // 否则只检查茶壶装的流体
         else {
             FluidType fluidType = TeaTypeManager.getBoundFluid(teaType.getName());
             if (fluidType != null && (fluidState.getType().getFluidType() == fluidType || fluidState1.getType().getFluidType() == fluidType)) {
                 setFluidAmount(itemInHand, TeapotBlockEntity.MAX_FLUID_AMOUNT);
-                return InteractionResult.SUCCESS;
-            }
-        }
-
-        // 尝试对着方块倒茶
-        if (getFluidAmount(itemInHand) > 0) {
-            BlockHitResult hitResult = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
-            int consumed = teaType.onPouredOnBlock(level, hitResult, player, itemInHand);
-            if (consumed != 0) {
-                shrinkFluidAmount(itemInHand, consumed);
                 return InteractionResult.SUCCESS;
             }
         }
@@ -124,7 +122,7 @@ public class TeapotItem extends BlockItem {
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
         Player player = context.getPlayer();
-        if (player != null && !player.isSecondaryUseActive()) {
+        if (player != null && player.isSecondaryUseActive()) {
             return false;
         }
 

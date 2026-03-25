@@ -181,5 +181,8 @@ public final class ModItems {
 
     // 特殊
     public static RegistryObject<Item> COLD_CUT_HAM_SLICES = ITEMS.register("cold_cut_ham_slices", () -> new LiftBlockItem(ModBlocks.COLD_CUT_HAM_SLICES.get(), "cold_cut_ham_slices"));
+
+    // 茶
+    public static RegistryObject<Item> TEACUP = ITEMS.register("teacup", () -> new TeacupBlockItem(ModBlocks.TEACUP.get()));
 }
 
