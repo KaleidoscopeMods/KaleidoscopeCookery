@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -38,11 +39,19 @@ public class DrinkTeaType implements ITeaType {
     }
 
     @Override
+    public boolean instantPouring(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        return state.getBlock() instanceof TeacupBlock teacup && teacup.tryPourTeaOn(level, pos, state, this, true);
+    }
+
+    @Override
     public int onPouredOnBlock(Level level, BlockHitResult hit, @Nullable LivingEntity user, ItemStack teapot) {
         BlockPos pos = hit.getBlockPos();
         BlockState state = level.getBlockState(pos);
         if (state.getBlock() instanceof TeacupBlock block) {
-            if (block.tryPourTea(level, pos, state, this) && level instanceof ServerLevel serverLevel) {
+            if (block.tryPourTeaOn(level, pos, state, this, false) && level instanceof ServerLevel serverLevel) {
                 Vec3 vec3 = pos.getCenter();
                 serverLevel.sendParticles(ParticleTypes.GLOW,
                         vec3.x(), vec3.y(), vec3.z(),

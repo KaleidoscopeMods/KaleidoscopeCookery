@@ -11,7 +11,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -46,19 +44,6 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
-    }
-
-    @Override
-    public InteractionResult useOn(UseOnContext context) {
-        Player player = context.getPlayer();
-        InteractionResult result = super.useOn(context);
-        // 无法放置则尝试喝下去
-        if (!result.consumesAction() && player != null) {
-            result = this.use(context.getLevel(), player, context.getHand()).getResult();
-            return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
-        }
-
-        return result;
     }
 
     @Override
@@ -89,7 +74,8 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
             return false;
         }
 
-        if (teacup.tryIncreaseCount(level, pos, state, stack)) {
+        // 尝试增加堆叠数
+        if (teacup.tryIncreaseCount(level, pos, state, stack, false)) {
             // 播放音效
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);
@@ -105,9 +91,8 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
         }
 
         // 如果全空且存在空位
-        if (teacup.isAllEmpty(state) && state.getValue(teacup.getCountProperty()) < teacup.getMaxCount()) {
-            teacup.transformToDrink(level, pos, state, drink);
-            drink.tryIncreaseCount(level, pos, level.getBlockState(pos), stack);
+        if (teacup.isAllEmpty(state) && state.getValue(teacup.getCountProperty()) < Math.min(teacup.getMaxCount(), drink.getMaxCount())) {
+            teacup.transformToDrink(level, pos, state.cycle(teacup.getCountProperty()), drink, 1);
             // 播放音效
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);

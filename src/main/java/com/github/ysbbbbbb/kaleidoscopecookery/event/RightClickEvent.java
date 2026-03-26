@@ -79,8 +79,8 @@ public class RightClickEvent {
             }
             player.getMainHandItem().shrink(1);
             ModTrigger.EVENT.trigger(player, ModEventTriggerType.USE_CATERPILLAR_FEED_CHICKEN);
-        } else if (!level.isClientSide() && event.getHand() == InteractionHand.MAIN_HAND
-                && target instanceof LivingEntity living && mainHandItem.getItem() instanceof TeapotItem) {
+        } else if (event.getHand() == InteractionHand.MAIN_HAND && mainHandItem.getItem() instanceof TeapotItem
+                && target instanceof LivingEntity living) {
             ITeaType teaType = TeapotItem.getTeaType(mainHandItem);
             if (TeapotItem.getFluidAmount(mainHandItem) > 0) {
                 int consumed = teaType.onPouredOnEntity(level, living, player, mainHandItem);

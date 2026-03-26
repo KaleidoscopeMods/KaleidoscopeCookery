@@ -1,12 +1,16 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.ITipProvider;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.client.ITipProvider;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.ITeapot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.TeapotContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.TeapotRecipeSerializer;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.FluidSoupBase;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.DrinkTeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.TeaTypeManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
@@ -25,6 +29,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidType;
 
 import java.util.ArrayList;
@@ -64,7 +70,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
 
     public void tick(Level level) {
         // 茶壶为空
-        if (this.teaTypeId.equals(ModTeaTypes.EMPTY)) {
+        if (this.fluidAmount <= 0) {
             return;
         }
 
@@ -73,7 +79,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
         // 生成粒子效果
         if (status == BOILING && heated && fulfilled) {
             spawnParticleBoiling(level);
-        } else if (TeaTypeManager.getTeaType(this.teaTypeId).doSpawnParticles()) {
+        } else if (TeaTypeManager.getTeaType(this.teaTypeId).spawnParticles()) {
             spawnParticleIdle(level);
         }
 
@@ -154,13 +160,15 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
             return false;
         }
 
+        ITeaType teaType = TeaTypeManager.getTeaType(this.teaTypeId);
+        FluidType fluidType = TeaTypeManager.getBoundFluid(this.teaTypeId);
+
+        // 首先尝试BucketItem
         if (bucket.getItem() instanceof BucketItem bucketItem) {
-            ITeaType teaType = TeaTypeManager.getTeaType(this.teaTypeId);
-            FluidType fluidType = TeaTypeManager.getBoundFluid(this.teaTypeId);
-            FluidType bucketType = bucketItem.getFluid().getFluidType();
+            Fluid bucketType = bucketItem.getFluid();
             // 壶内为空 或者 壶内流体类型和桶中相同
-            if ((fluidType != null && fluidType.equals(bucketType)) || teaType.getName().equals(ModTeaTypes.EMPTY)) {
-                this.teaTypeId = TeaTypeManager.getBoundTeaTypeId(bucketType);
+            if (bucketType != Fluids.EMPTY && (bucketType.getFluidType().equals(fluidType) || teaType.getName().equals(ModTeaTypes.EMPTY))) {
+                this.teaTypeId = TeaTypeManager.getBoundTeaTypeId(bucketType.getFluidType());
                 this.fluidAmount = MAX_FLUID_AMOUNT;
                 this.refresh();
 
@@ -168,6 +176,24 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
                 bucket.shrink(1);
                 ItemUtils.getItemToLivingEntity(user, container);
                 return true;
+            }
+        }
+
+        // 然后尝试FluidSoupBase
+        for (var entry : SoupBaseManager.getAllSoupBases().entrySet()) {
+            ISoupBase soupBase = entry.getValue();
+            if (soupBase instanceof FluidSoupBase fluidSoupBase && fluidSoupBase.isSoupBase(bucket)) {
+                FluidType fluidType1 = fluidSoupBase.getFluid().getFluidType();
+                if (fluidType1.equals(fluidType) || teaType.getName().equals(ModTeaTypes.EMPTY)) {
+                    this.teaTypeId = TeaTypeManager.getBoundTeaTypeId(fluidType1);
+                    this.fluidAmount = MAX_FLUID_AMOUNT;
+                    this.refresh();
+
+                    ItemStack container = soupBase.getReturnContainer(level, user, bucket);
+                    bucket.shrink(1);
+                    ItemUtils.getItemToLivingEntity(user, container);
+                    return true;
+                }
             }
         }
 
@@ -245,16 +271,26 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
 
     @Override
     public Component getTip() {
-        Component inputText = input.getHoverName();
+        Component hoverName = input.getHoverName();
+
+        Component text = input.isEmpty() ? Component.empty() : Component.literal("内含 %dx%s\n".formatted(this.input.getCount(), hoverName.getString()));
+        if (status == BOILING) {
+            return text.copy().append(Component.literal("正在煮茶中…"));
+        }
+
+        if (TeaTypeManager.getTeaType(this.teaTypeId) instanceof DrinkTeaType) {
+            return text.copy().append(Component.literal("茶水开了！"));
+        }
+
+        if (fluidAmount <= 0) {
+            return text.copy().append(Component.literal("未添加液体"));
+        }
+
         if (input.isEmpty()) {
             return Component.literal("未添加物品");
         }
 
-        if (status == BOILING) {
-            return Component.literal("%d x".formatted(this.input.getCount())).append(inputText).append("，正在煮茶中");
-        }
-
-        return Component.literal("%d x".formatted(this.input.getCount())).append(inputText);
+        return text.copy().append(Component.literal("物品数量过少或错误!"));
     }
 
     @Override

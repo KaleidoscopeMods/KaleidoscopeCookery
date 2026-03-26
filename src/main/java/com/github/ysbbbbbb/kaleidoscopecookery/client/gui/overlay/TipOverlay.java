@@ -1,11 +1,13 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.ITipProvider;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.client.ITipProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -47,6 +49,13 @@ public class TipOverlay implements IGuiOverlay {
         if (minecraft.gui.overlayMessageTime > 0) {
             y = y - 12;
         }
-        PotOverlay.drawWordWrap(guiGraphics, font, provider.getTip().copy(), x, y, 0xFFFFFF);
+        drawWordWrap(guiGraphics, font, provider.getTip().copy(), x, y, 0xFFFFFF);
+    }
+
+    public static void drawWordWrap(GuiGraphics graphics, Font font, MutableComponent text, int pX, int pY, int color) {
+        for (FormattedCharSequence sequence : font.split(text, 150)) {
+            graphics.drawString(font, sequence, pX - font.width(sequence) / 2, pY, color);
+            pY += font.lineHeight + 1;
+        }
     }
 }

@@ -23,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -63,34 +64,37 @@ public class TeaDrinkBlock extends TeacupBlock {
     }
 
     @Override
-    public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack) {
+    public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack, boolean simulate) {
         if (!stack.is(teacupItem.get()) && !stack.is(teaDrinkItem.get())) {
             return false;
         }
 
         int count = state.getValue(this.countProperty);
         if (count < this.maxCount) {
-            BlockState newState = state.cycle(this.countProperty);
-            if (stack.is(this.asItem())) {
-                newState = newState.cycle(this.filledCountProperty);
+            if (!simulate) {
+                BlockState newState = state.cycle(this.countProperty);
+                if (stack.is(this.asItem())) {
+                    newState = newState.cycle(this.filledCountProperty);
+                }
+                level.setBlockAndUpdate(pos, newState);
             }
-            level.setBlockAndUpdate(pos, newState);
             return true;
         }
         return false;
     }
 
-    public boolean tryPourTea(Level level, BlockPos pos, BlockState state, ITeaType teaType) {
-        if (!teaType.getName().equals(this.teaTypeId)) {
-            return false;
+    @Override
+    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaType teaType, boolean simulate) {
+        if (teaType.getName().equals(this.teaTypeId)) {
+            if (state.getValue(filledCountProperty) < state.getValue(countProperty)) {
+                if (!simulate) {
+                    level.setBlockAndUpdate(pos, state.cycle(filledCountProperty));
+                }
+                return true;
+            }
         }
 
-        if (state.getValue(filledCountProperty) < maxCount) {
-            level.setBlockAndUpdate(pos, state.cycle(filledCountProperty));
-            return true;
-        }
-
-        return false;
+        return super.tryPourTeaOn(level, pos, state, teaType, simulate);
     }
 
     @Override
@@ -132,7 +136,7 @@ public class TeaDrinkBlock extends TeacupBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        List<ItemStack> stacks = super.getDrops(state, params);
+        List<ItemStack> stacks = new ArrayList<>();
         int count = state.getValue(countProperty);
         int filled = state.getValue(filledCountProperty);
         stacks.add(teaDrinkItem.get().getDefaultInstance().copyWithCount(filled));

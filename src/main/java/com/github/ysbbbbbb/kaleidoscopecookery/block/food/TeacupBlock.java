@@ -31,6 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
@@ -71,47 +72,54 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .sound(SoundType.BAMBOO), maxCount, teacupItem, shapes);
     }
 
-    public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack) {
+    public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack, boolean simulate) {
         if (!stack.is(teacupItem.get())) {
             return false;
         }
 
         int count = state.getValue(this.countProperty);
         if (count < this.maxCount) {
-            level.setBlockAndUpdate(pos, state.cycle(this.countProperty));
+            if (!simulate) {
+                level.setBlockAndUpdate(pos, state.cycle(this.countProperty));
+            }
             return true;
         }
         return false;
     }
 
-    public boolean tryPourTea(Level level, BlockPos pos, BlockState state, ITeaType teaType) {
+    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaType teaType, boolean simulate) {
         if (!(teaType instanceof DrinkTeaType type)) {
             return false;
         }
 
-        TeaDrinkBlock drink = type.getBlock();
-        transformToDrink(level, pos, state, drink);
-        level.setBlockAndUpdate(pos, level.getBlockState(pos).setValue(drink.getFilledCountProperty(), 1));
+        if (!simulate) {
+            TeaDrinkBlock drink = type.getBlock();
+            transformToDrink(level, pos, state, drink, 1);
+        }
         return true;
     }
 
     /**
-     * 根据当前的空茶杯BlockState转为对应的茶水BlockState
+     * 根据当前的方块状态转为对应的茶水方块状态
      *
-     * @param state 茶杯BlockState
-     * @param drink 目标茶水方块
+     * @param level  所在世界
+     * @param pos    位置
+     * @param state  方块状态
+     * @param drink  目标茶水方块
+     * @param filled 转换后装满的杯数
      */
-    public void transformToDrink(Level level, BlockPos pos, BlockState state, TeaDrinkBlock drink) {
+    public void transformToDrink(Level level, BlockPos pos, BlockState state, TeaDrinkBlock drink, int filled) {
         if (!(state.getBlock() instanceof TeacupBlock teacup)) {
             return;
         }
 
-        // 根据空茶杯BlockState的信息生成对应的茶水BlockState
+        // 根据当前方块状态的信息生成对应的茶水方块状态
+        int count = Math.min(state.getValue(teacup.getCountProperty()), drink.getMaxCount());
         BlockState newState = drink.defaultBlockState()
                 .setValue(TeaDrinkBlock.FACING, state.getValue(FACING))
                 .setValue(TeaDrinkBlock.WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(drink.getCountProperty(), Math.min(state.getValue(teacup.getCountProperty()), drink.getMaxCount()))
-                .setValue(drink.getFilledCountProperty(), 0);
+                .setValue(drink.getCountProperty(), count)
+                .setValue(drink.getFilledCountProperty(), Math.min(filled, count));
 
         level.setBlockAndUpdate(pos, newState);
     }
@@ -153,18 +161,13 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
-    }
-
     protected void createCountBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, countProperty, WATERLOGGED);
     }
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        List<ItemStack> stacks = super.getDrops(state, params);
+        List<ItemStack> stacks = new ArrayList<>();
         stacks.add(teacupItem.get().getDefaultInstance().copyWithCount(state.getValue(countProperty)));
         return stacks;
     }

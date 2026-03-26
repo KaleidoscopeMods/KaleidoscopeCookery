@@ -43,7 +43,7 @@ public class LavaTeaType implements ITeaType {
     }
 
     @Override
-    public boolean doSpawnParticles() {
+    public boolean spawnParticles() {
         return true;
     }
 
@@ -57,6 +57,7 @@ public class LavaTeaType implements ITeaType {
                 BlockState state = BaseFireBlock.getState(level, pos);
                 level.setBlock(pos, state, 11);
                 level.gameEvent(user, GameEvent.BLOCK_PLACE, hit.getBlockPos());
+                level.playSound(null, hit.getBlockPos(), SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.PLAYERS);
                 if (user instanceof ServerPlayer) {
                     CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)user, pos, teapot);
                 }
@@ -66,6 +67,7 @@ public class LavaTeaType implements ITeaType {
             level.playSound(user, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
             level.setBlock(pos, blockstate.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
             level.gameEvent(user, GameEvent.BLOCK_CHANGE, pos);
+            level.playSound(null, hit.getBlockPos(), SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.PLAYERS);
         }
 
         return 1;
@@ -75,6 +77,7 @@ public class LavaTeaType implements ITeaType {
     public int onPouredOnEntity(Level level, LivingEntity entity, @Nullable LivingEntity user, ItemStack teapot) {
         entity.setSecondsOnFire(8);
         entity.hurt(entity.damageSources().lava(), 2);
+        level.playSound(null, entity.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundSource.PLAYERS);
         return 1;
     }
 }

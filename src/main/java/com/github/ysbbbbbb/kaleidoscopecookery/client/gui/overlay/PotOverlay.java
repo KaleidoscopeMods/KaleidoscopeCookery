@@ -72,7 +72,7 @@ public class PotOverlay implements IGuiOverlay {
         }
     }
 
-    public static void drawWordWrap(GuiGraphics graphics, Font font, MutableComponent text, int pX, int pY, int color) {
+    private static void drawWordWrap(GuiGraphics graphics, Font font, MutableComponent text, int pX, int pY, int color) {
         for (FormattedCharSequence sequence : font.split(text, 100)) {
             graphics.drawString(font, sequence, pX - font.width(sequence) / 2, pY, color);
             pY += font.lineHeight;

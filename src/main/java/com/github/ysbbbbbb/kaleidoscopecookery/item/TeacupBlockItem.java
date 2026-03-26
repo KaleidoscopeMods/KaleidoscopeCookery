@@ -31,24 +31,17 @@ public class TeacupBlockItem extends BlockItem {
         Player player = context.getPlayer();
         BlockPos pos = context.getClickedPos();
         ItemStack stack = context.getItemInHand();
-
         BlockState state = level.getBlockState(pos);
         Block self = this.getBlock();
 
-        // 只有潜行时才放置
-        if (player == null || player.isShiftKeyDown()) {
-            // 先检查能够添加数量
-            if (player != null && tryIncreaseCount(self, state, level, pos, stack, player)) {
-                return InteractionResult.SUCCESS;
-            }
-            return this.place(new BlockPlaceContext(context));
+        if (player != null && tryIncreaseCount(self, state, level, pos, stack, player)) {
+            return InteractionResult.SUCCESS;
         }
-
-        return InteractionResult.PASS;
+        return this.place(new BlockPlaceContext(context));
     }
 
     protected boolean tryIncreaseCount(Block self, BlockState state, Level level, BlockPos pos, ItemStack stack, Player player) {
-        if (self instanceof TeacupBlock && state.getBlock() instanceof TeacupBlock block && block.tryIncreaseCount(level, pos, state, stack)) {
+        if (self instanceof TeacupBlock && state.getBlock() instanceof TeacupBlock block && block.tryIncreaseCount(level, pos, state, stack, false)) {
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);
             level.playSound(

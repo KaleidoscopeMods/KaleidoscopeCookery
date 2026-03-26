@@ -5,14 +5,17 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.TeapotBlockEn
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.TeaTypeManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -26,9 +29,9 @@ import net.minecraft.world.phys.*;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class TeapotItem extends BlockItem {
     private static final String FLUID_AMOUNT = "fluid_amount";
@@ -95,37 +98,32 @@ public class TeapotItem extends BlockItem {
         ItemStack itemInHand = context.getItemInHand();
         ITeaType teaType = getTeaType(itemInHand);
 
-        // 潜行时只尝试放置方块
+        // 潜行时只放置方块
         if (player == null || player.isSecondaryUseActive()) {
             return super.useOn(context);
         }
 
         FluidState fluidState = level.getFluidState(pos);
         FluidState fluidState1 = level.getFluidState(pos.relative(context.getClickedFace()));
-        // 若茶壶为空，遍历检查所有绑定的流体类型
-        if (teaType.getName().equals(ModTeaTypes.EMPTY)) {
-            for (Map.Entry<ResourceLocation, FluidType> entry : TeaTypeManager.getBoundFluidTypes().entrySet()) {
-                ITeaType type = TeaTypeManager.getTeaType(entry.getKey());
-                FluidType fluidType = TeaTypeManager.getBoundFluid(entry.getKey());
-                if (fluidState.getType().getFluidType() == fluidType || fluidState1.getType().getFluidType() == fluidType) {
-                    setFluidAmount(itemInHand, TeapotBlockEntity.MAX_FLUID_AMOUNT);
-                    setTeaType(itemInHand, type);
-                    return InteractionResult.SUCCESS;
-                }
-            }
-        } // 否则只检查茶壶装的流体
-        else {
-            FluidType fluidType = TeaTypeManager.getBoundFluid(teaType.getName());
-            if (fluidType != null && (fluidState.getType().getFluidType() == fluidType || fluidState1.getType().getFluidType() == fluidType)) {
-                setFluidAmount(itemInHand, TeapotBlockEntity.MAX_FLUID_AMOUNT);
-                return InteractionResult.SUCCESS;
-            }
+        // 尝试装水
+        if (tryFillWithFluid(itemInHand, teaType, fluidState, fluidState1)) {
+            level.playSound(player, pos, SoundEvents.BUCKET_FILL, SoundSource.PLAYERS);
+            return InteractionResult.SUCCESS;
         }
 
-        // 开始倒茶
+        // 尝试向方块倒茶
         if (TeapotItem.getFluidAmount(itemInHand) > 0) {
-            InteractionResult result = this.use(context.getLevel(), player, context.getHand()).getResult();
-            return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
+            if (teaType.instantPouring(context)) {
+                BlockHitResult blockHit = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
+                int consumed = teaType.onPouredOnBlock(level, blockHit, player, itemInHand);
+                if (consumed != 0) {
+                    shrinkFluidAmount(itemInHand, consumed);
+                    return InteractionResult.SUCCESS;
+                }
+            } else {
+                InteractionResult result = ItemUtils.startUsingInstantly(level, player, context.getHand()).getResult();
+                return result == InteractionResult.CONSUME ? InteractionResult.CONSUME_PARTIAL : result;
+            }
         }
 
         return super.useOn(context);
@@ -133,71 +131,70 @@ public class TeapotItem extends BlockItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return ItemUtils.startUsingInstantly(level, player, hand);
+        // 尝试装水
+        ItemStack itemInHand = player.getItemInHand(hand);
+        ITeaType teaType = getTeaType(itemInHand);
+        BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
+        if (blockhitresult.getType() == HitResult.Type.BLOCK) {
+            BlockPos blockPos = blockhitresult.getBlockPos();
+            FluidState fluidState = level.getFluidState(blockPos);
+            if (tryFillWithFluid(itemInHand, teaType, fluidState)) {
+                level.playSound(player, blockPos, SoundEvents.BUCKET_FILL, SoundSource.PLAYERS);
+                return InteractionResultHolder.success(itemInHand);
+            }
+        }
+
+        return super.use(level, player, hand);
+    }
+
+    protected boolean tryFillWithFluid(ItemStack teapotItem, ITeaType teaType, FluidState... fluidStates) {
+        List<FluidState> fluidStateList = Arrays.stream(fluidStates).toList();
+        // 若茶壶为空，遍历检查所有绑定有茶的流体类型
+        if (teaType.getName().equals(ModTeaTypes.EMPTY)) {
+            for (Map.Entry<ResourceLocation, FluidType> entry : TeaTypeManager.getBoundFluidTypes().entrySet()) {
+                ITeaType type = TeaTypeManager.getTeaType(entry.getKey());
+                FluidType fluidType = TeaTypeManager.getBoundFluid(entry.getKey());
+                if (fluidStateList.stream().anyMatch(s -> s.getType().getFluidType() == fluidType)) {
+                    setFluidAmount(teapotItem, TeapotBlockEntity.MAX_FLUID_AMOUNT);
+                    setTeaType(teapotItem, type);
+                    return true;
+                }
+            }
+        } // 否则只检查茶壶装的流体
+        else {
+            FluidType fluidType = TeaTypeManager.getBoundFluid(teaType.getName());
+            if (fluidType != null && fluidStateList.stream().anyMatch(s -> s.getType().getFluidType() == fluidType)) {
+                setFluidAmount(teapotItem, TeapotBlockEntity.MAX_FLUID_AMOUNT);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (getFluidAmount(stack) > 0) {
-            HitResult result = getHitResult(entity, 4.5);
+            Vec3 start = entity.getEyePosition();
+            Vec3 direction = entity.getViewVector(1.0F);
+            Vec3 end = start.add(direction.scale(4.5));
+            BlockHitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity));
             ITeaType teaType = getTeaType(stack);
             // 尝试向方块倒茶
-            if (result instanceof BlockHitResult blockHit) {
+            if (blockHit.getType() == HitResult.Type.BLOCK) {
                 int consumed = teaType.onPouredOnBlock(level, blockHit, entity, stack);
                 if (consumed != 0) {
                     shrinkFluidAmount(stack, consumed);
-                }
-            } // 尝试向实体倒茶
-            else if (result instanceof EntityHitResult entityHit && entityHit.getEntity() instanceof LivingEntity living) {
-                int consumed = teaType.onPouredOnEntity(level, living, entity, stack);
-                if (consumed != 0) {
-                    TeapotItem.shrinkFluidAmount(stack, consumed);
-                    entity.swing(InteractionHand.MAIN_HAND);
                 }
             }
         }
         return stack;
     }
 
-    @Nullable
-    private static HitResult getHitResult(LivingEntity entity, double maxDistance) {
-        Level level = entity.level();
-        Vec3 start = entity.getEyePosition();
-        Vec3 direction = entity.getViewVector(1.0F);
-        Vec3 end = start.add(direction.scale(maxDistance));
-
-        // 1. 检测实体
-        AABB aabb = new AABB(start, end).inflate(1.0D);
-        List<Entity> entities = level.getEntities(entity, aabb, e -> e != entity && e.isPickable());
-        EntityHitResult entityHit = null;
-        double closestDistSq = Double.MAX_VALUE;
-        for (Entity e : entities) {
-            AABB box = e.getBoundingBox().inflate(e.getPickRadius());
-            Optional<Vec3> hitPos = box.clip(start, end);
-            if (hitPos.isPresent()) {
-                double distSq = start.distanceToSqr(hitPos.get());
-                if (distSq < closestDistSq) {
-                    closestDistSq = distSq;
-                    entityHit = new EntityHitResult(e, hitPos.get());
-                }
-            }
-        }
-        if (entityHit != null) {
-            return entityHit;
-        }
-
-        // 2. 检测方块
-        BlockHitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity));
-        if (blockHit.getType() == HitResult.Type.BLOCK) {
-            return blockHit;
-        }
-
-        return null;
-    }
-
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
         Player player = context.getPlayer();
+        // 只有潜行时允许放置
         if (player != null && !player.isSecondaryUseActive()) {
             return false;
         }
@@ -232,5 +229,10 @@ public class TeapotItem extends BlockItem {
     @Override
     public int getMaxStackSize(ItemStack stack) {
         return 1;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("teatype.%s.name".formatted(getTeaType(stack).getName().toLanguageKey())).withStyle(ChatFormatting.GRAY));
     }
 }
