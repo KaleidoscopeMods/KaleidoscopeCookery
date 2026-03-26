@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -38,7 +39,7 @@ public class ProjectileDodgeEvent {
         ) {
             // 取消弹射物碰撞并随机传送
             event.setImpactResult(ProjectileImpactEvent.ImpactResult.SKIP_ENTITY);
-            randomTeleport(living.level(), living, 3, 16);
+            randomTeleport(living.level(), living, 0.5, 2, 16);
 
             // 消耗持续时间
             MobEffectInstance instance = living.getEffect(ModEffects.PROJECTILE_DODGE.get());
@@ -62,10 +63,11 @@ public class ProjectileDodgeEvent {
      *
      * @param level       目标所在的世界
      * @param living      目标
-     * @param range       传送半径
+     * @param minDistance 最小传送距离
+     * @param maxDistance 最大传送距离
      * @param maxAttempts 最大尝试次数
      */
-    public static void randomTeleport(Level level, LivingEntity living, double range, int maxAttempts) {
+    public static void randomTeleport(Level level, LivingEntity living, double minDistance, double maxDistance, int maxAttempts) {
         if (level.isClientSide) {
             return;
         }
@@ -77,9 +79,9 @@ public class ProjectileDodgeEvent {
         int maxH = ((ServerLevel) level).getLogicalHeight();
 
         for (int i = 0; i < maxAttempts; ++i) {
-            double targetX = x + (living.getRandom().nextDouble() - 0.5) * range;
-            double targetY = Mth.clamp(y + (living.getRandom().nextDouble() - 0.5) * range, minH, minH + maxH - 1);
-            double targetZ = z + (living.getRandom().nextDouble() - 0.5) * range;
+            double targetX = x + randomBetween(living.getRandom(), minDistance, maxDistance);
+            double targetY = Mth.clamp(y + randomBetween(living.getRandom(), minDistance, maxDistance), minH, minH + maxH - 1);
+            double targetZ = z + randomBetween(living.getRandom(), minDistance, maxDistance);
 
             if (living.isPassenger()) {
                 living.stopRiding();
@@ -94,5 +96,11 @@ public class ProjectileDodgeEvent {
                 break;
             }
         }
+    }
+
+    private static double randomBetween(RandomSource random, double min, double max) {
+        double value = (random.nextDouble() - 0.5) * (max - min);
+        value = min * Mth.sign(value) + value;
+        return value;
     }
 }
