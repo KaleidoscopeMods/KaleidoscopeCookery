@@ -3,6 +3,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.item.IHasContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.datamap.TeaEffectData;
+import com.github.ysbbbbbb.kaleidoscopecookery.datamap.resources.TeaEffectDataReloadListener;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -12,6 +14,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -47,24 +51,6 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return ItemUtils.startUsingInstantly(level, player, hand);
-    }
-
-    @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-        }
-        // this.addDrinkEffect(stack, level, entity);
-        if (entity instanceof Player player && !player.isCreative()) {
-            stack.shrink(1);
-        }
-        return returnContainerToEntity(stack, level, entity);
-    }
-
-    @Override
     protected boolean tryIncreaseCount(Block self, BlockState state, Level level, BlockPos pos, ItemStack stack, Player player) {
         if (!(state.getBlock() instanceof TeacupBlock teacup)) {
             return false;
@@ -92,6 +78,7 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
 
         // 如果全空且存在空位
         if (teacup.isAllEmpty(state) && state.getValue(teacup.getCountProperty()) < Math.min(teacup.getMaxCount(), drink.getMaxCount())) {
+            // 转换为对应茶方块
             teacup.transformToDrink(level, pos, state.cycle(teacup.getCountProperty()), drink, 1);
             // 播放音效
             SoundType soundType = state.getSoundType(level, pos, player);
@@ -108,6 +95,41 @@ public class TeaDrinkBlockItem extends TeacupBlockItem implements IHasContainer 
         }
 
         return false;
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(level, player, hand);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (entity instanceof ServerPlayer serverPlayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+        }
+        this.addTeaEffect(stack, level, entity);
+        if (entity instanceof Player player && !player.isCreative()) {
+            stack.shrink(1);
+        }
+        return returnContainerToEntity(stack, level, entity);
+    }
+
+    protected void addTeaEffect(ItemStack stack, Level level, LivingEntity entity) {
+        TeaEffectData effectData = TeaEffectDataReloadListener.INSTANCE.get(stack.getItem());
+        if (effectData == null) {
+            return;
+        }
+        for (var entry : effectData.effects()) {
+            if (!level.isClientSide && level.random.nextFloat() < entry.probability()) {
+                MobEffect effect = entry.effect();
+                // json 里的持续时间是秒，但是内部游戏是 tick，需要转化
+                int duration = entry.duration() * 20;
+                int amplifier = entry.amplifier();
+                MobEffectInstance instance = new MobEffectInstance(effect, duration, amplifier);
+                entity.addEffect(instance);
+            }
+        }
     }
 
     @Override

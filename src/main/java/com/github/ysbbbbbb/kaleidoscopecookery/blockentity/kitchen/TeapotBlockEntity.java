@@ -1,15 +1,12 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.client.ITipProvider;
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.ITeapot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.TeapotContainer;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.TeapotRecipeSerializer;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.FluidSoupBase;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.DrinkTeaType;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.TeaTypeManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
@@ -23,18 +20,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipProvider {
@@ -58,14 +53,6 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
 
     public TeapotBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.TEAPOT_BE.get(), pos, state);
-    }
-
-    public boolean hasHeatSource(Level level) {
-        BlockState belowState = level.getBlockState(worldPosition.below());
-        if (belowState.hasProperty(BlockStateProperties.LIT)) {
-            return belowState.getValue(BlockStateProperties.LIT);
-        }
-        return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
     }
 
     public void tick(Level level) {
@@ -149,7 +136,16 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
     }
 
     @Override
-    public boolean addFluid(Level level, LivingEntity user, ItemStack bucket) {
+    public boolean hasHeatSource(Level level) {
+        BlockState belowState = level.getBlockState(worldPosition.below());
+        if (belowState.hasProperty(BlockStateProperties.LIT)) {
+            return belowState.getValue(BlockStateProperties.LIT);
+        }
+        return belowState.is(TagMod.HEAT_SOURCE_BLOCKS_WITHOUT_LIT);
+    }
+
+    @Override
+    public boolean addFluid(Level level, LivingEntity user, ItemStack stack) {
         // 当前状态是放入材料
         if (this.status != PUT_INGREDIENT) {
             return false;
@@ -161,37 +157,27 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
         }
 
         ITeaType teaType = TeaTypeManager.getTeaType(this.teaTypeId);
-        FluidType fluidType = TeaTypeManager.getBoundFluid(this.teaTypeId);
-
-        // 首先尝试BucketItem
-        if (bucket.getItem() instanceof BucketItem bucketItem) {
-            Fluid bucketType = bucketItem.getFluid();
-            // 壶内为空 或者 壶内流体类型和桶中相同
-            if (bucketType != Fluids.EMPTY && (bucketType.getFluidType().equals(fluidType) || teaType.getName().equals(ModTeaTypes.EMPTY))) {
-                this.teaTypeId = TeaTypeManager.getBoundTeaTypeId(bucketType.getFluidType());
-                this.fluidAmount = MAX_FLUID_AMOUNT;
-                this.refresh();
-
-                ItemStack container = bucketItem.getCraftingRemainingItem(bucket);
-                bucket.shrink(1);
-                ItemUtils.getItemToLivingEntity(user, container);
-                return true;
+        if (!ITeaType.isEmpty(teaType) && teaType.isTeaType(stack)) {
+            this.fluidAmount = MAX_FLUID_AMOUNT;
+            this.refresh();
+            ItemUtils.getItemToLivingEntity(user, ItemUtils.getContainerItem(stack).getDefaultInstance());
+            if (!(user instanceof Player player && player.isCreative())) {
+                stack.shrink(1);
             }
+            return true;
         }
 
-        // 然后尝试FluidSoupBase
-        for (var entry : SoupBaseManager.getAllSoupBases().entrySet()) {
-            ISoupBase soupBase = entry.getValue();
-            if (soupBase instanceof FluidSoupBase fluidSoupBase && fluidSoupBase.isSoupBase(bucket)) {
-                FluidType fluidType1 = fluidSoupBase.getFluid().getFluidType();
-                if (fluidType1.equals(fluidType) || teaType.getName().equals(ModTeaTypes.EMPTY)) {
-                    this.teaTypeId = TeaTypeManager.getBoundTeaTypeId(fluidType1);
+        if (ITeaType.isEmpty(teaType)) {
+            for (Map.Entry<ResourceLocation, ITeaType> entry : TeaTypeManager.getAllTeaTypes().entrySet()) {
+                ITeaType type = entry.getValue();
+                if (type.isTeaType(stack)) {
                     this.fluidAmount = MAX_FLUID_AMOUNT;
+                    this.teaTypeId = type.getName();
                     this.refresh();
-
-                    ItemStack container = soupBase.getReturnContainer(level, user, bucket);
-                    bucket.shrink(1);
-                    ItemUtils.getItemToLivingEntity(user, container);
+                    ItemUtils.getItemToLivingEntity(user, ItemUtils.getContainerItem(stack).getDefaultInstance());
+                    if (!(user instanceof Player player && player.isCreative())) {
+                        stack.shrink(1);
+                    }
                     return true;
                 }
             }

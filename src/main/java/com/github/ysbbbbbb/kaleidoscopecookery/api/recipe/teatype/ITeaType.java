@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -37,6 +38,16 @@ public interface ITeaType {
     }
 
     /**
+     * 在玩家拿着物品右击茶壶时调用，用来判断手持物是否是对应茶
+     *
+     * @param stack 手持物
+     * @return 如果是则返回 true，否则返回 false
+     */
+    default boolean isTeaType(ItemStack stack) {
+        return false;
+    }
+
+    /**
      * 向方块倒茶时是否瞬间完成
      *
      * @param context UseOn上下文
@@ -64,4 +75,8 @@ public interface ITeaType {
      * @return 消耗的茶水份数,0表示操作失败
      */
     int onPouredOnEntity(Level level, LivingEntity entity, @Nullable LivingEntity user, ItemStack teapot);
+
+    static boolean isEmpty(ITeaType teaType) {
+        return teaType.getName().equals(ModTeaTypes.EMPTY);
+    }
 }

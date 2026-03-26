@@ -48,6 +48,11 @@ public class LavaTeaType implements ITeaType {
     }
 
     @Override
+    public boolean isTeaType(ItemStack stack) {
+        return stack.is(Items.LAVA_BUCKET);
+    }
+
+    @Override
     public int onPouredOnBlock(Level level, BlockHitResult hit, @Nullable LivingEntity user, ItemStack teapot) {
         BlockState blockstate = level.getBlockState(hit.getBlockPos());
         if (!CampfireBlock.canLight(blockstate) && !CandleBlock.canLight(blockstate) && !CandleCakeBlock.canLight(blockstate)) {

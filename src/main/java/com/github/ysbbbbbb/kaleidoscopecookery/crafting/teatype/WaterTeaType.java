@@ -36,6 +36,11 @@ public class WaterTeaType implements ITeaType {
     }
 
     @Override
+    public boolean isTeaType(ItemStack stack) {
+        return stack.is(Items.WATER_BUCKET);
+    }
+
+    @Override
     public int onPouredOnBlock(Level level, BlockHitResult hit, @Nullable LivingEntity user, ItemStack teapot) {
         if (level instanceof ServerLevel serverLevel) {
             Vec3 pos = hit.getLocation();
