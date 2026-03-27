@@ -94,7 +94,7 @@ public class TeaDrinkBlock extends TeacupBlock {
             }
         }
 
-        return super.tryPourTeaOn(level, pos, state, teaType, simulate);
+        return this.isAllEmpty(state) && super.tryPourTeaOn(level, pos, state, teaType, simulate);
     }
 
     @Override
