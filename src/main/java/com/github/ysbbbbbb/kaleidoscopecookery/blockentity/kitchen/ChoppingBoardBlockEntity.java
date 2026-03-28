@@ -172,6 +172,8 @@ public class ChoppingBoardBlockEntity extends BaseBlockEntity implements IChoppi
         super.load(tag);
         if (tag.contains(MODEL_ID)) {
             this.modelId = new ResourceLocation(tag.getString(MODEL_ID));
+        } else {
+            this.modelId = null;
         }
         this.maxCutCount = tag.getInt(MAX_CUT_COUNT);
         this.currentCutCount = tag.getInt(CURRENT_CUT_COUNT);
