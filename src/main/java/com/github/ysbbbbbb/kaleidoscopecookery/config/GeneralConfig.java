@@ -17,18 +17,22 @@ public class GeneralConfig {
 
     /**
      * 为饱腹代偿提供更一些精细的配置项。
+     * 实际体验的效果为：
+     * 伤害不超过 最小伤害 时可以完全抗伤，只受到 最终伤害 * ( 1 - 伤害减免百分比 ) 的伤害；
+     * 伤害不超过 最大伤害减免量 / 伤害减免百分比 时有 伤害减免百分比 的抗伤能力；
+     * 伤害超过 最大伤害减免量 / 伤害减免百分比 时抗伤能力显著下降。
      */
     // 玩家处于饥饿状态效果时，饱腹代偿是否失效。
     public static ForgeConfigSpec.BooleanValue IS_SATIATED_SHIELD_DISABLE_WHEN_HUNGRY_EFFECT;
-    // 触发饱腹代偿效果所需的最小食物等级。
+    // 触发饱腹代偿效果所需的最小食物等级，越高说明饱腹代偿的触发条件越苛刻。
     public static ForgeConfigSpec.IntValue SATIATED_SHIELD_MIN_FOOD_LEVEL;
     // 饱腹代偿每吸收一点伤害所需的基础 Exhaustion 数值。
     public static ForgeConfigSpec.DoubleValue SATIATED_SHIELD_ADDITIONAL_EXHAUSTION_PER_DAMAGE;
-    // 饱腹代偿效果的伤害减免百分比。
+    // 饱腹代偿效果的伤害减免百分比，不满 1 则必定会受到一部分伤害，越高说明饱腹代偿的抗伤能力越强。
     public static ForgeConfigSpec.DoubleValue SATIATED_SHIELD_DAMAGE_REDUCTION_PERCENT;
-    // 饱腹代偿效果的最大伤害减免量。
+    // 饱腹代偿效果的最大伤害减免量，影响面对伤害较高时的抗伤表现，越高说明饱腹代偿的抗伤能力越强。
     public static ForgeConfigSpec.DoubleValue SATIATED_SHIELD_MAX_DAMAGE_REDUCTION;
-    // 饱腹代偿效果下可造成的最小伤害。
+    // 饱腹代偿效果下可造成的最小伤害，影响面对伤害较低时的抗伤表现，越高说明饱腹代偿的抗伤能力越强。
     public static ForgeConfigSpec.DoubleValue SATIATED_SHIELD_MIN_DAMAGE;
     // 当玩家受到饱腹代偿弱点伤害时，每点伤害增加的疲劳值的乘算倍率。
     public static ForgeConfigSpec.DoubleValue SATIATED_SHIELD_WEAKNESS_DAMAGE_MULTIPLIER;
@@ -46,7 +50,7 @@ public class GeneralConfig {
         IS_SATIATED_SHIELD_DISABLE_WHEN_HUNGRY_EFFECT = builder.define("IS_SATIATED_SHIELD_DISABLE_WHEN_HUNGRY_EFFECT", true);
 
         builder.comment("Minimum Hunger Value required for the Satiated Shield to apply (int).");
-        SATIATED_SHIELD_MIN_FOOD_LEVEL = builder.defineInRange("SATIATED_SHIELD_MIN_FOOD_LEVEL", 1, 1, 20);
+        SATIATED_SHIELD_MIN_FOOD_LEVEL = builder.defineInRange("SATIATED_SHIELD_MIN_FOOD_LEVEL", 4, 1, 20);
 
         // 由于在 1 游戏刻中玩家最多积累 40 点疲劳值，因此该配置项大于 40 就没有意义了。
         builder.comment("The exhaustion added each time the player takes damage.");
@@ -56,10 +60,10 @@ public class GeneralConfig {
         SATIATED_SHIELD_DAMAGE_REDUCTION_PERCENT = builder.defineInRange("SATIATED_SHIELD_DAMAGE_REDUCTION_PERCENT", 1.0, 0.0, 1.0);
 
         builder.comment("The maximum damage reduction amount of the Satiated Shield effect.");
-        SATIATED_SHIELD_MAX_DAMAGE_REDUCTION = builder.defineInRange("SATIATED_SHIELD_MAX_DAMAGE_REDUCTION", 64.0, 0.0, Integer.MAX_VALUE);
+        SATIATED_SHIELD_MAX_DAMAGE_REDUCTION = builder.defineInRange("SATIATED_SHIELD_MAX_DAMAGE_REDUCTION", 32.0, 0.0, Integer.MAX_VALUE);
 
         builder.comment("The minimum damage that can be got in the Satiated Shield effect.");
-        SATIATED_SHIELD_MIN_DAMAGE = builder.defineInRange("SATIATED_SHIELD_MIN_DAMAGE", 16.0, 0.0, Integer.MAX_VALUE);
+        SATIATED_SHIELD_MIN_DAMAGE = builder.defineInRange("SATIATED_SHIELD_MIN_DAMAGE", 8.0, 0.0, Integer.MAX_VALUE);
 
         builder.comment("The multiplier for the exhaustion added per point of Satiated Shield Weakness Damage.");
         SATIATED_SHIELD_WEAKNESS_DAMAGE_MULTIPLIER = builder.defineInRange("SATIATED_SHIELD_WEAKNESS_DAMAGE_MULTIPLIER", 2.0, 1.0, Integer.MAX_VALUE);
