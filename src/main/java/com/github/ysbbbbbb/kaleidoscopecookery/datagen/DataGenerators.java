@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.datagen.datamap.TeaEffectDataProvider;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.BlockModelGenerator;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.BlockStateGenerator;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.model.ItemModelGenerator;
@@ -39,5 +40,6 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new BlockStateGenerator(pack, helper));
         generator.addProvider(event.includeClient(), new ItemModelGenerator(pack, helper));
         generator.addProvider(event.includeServer(), new SoundDefinitionsGenerator(pack, helper));
+        generator.addProvider(event.includeServer(), new TeaEffectDataProvider(pack));
     }
 }

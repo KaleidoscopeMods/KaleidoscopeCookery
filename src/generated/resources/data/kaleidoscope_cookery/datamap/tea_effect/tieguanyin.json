@@ -1,0 +1,11 @@
+{
+  "item": "kaleidoscope_cookery:tieguanyin",
+  "effects": [
+    {
+      "effect": "kaleidoscope_cookery:instant_smelting",
+      "duration": 120,
+      "amplifier": 0,
+      "probability": 1.0
+    }
+  ]
+}

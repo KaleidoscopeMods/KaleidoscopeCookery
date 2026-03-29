@@ -21,6 +21,7 @@ public final class ModItems {
     public static RegistryObject<Item> SHAWARMA_SPIT = ITEMS.register("shawarma_spit", () -> new BlockItem(ModBlocks.SHAWARMA_SPIT.get(), new Item.Properties()));
     public static RegistryObject<Item> MILLSTONE = ITEMS.register("millstone", () -> new BlockItem(ModBlocks.MILLSTONE.get(), new Item.Properties()));
     public static RegistryObject<Item> STEAMER = ITEMS.register("steamer", SteamerItem::new);
+    public static RegistryObject<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
 
     // 油
     public static RegistryObject<Item> OIL = ITEMS.register("oil", OilItem::new);
@@ -180,5 +181,9 @@ public final class ModItems {
 
     // 特殊
     public static RegistryObject<Item> COLD_CUT_HAM_SLICES = ITEMS.register("cold_cut_ham_slices", () -> new LiftBlockItem(ModBlocks.COLD_CUT_HAM_SLICES.get(), "cold_cut_ham_slices"));
+
+    // 茶
+    public static RegistryObject<Item> TEACUP = ITEMS.register("teacup", () -> new TeacupBlockItem(ModBlocks.TEACUP.get()));
+    public static RegistryObject<Item> TIEGUANYIN = ITEMS.register("tieguanyin", () -> new TeaDrinkBlockItem(ModBlocks.TIEGUANYIN.get()));
 }
 
