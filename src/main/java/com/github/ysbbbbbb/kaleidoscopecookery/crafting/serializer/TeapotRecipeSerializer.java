@@ -2,7 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaFluids;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -14,8 +14,8 @@ import org.jetbrains.annotations.Nullable;
 public class TeapotRecipeSerializer implements RecipeSerializer<TeapotRecipe> {
     public static final int DEFAULT_TIME = 2400;
     public static final int DEFAULT_INGREDIENT_COUNT = 12;
-    public static final ResourceLocation DEFAULT_BASE_TEA_TYPE = ModTeaTypes.WATER;
-    public static final ResourceLocation DEFAULT_RESULT_TEA_TYPE = ModTeaTypes.WATER;
+    public static final ResourceLocation DEFAULT_BASE_TEA_TYPE = ModTeaFluids.WATER;
+    public static final ResourceLocation DEFAULT_RESULT_TEA_TYPE = ModTeaFluids.WATER;
     public static final ResourceLocation EMPTY_ID = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "teapot/empty");
 
     @Override

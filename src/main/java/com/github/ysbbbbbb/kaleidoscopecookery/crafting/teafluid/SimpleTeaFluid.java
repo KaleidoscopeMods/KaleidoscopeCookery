@@ -1,6 +1,6 @@
-package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype;
+package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
 import com.mojang.datafixers.util.Function4;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,19 +11,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
-public class SimpleTeaType implements ITeaType {
+public class SimpleTeaFluid implements ITeaFluid {
     protected final ResourceLocation name;
     protected final int barColor;
     protected final ItemStack displayStack;
     protected final Predicate<ItemStack> predicate;
+    protected final boolean isTeaBase;
     protected final Function4<Level, BlockHitResult, LivingEntity, ItemStack, Integer> pouredOnBlockFunction;
     protected final Function4<Level, LivingEntity, LivingEntity, ItemStack, Integer> pouredOnEntityFunction;
 
-    public SimpleTeaType(
+    public SimpleTeaFluid(
             ResourceLocation name,
             int barColor,
             ItemStack displayStack,
             Predicate<ItemStack> predicate,
+            boolean isTeaBase,
             Function4<Level, BlockHitResult, LivingEntity, ItemStack, Integer> pouredOnBlockFunction,
             Function4<Level, LivingEntity, LivingEntity, ItemStack, Integer> pouredOnEntityFunction
     ) {
@@ -31,6 +33,7 @@ public class SimpleTeaType implements ITeaType {
         this.barColor = barColor;
         this.displayStack = displayStack;
         this.predicate = predicate;
+        this.isTeaBase = isTeaBase;
         this.pouredOnBlockFunction = pouredOnBlockFunction;
         this.pouredOnEntityFunction = pouredOnEntityFunction;
     }
@@ -47,8 +50,13 @@ public class SimpleTeaType implements ITeaType {
     }
 
     @Override
-    public boolean isTeaType(ItemStack stack) {
+    public boolean isTeaFluid(ItemStack stack) {
         return this.predicate.test(stack);
+    }
+
+    @Override
+    public boolean isTeaBase() {
+        return isTeaBase;
     }
 
     @Override

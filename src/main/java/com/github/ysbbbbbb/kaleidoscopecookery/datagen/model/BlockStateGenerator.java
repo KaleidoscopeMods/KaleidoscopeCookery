@@ -5,7 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
@@ -357,7 +357,7 @@ public class BlockStateGenerator extends BlockStateProvider {
     }
 
     public void tea(Block block, String name) {
-        if (block instanceof TeaDrinkBlock drinkBlock) {
+        if (block instanceof TeaBlock drinkBlock) {
             horizontalBlock(block, blockState -> {
                 int count = blockState.getValue(drinkBlock.getCountProperty());
                 int filled = blockState.getValue(drinkBlock.getFilledCountProperty());

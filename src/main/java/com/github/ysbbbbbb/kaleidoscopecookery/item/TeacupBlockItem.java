@@ -1,6 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.block.ITeacup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class TeacupBlockItem extends BlockItem {
     public TeacupBlockItem(Block block) {
         this(block, new Properties()
-                .stacksTo(16));
+                .stacksTo(64));
     }
 
     public TeacupBlockItem(Block block, Properties properties) {
@@ -41,7 +41,10 @@ public class TeacupBlockItem extends BlockItem {
     }
 
     protected boolean tryIncreaseCount(Block self, BlockState state, Level level, BlockPos pos, ItemStack stack, Player player) {
-        if (self instanceof TeacupBlock && state.getBlock() instanceof TeacupBlock block && block.tryIncreaseCount(level, pos, state, stack, false)) {
+        // 尝试增加堆叠数
+        if (self instanceof ITeacup && state.getBlock() instanceof ITeacup teacup
+                && teacup.tryIncreaseCount(level, pos, state, stack, false)) {
+            // 播放音效
             SoundType soundType = state.getSoundType(level, pos, player);
             SoundEvent sound = this.getPlaceSound(state, level, pos, player);
             level.playSound(
@@ -54,6 +57,7 @@ public class TeacupBlockItem extends BlockItem {
             }
             return true;
         }
+
         return false;
     }
 }

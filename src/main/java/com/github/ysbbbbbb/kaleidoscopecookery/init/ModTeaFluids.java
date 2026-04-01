@@ -1,8 +1,8 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid.*;
 import com.mojang.datafixers.util.Function4;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,20 +11,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ModTeaTypes {
+public class ModTeaFluids {
     public static final ResourceLocation EMPTY = new ResourceLocation("minecraft", "air");
     public static final ResourceLocation WATER = new ResourceLocation("minecraft", "water");
     public static final ResourceLocation LAVA = new ResourceLocation("minecraft", "lava");
     public static final ResourceLocation TIEGUANYIN = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "tieguanyin");
 
     public static void registerAll() {
-        TeaTypeManager.registerTeaType(new SimpleTeaType(EMPTY, 0, ItemStack.EMPTY, (s) -> false, simpleBlockFunc(0), simpleEntityFunc(0)));
-        TeaTypeManager.registerTeaType(new WaterTeaType(WATER, 0x9DF7FF));
-        TeaTypeManager.registerTeaType(new LavaTeaType(LAVA, 0xE2610E));
-        TeaTypeManager.registerTeaType(new DrinkTeaType(TIEGUANYIN, 0xDBFFB8, (TeaDrinkBlock) ModBlocks.TIEGUANYIN.get()));
+        TeaFluidManager.registerTeaFluid(new SimpleTeaFluid(EMPTY, 0, ItemStack.EMPTY, (s) -> false, false, simpleBlockFunc(0), simpleEntityFunc(0)));
+        TeaFluidManager.registerTeaFluid(new WaterTeaFluid(WATER, 0x9DF7FF));
+        TeaFluidManager.registerTeaFluid(new LavaTeaFluid(LAVA, 0xE2610E));
+        TeaFluidManager.registerTeaFluid(new DrinkTeaFluid(TIEGUANYIN, 0xDBFFB8, (TeaBlock) ModBlocks.TIEGUANYIN.get()));
 
-        TeaTypeManager.bindFluid(WATER, Fluids.WATER.getFluidType());
-        TeaTypeManager.bindFluid(LAVA, Fluids.LAVA.getFluidType());
+        TeaFluidManager.bindFluid(WATER, Fluids.WATER.getFluidType());
+        TeaFluidManager.bindFluid(LAVA, Fluids.LAVA.getFluidType());
     }
 
     private static Function4<Level, BlockHitResult, LivingEntity, ItemStack, Integer> simpleBlockFunc(int consumed) {

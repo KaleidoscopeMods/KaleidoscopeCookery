@@ -2,7 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.event;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
@@ -81,7 +81,7 @@ public class RightClickEvent {
             ModTrigger.EVENT.trigger(player, ModEventTriggerType.USE_CATERPILLAR_FEED_CHICKEN);
         } else if (event.getHand() == InteractionHand.MAIN_HAND && mainHandItem.getItem() instanceof TeapotItem
                 && target instanceof LivingEntity living) {
-            ITeaType teaType = TeapotItem.getTeaType(mainHandItem);
+            ITeaFluid teaType = TeapotItem.getTeaFluid(mainHandItem);
             if (TeapotItem.getFluidAmount(mainHandItem) > 0) {
                 int consumed = teaType.onPouredOnEntity(level, living, player, mainHandItem);
                 if (consumed != 0) {

@@ -1,10 +1,10 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.TeapotBlockEntity;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.TeaTypeManager;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid.TeaFluidManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaFluids;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class TeapotItem extends BlockItem {
     private static final String FLUID_AMOUNT = "fluid_amount";
-    private static final String TEA_TYPE = "tea_type";
+    private static final String TEA_FLUID = "tea_fluid";
 
     public TeapotItem() {
         super(ModBlocks.TEAPOT.get(), new Item.Properties());
@@ -45,7 +45,7 @@ public class TeapotItem extends BlockItem {
         amount = Mth.clamp(amount, 0, TeapotBlockEntity.MAX_FLUID_AMOUNT);
         stack.getOrCreateTag().putInt(FLUID_AMOUNT, amount);
         if (amount == 0) {
-            setTeaType(stack, TeaTypeManager.getTeaType(ModTeaTypes.EMPTY));
+            setTeaFluid(stack, TeaFluidManager.getTeaFluid(ModTeaFluids.EMPTY));
         }
     }
 
@@ -68,16 +68,16 @@ public class TeapotItem extends BlockItem {
         }
     }
 
-    public static void setTeaType(ItemStack stack, ITeaType teaType) {
-        stack.getOrCreateTag().putString(TEA_TYPE, teaType.getName().toString());
+    public static void setTeaFluid(ItemStack stack, ITeaFluid teaFluid) {
+        stack.getOrCreateTag().putString(TEA_FLUID, teaFluid.getName().toString());
     }
 
-    public static ITeaType getTeaType(ItemStack stack) {
+    public static ITeaFluid getTeaFluid(ItemStack stack) {
         CompoundTag element = stack.getTag();
-        if (element == null || !element.contains(TEA_TYPE)) {
-            return TeaTypeManager.getTeaType(ModTeaTypes.EMPTY);
+        if (element == null || !element.contains(TEA_FLUID)) {
+            return TeaFluidManager.getTeaFluid(ModTeaFluids.EMPTY);
         }
-        return TeaTypeManager.getTeaType(new ResourceLocation(element.getString(TEA_TYPE)));
+        return TeaFluidManager.getTeaFluid(new ResourceLocation(element.getString(TEA_FLUID)));
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TeapotItem extends BlockItem {
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();
         ItemStack itemInHand = context.getItemInHand();
-        ITeaType teaType = getTeaType(itemInHand);
+        ITeaFluid teaFluid = getTeaFluid(itemInHand);
 
         // 潜行时只放置方块
         if (player == null || player.isSecondaryUseActive()) {
@@ -106,16 +106,16 @@ public class TeapotItem extends BlockItem {
         FluidState fluidState = level.getFluidState(pos);
         FluidState fluidState1 = level.getFluidState(pos.relative(context.getClickedFace()));
         // 尝试装水
-        if (tryFillWithFluid(itemInHand, teaType, fluidState, fluidState1)) {
+        if (tryFillWithFluid(itemInHand, teaFluid, fluidState, fluidState1)) {
             level.playSound(player, pos, SoundEvents.BUCKET_FILL, SoundSource.PLAYERS);
             return InteractionResult.SUCCESS;
         }
 
         // 尝试向方块倒茶
         if (TeapotItem.getFluidAmount(itemInHand) > 0) {
-            if (teaType.instantPouring(context)) {
+            if (teaFluid.instantPouring(context)) {
                 BlockHitResult blockHit = new BlockHitResult(context.getClickLocation(), context.getClickedFace(), pos, context.isInside());
-                int consumed = teaType.onPouredOnBlock(level, blockHit, player, itemInHand);
+                int consumed = teaFluid.onPouredOnBlock(level, blockHit, player, itemInHand);
                 if (consumed != 0) {
                     shrinkFluidAmount(itemInHand, consumed);
                     return InteractionResult.SUCCESS;
@@ -133,7 +133,7 @@ public class TeapotItem extends BlockItem {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         // 尝试装水
         ItemStack itemInHand = player.getItemInHand(hand);
-        ITeaType teaType = getTeaType(itemInHand);
+        ITeaFluid teaType = getTeaFluid(itemInHand);
         BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
         if (blockhitresult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockPos = blockhitresult.getBlockPos();
@@ -147,22 +147,22 @@ public class TeapotItem extends BlockItem {
         return super.use(level, player, hand);
     }
 
-    protected boolean tryFillWithFluid(ItemStack teapotItem, ITeaType teaType, FluidState... fluidStates) {
+    protected boolean tryFillWithFluid(ItemStack teapotItem, ITeaFluid teaFluid, FluidState... fluidStates) {
         List<FluidState> fluidStateList = Arrays.stream(fluidStates).toList();
         // 若茶壶为空，遍历检查所有绑定有茶的流体类型
-        if (teaType.getName().equals(ModTeaTypes.EMPTY)) {
-            for (Map.Entry<ResourceLocation, FluidType> entry : TeaTypeManager.getBoundFluidTypes().entrySet()) {
-                ITeaType type = TeaTypeManager.getTeaType(entry.getKey());
-                FluidType fluidType = TeaTypeManager.getBoundFluid(entry.getKey());
+        if (teaFluid.isEmpty()) {
+            for (Map.Entry<ResourceLocation, FluidType> entry : TeaFluidManager.getBoundFluidTypes().entrySet()) {
+                ITeaFluid type = TeaFluidManager.getTeaFluid(entry.getKey());
+                FluidType fluidType = TeaFluidManager.getBoundFluid(entry.getKey());
                 if (fluidStateList.stream().anyMatch(s -> s.getType().getFluidType() == fluidType)) {
                     setFluidAmount(teapotItem, TeapotBlockEntity.MAX_FLUID_AMOUNT);
-                    setTeaType(teapotItem, type);
+                    setTeaFluid(teapotItem, type);
                     return true;
                 }
             }
         } // 否则只检查茶壶装的流体
         else {
-            FluidType fluidType = TeaTypeManager.getBoundFluid(teaType.getName());
+            FluidType fluidType = TeaFluidManager.getBoundFluid(teaFluid.getName());
             if (fluidType != null && fluidStateList.stream().anyMatch(s -> s.getType().getFluidType() == fluidType)) {
                 setFluidAmount(teapotItem, TeapotBlockEntity.MAX_FLUID_AMOUNT);
                 return true;
@@ -179,10 +179,10 @@ public class TeapotItem extends BlockItem {
             Vec3 direction = entity.getViewVector(1.0F);
             Vec3 end = start.add(direction.scale(4.5));
             BlockHitResult blockHit = level.clip(new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity));
-            ITeaType teaType = getTeaType(stack);
+            ITeaFluid teaFluid = getTeaFluid(stack);
             // 尝试向方块倒茶
             if (blockHit.getType() == HitResult.Type.BLOCK) {
-                int consumed = teaType.onPouredOnBlock(level, blockHit, entity, stack);
+                int consumed = teaFluid.onPouredOnBlock(level, blockHit, entity, stack);
                 if (consumed != 0) {
                     shrinkFluidAmount(stack, consumed);
                 }
@@ -218,7 +218,7 @@ public class TeapotItem extends BlockItem {
 
     @Override
     public int getBarColor(ItemStack stack) {
-        return getTeaType(stack).getBarColor();
+        return getTeaFluid(stack).getBarColor();
     }
 
     @Override
@@ -233,6 +233,6 @@ public class TeapotItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("teatype.%s.name".formatted(getTeaType(stack).getName().toLanguageKey())).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tea_fluid.%s.name".formatted(getTeaFluid(stack).getName().toLanguageKey())).withStyle(ChatFormatting.GRAY));
     }
 }

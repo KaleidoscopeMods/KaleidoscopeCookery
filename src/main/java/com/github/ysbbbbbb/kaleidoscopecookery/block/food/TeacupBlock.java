@@ -1,7 +1,9 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.food;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype.DrinkTeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.block.ITeacup;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid.DrinkTeaFluid;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.TeaBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,7 +39,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
-public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, ITeacup {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected final IntegerProperty countProperty;
     protected final int maxCount;
@@ -72,29 +74,39 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .sound(SoundType.BAMBOO), maxCount, teacupItem, shapes);
     }
 
+    @Override
     public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack, boolean simulate) {
-        if (!stack.is(teacupItem.get())) {
+        int count = state.getValue(this.countProperty);
+        if (count >= this.maxCount) {
             return false;
         }
 
-        int count = state.getValue(this.countProperty);
-        if (count < this.maxCount) {
+        if (stack.is(teacupItem.get())) {
             if (!simulate) {
                 level.setBlockAndUpdate(pos, state.cycle(this.countProperty));
             }
             return true;
         }
+
+        if (stack.getItem() instanceof TeaBlockItem teaItem) {
+            if (!simulate) {
+                transformToTea(level, pos, state.cycle(this.countProperty), (TeaBlock) teaItem.getBlock(), 1);
+            }
+            return true;
+        }
+
         return false;
     }
 
-    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaType teaType, boolean simulate) {
-        if (!(teaType instanceof DrinkTeaType type)) {
+    @Override
+    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaFluid teaFluid, boolean simulate) {
+        if (!(teaFluid instanceof DrinkTeaFluid type)) {
             return false;
         }
 
         if (!simulate) {
-            TeaDrinkBlock drink = type.getBlock();
-            transformToDrink(level, pos, state, drink, 1);
+            TeaBlock drink = type.getBlock();
+            transformToTea(level, pos, state, drink, 1);
         }
         return true;
     }
@@ -105,27 +117,23 @@ public class TeacupBlock extends HorizontalDirectionalBlock implements SimpleWat
      * @param level  所在世界
      * @param pos    位置
      * @param state  方块状态
-     * @param drink  目标茶水方块
+     * @param tea    目标茶水方块
      * @param filled 转换后装满的杯数
      */
-    public void transformToDrink(Level level, BlockPos pos, BlockState state, TeaDrinkBlock drink, int filled) {
+    public void transformToTea(Level level, BlockPos pos, BlockState state, TeaBlock tea, int filled) {
         if (!(state.getBlock() instanceof TeacupBlock teacup)) {
             return;
         }
 
         // 根据当前方块状态的信息生成对应的茶水方块状态
-        int count = Math.min(state.getValue(teacup.getCountProperty()), drink.getMaxCount());
-        BlockState newState = drink.defaultBlockState()
-                .setValue(TeaDrinkBlock.FACING, state.getValue(FACING))
-                .setValue(TeaDrinkBlock.WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(drink.getCountProperty(), count)
-                .setValue(drink.getFilledCountProperty(), Math.min(filled, count));
+        int count = Math.min(state.getValue(teacup.getCountProperty()), tea.getMaxCount());
+        BlockState newState = tea.defaultBlockState()
+                .setValue(TeaBlock.FACING, state.getValue(FACING))
+                .setValue(TeaBlock.WATERLOGGED, state.getValue(WATERLOGGED))
+                .setValue(tea.getCountProperty(), count)
+                .setValue(tea.getFilledCountProperty(), Math.min(filled, count));
 
         level.setBlockAndUpdate(pos, newState);
-    }
-
-    public boolean isAllEmpty(BlockState state) {
-        return true;
     }
 
     @Override

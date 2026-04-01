@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.food;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.TeaBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -27,16 +28,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class TeaDrinkBlock extends TeacupBlock {
+public class TeaBlock extends TeacupBlock {
     protected final IntegerProperty filledCountProperty;
-    protected final ResourceLocation teaTypeId;
-    protected final Supplier<Item> teaDrinkItem;
+    protected final ResourceLocation teaFluidId;
+    protected final Supplier<Item> teaItem;
 
-    public TeaDrinkBlock(Properties properties, ResourceLocation teaTypeId, int maxCount,
-                         Supplier<Item> teapotItem, Supplier<Item> teaDrinkItem, VoxelShape... shapes) {
-        super(properties, maxCount, teapotItem, shapes);
-        this.teaTypeId = teaTypeId;
-        this.teaDrinkItem = teaDrinkItem;
+    public TeaBlock(Properties properties, ResourceLocation teaFluidId, int maxCount,
+                    Supplier<Item> teacupItem, Supplier<Item> teaItem, VoxelShape... shapes) {
+        super(properties, maxCount, teacupItem, shapes);
+        this.teaFluidId = teaFluidId;
+        this.teaItem = teaItem;
         this.filledCountProperty = IntegerProperty.create("filled_count", 0, maxCount);
 
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
@@ -49,14 +50,14 @@ public class TeaDrinkBlock extends TeacupBlock {
                 .setValue(WATERLOGGED, false));
     }
 
-    public TeaDrinkBlock(ResourceLocation teaTypeId, int maxCount, Supplier<Item> teapotItem,
-                         Supplier<Item> teaDrinkItem, VoxelShape... shapes) {
+    public TeaBlock(ResourceLocation teaFluidId, int maxCount, Supplier<Item> teacupItem,
+                    Supplier<Item> teaItem, VoxelShape... shapes) {
         this(Properties.of()
                 .noOcclusion()
                 .instabreak()
                 .pushReaction(PushReaction.DESTROY)
                 .sound(SoundType.BAMBOO),
-                teaTypeId, maxCount, teapotItem, teaDrinkItem, shapes);
+                teaFluidId, maxCount, teacupItem, teaItem, shapes);
     }
 
     protected void createFilledCountBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -65,41 +66,47 @@ public class TeaDrinkBlock extends TeacupBlock {
 
     @Override
     public boolean tryIncreaseCount(Level level, BlockPos pos, BlockState state, ItemStack stack, boolean simulate) {
-        if (!stack.is(teacupItem.get()) && !stack.is(teaDrinkItem.get())) {
+        int count = state.getValue(this.countProperty);
+        int filled = state.getValue(this.filledCountProperty);
+        if (count >= this.maxCount) {
             return false;
         }
 
-        int count = state.getValue(this.countProperty);
-        if (count < this.maxCount) {
+        if (stack.is(teacupItem.get())) {
             if (!simulate) {
-                BlockState newState = state.cycle(this.countProperty);
-                if (stack.is(this.asItem())) {
-                    newState = newState.cycle(this.filledCountProperty);
-                }
-                level.setBlockAndUpdate(pos, newState);
+                level.setBlockAndUpdate(pos, state.cycle(this.countProperty));
             }
             return true;
         }
+
+        if (filled == 0 && stack.getItem() instanceof TeaBlockItem blockItem) {
+            if (!simulate) {
+                transformToTea(level, pos, state.cycle(this.countProperty), (TeaBlock) blockItem.getBlock(), 1);
+            }
+            return true;
+        }
+
+        if (stack.is(teaItem.get())) {
+            if (!simulate) {
+                level.setBlockAndUpdate(pos, state.cycle(this.countProperty).cycle(this.filledCountProperty));
+            }
+            return true;
+        }
+
         return false;
     }
 
     @Override
-    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaType teaType, boolean simulate) {
-        if (teaType.getName().equals(this.teaTypeId)) {
-            if (state.getValue(filledCountProperty) < state.getValue(countProperty)) {
-                if (!simulate) {
-                    level.setBlockAndUpdate(pos, state.cycle(filledCountProperty));
-                }
-                return true;
+    public boolean tryPourTeaOn(Level level, BlockPos pos, BlockState state, ITeaFluid teaFluid, boolean simulate) {
+        int filled = state.getValue(filledCountProperty);
+        if (teaFluid.getName().equals(this.teaFluidId) && filled < state.getValue(countProperty)) {
+            if (!simulate) {
+                level.setBlockAndUpdate(pos, state.cycle(filledCountProperty));
             }
+            return true;
         }
 
-        return super.tryPourTeaOn(level, pos, state, teaType, simulate);
-    }
-
-    @Override
-    public boolean isAllEmpty(BlockState state) {
-        return state.getValue(filledCountProperty) == 0;
+        return filled == 0 && super.tryPourTeaOn(level, pos, state, teaFluid, simulate);
     }
 
     @Override
@@ -114,7 +121,7 @@ public class TeaDrinkBlock extends TeacupBlock {
         int filled = state.getValue(this.filledCountProperty);
         // 尝试给玩家物品
         if (filled > 0) {
-            ItemHandlerHelper.giveItemToPlayer(player, this.teaDrinkItem.get().getDefaultInstance());
+            ItemHandlerHelper.giveItemToPlayer(player, this.teaItem.get().getDefaultInstance());
         } else {
             ItemHandlerHelper.giveItemToPlayer(player, this.teacupItem.get().getDefaultInstance());
         }
@@ -139,7 +146,7 @@ public class TeaDrinkBlock extends TeacupBlock {
         List<ItemStack> stacks = new ArrayList<>();
         int count = state.getValue(countProperty);
         int filled = state.getValue(filledCountProperty);
-        stacks.add(teaDrinkItem.get().getDefaultInstance().copyWithCount(filled));
+        stacks.add(teaItem.get().getDefaultInstance().copyWithCount(filled));
         if (count - filled > 0) {
             stacks.add(teacupItem.get().getDefaultInstance().copyWithCount(count - filled));
         }
@@ -155,14 +162,14 @@ public class TeaDrinkBlock extends TeacupBlock {
     }
 
     public static class Builder {
-        private ResourceLocation teaTypeId;
+        private ResourceLocation teaFluidId;
         private int maxCount;
         private VoxelShape[] shapes;
         private Supplier<Item> teacupItem;
-        private Supplier<Item> teaDrinkItem;
+        private Supplier<Item> teaItem;
 
-        public Builder teaTypeId(ResourceLocation teaTypeId) {
-            this.teaTypeId = teaTypeId;
+        public Builder teaFluidId(ResourceLocation teaFluidId) {
+            this.teaFluidId = teaFluidId;
             return this;
         }
 
@@ -181,17 +188,17 @@ public class TeaDrinkBlock extends TeacupBlock {
             return this;
         }
 
-        public Builder teaDrinkItem(Supplier<Item> teaDrinkItem) {
-            this.teaDrinkItem = teaDrinkItem;
+        public Builder teaItem(Supplier<Item> teaItem) {
+            this.teaItem = teaItem;
             return this;
         }
 
         public Supplier<? extends Block> build() {
-            return () -> new TeaDrinkBlock(teaTypeId, maxCount, teacupItem, teaDrinkItem, shapes);
+            return () -> new TeaBlock(teaFluidId, maxCount, teacupItem, teaItem, shapes);
         }
 
         public Supplier<? extends Block> build(Properties properties) {
-            return () -> new TeaDrinkBlock(properties, teaTypeId, maxCount, teacupItem, teaDrinkItem, shapes);
+            return () -> new TeaBlock(properties, teaFluidId, maxCount, teacupItem, teaItem, shapes);
         }
     }
 }

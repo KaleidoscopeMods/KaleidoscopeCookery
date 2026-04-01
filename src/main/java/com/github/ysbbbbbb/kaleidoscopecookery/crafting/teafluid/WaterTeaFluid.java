@@ -1,6 +1,6 @@
-package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype;
+package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -15,11 +15,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class WaterTeaType implements ITeaType {
+public class WaterTeaFluid implements ITeaFluid {
     protected final ResourceLocation name;
     protected final int barColor;
 
-    public WaterTeaType(ResourceLocation name, int barColor) {
+    public WaterTeaFluid(ResourceLocation name, int barColor) {
         this.name = name;
         this.barColor = barColor;
     }
@@ -36,9 +36,12 @@ public class WaterTeaType implements ITeaType {
     }
 
     @Override
-    public boolean isTeaType(ItemStack stack) {
+    public boolean isTeaFluid(ItemStack stack) {
         return stack.is(Items.WATER_BUCKET);
     }
+
+    @Override
+    public boolean isTeaBase() { return true; }
 
     @Override
     public int onPouredOnBlock(Level level, BlockHitResult hit, @Nullable LivingEntity user, ItemStack teapot) {

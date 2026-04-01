@@ -1,6 +1,6 @@
-package com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype;
+package com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaFluids;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -10,7 +10,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-public interface ITeaType {
+public interface ITeaFluid {
     /**
      * 注册 ID，不能重复
      *
@@ -31,28 +31,33 @@ public interface ITeaType {
     ItemStack getDisplayStack();
 
     /**
-     * 装有该茶水的茶壶方块在非煮茶时是否生成粒子效果
+     * 装有该茶水的茶壶方块在非沸腾时是否生成粒子效果
      */
     default boolean spawnParticles() {
         return false;
     }
 
     /**
-     * 在玩家拿着物品右击茶壶时调用，用来判断手持物是否是对应茶
+     * 在玩家拿着物品右击茶壶时调用，用来判断手持物是否是对应茶水
      *
      * @param stack 手持物
      * @return 如果是则返回 true，否则返回 false
      */
-    default boolean isTeaType(ItemStack stack) {
+    default boolean isTeaFluid(ItemStack stack) {
         return false;
     }
 
     /**
-     * 向方块倒茶时是否瞬间完成
+     * 在玩家拿着茶壶右击方块时调用，用以判断向目标方块倒茶时是瞬间完成，还是要播放一段动画
      *
      * @param context UseOn上下文
      */
     default boolean instantPouring(UseOnContext context) { return false; }
+
+    /**
+     * 该种液体是否能在茶壶中作为煮茶的基底
+     */
+    boolean isTeaBase();
 
     /**
      * 在玩家向方块倒茶时调用
@@ -76,7 +81,7 @@ public interface ITeaType {
      */
     int onPouredOnEntity(Level level, LivingEntity entity, @Nullable LivingEntity user, ItemStack teapot);
 
-    static boolean isEmpty(ITeaType teaType) {
-        return teaType.getName().equals(ModTeaTypes.EMPTY);
+    default boolean isEmpty() {
+        return getName().equals(ModTeaFluids.EMPTY);
     }
 }

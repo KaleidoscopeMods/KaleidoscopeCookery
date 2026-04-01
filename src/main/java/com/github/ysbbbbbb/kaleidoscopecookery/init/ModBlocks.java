@@ -10,7 +10,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
@@ -113,7 +113,7 @@ public class ModBlocks {
             )
     ));
 
-    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaDrinkBlock.create().maxCount(4).shapes(
+    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaBlock.create().maxCount(4).shapes(
             Shapes.or(
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(5, 0, 5, 11, 4, 11)
@@ -132,7 +132,7 @@ public class ModBlocks {
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
             )
-    ).teaTypeId(ModTeaTypes.TIEGUANYIN).teacupItem(ModItems.TEACUP).teaDrinkItem(ModItems.TIEGUANYIN).build());
+    ).teaFluidId(ModTeaFluids.TIEGUANYIN).teacupItem(ModItems.TEACUP).teaItem(ModItems.TIEGUANYIN).build());
 
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));

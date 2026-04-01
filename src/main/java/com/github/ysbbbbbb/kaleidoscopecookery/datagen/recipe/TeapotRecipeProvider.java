@@ -2,7 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.TeapotBuilder;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaTypes;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTeaFluids;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -19,8 +19,8 @@ public class TeapotRecipeProvider extends ModRecipeProvider {
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
         TeapotBuilder.builder()
                 .setIngredient(Items.IRON_NUGGET)
-                .setBaseTeaType(ModTeaTypes.WATER)
-                .setResultTeaType(ModTeaTypes.LAVA)
+                .setBaseTeaType(ModTeaFluids.WATER)
+                .setResultTeaType(ModTeaFluids.LAVA)
                 .setTime(100)
                 .save(consumer, new ResourceLocation(KaleidoscopeCookery.MOD_ID, "teapot/tieguanyin"));
     }

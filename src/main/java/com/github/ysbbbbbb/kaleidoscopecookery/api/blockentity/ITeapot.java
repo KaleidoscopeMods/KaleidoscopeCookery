@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 public interface ITeapot {
     int PUT_INGREDIENT = 0;
     int BOILING = 1;
+    int FINISHED = 2;
 
     /**
      * 获取当前状态
@@ -23,9 +24,11 @@ public interface ITeapot {
      */
     boolean hasHeatSource(Level level);
 
-    boolean addFluid(Level level, LivingEntity user, ItemStack bucket);
+    boolean addTeaFluid(Level level, LivingEntity user, ItemStack itemStack);
 
     boolean addIngredient(Level level, LivingEntity user, ItemStack itemStack);
 
     boolean removeIngredient(Level level, LivingEntity user);
+
+    boolean takeTeapot(Level level, LivingEntity user);
 }

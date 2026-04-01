@@ -106,8 +106,8 @@ public class TeapotBlock extends HorizontalDirectionalBlock implements EntityBlo
             return InteractionResult.PASS;
         }
         ItemStack mainHandItem = player.getMainHandItem();
-        // 加入汤底
-        if (teapot.addFluid(level, player, mainHandItem)) {
+        // 加入茶水
+        if (teapot.addTeaFluid(level, player, mainHandItem)) {
             return InteractionResult.SUCCESS;
         }
         // 加入原料
@@ -116,6 +116,10 @@ public class TeapotBlock extends HorizontalDirectionalBlock implements EntityBlo
         }
         // 取出原料
         if (mainHandItem.isEmpty() && player.isSecondaryUseActive() && teapot.removeIngredient(level, player)) {
+            return InteractionResult.SUCCESS;
+        }
+        // 拿起茶壶
+        if (mainHandItem.isEmpty() && !player.isSecondaryUseActive() && teapot.takeTeapot(level, player)) {
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;

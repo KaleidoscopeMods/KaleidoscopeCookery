@@ -1,7 +1,7 @@
-package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype;
+package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaDrinkBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,15 +16,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class DrinkTeaType implements ITeaType {
+public class DrinkTeaFluid implements ITeaFluid {
     protected final ResourceLocation name;
     protected final int barColor;
-    protected final TeaDrinkBlock teaDrinkBlock;
+    protected final TeaBlock teaBlock;
 
-    public DrinkTeaType(ResourceLocation name, int barColor, TeaDrinkBlock teaDrinkBlock) {
+    public DrinkTeaFluid(ResourceLocation name, int barColor, TeaBlock teaBlock) {
         this.name = name;
         this.barColor = barColor;
-        this.teaDrinkBlock = teaDrinkBlock;
+        this.teaBlock = teaBlock;
     }
 
     @Override
@@ -35,7 +35,12 @@ public class DrinkTeaType implements ITeaType {
 
     @Override
     public ItemStack getDisplayStack() {
-        return this.teaDrinkBlock.asItem().getDefaultInstance();
+        return this.teaBlock.asItem().getDefaultInstance();
+    }
+
+    @Override
+    public boolean spawnParticles() {
+        return true;
     }
 
     @Override
@@ -44,6 +49,11 @@ public class DrinkTeaType implements ITeaType {
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
         return state.getBlock() instanceof TeacupBlock teacup && teacup.tryPourTeaOn(level, pos, state, this, true);
+    }
+
+    @Override
+    public boolean isTeaBase() {
+        return false;
     }
 
     @Override
@@ -71,5 +81,5 @@ public class DrinkTeaType implements ITeaType {
         return 0;
     }
 
-    public TeaDrinkBlock getBlock() { return this.teaDrinkBlock; }
+    public TeaBlock getBlock() { return this.teaBlock; }
 }

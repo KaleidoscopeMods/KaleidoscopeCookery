@@ -1,6 +1,6 @@
-package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teatype;
+package com.github.ysbbbbbb.kaleidoscopecookery.crafting.teafluid;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teatype.ITeaType;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,11 +22,11 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class LavaTeaType implements ITeaType {
+public class LavaTeaFluid implements ITeaFluid {
     protected final ResourceLocation name;
     protected final int barColor;
 
-    public LavaTeaType(ResourceLocation name, int barColor) {
+    public LavaTeaFluid(ResourceLocation name, int barColor) {
         this.name = name;
         this.barColor = barColor;
     }
@@ -48,8 +48,13 @@ public class LavaTeaType implements ITeaType {
     }
 
     @Override
-    public boolean isTeaType(ItemStack stack) {
+    public boolean isTeaFluid(ItemStack stack) {
         return stack.is(Items.LAVA_BUCKET);
+    }
+
+    @Override
+    public boolean isTeaBase() {
+        return true;
     }
 
     @Override
