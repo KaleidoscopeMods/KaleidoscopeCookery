@@ -132,7 +132,28 @@ public class ModBlocks {
                     Block.box(1, 0, 1, 15, 1, 15),
                     Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
             )
-    ).teaFluidId(ModTeaFluids.TIEGUANYIN).teacupItem(ModItems.TEACUP).teaItem(ModItems.TIEGUANYIN).build());
+    ).teaFluidId(ModTeaFluids.TIEGUANYIN).teacupItem(ModItems.TEACUP).build());
+
+    public static RegistryObject<Block> FLOWER_TEA = BLOCKS.register("flower_tea", TeaBlock.create().maxCount(4).shapes(
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
+    ).teaFluidId(ModTeaFluids.FLOWER_TEA).teacupItem(ModItems.TEACUP).build());
 
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));

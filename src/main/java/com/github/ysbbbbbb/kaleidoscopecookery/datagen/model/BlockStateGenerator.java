@@ -190,6 +190,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         teacup(ModBlocks.TEACUP.get(), "teacup");
 
         tea(ModBlocks.TIEGUANYIN.get(), "tieguanyin");
+        tea(ModBlocks.FLOWER_TEA.get(), "flower_tea");
 
         variantBlock(ModBlocks.ENAMEL_BASIN.get(), blockState -> {
             if (blockState.getValue(EnamelBasinBlock.HAS_LID)) {
@@ -350,7 +351,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         if (block instanceof TeacupBlock drinkBlock) {
             horizontalBlock(block, blockState -> {
                 int count = blockState.getValue(drinkBlock.getCountProperty());
-                ResourceLocation file = modLoc("block/tea/%s/count%d".formatted(name, count));
+                ResourceLocation file = modLoc("block/teacup/%s/count%d".formatted(name, count));
                 return new ModelFile.UncheckedModelFile(file);
             });
         }
@@ -361,7 +362,7 @@ public class BlockStateGenerator extends BlockStateProvider {
             horizontalBlock(block, blockState -> {
                 int count = blockState.getValue(drinkBlock.getCountProperty());
                 int filled = blockState.getValue(drinkBlock.getFilledCountProperty());
-                ResourceLocation file = modLoc("block/tea/%s/count%d_%d".formatted(name, filled, count));
+                ResourceLocation file = modLoc("block/tea/%s/count%d_%d".formatted(name, count, filled));
                 return new ModelFile.UncheckedModelFile(file);
             });
         }

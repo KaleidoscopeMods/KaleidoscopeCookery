@@ -120,6 +120,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(modLoc("egg"));
         basicItem(modLoc("oil_in_millstone"));
 
+        basicItem(ModItems.TEAPOT.get());
+        basicItem(ModItems.TEACUP.get());
+        basicItem(ModItems.TIEGUANYIN.get());
+        basicItem(ModItems.FLOWER_TEA.get());
+
         ResourceLocation chileRistra = ForgeRegistries.ITEMS.getKey(ModItems.CHILI_RISTRA.get());
         if (chileRistra != null) {
             getBuilder(chileRistra.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))

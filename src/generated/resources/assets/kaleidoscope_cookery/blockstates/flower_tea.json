@@ -1,603 +1,603 @@
 {
   "variants": {
     "count=1,facing=east,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 90
     },
     "count=1,facing=east,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 90
     },
     "count=1,facing=east,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 90
     },
     "count=1,facing=east,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 90
     },
     "count=1,facing=east,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 90
     },
     "count=1,facing=east,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 90
     },
     "count=1,facing=east,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 90
     },
     "count=1,facing=east,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 90
     },
     "count=1,facing=east,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 90
     },
     "count=1,facing=east,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 90
     },
     "count=1,facing=north,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0"
     },
     "count=1,facing=north,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0"
     },
     "count=1,facing=north,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1"
     },
     "count=1,facing=north,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1"
     },
     "count=1,facing=north,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2"
     },
     "count=1,facing=north,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2"
     },
     "count=1,facing=north,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3"
     },
     "count=1,facing=north,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3"
     },
     "count=1,facing=north,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4"
     },
     "count=1,facing=north,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4"
     },
     "count=1,facing=south,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 180
     },
     "count=1,facing=south,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 180
     },
     "count=1,facing=south,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 180
     },
     "count=1,facing=south,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 180
     },
     "count=1,facing=south,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 180
     },
     "count=1,facing=south,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 180
     },
     "count=1,facing=south,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 180
     },
     "count=1,facing=south,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 180
     },
     "count=1,facing=south,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 180
     },
     "count=1,facing=south,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 180
     },
     "count=1,facing=west,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 270
     },
     "count=1,facing=west,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_0",
       "y": 270
     },
     "count=1,facing=west,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 270
     },
     "count=1,facing=west,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_1",
       "y": 270
     },
     "count=1,facing=west,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 270
     },
     "count=1,facing=west,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_2",
       "y": 270
     },
     "count=1,facing=west,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 270
     },
     "count=1,facing=west,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_3",
       "y": 270
     },
     "count=1,facing=west,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 270
     },
     "count=1,facing=west,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count1_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count1_4",
       "y": 270
     },
     "count=2,facing=east,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 90
     },
     "count=2,facing=east,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 90
     },
     "count=2,facing=east,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 90
     },
     "count=2,facing=east,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 90
     },
     "count=2,facing=east,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 90
     },
     "count=2,facing=east,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 90
     },
     "count=2,facing=east,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 90
     },
     "count=2,facing=east,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 90
     },
     "count=2,facing=east,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 90
     },
     "count=2,facing=east,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 90
     },
     "count=2,facing=north,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0"
     },
     "count=2,facing=north,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0"
     },
     "count=2,facing=north,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1"
     },
     "count=2,facing=north,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1"
     },
     "count=2,facing=north,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2"
     },
     "count=2,facing=north,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2"
     },
     "count=2,facing=north,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3"
     },
     "count=2,facing=north,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3"
     },
     "count=2,facing=north,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4"
     },
     "count=2,facing=north,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4"
     },
     "count=2,facing=south,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 180
     },
     "count=2,facing=south,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 180
     },
     "count=2,facing=south,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 180
     },
     "count=2,facing=south,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 180
     },
     "count=2,facing=south,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 180
     },
     "count=2,facing=south,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 180
     },
     "count=2,facing=south,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 180
     },
     "count=2,facing=south,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 180
     },
     "count=2,facing=south,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 180
     },
     "count=2,facing=south,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 180
     },
     "count=2,facing=west,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 270
     },
     "count=2,facing=west,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_0",
       "y": 270
     },
     "count=2,facing=west,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 270
     },
     "count=2,facing=west,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_1",
       "y": 270
     },
     "count=2,facing=west,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 270
     },
     "count=2,facing=west,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_2",
       "y": 270
     },
     "count=2,facing=west,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 270
     },
     "count=2,facing=west,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_3",
       "y": 270
     },
     "count=2,facing=west,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 270
     },
     "count=2,facing=west,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count2_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count2_4",
       "y": 270
     },
     "count=3,facing=east,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 90
     },
     "count=3,facing=east,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 90
     },
     "count=3,facing=east,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 90
     },
     "count=3,facing=east,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 90
     },
     "count=3,facing=east,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 90
     },
     "count=3,facing=east,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 90
     },
     "count=3,facing=east,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 90
     },
     "count=3,facing=east,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 90
     },
     "count=3,facing=east,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 90
     },
     "count=3,facing=east,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 90
     },
     "count=3,facing=north,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0"
     },
     "count=3,facing=north,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0"
     },
     "count=3,facing=north,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1"
     },
     "count=3,facing=north,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1"
     },
     "count=3,facing=north,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2"
     },
     "count=3,facing=north,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2"
     },
     "count=3,facing=north,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3"
     },
     "count=3,facing=north,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3"
     },
     "count=3,facing=north,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4"
     },
     "count=3,facing=north,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4"
     },
     "count=3,facing=south,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 180
     },
     "count=3,facing=south,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 180
     },
     "count=3,facing=south,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 180
     },
     "count=3,facing=south,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 180
     },
     "count=3,facing=south,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 180
     },
     "count=3,facing=south,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 180
     },
     "count=3,facing=south,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 180
     },
     "count=3,facing=south,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 180
     },
     "count=3,facing=south,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 180
     },
     "count=3,facing=south,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 180
     },
     "count=3,facing=west,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 270
     },
     "count=3,facing=west,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_0",
       "y": 270
     },
     "count=3,facing=west,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 270
     },
     "count=3,facing=west,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_1",
       "y": 270
     },
     "count=3,facing=west,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 270
     },
     "count=3,facing=west,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_2",
       "y": 270
     },
     "count=3,facing=west,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 270
     },
     "count=3,facing=west,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_3",
       "y": 270
     },
     "count=3,facing=west,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 270
     },
     "count=3,facing=west,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count3_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count3_4",
       "y": 270
     },
     "count=4,facing=east,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 90
     },
     "count=4,facing=east,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 90
     },
     "count=4,facing=east,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 90
     },
     "count=4,facing=east,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 90
     },
     "count=4,facing=east,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 90
     },
     "count=4,facing=east,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 90
     },
     "count=4,facing=east,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 90
     },
     "count=4,facing=east,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 90
     },
     "count=4,facing=east,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 90
     },
     "count=4,facing=east,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 90
     },
     "count=4,facing=north,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0"
     },
     "count=4,facing=north,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0"
     },
     "count=4,facing=north,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1"
     },
     "count=4,facing=north,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1"
     },
     "count=4,facing=north,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2"
     },
     "count=4,facing=north,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2"
     },
     "count=4,facing=north,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3"
     },
     "count=4,facing=north,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3"
     },
     "count=4,facing=north,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4"
     },
     "count=4,facing=north,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4"
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4"
     },
     "count=4,facing=south,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 180
     },
     "count=4,facing=south,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 180
     },
     "count=4,facing=south,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 180
     },
     "count=4,facing=south,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 180
     },
     "count=4,facing=south,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 180
     },
     "count=4,facing=south,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 180
     },
     "count=4,facing=south,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 180
     },
     "count=4,facing=south,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 180
     },
     "count=4,facing=south,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 180
     },
     "count=4,facing=south,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 180
     },
     "count=4,facing=west,filled_count=0,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 270
     },
     "count=4,facing=west,filled_count=0,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_0",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_0",
       "y": 270
     },
     "count=4,facing=west,filled_count=1,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 270
     },
     "count=4,facing=west,filled_count=1,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_1",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_1",
       "y": 270
     },
     "count=4,facing=west,filled_count=2,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 270
     },
     "count=4,facing=west,filled_count=2,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_2",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_2",
       "y": 270
     },
     "count=4,facing=west,filled_count=3,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 270
     },
     "count=4,facing=west,filled_count=3,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_3",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_3",
       "y": 270
     },
     "count=4,facing=west,filled_count=4,waterlogged=false": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 270
     },
     "count=4,facing=west,filled_count=4,waterlogged=true": {
-      "model": "kaleidoscope_cookery:block/tea/tieguanyin/count4_4",
+      "model": "kaleidoscope_cookery:block/tea/flower_tea/count4_4",
       "y": 270
     }
   }

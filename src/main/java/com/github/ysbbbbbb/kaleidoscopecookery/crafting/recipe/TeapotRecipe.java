@@ -11,13 +11,13 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 public record TeapotRecipe(ResourceLocation id, Ingredient ingredient, int ingredientCount,
-                          ResourceLocation baseTeaType, ResourceLocation resultTeaType,
-                          int time) implements BaseRecipe<TeapotContainer> {
+                           ResourceLocation baseTeaFluid, ResourceLocation resultTeaFluid,
+                           int time) implements BaseRecipe<TeapotContainer> {
 
     @Override
     public boolean matches(TeapotContainer container, Level level) {
         ItemStack itemStack = container.getItemStack();
-        return ingredient.test(itemStack) && itemStack.getCount() >= ingredientCount && baseTeaType.equals(container.getTeaType());
+        return ingredient.test(itemStack) && itemStack.getCount() >= ingredientCount && baseTeaFluid.equals(container.getTeaFluid());
     }
 
     @Override

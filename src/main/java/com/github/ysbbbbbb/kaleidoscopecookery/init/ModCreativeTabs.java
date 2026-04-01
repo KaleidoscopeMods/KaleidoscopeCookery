@@ -186,5 +186,6 @@ public class ModCreativeTabs {
                 });
                 // 茶
                 output.accept(ModItems.TIEGUANYIN.get());
+                output.accept(ModItems.FLOWER_TEA.get());
             }).build());
 }

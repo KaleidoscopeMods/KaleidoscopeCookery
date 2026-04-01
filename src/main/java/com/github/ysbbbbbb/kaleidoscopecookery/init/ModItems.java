@@ -185,5 +185,6 @@ public final class ModItems {
     // 茶
     public static RegistryObject<Item> TEACUP = ITEMS.register("teacup", () -> new TeacupBlockItem(ModBlocks.TEACUP.get()));
     public static RegistryObject<Item> TIEGUANYIN = ITEMS.register("tieguanyin", () -> new TeaBlockItem(ModBlocks.TIEGUANYIN.get()));
+    public static RegistryObject<Item> FLOWER_TEA = ITEMS.register("flower_tea", () -> new TeaBlockItem(ModBlocks.FLOWER_TEA.get()));
 }
 

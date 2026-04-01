@@ -18,6 +18,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -49,6 +50,10 @@ public class TeaEffectDataProvider implements DataProvider {
     private void addEntry() {
         add(ModItems.TIEGUANYIN, List.of(
                 new TeaEffectData.Entry(ModEffects.INSTANT_SMELTING.get(), 120, 0, 1)
+        ));
+
+        add(ModItems.FLOWER_TEA, List.of(
+                new TeaEffectData.Entry(MobEffects.REGENERATION, 20, 0, 1)
         ));
     }
 

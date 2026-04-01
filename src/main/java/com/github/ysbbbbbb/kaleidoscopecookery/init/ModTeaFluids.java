@@ -16,12 +16,14 @@ public class ModTeaFluids {
     public static final ResourceLocation WATER = new ResourceLocation("minecraft", "water");
     public static final ResourceLocation LAVA = new ResourceLocation("minecraft", "lava");
     public static final ResourceLocation TIEGUANYIN = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "tieguanyin");
+    public static final ResourceLocation FLOWER_TEA = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "flower_tea");
 
     public static void registerAll() {
         TeaFluidManager.registerTeaFluid(new SimpleTeaFluid(EMPTY, 0, ItemStack.EMPTY, (s) -> false, false, simpleBlockFunc(0), simpleEntityFunc(0)));
         TeaFluidManager.registerTeaFluid(new WaterTeaFluid(WATER, 0x9DF7FF));
         TeaFluidManager.registerTeaFluid(new LavaTeaFluid(LAVA, 0xE2610E));
         TeaFluidManager.registerTeaFluid(new DrinkTeaFluid(TIEGUANYIN, 0xDBFFB8, (TeaBlock) ModBlocks.TIEGUANYIN.get()));
+        TeaFluidManager.registerTeaFluid(new DrinkTeaFluid(FLOWER_TEA, 0xFFC969, (TeaBlock) ModBlocks.FLOWER_TEA.get()));
 
         TeaFluidManager.bindFluid(WATER, Fluids.WATER.getFluidType());
         TeaFluidManager.bindFluid(LAVA, Fluids.LAVA.getFluidType());

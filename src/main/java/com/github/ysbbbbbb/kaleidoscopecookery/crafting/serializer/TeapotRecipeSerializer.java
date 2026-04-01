@@ -14,8 +14,8 @@ import org.jetbrains.annotations.Nullable;
 public class TeapotRecipeSerializer implements RecipeSerializer<TeapotRecipe> {
     public static final int DEFAULT_TIME = 2400;
     public static final int DEFAULT_INGREDIENT_COUNT = 12;
-    public static final ResourceLocation DEFAULT_BASE_TEA_TYPE = ModTeaFluids.WATER;
-    public static final ResourceLocation DEFAULT_RESULT_TEA_TYPE = ModTeaFluids.WATER;
+    public static final ResourceLocation DEFAULT_BASE_TEA_FLUID = ModTeaFluids.WATER;
+    public static final ResourceLocation DEFAULT_RESULT_TEA_FLUID = ModTeaFluids.WATER;
     public static final ResourceLocation EMPTY_ID = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "teapot/empty");
 
     @Override
@@ -25,34 +25,34 @@ public class TeapotRecipeSerializer implements RecipeSerializer<TeapotRecipe> {
             ingredient = Ingredient.fromJson(json.get("ingredient"));
         }
         int ingredientCount = GsonHelper.getAsInt(json, "ingredient_count", DEFAULT_INGREDIENT_COUNT);
-        ResourceLocation baseTeaType = DEFAULT_BASE_TEA_TYPE;
-        if (json.has("base_tea_type")) {
-            baseTeaType = new ResourceLocation(GsonHelper.getAsString(json, "base_tea_type"));
+        ResourceLocation baseTeaFluid = DEFAULT_BASE_TEA_FLUID;
+        if (json.has("base_tea_fluid")) {
+            baseTeaFluid = new ResourceLocation(GsonHelper.getAsString(json, "base_tea_fluid"));
         }
-        ResourceLocation resultTeaType = DEFAULT_RESULT_TEA_TYPE;
-        if (json.has("result_tea_type")) {
-            resultTeaType = new ResourceLocation(GsonHelper.getAsString(json, "result_tea_type"));
+        ResourceLocation resultTeaFluid = DEFAULT_RESULT_TEA_FLUID;
+        if (json.has("result_tea_fluid")) {
+            resultTeaFluid = new ResourceLocation(GsonHelper.getAsString(json, "result_tea_fluid"));
         }
         int time = GsonHelper.getAsInt(json, "time", DEFAULT_TIME);
-        return new TeapotRecipe(recipeId, ingredient, ingredientCount, baseTeaType, resultTeaType, time);
+        return new TeapotRecipe(recipeId, ingredient, ingredientCount, baseTeaFluid, resultTeaFluid, time);
     }
 
     @Override
     public @Nullable TeapotRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buf) {
         Ingredient ingredient = Ingredient.fromNetwork(buf);
         int ingredientCount = buf.readVarInt();
-        ResourceLocation baseTeaType = buf.readResourceLocation();
-        ResourceLocation resultTeaType = buf.readResourceLocation();
+        ResourceLocation baseTeaFluid = buf.readResourceLocation();
+        ResourceLocation resultTeaFluid = buf.readResourceLocation();
         int time = buf.readVarInt();
-        return new TeapotRecipe(recipeId, ingredient, ingredientCount, baseTeaType, resultTeaType, time);
+        return new TeapotRecipe(recipeId, ingredient, ingredientCount, baseTeaFluid, resultTeaFluid, time);
     }
 
     @Override
     public void toNetwork(FriendlyByteBuf buf, TeapotRecipe recipe) {
         recipe.ingredient().toNetwork(buf);
         buf.writeVarInt(recipe.ingredientCount());
-        buf.writeResourceLocation(recipe.baseTeaType());
-        buf.writeResourceLocation(recipe.resultTeaType());
+        buf.writeResourceLocation(recipe.baseTeaFluid());
+        buf.writeResourceLocation(recipe.resultTeaFluid());
         buf.writeVarInt(recipe.time());
     }
 }

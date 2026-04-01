@@ -31,13 +31,11 @@ import java.util.function.Supplier;
 public class TeaBlock extends TeacupBlock {
     protected final IntegerProperty filledCountProperty;
     protected final ResourceLocation teaFluidId;
-    protected final Supplier<Item> teaItem;
 
     public TeaBlock(Properties properties, ResourceLocation teaFluidId, int maxCount,
-                    Supplier<Item> teacupItem, Supplier<Item> teaItem, VoxelShape... shapes) {
+                    Supplier<Item> teacupItem, VoxelShape... shapes) {
         super(properties, maxCount, teacupItem, shapes);
         this.teaFluidId = teaFluidId;
-        this.teaItem = teaItem;
         this.filledCountProperty = IntegerProperty.create("filled_count", 0, maxCount);
 
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
@@ -50,14 +48,13 @@ public class TeaBlock extends TeacupBlock {
                 .setValue(WATERLOGGED, false));
     }
 
-    public TeaBlock(ResourceLocation teaFluidId, int maxCount, Supplier<Item> teacupItem,
-                    Supplier<Item> teaItem, VoxelShape... shapes) {
+    public TeaBlock(ResourceLocation teaFluidId, int maxCount, Supplier<Item> teacupItem, VoxelShape... shapes) {
         this(Properties.of()
                 .noOcclusion()
                 .instabreak()
                 .pushReaction(PushReaction.DESTROY)
                 .sound(SoundType.BAMBOO),
-                teaFluidId, maxCount, teacupItem, teaItem, shapes);
+                teaFluidId, maxCount, teacupItem, shapes);
     }
 
     protected void createFilledCountBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -86,7 +83,7 @@ public class TeaBlock extends TeacupBlock {
             return true;
         }
 
-        if (stack.is(teaItem.get())) {
+        if (stack.is(this.asItem())) {
             if (!simulate) {
                 level.setBlockAndUpdate(pos, state.cycle(this.countProperty).cycle(this.filledCountProperty));
             }
@@ -121,7 +118,7 @@ public class TeaBlock extends TeacupBlock {
         int filled = state.getValue(this.filledCountProperty);
         // 尝试给玩家物品
         if (filled > 0) {
-            ItemHandlerHelper.giveItemToPlayer(player, this.teaItem.get().getDefaultInstance());
+            ItemHandlerHelper.giveItemToPlayer(player, this.asItem().getDefaultInstance());
         } else {
             ItemHandlerHelper.giveItemToPlayer(player, this.teacupItem.get().getDefaultInstance());
         }
@@ -146,7 +143,7 @@ public class TeaBlock extends TeacupBlock {
         List<ItemStack> stacks = new ArrayList<>();
         int count = state.getValue(countProperty);
         int filled = state.getValue(filledCountProperty);
-        stacks.add(teaItem.get().getDefaultInstance().copyWithCount(filled));
+        stacks.add(this.asItem().getDefaultInstance().copyWithCount(filled));
         if (count - filled > 0) {
             stacks.add(teacupItem.get().getDefaultInstance().copyWithCount(count - filled));
         }
@@ -166,7 +163,6 @@ public class TeaBlock extends TeacupBlock {
         private int maxCount;
         private VoxelShape[] shapes;
         private Supplier<Item> teacupItem;
-        private Supplier<Item> teaItem;
 
         public Builder teaFluidId(ResourceLocation teaFluidId) {
             this.teaFluidId = teaFluidId;
@@ -188,17 +184,12 @@ public class TeaBlock extends TeacupBlock {
             return this;
         }
 
-        public Builder teaItem(Supplier<Item> teaItem) {
-            this.teaItem = teaItem;
-            return this;
-        }
-
         public Supplier<? extends Block> build() {
-            return () -> new TeaBlock(teaFluidId, maxCount, teacupItem, teaItem, shapes);
+            return () -> new TeaBlock(teaFluidId, maxCount, teacupItem, shapes);
         }
 
         public Supplier<? extends Block> build(Properties properties) {
-            return () -> new TeaBlock(properties, teaFluidId, maxCount, teacupItem, teaItem, shapes);
+            return () -> new TeaBlock(properties, teaFluidId, maxCount, teacupItem, shapes);
         }
     }
 }

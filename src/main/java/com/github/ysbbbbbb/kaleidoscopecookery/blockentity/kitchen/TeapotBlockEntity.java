@@ -101,7 +101,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
             status = FINISHED;
             currentTick = -1;
             TeapotRecipe recipe = level.getRecipeManager().byType(ModRecipes.TEAPOT_RECIPE).getOrDefault(this.recipeId, null);
-            this.teaFluidId = recipe != null ? recipe.resultTeaType() : ModTeaFluids.EMPTY;
+            this.teaFluidId = recipe != null ? recipe.resultTeaFluid() : ModTeaFluids.EMPTY;
             this.refresh();
         }
     }

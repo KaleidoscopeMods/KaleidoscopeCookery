@@ -23,8 +23,8 @@ public class TeapotBuilder implements RecipeBuilder {
     private static final String NAME = "teapot";
     private Ingredient ingredient = Ingredient.EMPTY;
     private int ingredientCount = TeapotRecipeSerializer.DEFAULT_INGREDIENT_COUNT;
-    private ResourceLocation baseTeaType = TeapotRecipeSerializer.DEFAULT_BASE_TEA_TYPE;
-    private ResourceLocation resultTeaType = TeapotRecipeSerializer.DEFAULT_RESULT_TEA_TYPE;
+    private ResourceLocation baseTeaFluid = TeapotRecipeSerializer.DEFAULT_BASE_TEA_FLUID;
+    private ResourceLocation resultTeaFluid = TeapotRecipeSerializer.DEFAULT_RESULT_TEA_FLUID;
     private int time = TeapotRecipeSerializer.DEFAULT_TIME;
 
     public static TeapotBuilder builder() { return new TeapotBuilder(); }
@@ -50,13 +50,13 @@ public class TeapotBuilder implements RecipeBuilder {
         return this;
     }
 
-    public TeapotBuilder setBaseTeaType(ResourceLocation baseTeaType) {
-        this.baseTeaType = baseTeaType;
+    public TeapotBuilder setBaseTeaFluid(ResourceLocation baseTeaFluid) {
+        this.baseTeaFluid = baseTeaFluid;
         return this;
     }
 
-    public TeapotBuilder setResultTeaType(ResourceLocation resultTeaType) {
-        this.resultTeaType = resultTeaType;
+    public TeapotBuilder setResultTeaFluid(ResourceLocation resultTeaFluid) {
+        this.resultTeaFluid = resultTeaFluid;
         return this;
     }
 
@@ -95,24 +95,24 @@ public class TeapotBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
-        recipeOutput.accept(new TeapotFinishedRecipe(id, ingredient, ingredientCount, baseTeaType, resultTeaType, time));
+        recipeOutput.accept(new TeapotFinishedRecipe(id, ingredient, ingredientCount, baseTeaFluid, resultTeaFluid, time));
     }
 
     public static class TeapotFinishedRecipe implements FinishedRecipe {
         private final ResourceLocation id;
         private final Ingredient ingredient;
         private final int ingredientCount;
-        private final ResourceLocation baseTeaType;
-        private final ResourceLocation resultTeaType;
+        private final ResourceLocation baseTeaFluid;
+        private final ResourceLocation resultTeaFluid;
         private final int time;
 
         public TeapotFinishedRecipe(ResourceLocation id, Ingredient ingredient, int ingredientCount,
-                                    ResourceLocation baseTeaType, ResourceLocation resultTeaType, int time) {
+                                    ResourceLocation baseTeaFluid, ResourceLocation resultTeaFluid, int time) {
             this.id = id;
             this.ingredient = ingredient;
             this.ingredientCount = ingredientCount;
-            this.baseTeaType = baseTeaType;
-            this.resultTeaType = resultTeaType;
+            this.baseTeaFluid = baseTeaFluid;
+            this.resultTeaFluid = resultTeaFluid;
             this.time = time;
         }
 
@@ -120,8 +120,8 @@ public class TeapotBuilder implements RecipeBuilder {
         public void serializeRecipeData(JsonObject json) {
             json.add("ingredient", ingredient.toJson());
             json.addProperty("ingredient_count", ingredientCount);
-            json.addProperty("base_tea_type", baseTeaType.toString());
-            json.addProperty("result_tea_type", resultTeaType.toString());
+            json.addProperty("base_tea_fluid", baseTeaFluid.toString());
+            json.addProperty("result_tea_fluid", resultTeaFluid.toString());
             json.addProperty("time", time);
         }
 
