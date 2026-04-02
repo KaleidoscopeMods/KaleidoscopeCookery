@@ -246,7 +246,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot, ITipP
         ITeaFluid teaFluid = TeapotItem.getTeaFluid(itemStack);
         this.teaFluidId = teaFluid.getName();
         this.fluidAmount = TeapotItem.getFluidAmount(itemStack);
-        this.status = teaFluid.isTeaBase() ? PUT_INGREDIENT : FINISHED;
+        this.status = teaFluid.isEmpty() || teaFluid.isTeaBase() ? PUT_INGREDIENT : FINISHED;
         refresh();
     }
 
