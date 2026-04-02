@@ -1,12 +1,14 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.food;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.teafluid.ITeaFluid;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeaBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -148,6 +150,17 @@ public class TeaBlock extends TeacupBlock {
             stacks.add(teacupItem.get().getDefaultInstance().copyWithCount(count - filled));
         }
         return stacks;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (state.getValue(filledCountProperty) > 0 && random.nextDouble() < 0.05) {
+            double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.6;
+            double y = pos.getY() + 0.4 + random.nextDouble() / 4;
+            double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.6;
+            level.addParticle(ModParticles.COOKING.get(), x, y, z, 0, 0.01, 0);
+        }
+        super.animateTick(state, level, pos, random);
     }
 
     public IntegerProperty getFilledCountProperty() {

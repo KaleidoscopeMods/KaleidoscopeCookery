@@ -7,6 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -61,15 +63,19 @@ public class DrinkTeaFluid implements ITeaFluid {
         BlockPos pos = hit.getBlockPos();
         BlockState state = level.getBlockState(pos);
         if (state.getBlock() instanceof TeacupBlock block) {
-            if (block.tryPourTeaOn(level, pos, state, this, false) && level instanceof ServerLevel serverLevel) {
-                Vec3 vec3 = pos.getCenter();
-                serverLevel.sendParticles(ParticleTypes.GLOW,
-                        vec3.x(), vec3.y(), vec3.z(),
-                        10,
-                        (level.random.nextFloat() - 0.5) * 0.05F,
-                        (level.random.nextFloat() - 0.5) * 0.05F,
-                        (level.random.nextFloat() - 0.5) * 0.05F,
-                        0.02);
+            if (block.tryPourTeaOn(level, pos, state, this, false)) {
+                level.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.PLAYERS);
+
+                if (level instanceof ServerLevel serverLevel) {
+                    Vec3 vec3 = pos.getCenter();
+                    serverLevel.sendParticles(ParticleTypes.GLOW,
+                            vec3.x(), vec3.y(), vec3.z(),
+                            10,
+                            (level.random.nextFloat() - 0.5) * 0.05F,
+                            (level.random.nextFloat() - 0.5) * 0.05F,
+                            (level.random.nextFloat() - 0.5) * 0.05F,
+                            0.02);
+                }
             }
         }
 
