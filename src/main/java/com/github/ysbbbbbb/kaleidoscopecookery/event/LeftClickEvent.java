@@ -15,7 +15,8 @@ public class LeftClickEvent {
     @SubscribeEvent
     public static void onLeftClickItem(PlayerInteractEvent.LeftClickEmpty event) {
         Player player = event.getEntity();
-        if (player.isSecondaryUseActive() && event.getHand() == InteractionHand.MAIN_HAND && player.getMainHandItem().is(ModItems.BAOZI.get())) {
+        if (player.isSecondaryUseActive() && event.getHand() == InteractionHand.MAIN_HAND
+            && (player.getMainHandItem().is(ModItems.BAOZI.get()) || player.getMainHandItem().is(ModItems.SAMSA.get()))) {
             NetworkHandler.CHANNEL.sendToServer(new SimpleC2SModMessage(SimpleC2SModMessage.THROW_BAOZI));
         }
     }
