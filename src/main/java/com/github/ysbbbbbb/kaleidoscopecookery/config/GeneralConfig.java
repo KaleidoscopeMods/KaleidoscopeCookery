@@ -16,7 +16,7 @@ public class GeneralConfig {
     public static ForgeConfigSpec.BooleanValue SATIATED_SHIELD_ABSORB_EXCESS_DAMAGE;
 
     private static void general(ForgeConfigSpec.Builder builder) {
-        builder.push("effect");
+        builder.push("cookery");
 
         builder.comment("Whether enabling the Satiated Shield effect.");
         SATIATED_SHIELD_ABSORB_ENABLED = builder.define("SatiatedShieldAbsorbEnabled", true);

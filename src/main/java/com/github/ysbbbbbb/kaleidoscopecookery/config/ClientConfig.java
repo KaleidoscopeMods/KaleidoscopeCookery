@@ -12,7 +12,7 @@ public class ClientConfig {
     public static ForgeConfigSpec.BooleanValue SHOW_FOOD_EFFECT_TOOLTIPS;
 
     private static void client(ForgeConfigSpec.Builder builder) {
-        builder.push("client");
+        builder.push("cookery");
 
         builder.comment("Whether to show food effect tooltips when hovering over food items.");
         SHOW_FOOD_EFFECT_TOOLTIPS = builder.define("ShowFoodEffectTooltips", true);
