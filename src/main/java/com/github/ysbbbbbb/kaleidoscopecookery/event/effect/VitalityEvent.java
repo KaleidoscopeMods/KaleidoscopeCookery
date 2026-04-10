@@ -10,14 +10,14 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = KaleidoscopeCookery.MOD_ID)
 public class VitalityEvent {
     @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event) {
+    public static void onLivingDrops(LivingDropsEvent event) {
         Level level = event.getEntity().level();
         if (level.isClientSide()) {
             return;

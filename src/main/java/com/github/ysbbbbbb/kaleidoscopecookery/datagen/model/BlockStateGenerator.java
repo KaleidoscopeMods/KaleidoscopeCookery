@@ -5,6 +5,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
@@ -185,6 +187,11 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         riceCrop();
 
+        teacup(ModBlocks.TEACUP.get(), "teacup");
+
+        tea(ModBlocks.TIEGUANYIN.get(), "tieguanyin");
+        tea(ModBlocks.FLOWER_TEA.get(), "flower_tea");
+
         variantBlock(ModBlocks.ENAMEL_BASIN.get(), blockState -> {
             if (blockState.getValue(EnamelBasinBlock.HAS_LID)) {
                 return new ModelFile.UncheckedModelFile(modLoc("block/enamel_basin/base"));
@@ -338,5 +345,26 @@ public class BlockStateGenerator extends BlockStateProvider {
             }
             return new ModelFile.UncheckedModelFile(model);
         });
+    }
+
+    public void teacup(Block block, String name) {
+        if (block instanceof TeacupBlock drinkBlock) {
+            horizontalBlock(block, blockState -> {
+                int count = blockState.getValue(drinkBlock.getCountProperty());
+                ResourceLocation file = modLoc("block/teacup/%s/count%d".formatted(name, count));
+                return new ModelFile.UncheckedModelFile(file);
+            });
+        }
+    }
+
+    public void tea(Block block, String name) {
+        if (block instanceof TeaBlock drinkBlock) {
+            horizontalBlock(block, blockState -> {
+                int count = blockState.getValue(drinkBlock.getCountProperty());
+                int filled = blockState.getValue(drinkBlock.getFilledCountProperty());
+                ResourceLocation file = modLoc("block/tea/%s/count%d_%d".formatted(name, count, filled));
+                return new ModelFile.UncheckedModelFile(file);
+            });
+        }
     }
 }

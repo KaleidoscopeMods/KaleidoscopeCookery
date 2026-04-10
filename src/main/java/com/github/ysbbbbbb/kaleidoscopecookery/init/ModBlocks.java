@@ -10,6 +10,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeaBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
@@ -17,6 +19,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByT
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -39,6 +42,7 @@ public class ModBlocks {
     public static RegistryObject<Block> SHAWARMA_SPIT = BLOCKS.register("shawarma_spit", ShawarmaSpitBlock::new);
     public static RegistryObject<Block> MILLSTONE = BLOCKS.register("millstone", MillstoneBlock::new);
     public static RegistryObject<Block> STEAMER = BLOCKS.register("steamer", SteamerBlock::new);
+    public static RegistryObject<Block> TEAPOT = BLOCKS.register("teapot", TeapotBlock::new);
 
     public static RegistryObject<Block> OIL_POT = BLOCKS.register("oil_pot", OilPotBlock::new);
     public static RegistryObject<Block> RECIPE_BLOCK = BLOCKS.register("recipe_block", RecipeBlock::new);
@@ -88,6 +92,69 @@ public class ModBlocks {
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
+    public static RegistryObject<Block> TEACUP = BLOCKS.register("teacup", () -> new TeacupBlock(4, ModItems.TEACUP,
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
+    ));
+
+    public static RegistryObject<Block> TIEGUANYIN = BLOCKS.register("tieguanyin", TeaBlock.create().maxCount(4).shapes(
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
+    ).teaFluidId(ModTeaFluids.TIEGUANYIN).teacupItem(ModItems.TEACUP).build());
+
+    public static RegistryObject<Block> FLOWER_TEA = BLOCKS.register("flower_tea", TeaBlock.create().maxCount(4).shapes(
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(5, 0, 5, 11, 4, 11)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2, 0, 2, 9, 4, 9),
+                    Block.box(8, 0, 8, 13, 4, 13)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 8, 13.5, 4, 13.5),
+                    Block.box(6.5, 0, 2, 12, 4, 13.5)
+            ),
+            Shapes.or(
+                    Block.box(1, 0, 1, 15, 1, 15),
+                    Block.box(2.5, 0, 2.5, 13.5, 4, 13.5)
+            )
+    ).teaFluidId(ModTeaFluids.FLOWER_TEA).teacupItem(ModItems.TEACUP).build());
+
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));
 
@@ -114,6 +181,9 @@ public class ModBlocks {
 
     public static RegistryObject<BlockEntityType<SteamerBlockEntity>> STEAMER_BE = BLOCK_ENTITIES.register("steamer",
             () -> BlockEntityType.Builder.of(SteamerBlockEntity::new, STEAMER.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<TeapotBlockEntity>> TEAPOT_BE = BLOCK_ENTITIES.register("teapot",
+            () -> BlockEntityType.Builder.of(TeapotBlockEntity::new, TEAPOT.get()).build(null));
 
     public static RegistryObject<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));
