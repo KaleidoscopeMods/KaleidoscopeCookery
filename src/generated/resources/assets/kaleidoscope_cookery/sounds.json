@@ -37,6 +37,16 @@
     ],
     "subtitle": "subtitles.kaleidoscope_cookery.block.stockpot"
   },
+  "block.teapot.processing": {
+    "sounds": [
+      "kaleidoscope_cookery:block/teapot/processing/teapot_0",
+      "kaleidoscope_cookery:block/teapot/processing/teapot_1",
+      "kaleidoscope_cookery:block/teapot/processing/teapot_2",
+      "kaleidoscope_cookery:block/teapot/processing/teapot_3",
+      "kaleidoscope_cookery:block/teapot/processing/teapot_4"
+    ],
+    "subtitle": "subtitles.kaleidoscope_cookery.block.teapot"
+  },
   "entity.fart": {
     "sounds": [
       "kaleidoscope_cookery:entity/fart/fart_0",

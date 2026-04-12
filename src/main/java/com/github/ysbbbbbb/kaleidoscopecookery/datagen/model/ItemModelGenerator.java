@@ -275,6 +275,16 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .perspective(ItemDisplayContext.GUI, flatColdCutHamSlices)
                 .perspective(ItemDisplayContext.FIXED, flatColdCutHamSlices);
 
+        ItemModelBuilder teapotItem = new ItemModelBuilder(modLoc("teapot"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/teapot"));
+        ItemModelBuilder teapotBlock = new ItemModelBuilder(modLoc("teapot"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile(modLoc("item/teapot_3d")));
+        getBuilder("teapot")
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .customLoader(SeparateTransformsModelBuilder::begin).base(teapotBlock)
+                .perspective(ItemDisplayContext.GUI, teapotItem)
+                .perspective(ItemDisplayContext.FIXED, teapotItem);
     }
 
     public ItemModelBuilder handheldItem(Item item) {

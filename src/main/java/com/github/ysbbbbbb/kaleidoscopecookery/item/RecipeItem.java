@@ -56,7 +56,7 @@ public class RecipeItem extends BlockItem {
 
     public static final String RECIPE_TAG = "RecipeRecord";
     public static final String INPUT = "input";
-    public static final String OUTPUT = "output";
+    public static final String OUTPUT = "result";
     public static final String TYPE = "type";
 
     private static final int NO_RECIPE = 0;

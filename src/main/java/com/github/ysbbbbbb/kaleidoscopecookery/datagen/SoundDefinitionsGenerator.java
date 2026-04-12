@@ -41,6 +41,14 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
                 .with(sound("block/millstone/millstone_5"));
         this.add(ModSounds.BLOCK_MILLSTONE.get(), millstoneSound);
 
+        SoundDefinition teapotProcessingSound = definition().subtitle(subtitle("block.teapot"))
+                .with(sound("block/teapot/processing/teapot_0"))
+                .with(sound("block/teapot/processing/teapot_1"))
+                .with(sound("block/teapot/processing/teapot_2"))
+                .with(sound("block/teapot/processing/teapot_3"))
+                .with(sound("block/teapot/processing/teapot_4"));
+        this.add(ModSounds.BLOCK_TEAPOT_PROCESSING.get(), teapotProcessingSound);
+
         SoundDefinition recipeBlockSound = definition().subtitle(subtitle("block.recipe_block"))
                 .with(sound("block/recipe_block/recipe_block_0"))
                 .with(sound("block/recipe_block/recipe_block_1"))

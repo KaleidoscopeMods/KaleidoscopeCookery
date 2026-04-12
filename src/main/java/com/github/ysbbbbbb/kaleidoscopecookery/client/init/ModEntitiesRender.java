@@ -1,9 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.init;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.client.model.ColdCutHamSlicesModel;
-import com.github.ysbbbbbb.kaleidoscopecookery.client.model.MillstoneModel;
-import com.github.ysbbbbbb.kaleidoscopecookery.client.model.ScarecrowModel;
-import com.github.ysbbbbbb.kaleidoscopecookery.client.model.StrawHatModel;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.model.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.ScarecrowRender;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.SitRenderer;
 import com.github.ysbbbbbb.kaleidoscopecookery.entity.ScarecrowEntity;
@@ -31,5 +28,6 @@ public class ModEntitiesRender {
         event.registerLayerDefinition(StrawHatModel.LAYER_LOCATION, StrawHatModel::createBodyLayer);
         event.registerLayerDefinition(MillstoneModel.LAYER_LOCATION, MillstoneModel::createBodyLayer);
         event.registerLayerDefinition(ColdCutHamSlicesModel.LAYER_LOCATION, ColdCutHamSlicesModel::createBodyLayer);
+        event.registerLayerDefinition(TeapotModel.LAYER_LOCATION, TeapotModel::createBodyLayer);
     }
 }

@@ -1,0 +1,21 @@
+{
+  "base": {
+    "parent": "kaleidoscope_cookery:item/teapot_3d"
+  },
+  "gui_light": "front",
+  "loader": "forge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "kaleidoscope_cookery:item/teapot"
+      }
+    },
+    "gui": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "kaleidoscope_cookery:item/teapot"
+      }
+    }
+  }
+}
