@@ -78,6 +78,11 @@ public class TeapotBuilder implements RecipeBuilder {
         return this;
     }
 
+    public TeapotBuilder setResult(ItemLike result) {
+        this.result = new ItemStack(result);
+        return this;
+    }
+
     @Override
     public RecipeBuilder unlockedBy(String criterionName, CriterionTriggerInstance criterionTrigger) {
         return this;

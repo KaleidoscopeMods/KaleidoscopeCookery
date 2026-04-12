@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:teapot",
+  "ingredient": {
+    "item": "minecraft:iron_nugget"
+  },
+  "ingredient_count": 12,
+  "result": {
+    "item": "kaleidoscope_cookery:tieguanyin"
+  },
+  "tea_fluid": "minecraft:water",
+  "time": 240
+}

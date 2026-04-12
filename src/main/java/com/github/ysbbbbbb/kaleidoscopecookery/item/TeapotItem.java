@@ -50,23 +50,22 @@ public class TeapotItem extends BlockItem {
     }
 
     /**
-     * 当前茶壶是否可以倾倒出茶水，同时也用于生物伤害判定
+     * 获取当前茶壶倾倒出的茶叶
      */
-    public static boolean canPourOut(ItemStack stack) {
+    public static ItemStack getPourOut(ItemStack stack) {
         CompoundTag data = BlockItem.getBlockEntityData(stack);
         if (data == null) {
-            return false;
+            return ItemStack.EMPTY;
         }
 
         // 先判断状态
         int status = data.getInt(TeapotBlockEntity.STATUS);
         if (status != ITeapot.FINISHED) {
-            return false;
+            return ItemStack.EMPTY;
         }
 
         // 还有茶水剩余么
-        ItemStack result = ItemStack.of(data.getCompound(TeapotBlockEntity.RESULT));
-        return !result.isEmpty();
+        return ItemStack.of(data.getCompound(TeapotBlockEntity.RESULT));
     }
 
     /**

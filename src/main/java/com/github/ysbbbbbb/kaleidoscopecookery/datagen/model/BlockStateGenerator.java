@@ -3,6 +3,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
@@ -10,6 +12,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -130,6 +133,19 @@ public class BlockStateGenerator extends BlockStateProvider {
                 } else {
                     addFoodBiteBlock(block, key);
                 }
+            }
+        });
+
+        horizontalBlock(ModBlocks.EMPTY_CUP.get(), blockState -> {
+            int count = blockState.getValue(EmptyCupBlock.CUP_COUNT);
+            ResourceLocation model = modLoc("block/teacup/empty_cup/count%d".formatted(count));
+            return new ModelFile.UncheckedModelFile(model);
+        });
+
+        TeacupRegistry.TEACUP_DATA_MAP.forEach((key, value) -> {
+            Block block = ForgeRegistries.BLOCKS.getValue(key);
+            if (block != null) {
+                addTeacupBlock(block, key);
             }
         });
 
@@ -309,6 +325,25 @@ public class BlockStateGenerator extends BlockStateProvider {
             } else {
                 return ConfiguredModel.builder().modelFile(middleModel).build();
             }
+        });
+    }
+
+    public void addTeacupBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof TeacupBlock teacupBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of TeacupBlock");
+            }
+
+            int cupCount = blockState.getValue(teacupBlock.getCupCountProperty());
+            int teaCount = blockState.getValue(teacupBlock.getTeaCountProperty());
+            if (teaCount > cupCount) {
+                teaCount = cupCount;
+            }
+
+            String modelName = "count%d_%d".formatted(cupCount, teaCount);
+            String modelPath = "block/teacup/%s/%s".formatted(id.getPath(), modelName);
+            ResourceLocation modelLoc = new ResourceLocation(id.getNamespace(), modelPath);
+            return new ModelFile.UncheckedModelFile(modelLoc);
         });
     }
 

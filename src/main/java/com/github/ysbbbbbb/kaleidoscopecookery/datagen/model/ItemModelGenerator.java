@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.PackOutput;
@@ -203,6 +204,14 @@ public class ItemModelGenerator extends ItemModelProvider {
         }
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {
+            Item item = ForgeRegistries.ITEMS.getValue(key);
+            if (item != null) {
+                basicItem(item);
+            }
+        });
+
+        basicItem(ModItems.EMPTY_CUP.get());
+        TeacupRegistry.TEACUP_DATA_MAP.forEach((key, value) -> {
             Item item = ForgeRegistries.ITEMS.getValue(key);
             if (item != null) {
                 basicItem(item);

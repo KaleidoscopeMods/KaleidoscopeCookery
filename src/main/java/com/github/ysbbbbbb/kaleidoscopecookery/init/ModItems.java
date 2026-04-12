@@ -24,6 +24,7 @@ public final class ModItems {
 
     // 茶
     public static RegistryObject<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
+    public static RegistryObject<Item> EMPTY_CUP = ITEMS.register("empty_cup", EmptyCupItem::new);
 
     // 油
     public static RegistryObject<Item> OIL = ITEMS.register("oil", OilItem::new);

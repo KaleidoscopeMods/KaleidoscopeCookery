@@ -1,11 +1,11 @@
 {
   "type": "kaleidoscope_cookery:teapot",
   "ingredient": {
-    "item": "minecraft:iron_nugget"
+    "tag": "minecraft:flowers"
   },
   "ingredient_count": 12,
   "result": {
-    "item": "minecraft:apple"
+    "item": "kaleidoscope_cookery:flower_tea"
   },
   "tea_fluid": "minecraft:water",
   "time": 240

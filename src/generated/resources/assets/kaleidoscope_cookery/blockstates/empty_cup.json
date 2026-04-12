@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "cup_count=1,facing=east": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count1",
+      "y": 90
+    },
+    "cup_count=1,facing=north": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count1"
+    },
+    "cup_count=1,facing=south": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count1",
+      "y": 180
+    },
+    "cup_count=1,facing=west": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count1",
+      "y": 270
+    },
+    "cup_count=2,facing=east": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count2",
+      "y": 90
+    },
+    "cup_count=2,facing=north": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count2"
+    },
+    "cup_count=2,facing=south": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count2",
+      "y": 180
+    },
+    "cup_count=2,facing=west": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count2",
+      "y": 270
+    },
+    "cup_count=3,facing=east": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count3",
+      "y": 90
+    },
+    "cup_count=3,facing=north": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count3"
+    },
+    "cup_count=3,facing=south": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count3",
+      "y": 180
+    },
+    "cup_count=3,facing=west": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count3",
+      "y": 270
+    },
+    "cup_count=4,facing=east": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count4",
+      "y": 90
+    },
+    "cup_count=4,facing=north": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count4"
+    },
+    "cup_count=4,facing=south": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count4",
+      "y": 180
+    },
+    "cup_count=4,facing=west": {
+      "model": "kaleidoscope_cookery:block/teacup/empty_cup/count4",
+      "y": 270
+    }
+  }
+}
