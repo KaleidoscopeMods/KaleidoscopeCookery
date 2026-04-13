@@ -135,7 +135,7 @@ public class TeapotItem extends BlockItem {
 
     public static void clearAll(ItemStack stack, Player player) {
         stack.removeTagKey(BlockItem.BLOCK_ENTITY_TAG);
-        player.playSound(SoundEvents.PLAYER_ATTACK_WEAK, 1.0F, 1.0F);
+        player.playSound(SoundEvents.BUCKET_EMPTY, 1.0F, 1.0F);
     }
 
     @Override
@@ -173,7 +173,7 @@ public class TeapotItem extends BlockItem {
 
         Level level = player.level();
         RandomSource random = level.random;
-        target.hurt(level.damageSources().inFire(), 1);
+        target.hurt(level.damageSources().inFire(), 3);
 
         double x = target.getX();
         double y = target.getY() + target.getEyeHeight() + 0.25;

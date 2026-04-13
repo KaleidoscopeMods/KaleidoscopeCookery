@@ -28,10 +28,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class EmptyCupBlock extends HorizontalDirectionalBlock {
     public static final VoxelShape AABB = Block.box(1, 0, 1, 15, 2, 15);
@@ -150,5 +153,14 @@ public class EmptyCupBlock extends HorizontalDirectionalBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return AABB;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        int cupCount = state.getValue(CUP_COUNT);
+        if (cupCount > 0) {
+            return List.of(new ItemStack(ModItems.EMPTY_CUP.get(), cupCount));
+        }
+        return super.getDrops(state, params);
     }
 }

@@ -29,5 +29,6 @@ public class ModEntitiesRender {
         event.registerLayerDefinition(MillstoneModel.LAYER_LOCATION, MillstoneModel::createBodyLayer);
         event.registerLayerDefinition(ColdCutHamSlicesModel.LAYER_LOCATION, ColdCutHamSlicesModel::createBodyLayer);
         event.registerLayerDefinition(TeapotModel.LAYER_LOCATION, TeapotModel::createBodyLayer);
+        event.registerLayerDefinition(TrashCanModel.LAYER_LOCATION, TrashCanModel::createBodyLayer);
     }
 }

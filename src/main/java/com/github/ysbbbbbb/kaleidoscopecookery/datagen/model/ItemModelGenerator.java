@@ -293,7 +293,8 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .customLoader(SeparateTransformsModelBuilder::begin).base(teapotBlock)
                 .perspective(ItemDisplayContext.GUI, teapotItem)
-                .perspective(ItemDisplayContext.FIXED, teapotItem);
+                .perspective(ItemDisplayContext.FIXED, teapotItem)
+                .perspective(ItemDisplayContext.GROUND, teapotItem);
     }
 
     public ItemModelBuilder handheldItem(Item item) {

@@ -52,6 +52,7 @@ public class ClientSetupEvent {
         BlockEntityRenderers.register(ModBlocks.STEAMER_BE.get(), SteamerBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.FOOD_BITE_THREE_BY_THREE_BE.get(), FoodBiteThreeByThreeBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.TEAPOT_BE.get(), TeapotBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.TRASH_CAN_BE.get(), TrashCanBlockEntityRender::new);
     }
 
     @SubscribeEvent
