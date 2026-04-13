@@ -1,11 +1,11 @@
 {
   "type": "kaleidoscope_cookery:teapot",
   "ingredient": {
-    "tag": "minecraft:small_flowers"
+    "item": "minecraft:dragon_breath"
   },
   "ingredient_count": 12,
   "result": {
-    "item": "kaleidoscope_cookery:flower_tea"
+    "item": "kaleidoscope_cookery:oolong"
   },
   "tea_fluid": "minecraft:water",
   "time": 240

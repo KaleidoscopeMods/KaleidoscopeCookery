@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -16,6 +17,8 @@ import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -144,6 +147,36 @@ public class TeapotItem extends BlockItem {
             return super.useOn(context);
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
+        ItemStack pourOut = getPourOut(stack);
+        if (pourOut.isEmpty()) {
+            return InteractionResult.PASS;
+        }
+
+        pourOut(stack);
+
+        Level level = player.level();
+        RandomSource random = level.random;
+        target.hurt(level.damageSources().inFire(), 1);
+
+        double x = target.getX();
+        double y = target.getY() + target.getEyeHeight() + 0.25;
+        double z = target.getZ();
+
+        player.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
+
+        for (int i = 0; i < 10; i++) {
+            level.addParticle(ParticleTypes.LAVA,
+                    x + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+                    y + random.nextDouble() / 3,
+                    z + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+                    0.3, 0.1, 0.3);
+        }
+
+        return InteractionResult.SUCCESS;
     }
 
     @Override
