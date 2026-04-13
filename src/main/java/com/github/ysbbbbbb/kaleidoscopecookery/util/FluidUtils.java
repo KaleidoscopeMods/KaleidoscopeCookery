@@ -90,7 +90,14 @@ public class FluidUtils {
         }).orElse(false);
     }
 
-    public static boolean isFluidContainer(ItemStack stack) {
-        return FluidUtil.getFluidHandler(stack).isPresent();
+    public static boolean hasFluid(ItemStack stack) {
+        return FluidUtil.getFluidHandler(stack).map(handler -> {
+            for (int i = 0; i < handler.getTanks(); i++) {
+                if (!handler.getFluidInTank(i).isEmpty()) {
+                    return true;
+                }
+            }
+            return false;
+        }).orElse(false);
     }
 }

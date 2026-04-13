@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -105,6 +106,7 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
                 level.setBlockAndUpdate(pos, state.setValue(teaCount, count + 1));
                 level.playSound(player, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1.0F, 1.0F);
                 TeapotItem.pourOut(itemInHand);
+                spawnPourParticles(level, pos);
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
@@ -129,11 +131,12 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
                 return InteractionResult.CONSUME;
             }
             // 如果茶杯数量没满
-            int count = state.getValue(cupCount);
-            if (count < this.maxCount) {
+            int cupCountNum = state.getValue(cupCount);
+            int teaCountNum = state.getValue(teaCount);
+            if (cupCountNum < this.maxCount) {
                 level.setBlockAndUpdate(pos, state
-                        .setValue(cupCount, count + 1)
-                        .setValue(teaCount, count + 1));
+                        .setValue(cupCount, cupCountNum + 1)
+                        .setValue(teaCount, teaCountNum + 1));
                 level.playSound(player, pos, this.soundType.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 itemInHand.shrink(1);
                 return InteractionResult.SUCCESS;
@@ -145,24 +148,10 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
         if (itemInHand.isEmpty()) {
             int cupCountNum = state.getValue(cupCount);
             int teaCountNum = state.getValue(teaCount);
+            int emptyCountNum = cupCountNum - teaCountNum;
 
-            if (teaCountNum > 0) {
-                // 取下茶水
-                ItemStack teaStack = new ItemStack(this);
-                ItemUtils.getItemToLivingEntity(player, teaStack);
-                if (teaCountNum == 1) {
-                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                } else {
-                    level.setBlockAndUpdate(pos, state
-                            .setValue(teaCount, teaCountNum - 1)
-                            .setValue(cupCount, cupCountNum - 1));
-                    level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                }
-                return InteractionResult.SUCCESS;
-            }
-
-            if (cupCountNum > 0) {
-                // 取下空杯
+            // 取下空杯
+            if (emptyCountNum > 0) {
                 ItemStack cupStack = new ItemStack(ModItems.EMPTY_CUP.get());
                 ItemUtils.getItemToLivingEntity(player, cupStack);
                 if (cupCountNum == 1) {
@@ -173,9 +162,41 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
                 level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
             }
+
+            if (teaCountNum > 0) {
+                // 取下茶水
+                ItemStack teaStack = new ItemStack(this);
+                ItemUtils.getItemToLivingEntity(player, teaStack);
+                if (cupCountNum == 1) {
+                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+                } else {
+                    level.setBlockAndUpdate(pos, state
+                            .setValue(teaCount, teaCountNum - 1)
+                            .setValue(cupCount, cupCountNum - 1));
+                    level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+                return InteractionResult.SUCCESS;
+            }
         }
 
         return InteractionResult.PASS;
+    }
+
+    private static void spawnPourParticles(Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        RandomSource random = level.random;
+        serverLevel.sendParticles(ModParticles.COOKING.get(),
+                pos.getX() + 0.5,
+                pos.getY() + 0.35,
+                pos.getZ() + 0.5,
+                4,
+                0.12 + random.nextDouble() * 0.04,
+                0.08,
+                0.12 + random.nextDouble() * 0.04,
+                0.02);
     }
 
     @Override

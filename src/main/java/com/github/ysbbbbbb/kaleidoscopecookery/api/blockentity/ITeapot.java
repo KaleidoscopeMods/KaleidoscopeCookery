@@ -44,6 +44,16 @@ public interface ITeapot {
     boolean addTeaFluid(Level level, LivingEntity user, ItemStack itemStack);
 
     /**
+     * 从茶壶内手动取回流体
+     *
+     * @param level     使用者所处的 level
+     * @param user      使用者
+     * @param itemStack 必须是可接受流体的容器
+     * @return 是否成功取回流体
+     */
+    boolean removeTeaFluid(Level level, LivingEntity user, ItemStack itemStack);
+
+    /**
      * 向茶壶内手动添加原料
      *
      * @param level     使用者所处的 level

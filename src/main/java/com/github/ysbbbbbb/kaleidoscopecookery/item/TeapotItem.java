@@ -12,10 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -33,8 +30,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BucketPickup;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -132,11 +133,9 @@ public class TeapotItem extends BlockItem {
         return true;
     }
 
-    private static void sendActionBarMessage(LivingEntity user, String key, Object... args) {
-        if (user instanceof ServerPlayer serverPlayer) {
-            MutableComponent message = Component.translatable(key, args);
-            serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(message));
-        }
+    public static void clearAll(ItemStack stack, Player player) {
+        stack.removeTagKey(BlockItem.BLOCK_ENTITY_TAG);
+        player.playSound(SoundEvents.PLAYER_ATTACK_WEAK, 1.0F, 1.0F);
     }
 
     @Override
@@ -151,12 +150,26 @@ public class TeapotItem extends BlockItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        ItemStack pourOut = getPourOut(stack);
-        if (pourOut.isEmpty()) {
+        CompoundTag data = BlockItem.getBlockEntityData(stack);
+        if (data == null) {
             return InteractionResult.PASS;
         }
 
-        pourOut(stack);
+        // 先判断状态
+        int status = data.getInt(TeapotBlockEntity.STATUS);
+        if (status == ITeapot.FINISHED) {
+            pourOut(stack);
+        } else if (status == ITeapot.PUT_INGREDIENT) {
+            String fluidId = StringUtils.defaultIfBlank(data.getString(TeapotBlockEntity.TEA_FLUID_ID), EMPTY_TEA_FLUID.toString());
+            if (!"minecraft:lava".equals(fluidId)) {
+                // 仅岩浆能烫伤生物
+                return InteractionResult.PASS;
+            }
+            // 概率消耗
+            if (player.getRandom().nextFloat() < 0.3F) {
+                clearAll(stack, player);
+            }
+        }
 
         Level level = player.level();
         RandomSource random = level.random;
@@ -188,7 +201,6 @@ public class TeapotItem extends BlockItem {
         if (data != null) {
             String fluidId = StringUtils.defaultIfBlank(data.getString(TeapotBlockEntity.TEA_FLUID_ID), EMPTY_TEA_FLUID.toString());
             if (!fluidId.equals(EMPTY_TEA_FLUID.toString())) {
-                sendActionBarMessage(player, "tooltip.kaleidoscope_cookery.teapot.add_tea_fluid.has_fluid");
                 return InteractionResultHolder.fail(itemInHand);
             }
         }
@@ -229,7 +241,6 @@ public class TeapotItem extends BlockItem {
             if (result) {
                 return InteractionResultHolder.sidedSuccess(itemInHand, level.isClientSide());
             }
-            sendActionBarMessage(player, "tooltip.kaleidoscope_cookery.teapot.add_tea_fluid.has_fluid");
             return InteractionResultHolder.fail(itemInHand);
         }).orElse(InteractionResultHolder.fail(itemInHand));
     }
@@ -260,7 +271,28 @@ public class TeapotItem extends BlockItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public int getBarColor(ItemStack stack) {
+        CompoundTag data = BlockItem.getBlockEntityData(stack);
+        if (data == null) {
+            return 0x9df7ff;
+        }
+        int status = data.getInt(TeapotBlockEntity.STATUS);
+        if (status == ITeapot.PUT_INGREDIENT) {
+            String fluidId = StringUtils.defaultIfBlank(data.getString(TeapotBlockEntity.TEA_FLUID_ID), EMPTY_TEA_FLUID.toString());
+            if (fluidId.equals(EMPTY_TEA_FLUID.toString())) {
+                return 0x9df7ff;
+            }
+            Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidId));
+            if (fluid == null) {
+                return 0x9df7ff;
+            }
+            // 熔岩特殊
+            if (fluid.equals(Fluids.LAVA)) {
+                return 0xfba800;
+            }
+            return IClientFluidTypeExtensions.of(fluid).getTintColor();
+        }
         return 0x9df7ff;
     }
 

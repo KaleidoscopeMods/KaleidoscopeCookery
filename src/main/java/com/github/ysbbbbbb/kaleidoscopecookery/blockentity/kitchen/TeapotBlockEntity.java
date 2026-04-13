@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
@@ -211,12 +212,43 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
             // 填满
             FluidTank needFluidHandler = new FluidTank(FluidType.BUCKET_VOLUME, stack -> stack.isFluidEqual(fluidInTank));
-            FluidUtils.emptyItem(user, itemStack, needFluidHandler, FluidType.BUCKET_VOLUME);
+            if (!FluidUtils.emptyItem(user, itemStack, needFluidHandler, FluidType.BUCKET_VOLUME)) {
+                return false;
+            }
 
             this.teaFluidId = id;
             this.refresh();
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    public boolean removeTeaFluid(Level level, LivingEntity user, ItemStack itemStack) {
+        if (this.status != PUT_INGREDIENT || this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID) || !this.input.isEmpty()) {
+            this.sendActionBarMessage(user, "tooltip.kaleidoscope_cookery.teapot.take_tea_fluid.blocked");
+            return false;
+        }
+
+        LazyOptional<IFluidHandlerItem> cap = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+        if (!cap.isPresent()) {
+            return false;
+        }
+
+        Fluid fluid = ForgeRegistries.FLUIDS.getValue(this.teaFluidId);
+        if (fluid == null || fluid == Fluids.EMPTY) {
+            return false;
+        }
+
+        FluidTank sourceFluidHandler = new FluidTank(FluidType.BUCKET_VOLUME);
+        sourceFluidHandler.setFluid(new FluidStack(fluid, FluidType.BUCKET_VOLUME));
+        if (!FluidUtils.fillItem(user, itemStack, sourceFluidHandler, FluidType.BUCKET_VOLUME)) {
+            return false;
+        }
+
+        this.teaFluidId = TeapotRecipeSerializer.EMPTY_TEA_FLUID;
+        this.currentTick = -1;
+        this.refresh();
+        return true;
     }
 
     @Override
@@ -274,7 +306,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     @Override
     public boolean takeTeapot(Level level, LivingEntity user) {
-        if (status != FINISHED) {
+        if (status == PROCESSING) {
             this.sendActionBarMessage(user, "tooltip.kaleidoscope_cookery.teapot.take_teapot.state_incorrect");
             return false;
         }

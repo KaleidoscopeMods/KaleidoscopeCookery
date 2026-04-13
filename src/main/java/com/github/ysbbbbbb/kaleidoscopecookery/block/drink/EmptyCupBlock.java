@@ -1,13 +1,16 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.drink;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -75,6 +78,7 @@ public class EmptyCupBlock extends HorizontalDirectionalBlock {
             // 将茶转换
             level.playSound(player, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1.0F, 1.0F);
             TeapotItem.pourOut(itemInHand);
+            spawnPourParticles(level, pos);
             level.setBlockAndUpdate(pos, teacupBlock.defaultBlockState()
                     .setValue(teacupBlock.getCupCountProperty(), Math.min(currentCount, teacupBlock.getMaxCount()))
                     .setValue(teacupBlock.getTeaCountProperty(), 1)
@@ -113,6 +117,23 @@ public class EmptyCupBlock extends HorizontalDirectionalBlock {
         }
 
         return InteractionResult.PASS;
+    }
+
+    private static void spawnPourParticles(Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        RandomSource random = level.random;
+        serverLevel.sendParticles(ModParticles.COOKING.get(),
+                pos.getX() + 0.5,
+                pos.getY() + 0.35,
+                pos.getZ() + 0.5,
+                4,
+                0.12 + random.nextDouble() * 0.04,
+                0.08,
+                0.12 + random.nextDouble() * 0.04,
+                0.02);
     }
 
     @Override

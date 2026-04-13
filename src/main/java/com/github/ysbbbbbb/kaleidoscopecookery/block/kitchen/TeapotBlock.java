@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.ITeapot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.TeapotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.FluidUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -58,7 +59,7 @@ public class TeapotBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .sound(SoundType.LANTERN)
                 .mapColor(MapColor.COLOR_ORANGE)
                 .noOcclusion()
-                .strength(1.25F, 2.0F));
+                .instabreak());
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
@@ -125,7 +126,15 @@ public class TeapotBlock extends HorizontalDirectionalBlock implements SimpleWat
 
         // 加入茶水
         if (capability.isPresent()) {
-            return teapot.addTeaFluid(level, player, mainHandItem) ? SUCCESS : CONSUME;
+            // 如果手持物有流体，那么灌入
+            if (FluidUtils.hasFluid(mainHandItem)) {
+                boolean result = teapot.addTeaFluid(level, player, mainHandItem);
+                return result ? SUCCESS : CONSUME;
+            }
+
+            // 否则取出
+            boolean result = teapot.removeTeaFluid(level, player, mainHandItem);
+            return result ? SUCCESS : CONSUME;
         }
 
         // 加入原料
