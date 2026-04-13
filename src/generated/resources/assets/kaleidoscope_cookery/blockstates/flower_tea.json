@@ -1,9 +1,5 @@
 {
   "variants": {
-    "cup_count=1,facing=east,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_0",
-      "y": 90
-    },
     "cup_count=1,facing=east,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
       "y": 90
@@ -20,9 +16,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
       "y": 90
     },
-    "cup_count=1,facing=north,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_0"
-    },
     "cup_count=1,facing=north,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1"
     },
@@ -34,10 +27,6 @@
     },
     "cup_count=1,facing=north,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1"
-    },
-    "cup_count=1,facing=south,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_0",
-      "y": 180
     },
     "cup_count=1,facing=south,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
@@ -55,10 +44,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
       "y": 180
     },
-    "cup_count=1,facing=west,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_0",
-      "y": 270
-    },
     "cup_count=1,facing=west,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
       "y": 270
@@ -74,10 +59,6 @@
     "cup_count=1,facing=west,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count1_1",
       "y": 270
-    },
-    "cup_count=2,facing=east,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_0",
-      "y": 90
     },
     "cup_count=2,facing=east,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_1",
@@ -95,9 +76,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_2",
       "y": 90
     },
-    "cup_count=2,facing=north,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_0"
-    },
     "cup_count=2,facing=north,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_1"
     },
@@ -109,10 +87,6 @@
     },
     "cup_count=2,facing=north,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_2"
-    },
-    "cup_count=2,facing=south,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_0",
-      "y": 180
     },
     "cup_count=2,facing=south,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_1",
@@ -130,10 +104,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_2",
       "y": 180
     },
-    "cup_count=2,facing=west,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_0",
-      "y": 270
-    },
     "cup_count=2,facing=west,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_1",
       "y": 270
@@ -149,10 +119,6 @@
     "cup_count=2,facing=west,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count2_2",
       "y": 270
-    },
-    "cup_count=3,facing=east,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_0",
-      "y": 90
     },
     "cup_count=3,facing=east,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_1",
@@ -170,9 +136,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_3",
       "y": 90
     },
-    "cup_count=3,facing=north,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_0"
-    },
     "cup_count=3,facing=north,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_1"
     },
@@ -184,10 +147,6 @@
     },
     "cup_count=3,facing=north,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_3"
-    },
-    "cup_count=3,facing=south,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_0",
-      "y": 180
     },
     "cup_count=3,facing=south,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_1",
@@ -205,10 +164,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_3",
       "y": 180
     },
-    "cup_count=3,facing=west,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_0",
-      "y": 270
-    },
     "cup_count=3,facing=west,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_1",
       "y": 270
@@ -224,10 +179,6 @@
     "cup_count=3,facing=west,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count3_3",
       "y": 270
-    },
-    "cup_count=4,facing=east,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_0",
-      "y": 90
     },
     "cup_count=4,facing=east,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_1",
@@ -245,9 +196,6 @@
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_4",
       "y": 90
     },
-    "cup_count=4,facing=north,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_0"
-    },
     "cup_count=4,facing=north,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_1"
     },
@@ -259,10 +207,6 @@
     },
     "cup_count=4,facing=north,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_4"
-    },
-    "cup_count=4,facing=south,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_0",
-      "y": 180
     },
     "cup_count=4,facing=south,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_1",
@@ -279,10 +223,6 @@
     "cup_count=4,facing=south,tea_count=4": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_4",
       "y": 180
-    },
-    "cup_count=4,facing=west,tea_count=0": {
-      "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_0",
-      "y": 270
     },
     "cup_count=4,facing=west,tea_count=1": {
       "model": "kaleidoscope_cookery:block/teacup/flower_tea/count4_1",

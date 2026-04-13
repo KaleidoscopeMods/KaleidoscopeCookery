@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.drink;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
@@ -8,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -51,7 +53,7 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
 
         this.maxCount = maxCount;
         this.cupCount = IntegerProperty.create("cup_count", 1, maxCount);
-        this.teaCount = IntegerProperty.create("tea_count", 0, maxCount);
+        this.teaCount = IntegerProperty.create("tea_count", 1, maxCount);
 
         // 重置一遍 BlockState，因为在父类 FoodBlock 中已经创建了一个默认的 BlockStateDefinition
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(this);
@@ -174,6 +176,22 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
         }
 
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (random.nextInt(20) != 0) {
+            return;
+        }
+        double x = pos.getX() + 0.5;
+        double y = pos.getY() + 0.5;
+        double z = pos.getZ() + 0.5;
+
+        level.addParticle(ModParticles.COOKING.get(),
+                x + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+                y + random.nextDouble() / 3,
+                z + random.nextDouble() / 3 * (random.nextBoolean() ? 1 : -1),
+                0.3, 0.1, 0.3);
     }
 
     @Override

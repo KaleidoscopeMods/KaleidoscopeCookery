@@ -21,17 +21,39 @@ import java.util.function.Supplier;
 public class TeacupRegistry {
     public static final Map<ResourceLocation, TeacupData> TEACUP_DATA_MAP = Maps.newLinkedHashMap();
 
-    public static ResourceLocation FLOWER_TEA;
+    public static ResourceLocation BARLEY_TEA;
     public static ResourceLocation TIEGUANYIN;
+    public static ResourceLocation BILUOCHUN;
+    public static ResourceLocation OOLONG;
+    public static ResourceLocation SAKURA_FUBUKI;
+    public static ResourceLocation FLOWER_TEA;
 
     public static void init() {
         TeacupRegistry registry = new TeacupRegistry();
 
-        FLOWER_TEA = registry.registerTeacupData("flower_tea", TeacupData.create(4).addEffect(() ->
-                new MobEffectInstance(MobEffects.REGENERATION, 20 * 20))
+        BARLEY_TEA = registry.registerTeacupData("barley_tea", TeacupData.create(4).addEffect(() ->
+                new MobEffectInstance(ModEffects.VITALITY.get(), 8 * 60 * 20))
         );
+
         TIEGUANYIN = registry.registerTeacupData("tieguanyin", TeacupData.create(4).addEffect(() ->
                 new MobEffectInstance(ModEffects.INSTANT_SMELTING.get(), 2 * 60 * 20))
+        );
+
+        BILUOCHUN = registry.registerTeacupData("biluochun", TeacupData.create(4).addEffect(() ->
+                new MobEffectInstance(ModEffects.PROJECTILE_DODGE.get(), 2 * 60 * 20))
+        );
+
+        OOLONG = registry.registerTeacupData("oolong", TeacupData.create(4)
+                .addEffect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 6 * 60 * 20))
+                .addEffect(() -> new MobEffectInstance(MobEffects.JUMP, 6 * 60 * 20))
+        );
+
+        SAKURA_FUBUKI = registry.registerTeacupData("sakura_fubuki", TeacupData.create(4).addEffect(() ->
+                new MobEffectInstance(ModEffects.HINDER.get(), 6 * 60 * 20))
+        );
+
+        FLOWER_TEA = registry.registerTeacupData("flower_tea", TeacupData.create(4).addEffect(() ->
+                new MobEffectInstance(MobEffects.REGENERATION, 20 * 20))
         );
     }
 
