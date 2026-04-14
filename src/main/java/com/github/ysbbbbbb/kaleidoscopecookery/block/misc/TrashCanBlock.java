@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -137,6 +138,13 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
                 level.addFreshEntity(entitySit);
                 player.startRiding(entitySit, true);
             }
+
+            // 清除周围生物对玩家的敌意
+            level.getEntitiesOfClass(Mob.class, new AABB(pos).inflate(32)).forEach(e -> {
+                if (e.getTarget() == player) {
+                    e.setTarget(null);
+                }
+            });
 
             // 播放进入动画
             if (level.getBlockEntity(pos) instanceof TrashCanBlockEntity trashCan) {
