@@ -1,11 +1,13 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.misc;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.entity.SitEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -24,11 +26,14 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 import static net.minecraft.world.InteractionResult.PASS;
 
@@ -100,6 +105,33 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
             }
         }
         return PASS;
+    }
+
+    @Override
+    public void destroy(LevelAccessor levelAccessor, BlockPos pos, BlockState state) {
+        levelAccessor.getEntitiesOfClass(SitEntity.class, new AABB(pos)).forEach(Entity::discard);
+    }
+
+    @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        // 如果是玩家
+        if (entity instanceof Player player && player.getVehicle() == null && fallDistance > 1f) {
+            List<SitEntity> entities = level.getEntitiesOfClass(SitEntity.class, new AABB(pos));
+            if (entities.isEmpty()) {
+                if (!level.isClientSide) {
+                    SitEntity entitySit = new SitEntity(level, pos, 0.875, SitEntity.TRASH_CAN);
+                    entitySit.setYRot(state.getValue(FACING).toYRot());
+                    level.addFreshEntity(entitySit);
+                    player.startRiding(entitySit, true);
+                }
+
+                // 播放进入动画
+                if (level.getBlockEntity(pos) instanceof TrashCanBlockEntity trashCan) {
+                    trashCan.enterState.start((int) level.getGameTime());
+                }
+            }
+        }
+        super.fallOn(level, state, pos, entity, fallDistance);
     }
 
     @Override

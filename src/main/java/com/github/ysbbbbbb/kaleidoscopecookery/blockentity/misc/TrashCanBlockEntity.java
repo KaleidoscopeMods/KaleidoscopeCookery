@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.TrashCanBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.entity.SitEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,24 +28,39 @@ public class TrashCanBlockEntity extends BaseBlockEntity {
 
     public AnimationState putState = new AnimationState();
     public AnimationState withdrawState = new AnimationState();
+    public AnimationState player1State = new AnimationState();
+    public AnimationState player2State = new AnimationState();
+    public AnimationState enterState = new AnimationState();
 
     public TrashCanBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlocks.TRASH_CAN_BE.get(), pos, blockState);
     }
 
     public void tick(Level level) {
-        // 每 41 tick 检查一次
         long offset = level.getGameTime() + worldPosition.hashCode();
+
+        // 每 41 tick 检查一次
         if (Math.floorMod(offset, 41) == 0) {
+            List<SitEntity> sits = level.getEntitiesOfClass(SitEntity.class, new AABB(this.worldPosition));
+            if (!sits.isEmpty()) {
+                if (level.random.nextBoolean()) {
+                    this.player2State.stop();
+                    this.player1State.start((int) level.getGameTime());
+                } else {
+                    this.player1State.stop();
+                    this.player2State.start((int) level.getGameTime());
+                }
+            }
+
             // 必须处于充能状态才会销毁物品
             if (!this.getBlockState().getValue(TrashCanBlock.POWERED)) {
                 return;
             }
             // 先检查区域内的物品
             AABB area = new AABB(worldPosition.above());
-            List<ItemEntity> entities = level.getEntitiesOfClass(ItemEntity.class, area, e -> hasItem(e.getItem()));
+            List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, area, e -> hasItem(e.getItem()));
             // 然后销毁
-            for (ItemEntity entity : entities) {
+            for (ItemEntity entity : items) {
                 if (level instanceof ServerLevel serverLevel) {
                     serverLevel.sendParticles(ParticleTypes.CLOUD,
                             entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(),
