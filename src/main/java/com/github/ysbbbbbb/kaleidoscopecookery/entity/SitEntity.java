@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.entity;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -8,7 +9,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
@@ -102,7 +102,7 @@ public class SitEntity extends Entity implements IEntityAdditionalSpawnData {
             if (level().getBlockEntity(blockPos) instanceof TrashCanBlockEntity trashCan) {
                 trashCan.player1State.stop();
                 trashCan.player2State.stop();
-                player.playSound(SoundEvents.DRAGON_FIREBALL_EXPLODE);
+                player.playSound(ModSounds.TRASH_CAN.get());
             }
         }
 

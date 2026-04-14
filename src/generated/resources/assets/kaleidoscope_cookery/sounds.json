@@ -47,6 +47,12 @@
     ],
     "subtitle": "subtitles.kaleidoscope_cookery.block.teapot"
   },
+  "block.trash_can": {
+    "sounds": [
+      "kaleidoscope_cookery:block/trash_can"
+    ],
+    "subtitle": "subtitles.kaleidoscope_cookery.block.trash_can"
+  },
   "entity.fart": {
     "sounds": [
       "kaleidoscope_cookery:entity/fart/fart_0",

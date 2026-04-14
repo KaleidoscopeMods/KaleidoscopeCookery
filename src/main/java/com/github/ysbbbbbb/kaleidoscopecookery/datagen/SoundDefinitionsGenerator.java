@@ -49,6 +49,10 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
                 .with(sound("block/teapot/processing/teapot_4"));
         this.add(ModSounds.BLOCK_TEAPOT_PROCESSING.get(), teapotProcessingSound);
 
+        SoundDefinition trashCanSound = definition().subtitle(subtitle("block.trash_can"))
+                .with(sound("block/trash_can"));
+        this.add(ModSounds.TRASH_CAN.get(), trashCanSound);
+
         SoundDefinition recipeBlockSound = definition().subtitle(subtitle("block.recipe_block"))
                 .with(sound("block/recipe_block/recipe_block_0"))
                 .with(sound("block/recipe_block/recipe_block_1"))

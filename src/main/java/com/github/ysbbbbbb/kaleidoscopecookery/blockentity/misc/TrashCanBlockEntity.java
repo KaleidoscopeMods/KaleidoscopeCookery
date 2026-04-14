@@ -12,12 +12,16 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -36,11 +40,11 @@ public class TrashCanBlockEntity extends BaseBlockEntity {
         super(ModBlocks.TRASH_CAN_BE.get(), pos, blockState);
     }
 
-    public void tick(Level level) {
+    public void clientTick(Level level) {
         long offset = level.getGameTime() + worldPosition.hashCode();
 
-        // 每 41 tick 检查一次
-        if (Math.floorMod(offset, 41) == 0) {
+        // 每 61 tick 播放刷新
+        if (Math.floorMod(offset, 61) == 0) {
             List<SitEntity> sits = level.getEntitiesOfClass(SitEntity.class, new AABB(this.worldPosition));
             if (!sits.isEmpty()) {
                 if (level.random.nextBoolean()) {
@@ -51,24 +55,36 @@ public class TrashCanBlockEntity extends BaseBlockEntity {
                     this.player2State.start((int) level.getGameTime());
                 }
             }
+        }
 
-            // 必须处于充能状态才会销毁物品
-            if (!this.getBlockState().getValue(TrashCanBlock.POWERED)) {
-                return;
-            }
-            // 先检查区域内的物品
-            AABB area = new AABB(worldPosition.above());
-            List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, area, e -> hasItem(e.getItem()));
-            // 然后销毁
-            for (ItemEntity entity : items) {
-                if (level instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(ParticleTypes.CLOUD,
-                            entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(),
-                            3, 0.1, 0.1, 0.1, 0.01);
-                }
-                entity.discard();
+        // 每 5 tick 刷新一次停止
+        if (Math.floorMod(offset, 5) == 0) {
+            List<SitEntity> sits = level.getEntitiesOfClass(SitEntity.class, new AABB(this.worldPosition));
+            if (sits.isEmpty()) {
+                this.player1State.stop();
+                this.player2State.stop();
             }
         }
+    }
+
+    public void entityInside(Level level, BlockPos pos, Entity entity) {
+        if (!(entity instanceof ItemEntity itemEntity)) {
+            return;
+        }
+        AABB entityBox = entity.getBoundingBox().move(-pos.getX(), -pos.getY(), -pos.getZ());
+        VoxelShape shape = Shapes.create(entityBox);
+        if (!Shapes.joinIsNotEmpty(shape, TrashCanBlock.SUCK_ZONE, BooleanOp.AND)) {
+            return;
+        }
+        if (!hasItem(itemEntity.getItem())) {
+            return;
+        }
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(ParticleTypes.CLOUD,
+                    entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(),
+                    1, 0.1, 0.1, 0.1, 0.01);
+        }
+        entity.discard();
     }
 
     /**
@@ -144,7 +160,11 @@ public class TrashCanBlockEntity extends BaseBlockEntity {
         // 先尝试塞入
         for (int i = 0; i < storage.getSlots(); i++) {
             if (storage.getStackInSlot(i).is(itemStack.getItem())) {
-                storage.insertItem(i, itemStack, false);
+                ItemStack result = storage.insertItem(i, itemStack.copy(), false);
+                // 如果成功存入
+                if (result.getCount() < itemStack.getCount()) {
+                    this.refresh();
+                }
                 return true;
             }
         }

@@ -26,6 +26,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -39,6 +41,10 @@ import static net.minecraft.world.InteractionResult.PASS;
 
 @SuppressWarnings({"deprecation"})
 public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, EntityBlock {
+    /**
+     * 吸取物品的范围
+     */
+    public static final VoxelShape SUCK_ZONE = Block.box(0, 15, 0, 16, 16, 16);
     public static final VoxelShape AABB = Shapes.or(
             Block.box(2, 0, 2, 14, 15, 14),
             Block.box(1, 12, 1, 15, 15, 15)
@@ -51,7 +57,8 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
         super(BlockBehaviour.Properties.of()
                 .sound(SoundType.METAL)
                 .mapColor(MapColor.COLOR_BLACK)
-                .noOcclusion());
+                .noOcclusion()
+                .strength(1.5F, 6.0F));
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(POWERED, false)
@@ -68,8 +75,11 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlocks.TRASH_CAN_BE.get(),
-                (lvl, blockPos, blockState, trashCan) -> trashCan.tick(lvl));
+        if (level.isClientSide) {
+            return createTickerHelper(blockEntityType, ModBlocks.TRASH_CAN_BE.get(),
+                    (lvl, blockPos, blockState, trashCan) -> trashCan.clientTick(lvl));
+        }
+        return null;
     }
 
     @Override
@@ -114,24 +124,33 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        super.fallOn(level, state, pos, entity, fallDistance);
         // 如果是玩家
         if (entity instanceof Player player && player.getVehicle() == null && fallDistance > 1f) {
             List<SitEntity> entities = level.getEntitiesOfClass(SitEntity.class, new AABB(pos));
-            if (entities.isEmpty()) {
-                if (!level.isClientSide) {
-                    SitEntity entitySit = new SitEntity(level, pos, 0.875, SitEntity.TRASH_CAN);
-                    entitySit.setYRot(state.getValue(FACING).toYRot());
-                    level.addFreshEntity(entitySit);
-                    player.startRiding(entitySit, true);
-                }
+            if (!entities.isEmpty()) {
+                return;
+            }
+            if (!level.isClientSide) {
+                SitEntity entitySit = new SitEntity(level, pos, 0.875, SitEntity.TRASH_CAN);
+                entitySit.setYRot(state.getValue(FACING).toYRot());
+                level.addFreshEntity(entitySit);
+                player.startRiding(entitySit, true);
+            }
 
-                // 播放进入动画
-                if (level.getBlockEntity(pos) instanceof TrashCanBlockEntity trashCan) {
-                    trashCan.enterState.start((int) level.getGameTime());
-                }
+            // 播放进入动画
+            if (level.getBlockEntity(pos) instanceof TrashCanBlockEntity trashCan) {
+                trashCan.enterState.start((int) level.getGameTime());
             }
         }
-        super.fallOn(level, state, pos, entity, fallDistance);
+    }
+
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        // 只有充能后才能吸取
+        if (state.getValue(POWERED) && level.getBlockEntity(pos) instanceof TrashCanBlockEntity trashCan) {
+            trashCan.entityInside(level, pos, entity);
+        }
     }
 
     @Override
@@ -164,5 +183,20 @@ public class TrashCanBlock extends HorizontalDirectionalBlock implements SimpleW
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext collisionContext) {
         return AABB;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        List<ItemStack> drops = super.getDrops(state, params);
+        BlockEntity parameter = params.getParameter(LootContextParams.BLOCK_ENTITY);
+        if (parameter instanceof TrashCanBlockEntity trashCanBlock) {
+            for (int i = 0; i < trashCanBlock.getStorage().getSlots(); i++) {
+                ItemStack stack = trashCanBlock.getStorage().getStackInSlot(i);
+                if (!stack.isEmpty()) {
+                    drops.add(stack);
+                }
+            }
+        }
+        return drops;
     }
 }
