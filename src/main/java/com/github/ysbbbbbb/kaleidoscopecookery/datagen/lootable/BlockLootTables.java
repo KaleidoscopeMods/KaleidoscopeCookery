@@ -107,6 +107,8 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.OIL_BLOCK.get());
         dropSelf(ModBlocks.ENAMEL_BASIN.get());
 
+        dropSelf(ModBlocks.TRASH_CAN.get());
+
         this.add(ModBlocks.TOMATO_CROP.get(), createCropDrops(ModBlocks.TOMATO_CROP.get(), ModItems.TOMATO.get(),
                 ModItems.TOMATO_SEED.get(), createCropBuilder(ModBlocks.TOMATO_CROP.get())));
 

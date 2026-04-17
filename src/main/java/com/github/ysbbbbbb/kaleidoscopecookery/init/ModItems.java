@@ -20,6 +20,13 @@ public final class ModItems {
     public static DeferredItem<Item> MILLSTONE = ITEMS.register("millstone", () -> new BlockItem(ModBlocks.MILLSTONE.get(), new Item.Properties()));
     public static DeferredItem<Item> STEAMER = ITEMS.register("steamer", SteamerItem::new);
 
+    // 茶
+    public static DeferredItem<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
+    public static DeferredItem<Item> EMPTY_CUP = ITEMS.register("empty_cup", EmptyCupItem::new);
+
+    // 垃圾桶
+    public static DeferredItem<Item> TRASH_CAN = ITEMS.register("trash_can", () -> new BlockItem(ModBlocks.TRASH_CAN.get(), new Item.Properties()));
+
     // 油
     public static DeferredItem<Item> OIL = ITEMS.register("oil", OilItem::new);
     public static DeferredItem<Item> OIL_POT = ITEMS.register("oil_pot", OilPotItem::new);

@@ -18,4 +18,8 @@ public class ModEffects {
     public static final DeferredHolder<MobEffect, MobEffect> SULFUR = EFFECTS.register("sulfur", () -> new SulfurEffect(0xE8B75E));
     public static final DeferredHolder<MobEffect, MobEffect> MUSTARD = EFFECTS.register("mustard", () -> new BaseEffect(0x5A6D09));
     public static final DeferredHolder<MobEffect, MobEffect> PRESERVATION = EFFECTS.register("preservation", () -> new BaseEffect(0xAEC639));
+    public static final DeferredHolder<MobEffect, MobEffect> HINDER = EFFECTS.register("hinder", () -> new BaseEffect(0x9E7E5A));
+    public static final DeferredHolder<MobEffect, MobEffect> PROJECTILE_DODGE = EFFECTS.register("projectile_dodge", () -> new BaseEffect(0x8E27F7));
+    public static final DeferredHolder<MobEffect, MobEffect> INSTANT_SMELTING = EFFECTS.register("instant_smelting", () -> new BaseEffect(0xF07C1C));
+    public static final DeferredHolder<MobEffect, MobEffect> VITALITY = EFFECTS.register("vitality", () -> new BaseEffect(0x6A9E4E));
 }

@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -30,6 +31,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.CHOPPING_BOARD.get());
                 output.accept(ModItems.MILLSTONE.get());
                 output.accept(ModItems.STEAMER.get());
+                output.accept(ModItems.TEAPOT.get());
+                output.accept(ModItems.TRASH_CAN.get());
                 output.accept(ModItems.KITCHENWARE_RACKS.get());
                 output.accept(ModItems.FRUIT_BASKET.get());
                 output.accept(ModItems.SCARECROW.get());
@@ -173,6 +176,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.BEEF_NOODLE.get());
                 output.accept(ModItems.HUI_NOODLE.get());
                 output.accept(ModItems.UDON_NOODLE.get());
+
                 // 硬菜
                 FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
                     // 棕色蘑菇汤之前加入厚切火腿片
@@ -181,6 +185,13 @@ public class ModCreativeTabs {
                     }
                     var foodItem = BuiltInRegistries.ITEM.get(foodName);
                     output.accept(foodItem);
+                });
+
+                // 茶水
+                output.accept(ModItems.EMPTY_CUP.get());
+                TeacupRegistry.TEACUP_DATA_MAP.keySet().forEach(teacupName -> {
+                    var teacupItem = BuiltInRegistries.ITEM.get(teacupName);
+                    output.accept(teacupItem);
                 });
             }).build());
 }

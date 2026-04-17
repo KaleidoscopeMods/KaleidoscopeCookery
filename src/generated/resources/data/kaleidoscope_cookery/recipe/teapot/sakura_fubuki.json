@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:teapot",
+  "ingredient": {
+    "item": "minecraft:pink_petals"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:sakura_fubuki"
+  },
+  "tea_fluid": "minecraft:water",
+  "time": 240
+}

@@ -98,7 +98,7 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_WARPED.get()
         );
 
-        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR);
+        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR).add(ModBlocks.TRASH_CAN.get());
 
         this.tag(TagMod.RICE_PLANTABLE).addOptional(ResourceLocation.parse("farmersdelight:rich_soil_farmland"));
 

@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:teapot",
+  "ingredient": {
+    "item": "minecraft:dragon_breath"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:oolong"
+  },
+  "tea_fluid": "minecraft:water",
+  "time": 240
+}

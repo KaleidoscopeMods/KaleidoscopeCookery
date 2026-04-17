@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:teapot",
+  "ingredient": {
+    "item": "minecraft:wheat_seeds"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:barley_tea"
+  },
+  "tea_fluid": "minecraft:water",
+  "time": 240
+}

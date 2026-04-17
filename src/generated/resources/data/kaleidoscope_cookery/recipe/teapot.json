@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "I": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:teapot"
+  }
+}

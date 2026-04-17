@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
@@ -20,6 +21,7 @@ public class KaleidoscopeCookery {
         modEventBus.addListener(NetworkHandler::registerPacket);
 
         FoodBiteRegistry.init();
+        TeacupRegistry.init();
 
         ModArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         ModTrigger.TRIGGERS.register(modEventBus);

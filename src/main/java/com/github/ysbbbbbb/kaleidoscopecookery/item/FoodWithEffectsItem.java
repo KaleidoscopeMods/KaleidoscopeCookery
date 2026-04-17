@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.CompatRegistry;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
@@ -43,7 +44,7 @@ public class FoodWithEffectsItem extends Item {
                 tooltip.add(CommonComponents.EMPTY);
             }
         }
-        if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS) {
+        if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS && ClientConfig.SHOW_FOOD_EFFECT_TOOLTIPS.get()) {
             tooltip.add(CommonComponents.space());
             PotionContents.addPotionTooltip(this.effectInstances, tooltip::add, 1.0F, context.tickRate());
         }

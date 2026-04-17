@@ -9,6 +9,9 @@
     "kaleidoscope_cookery:shawarma_spit",
     "kaleidoscope_cookery:millstone",
     "kaleidoscope_cookery:steamer",
+    "kaleidoscope_cookery:teapot",
+    "kaleidoscope_cookery:empty_cup",
+    "kaleidoscope_cookery:trash_can",
     "kaleidoscope_cookery:oil",
     "kaleidoscope_cookery:oil_pot",
     "kaleidoscope_cookery:oil_block",
@@ -174,6 +177,12 @@
     "kaleidoscope_cookery:red_mushroom_pot_soup",
     "kaleidoscope_cookery:warped_fungus_pot_soup",
     "kaleidoscope_cookery:crimson_fungus_pot_soup",
-    "kaleidoscope_cookery:buddha_jumps_over_the_wall"
+    "kaleidoscope_cookery:buddha_jumps_over_the_wall",
+    "kaleidoscope_cookery:barley_tea",
+    "kaleidoscope_cookery:tieguanyin",
+    "kaleidoscope_cookery:biluochun",
+    "kaleidoscope_cookery:oolong",
+    "kaleidoscope_cookery:sakura_fubuki",
+    "kaleidoscope_cookery:flower_tea"
   ]
 }

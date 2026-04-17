@@ -9,12 +9,14 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.ChairBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByThreeBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -41,6 +43,11 @@ public class ModBlocks {
     public static DeferredBlock<Block> SHAWARMA_SPIT = BLOCKS.register("shawarma_spit", ShawarmaSpitBlock::new);
     public static DeferredBlock<Block> MILLSTONE = BLOCKS.register("millstone", MillstoneBlock::new);
     public static DeferredBlock<Block> STEAMER = BLOCKS.register("steamer", SteamerBlock::new);
+
+    public static DeferredBlock<Block> TEAPOT = BLOCKS.register("teapot", TeapotBlock::new);
+    public static DeferredBlock<Block> EMPTY_CUP = BLOCKS.register("empty_cup", EmptyCupBlock::new);
+
+    public static DeferredBlock<Block> TRASH_CAN = BLOCKS.register("trash_can", TrashCanBlock::new);
 
     public static DeferredBlock<Block> OIL_POT = BLOCKS.register("oil_pot", OilPotBlock::new);
     public static DeferredBlock<Block> RECIPE_BLOCK = BLOCKS.register("recipe_block", RecipeBlock::new);
@@ -117,8 +124,14 @@ public class ModBlocks {
     public static Supplier<BlockEntityType<SteamerBlockEntity>> STEAMER_BE = BLOCK_ENTITIES.register("steamer",
             () -> BlockEntityType.Builder.of(SteamerBlockEntity::new, STEAMER.get()).build(null));
 
+    public static Supplier<BlockEntityType<TeapotBlockEntity>> TEAPOT_BE = BLOCK_ENTITIES.register("teapot",
+            () -> BlockEntityType.Builder.of(TeapotBlockEntity::new, TEAPOT.get()).build(null));
+
     public static Supplier<BlockEntityType<OilPotBlockEntity>> OIL_POT_BE = BLOCK_ENTITIES.register("oil_pot",
             () -> BlockEntityType.Builder.of(OilPotBlockEntity::new, OIL_POT.get()).build(null));
+
+    public static Supplier<BlockEntityType<TrashCanBlockEntity>> TRASH_CAN_BE = BLOCK_ENTITIES.register("trash_can",
+            () -> BlockEntityType.Builder.of(TrashCanBlockEntity::new, TRASH_CAN.get()).build(null));
 
     public static Supplier<BlockEntityType<FoodBiteThreeByThreeBlockEntity>> FOOD_BITE_THREE_BY_THREE_BE = BLOCK_ENTITIES.register("food_bite_three_by_three",
             () -> BlockEntityType.Builder.of(FoodBiteThreeByThreeBlockEntity::new, COLD_CUT_HAM_SLICES.get()).build(null));

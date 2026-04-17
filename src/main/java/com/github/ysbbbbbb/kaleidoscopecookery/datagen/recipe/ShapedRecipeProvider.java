@@ -281,5 +281,23 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('C', Items.STICK)
                 .unlockedBy("has_flint", has(Items.FLINT))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.TEAPOT.get())
+                .pattern(" I ")
+                .pattern("IBI")
+                .pattern("III")
+                .define('I', Tags.Items.INGOTS_COPPER)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_ingot_copper", has(Items.COPPER_INGOT))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TRASH_CAN.get())
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('C', Items.COMPOSTER)
+                .unlockedBy("has_ingot_iron", has(Items.IRON_INGOT))
+                .save(consumer);
     }
 }

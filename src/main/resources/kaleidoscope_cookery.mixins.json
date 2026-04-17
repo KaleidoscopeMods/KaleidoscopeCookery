@@ -9,7 +9,8 @@
     "LivingEntityMixin",
     "MobBucketItemMixin",
     "PowderSnowBlockMixin",
-    "VillagerMixin"
+    "VillagerMixin",
+    "BlockMixin"
   ],
   "client": [
   ],
