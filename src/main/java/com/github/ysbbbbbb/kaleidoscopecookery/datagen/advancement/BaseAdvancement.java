@@ -102,7 +102,9 @@ public class BaseAdvancement {
 
         AdvancementHolder caterpillar = makeTask(ModItems.CATERPILLAR.get(), "caterpillar")
                 .parent(modSeed)
-                .addCriterion("has_caterpillar", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CATERPILLAR.get()))
+                .addCriterion("has_caterpillar", InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ItemPredicate.Builder.item().of(TagMod.CATERPILLARS).build()
+                ))
                 .save(saver, modLoc("caterpillar"), existingFileHelper);
 
         AdvancementHolder dualChili = makeTask(ModItems.RED_CHILI.get(), "dual_chili")

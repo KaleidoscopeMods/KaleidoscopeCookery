@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
@@ -18,6 +19,8 @@ public class KaleidoscopeCookery {
 
     public KaleidoscopeCookery(IEventBus modEventBus, ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.COMMON, GeneralConfig.init());
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.init());
+
         modEventBus.addListener(NetworkHandler::registerPacket);
 
         FoodBiteRegistry.init();

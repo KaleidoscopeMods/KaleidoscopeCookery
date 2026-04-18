@@ -48,6 +48,8 @@ public class TagItem extends ItemTagsProvider {
 
         tag(KITCHEN_SHOVEL).add(ModItems.KITCHEN_SHOVEL.get());
 
+        tag(CATERPILLARS).add(ModItems.CATERPILLAR.get());
+
         // 农夫乐事
         tag(FD_KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
                 ModItems.GOLD_KITCHEN_KNIFE.get(),
@@ -214,7 +216,8 @@ public class TagItem extends ItemTagsProvider {
 
         // 均衡饮食兼容
         tag(TagCommon.GRAINS).add(ModItems.RICE_SEED.get(), ModItems.RICE_PANICLE.get());
-        tag(TagCommon.PROTEINS).add(ModItems.CATERPILLAR.get(), ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.RAW_DONKEY_MEAT.get(), ModItems.COOKED_DONKEY_MEAT.get());
+        tag(TagCommon.PROTEINS).add(ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.RAW_DONKEY_MEAT.get(), ModItems.COOKED_DONKEY_MEAT.get())
+                .addTag(CATERPILLARS);
         tag(TagCommon.DIET_VEGETABLES).addTag(TagCommon.VEGETABLES);
 
         // 兼容静谧四季

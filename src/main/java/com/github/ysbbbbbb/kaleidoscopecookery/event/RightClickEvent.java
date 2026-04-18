@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTr
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -58,7 +59,7 @@ public class RightClickEvent {
         Entity target = event.getTarget();
         Level level = event.getLevel();
         if (target instanceof Chicken chicken && chicken.isBaby()
-            && player.getMainHandItem().is(ModItems.CATERPILLAR.get())) {
+            && player.getMainHandItem().is(TagMod.CATERPILLARS)) {
             // 让鸡瞬间成年
             chicken.setAge(0);
             // 加一些特性和音效

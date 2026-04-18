@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.PotRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -277,7 +278,7 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
 
         // 油炸猪儿虫: 3猪儿虫
         PotRecipeBuilder.builder()
-                .addInput(ModItems.CATERPILLAR.get(), ModItems.CATERPILLAR.get(), ModItems.CATERPILLAR.get())
+                .addInput(TagMod.CATERPILLARS, TagMod.CATERPILLARS, TagMod.CATERPILLARS)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.FRIED_CATERPILLAR)
                 .save(consumer);
