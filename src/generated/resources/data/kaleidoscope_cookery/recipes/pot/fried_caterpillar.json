@@ -5,13 +5,13 @@
   },
   "ingredients": [
     {
-      "item": "kaleidoscope_cookery:caterpillar"
+      "tag": "kaleidoscope_cookery:caterpillars"
     },
     {
-      "item": "kaleidoscope_cookery:caterpillar"
+      "tag": "kaleidoscope_cookery:caterpillars"
     },
     {
-      "item": "kaleidoscope_cookery:caterpillar"
+      "tag": "kaleidoscope_cookery:caterpillars"
     }
   ],
   "result": {
