@@ -25,12 +25,14 @@ public class ModRecipes {
     public static RegistryObject<RecipeSerializer<?>> STOCKPOT_SERIALIZER = RECIPE_SERIALIZERS.register("stockpot", StockpotRecipeSerializer::new);
     public static RegistryObject<RecipeSerializer<?>> MILLSTONE_SERIALIZER = RECIPE_SERIALIZERS.register("millstone", MillstoneRecipeSerializer::new);
     public static RegistryObject<RecipeSerializer<?>> STEAMER_SERIALIZER = RECIPE_SERIALIZERS.register("steamer", SteamerRecipeSerializer::new);
+    public static RegistryObject<RecipeSerializer<?>> TEAPOT_SERIALIZER = RECIPE_SERIALIZERS.register("teapot", TeapotRecipeSerializer::new);
 
     public static RecipeType<PotRecipe> POT_RECIPE;
     public static RecipeType<ChoppingBoardRecipe> CHOPPING_BOARD_RECIPE;
     public static RecipeType<StockpotRecipe> STOCKPOT_RECIPE;
     public static RecipeType<MillstoneRecipe> MILLSTONE_RECIPE;
     public static RecipeType<SteamerRecipe> STEAMER_RECIPE;
+    public static RecipeType<TeapotRecipe> TEAPOT_RECIPE;
 
     @SubscribeEvent
     public static void register(RegisterEvent evt) {
@@ -40,6 +42,7 @@ public class ModRecipes {
             STOCKPOT_RECIPE = RecipeType.simple(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "stockpot"));
             MILLSTONE_RECIPE = RecipeType.simple(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "millstone"));
             STEAMER_RECIPE = RecipeType.simple(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "steamer"));
+            TEAPOT_RECIPE = RecipeType.simple(new ResourceLocation(KaleidoscopeCookery.MOD_ID, "teapot"));
         }
 
         if (evt.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {

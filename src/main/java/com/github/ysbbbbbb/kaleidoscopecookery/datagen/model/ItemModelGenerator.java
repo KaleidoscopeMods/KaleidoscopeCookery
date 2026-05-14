@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.PackOutput;
@@ -209,6 +210,14 @@ public class ItemModelGenerator extends ItemModelProvider {
             }
         });
 
+        basicItem(ModItems.EMPTY_CUP.get());
+        TeacupRegistry.TEACUP_DATA_MAP.forEach((key, value) -> {
+            Item item = ForgeRegistries.ITEMS.getValue(key);
+            if (item != null) {
+                basicItem(item);
+            }
+        });
+
         withExistingParent("cook_stool_oak", modLoc("block/cook_stool/oak"));
         withExistingParent("cook_stool_spruce", modLoc("block/cook_stool/spruce"));
         withExistingParent("cook_stool_acacia", modLoc("block/cook_stool/acacia"));
@@ -275,6 +284,17 @@ public class ItemModelGenerator extends ItemModelProvider {
                 .perspective(ItemDisplayContext.GUI, flatColdCutHamSlices)
                 .perspective(ItemDisplayContext.FIXED, flatColdCutHamSlices);
 
+        ItemModelBuilder teapotItem = new ItemModelBuilder(modLoc("teapot"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/teapot"));
+        ItemModelBuilder teapotBlock = new ItemModelBuilder(modLoc("teapot"), this.existingFileHelper)
+                .parent(new ModelFile.UncheckedModelFile(modLoc("item/teapot_3d")));
+        getBuilder("teapot")
+                .guiLight(BlockModel.GuiLight.FRONT)
+                .customLoader(SeparateTransformsModelBuilder::begin).base(teapotBlock)
+                .perspective(ItemDisplayContext.GUI, teapotItem)
+                .perspective(ItemDisplayContext.FIXED, teapotItem)
+                .perspective(ItemDisplayContext.GROUND, teapotItem);
     }
 
     public ItemModelBuilder handheldItem(Item item) {

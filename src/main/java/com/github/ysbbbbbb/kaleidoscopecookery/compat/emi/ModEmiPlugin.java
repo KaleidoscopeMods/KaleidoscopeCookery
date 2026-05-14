@@ -14,6 +14,7 @@ public class ModEmiPlugin implements EmiPlugin {
         EmiChoppingBoardRecipe.register(registry);
         EmiMillstoneRecipe.register(registry);
         EmiSteamerRecipe.register(registry);
+        EmiTeapotRecipe.register(registry);
     }
 
     @Override

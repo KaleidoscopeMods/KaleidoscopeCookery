@@ -1,0 +1,244 @@
+{
+  "variants": {
+    "cup_count=1,facing=east,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 90
+    },
+    "cup_count=1,facing=east,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 90
+    },
+    "cup_count=1,facing=east,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 90
+    },
+    "cup_count=1,facing=east,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 90
+    },
+    "cup_count=1,facing=north,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1"
+    },
+    "cup_count=1,facing=north,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1"
+    },
+    "cup_count=1,facing=north,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1"
+    },
+    "cup_count=1,facing=north,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1"
+    },
+    "cup_count=1,facing=south,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 180
+    },
+    "cup_count=1,facing=south,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 180
+    },
+    "cup_count=1,facing=south,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 180
+    },
+    "cup_count=1,facing=south,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 180
+    },
+    "cup_count=1,facing=west,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 270
+    },
+    "cup_count=1,facing=west,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 270
+    },
+    "cup_count=1,facing=west,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 270
+    },
+    "cup_count=1,facing=west,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count1_1",
+      "y": 270
+    },
+    "cup_count=2,facing=east,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_1",
+      "y": 90
+    },
+    "cup_count=2,facing=east,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 90
+    },
+    "cup_count=2,facing=east,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 90
+    },
+    "cup_count=2,facing=east,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 90
+    },
+    "cup_count=2,facing=north,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_1"
+    },
+    "cup_count=2,facing=north,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2"
+    },
+    "cup_count=2,facing=north,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2"
+    },
+    "cup_count=2,facing=north,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2"
+    },
+    "cup_count=2,facing=south,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_1",
+      "y": 180
+    },
+    "cup_count=2,facing=south,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 180
+    },
+    "cup_count=2,facing=south,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 180
+    },
+    "cup_count=2,facing=south,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 180
+    },
+    "cup_count=2,facing=west,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_1",
+      "y": 270
+    },
+    "cup_count=2,facing=west,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 270
+    },
+    "cup_count=2,facing=west,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 270
+    },
+    "cup_count=2,facing=west,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count2_2",
+      "y": 270
+    },
+    "cup_count=3,facing=east,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_1",
+      "y": 90
+    },
+    "cup_count=3,facing=east,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_2",
+      "y": 90
+    },
+    "cup_count=3,facing=east,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 90
+    },
+    "cup_count=3,facing=east,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 90
+    },
+    "cup_count=3,facing=north,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_1"
+    },
+    "cup_count=3,facing=north,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_2"
+    },
+    "cup_count=3,facing=north,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3"
+    },
+    "cup_count=3,facing=north,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3"
+    },
+    "cup_count=3,facing=south,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_1",
+      "y": 180
+    },
+    "cup_count=3,facing=south,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_2",
+      "y": 180
+    },
+    "cup_count=3,facing=south,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 180
+    },
+    "cup_count=3,facing=south,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 180
+    },
+    "cup_count=3,facing=west,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_1",
+      "y": 270
+    },
+    "cup_count=3,facing=west,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_2",
+      "y": 270
+    },
+    "cup_count=3,facing=west,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 270
+    },
+    "cup_count=3,facing=west,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count3_3",
+      "y": 270
+    },
+    "cup_count=4,facing=east,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_1",
+      "y": 90
+    },
+    "cup_count=4,facing=east,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_2",
+      "y": 90
+    },
+    "cup_count=4,facing=east,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_3",
+      "y": 90
+    },
+    "cup_count=4,facing=east,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_4",
+      "y": 90
+    },
+    "cup_count=4,facing=north,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_1"
+    },
+    "cup_count=4,facing=north,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_2"
+    },
+    "cup_count=4,facing=north,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_3"
+    },
+    "cup_count=4,facing=north,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_4"
+    },
+    "cup_count=4,facing=south,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_1",
+      "y": 180
+    },
+    "cup_count=4,facing=south,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_2",
+      "y": 180
+    },
+    "cup_count=4,facing=south,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_3",
+      "y": 180
+    },
+    "cup_count=4,facing=south,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_4",
+      "y": 180
+    },
+    "cup_count=4,facing=west,tea_count=1": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_1",
+      "y": 270
+    },
+    "cup_count=4,facing=west,tea_count=2": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_2",
+      "y": 270
+    },
+    "cup_count=4,facing=west,tea_count=3": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_3",
+      "y": 270
+    },
+    "cup_count=4,facing=west,tea_count=4": {
+      "model": "kaleidoscope_cookery:block/teacup/sakura_fubuki/count4_4",
+      "y": 270
+    }
+  }
+}

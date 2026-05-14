@@ -31,6 +31,10 @@ public interface TagMod {
      */
     TagKey<Item> OIL = itemTag("oil");
     /**
+     * 猪儿虫
+     */
+    TagKey<Item> CATERPILLARS = itemTag("caterpillars");
+    /**
      * 可以当做草帽的物品
      */
     TagKey<Item> STRAW_HAT = itemTag("straw_hat");

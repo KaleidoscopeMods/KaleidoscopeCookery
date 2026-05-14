@@ -62,6 +62,11 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_raw_meats", has(TagCommon.RAW_MEATS))
                 .save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.EMPTY_CUP.get(), 1)
+                .requires(Items.FLOWER_POT)
+                .unlockedBy("has_flower_pot", has(Items.FLOWER_POT))
+                .save(consumer);
+
         // 水果拼盘: 2苹果+2发光浆果+2甜浆果+1碗
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.FRUIT_PLATTER), 1)
                 .requires(Items.APPLE, 2)
