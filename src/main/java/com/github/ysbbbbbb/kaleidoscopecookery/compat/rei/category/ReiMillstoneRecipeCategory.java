@@ -83,12 +83,12 @@ public class ReiMillstoneRecipeCategory implements DisplayCategory<ReiMillstoneR
         );
     }
 
+    // TODO 修改REI显示
     public static void registerDisplays(DisplayRegistry registry) {
         registry.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE)
                 .forEach(r -> {
                     List<EntryIngredient> input = ReiUtil.ofIngredients(r.getIngredients());
-                    List<EntryIngredient> output = ReiUtil.ofItemStacks(r.getResult());
-
+                    List<EntryIngredient> output = ReiUtil.ofItemStacks(r.results().get(0).getStack());
                     registry.add(new MillstoneRecipeDisplay(r.getId(), input, output));
                 });
     }

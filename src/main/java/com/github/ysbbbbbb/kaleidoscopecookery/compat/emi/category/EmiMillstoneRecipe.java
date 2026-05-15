@@ -31,6 +31,7 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
         this.outputs = outputs;
     }
 
+    // TODO 修改EMI显示
     public static void register(EmiRegistry registry) {
         registry.addCategory(CATEGORY);
         registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.MILLSTONE.get()));
