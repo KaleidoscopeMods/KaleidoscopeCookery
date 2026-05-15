@@ -1,25 +1,28 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.jei.category;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.create.CreateCompat;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.output.RandomOutput;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.MillstoneRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.google.common.collect.Lists;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +34,7 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
     private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/millstone.png");
     private static final MutableComponent TITLE = Component.translatable("block.kaleidoscope_cookery.millstone");
 
-    public static final int WIDTH = 176;
+    public static final int WIDTH = 176 + 20;
     public static final int HEIGHT = 95;
 
     private final IDrawable bgDraw;
@@ -49,7 +52,18 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
         }
         List<MillstoneRecipe> millstoneRecipes = Lists.newArrayList();
         millstoneRecipes.addAll(level.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE));
+        // 机械动力兼容
+        CreateCompat.getTransformRecipeForJei(level, millstoneRecipes);
         return millstoneRecipes;
+    }
+
+    public static IRecipeSlotRichTooltipCallback addChanceTooltip(RandomOutput output) {
+        return (view, tooltip) -> {
+            float chance = output.getChance();
+            if (chance != 1.0F) {
+                tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.chance", (int) (chance * 100.0F)).withStyle(ChatFormatting.GOLD));
+            }
+        };
     }
 
     @Override
@@ -57,13 +71,20 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
         this.bgDraw.draw(guiGraphics);
     }
 
+    // TODO 修改JEI显示
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, MillstoneRecipe recipe, IFocusGroup focuses) {
         Ingredient input = recipe.getIngredient();
-        ItemStack output = recipe.getResult();
+        List<RandomOutput> outputs = recipe.getRollableResults();
+        boolean single = outputs.size() == 1;
 
         builder.addSlot(RecipeIngredientRole.INPUT, 69, 39).addIngredients(input).setStandardSlotBackground();
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 146, 47).addItemStack(output);
+        for (int i = 0; i < outputs.size(); i++) {
+            int xOffset = i % 2 == 0 ? 0 : 19;
+            int yOffset = i / 2 * -19;
+            RandomOutput output = outputs.get(i);
+            builder.addSlot(RecipeIngredientRole.OUTPUT, single ? 155 : 146 + xOffset, 47 + yOffset).addItemStack(output.getStack()).addRichTooltipCallback(addChanceTooltip(output));
+        }
     }
 
     @Override

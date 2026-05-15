@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
+import com.google.gson.Gson;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 public class KaleidoscopeCookery {
     public static final String MOD_ID = "kaleidoscope_cookery";
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Gson GSON = new Gson();
 
     public KaleidoscopeCookery() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

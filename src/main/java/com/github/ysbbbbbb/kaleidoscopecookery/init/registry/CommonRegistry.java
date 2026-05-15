@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.dispenser.OilPotDispenseBeh
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.create.CreateCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.harvest.HarvestCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.lootable.GiftLootTables;
@@ -91,6 +92,7 @@ public class CommonRegistry {
 
     private static void modCompat() {
         FarmersDelightCompat.init();
+        CreateCompat.init();
         HarvestCompat.init();
     }
 
