@@ -1,9 +1,10 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"2": "kaleidoscope_cookery:block/stockpot",
-		"particle": "kaleidoscope_cookery:block/stockpot"
+		"particle": "kaleidoscope_cookery:block/pot_top"
 	},
 	"elements": [
 		{
@@ -54,7 +55,7 @@
 				"east": {"uv": [0, 0, 1, 2], "texture": "#2"},
 				"south": {"uv": [2, 5, 6, 7], "texture": "#2"},
 				"west": {"uv": [0, 0, 1, 2], "texture": "#2"},
-				"up": {"uv": [1.5, 3.5, 5.5, 4.5], "texture": "#2"},
+				"up": {"uv": [2, 3.5, 6, 4.5], "texture": "#2"},
 				"down": {"uv": [0, 0, 4, 1], "texture": "#2"}
 			}
 		},
@@ -80,7 +81,7 @@
 				"east": {"uv": [0, 1, 1, 2], "texture": "#2"},
 				"south": {"uv": [0, 1, 7, 2], "texture": "#2"},
 				"west": {"uv": [0.5, 1, 1.5, 2], "texture": "#2"},
-				"up": {"uv": [0.5, 1, 7.5, 2], "texture": "#2"},
+				"up": {"uv": [0, 1, 7, 2], "texture": "#2"},
 				"down": {"uv": [0, 3, 7, 2], "texture": "#2"}
 			}
 		},
@@ -174,7 +175,7 @@
 			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
+			"rotation": [30, -135, 0],
 			"translation": [0, 0.25, 0],
 			"scale": [0.72, 0.72, 0.72]
 		},

@@ -1,10 +1,11 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "kaleidoscope_cookery:block/stockpot_base",
 		"2": "kaleidoscope_cookery:block/stockpot",
-		"particle": "kaleidoscope_cookery:block/stockpot"
+		"particle": "kaleidoscope_cookery:block/pot_top"
 	},
 	"elements": [
 		{
@@ -81,7 +82,7 @@
 				"east": {"uv": [0, 1, 1, 2], "texture": "#2"},
 				"south": {"uv": [0, 1, 7, 2], "texture": "#2"},
 				"west": {"uv": [0.5, 1, 1.5, 2], "texture": "#2"},
-				"up": {"uv": [0.5, 1, 7.5, 2], "texture": "#2"},
+				"up": {"uv": [0, 1, 7, 2], "texture": "#2"},
 				"down": {"uv": [0, 3, 7, 2], "texture": "#2"}
 			}
 		},
