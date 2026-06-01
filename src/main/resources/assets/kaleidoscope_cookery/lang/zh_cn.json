@@ -345,6 +345,7 @@
   "tooltip.kaleidoscope_cookery.cold_roasted_meat.maxim": "精切嫩肉拼盘",
   "tooltip.kaleidoscope_cookery.oil_splashed_fish.maxim": "热油一泼香气迸发，鱼肉鲜嫩麻辣超入味",
   "tooltip.kaleidoscope_cookery.sickle": "右键收割作物、清除杂草",
+  "tooltip.kaleidoscope_cookery.chance": "%s 概率",
   "tip.kaleidoscope_cookery.kitchen.remove_ingredient.need_container": "需要%s来取出食材",
   "tip.kaleidoscope_cookery.pot.need_oil": "缺少油脂",
   "tip.kaleidoscope_cookery.pot.need_lit_stove": "缺少必要的热源",
