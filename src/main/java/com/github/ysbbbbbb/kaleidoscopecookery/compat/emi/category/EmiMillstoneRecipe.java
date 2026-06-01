@@ -1,15 +1,19 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.emi.category;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.create.CreateCompat;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.MillstoneRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
+import com.google.common.collect.Lists;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -22,6 +26,7 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
     );
 
     private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/millstone.png");
+
     public static final int WIDTH = 176;
     public static final int HEIGHT = 95;
 
@@ -31,14 +36,30 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
         this.outputs = outputs;
     }
 
-    // TODO 修改EMI显示
     public static void register(EmiRegistry registry) {
         registry.addCategory(CATEGORY);
         registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.MILLSTONE.get()));
 
-        registry.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE).forEach(r -> {
+        List<MillstoneRecipe> millstoneRecipes = Lists.newArrayList();
+        millstoneRecipes.addAll(registry.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE));
+
+        // 机械动力兼容
+        ClientLevel level = Minecraft.getInstance().level;
+        if (level != null) {
+            CreateCompat.getTransformRecipeForSearch(level, millstoneRecipes);
+        }
+
+        millstoneRecipes.forEach(r -> {
             List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
-            List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
+            List<EmiStack> outputs = Lists.newArrayList();
+
+            r.results().stream()
+                    .filter(output -> !output.isEmpty())
+                    .forEach(output -> {
+                        EmiStack emiStack = EmiStack.of(output.stack()).setChance(output.chance());
+                        outputs.add(emiStack);
+                    });
+
             registry.addRecipe(new EmiMillstoneRecipe(r.getId(), inputs, outputs));
         });
     }
@@ -49,9 +70,24 @@ public class EmiMillstoneRecipe extends BasicEmiRecipe {
 
         widgets.addSlot(inputs.get(0), 69, 39)
                 .drawBack(true);
+
+        // 主输出
         widgets.addSlot(outputs.get(0), 146, 47)
-                .drawBack(false)
+                .drawBack(true)
+                .large(true)
                 .recipeContext(this);
+
+        // 副产物
+        if (outputs.size() > 1) {
+            for (int i = 1; i < outputs.size(); i++) {
+                int x = 174 + i * -20;
+                int y = 26;
+                widgets.addSlot(outputs.get(i), x, y)
+                        .drawBack(true)
+                        .recipeContext(this);
+            }
+        }
+
         if (!catalysts.isEmpty()) {
             widgets.addSlot(catalysts.get(0), 115, 36)
                     .drawBack(false)

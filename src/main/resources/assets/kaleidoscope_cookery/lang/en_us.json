@@ -345,7 +345,7 @@
   "tooltip.kaleidoscope_cookery.cold_roasted_meat.maxim": "Finely sliced tender meat platter.",
   "tooltip.kaleidoscope_cookery.oil_splashed_fish.maxim": "Hot oil is splashed on to let the aromas bursts forth while keeping the fish fresh and tender. Packed with numbing spiciness.",
   "tooltip.kaleidoscope_cookery.sickle": "Right click to harvest crops and remove weeds.",
-  "tooltip.kaleidoscope_cookery.chance": "%1$s%% Chance",
+  "tooltip.kaleidoscope_cookery.chance": "%s Chance",
   "tip.kaleidoscope_cookery.kitchen.remove_ingredient.need_container": "Need %s to take out ingredient!",
   "tip.kaleidoscope_cookery.pot.need_oil": "Missing oil",
   "tip.kaleidoscope_cookery.pot.need_lit_stove": "Missing heat source",

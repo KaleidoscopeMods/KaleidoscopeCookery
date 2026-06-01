@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class MillstoneMatchRecipeEvent extends Event {
+public abstract class MillstoneMatchRecipeEvent extends Event {
     private final Level level;
     private final MillstoneBlockEntity millstone;
     private final SimpleContainer container;

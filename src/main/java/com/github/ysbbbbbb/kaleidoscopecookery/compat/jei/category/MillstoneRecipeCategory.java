@@ -26,11 +26,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe> {
     public static final RecipeType<MillstoneRecipe> TYPE = RecipeType.create(KaleidoscopeCookery.MOD_ID, "millstone", MillstoneRecipe.class);
 
+    private static final DecimalFormat FORMAT = new DecimalFormat("0.##%");
     private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/millstone.png");
     private static final MutableComponent TITLE = Component.translatable("block.kaleidoscope_cookery.millstone");
 
@@ -50,18 +52,22 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
         if (level == null) {
             return List.of();
         }
+
         List<MillstoneRecipe> millstoneRecipes = Lists.newArrayList();
         millstoneRecipes.addAll(level.getRecipeManager().getAllRecipesFor(ModRecipes.MILLSTONE_RECIPE));
+
         // 机械动力兼容
-        CreateCompat.getTransformRecipeForJei(level, millstoneRecipes);
+        CreateCompat.getTransformRecipeForSearch(level, millstoneRecipes);
+
         return millstoneRecipes;
     }
 
     public static IRecipeSlotRichTooltipCallback addChanceTooltip(RandomOutput output) {
         return (view, tooltip) -> {
-            float chance = output.getChance();
+            float chance = output.chance();
             if (chance != 1.0F) {
-                tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.chance", (int) (chance * 100.0F)).withStyle(ChatFormatting.GOLD));
+                tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.chance", FORMAT.format(chance))
+                        .withStyle(ChatFormatting.GOLD));
             }
         };
     }
@@ -71,19 +77,35 @@ public class MillstoneRecipeCategory implements IRecipeCategory<MillstoneRecipe>
         this.bgDraw.draw(guiGraphics);
     }
 
-    // TODO 修改JEI显示
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, MillstoneRecipe recipe, IFocusGroup focuses) {
         Ingredient input = recipe.getIngredient();
-        List<RandomOutput> outputs = recipe.getRollableResults();
-        boolean single = outputs.size() == 1;
+        List<RandomOutput> outputs = recipe.results();
 
         builder.addSlot(RecipeIngredientRole.INPUT, 69, 39).addIngredients(input).setStandardSlotBackground();
-        for (int i = 0; i < outputs.size(); i++) {
-            int xOffset = i % 2 == 0 ? 0 : 19;
-            int yOffset = i / 2 * -19;
-            RandomOutput output = outputs.get(i);
-            builder.addSlot(RecipeIngredientRole.OUTPUT, single ? 155 : 146 + xOffset, 47 + yOffset).addItemStack(output.getStack()).addRichTooltipCallback(addChanceTooltip(output));
+
+        // 主输出
+        RandomOutput output = outputs.get(0);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 150, 47)
+                .addItemStack(output.stack())
+                .setOutputSlotBackground()
+                .addRichTooltipCallback(addChanceTooltip(output));
+
+        // 副产物
+        if (outputs.size() > 1) {
+            for (int i = 1; i < outputs.size(); i++) {
+                RandomOutput randomOutput = outputs.get(i);
+                int x = switch (i) {
+                    case 2 -> 128;
+                    case 3 -> 172;
+                    default -> 150;
+                };
+                int y = 20;
+                builder.addSlot(RecipeIngredientRole.OUTPUT, x, y)
+                        .addItemStack(randomOutput.stack())
+                        .setStandardSlotBackground()
+                        .addRichTooltipCallback(addChanceTooltip(randomOutput));
+            }
         }
     }
 

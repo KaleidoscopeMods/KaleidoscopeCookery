@@ -19,9 +19,9 @@ public class CreateCompat {
         });
     }
 
-    public static void getTransformRecipeForJei(Level level, List<MillstoneRecipe> recipes) {
+    public static void getTransformRecipeForSearch(Level level, List<MillstoneRecipe> recipes) {
         if (IS_LOADED) {
-            MillstoneCompat.getTransformRecipeForJei(level, recipes);
+            MillstoneCompat.getTransformRecipeForSearch(level, recipes);
         }
     }
 }
