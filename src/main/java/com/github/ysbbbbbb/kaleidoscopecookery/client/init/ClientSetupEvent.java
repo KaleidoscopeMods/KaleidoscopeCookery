@@ -5,16 +5,19 @@ import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.PotOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TrashCanOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.block.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacerReloadListener;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.LegacyPackRepositorySource;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.init.PonderCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.server.packs.PackType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -65,5 +68,12 @@ public class ClientSetupEvent {
     @SubscribeEvent
     public static void onRegisterClientReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new ItemRenderReplacerReloadListener());
+    }
+
+    @SubscribeEvent
+    public static void onAddPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            event.addRepositorySource(new LegacyPackRepositorySource());
+        }
     }
 }
