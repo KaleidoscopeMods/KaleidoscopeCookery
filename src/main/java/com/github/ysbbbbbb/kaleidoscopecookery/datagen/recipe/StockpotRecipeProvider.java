@@ -105,13 +105,6 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
-                        TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO,
-                        TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO)
-                .setResult(ModItems.TOMATO_BEEF_BRISKET_SOUP.get())
-                .save(consumer);
-
-        StockpotRecipeBuilder.builder()
                 .addInput(Items.PUFFERFISH, Items.PUFFERFISH, Items.PUFFERFISH,
                         Items.SEAGRASS, Items.SEAGRASS)
                 .setResult(ModItems.PUFFERFISH_SOUP.get())
@@ -172,12 +165,6 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.COOKED_EGGS, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, ModItems.RAW_NOODLES)
                 .setResult(ModItems.UDON_NOODLE.get())
                 .save(consumer, "udon_noodle_cooked_eggs");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get(),
-                        ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get())
-                .setResult(ModItems.DONKEY_SOUP.get())
-                .save(consumer);
 
         {
             List<Item> inputs = Lists.newArrayList();

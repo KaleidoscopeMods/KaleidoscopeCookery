@@ -1,6 +1,5 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;

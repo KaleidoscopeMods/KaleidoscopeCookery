@@ -1,9 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.item.IHasContainer;
-import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.CompatRegistry;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;

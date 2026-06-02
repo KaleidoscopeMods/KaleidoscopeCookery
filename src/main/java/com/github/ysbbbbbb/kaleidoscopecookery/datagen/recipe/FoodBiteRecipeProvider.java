@@ -55,38 +55,6 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
-                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
-                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD)
-                .setBowlCarrier()
-                .setResult(FoodBiteRegistry.BRAISED_FISH)
-                .save(consumer, "braised_fish_cod");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
-                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
-                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON)
-                .setBowlCarrier()
-                .setResult(FoodBiteRegistry.BRAISED_FISH)
-                .save(consumer, "braised_fish_salmon");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
-                        TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD,
-                        TagCommon.RAW_FISHES_COD)
-                .setCarrier(TagCommon.COOKED_RICE)
-                .setResult(ModItems.BRAISED_FISH_RICE_BOWL.get())
-                .save(consumer, "braised_fish_cod_with_rice");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
-                        TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON,
-                        TagCommon.RAW_FISHES_SALMON)
-                .setCarrier(TagCommon.COOKED_RICE)
-                .setResult(ModItems.BRAISED_FISH_RICE_BOWL.get())
-                .save(consumer, "braised_fish_salmon_with_rice");
-
-        PotRecipeBuilder.builder()
                 .addInput(Items.GOLDEN_APPLE, Items.GOLDEN_APPLE,
                         Items.GOLDEN_CARROT, Items.GOLDEN_CARROT,
                         Items.GLISTERING_MELON_SLICE, Items.GLISTERING_MELON_SLICE)
@@ -173,35 +141,11 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
-                        TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
-                        Items.BLAZE_POWDER)
-                .setCarrier(TagCommon.COOKED_RICE)
-                .setResult(ModItems.SPICY_CHICKEN_RICE_BOWL.get())
-                .save(consumer, "spicy_chicken_rice_bowl_blaze_powder");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.RAW_CHICKEN,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN)
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.SPICY_CHICKEN)
                 .save(consumer, "spicy_chicken");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
-                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.RAW_CHICKEN,
-                        TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN)
-                .setCarrier(TagCommon.COOKED_RICE)
-                .setResult(ModItems.SPICY_CHICKEN_RICE_BOWL.get())
-                .save(consumer, "spicy_chicken_rice_bowl");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
-                        TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
-                        TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN)
-                .setBowlCarrier()
-                .setResult(FoodBiteRegistry.YAKITORI)
-                .save(consumer);
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON,
@@ -309,14 +253,6 @@ public class FoodBiteRecipeProvider extends ModRecipeProvider {
                 .setBowlCarrier()
                 .setResult(FoodBiteRegistry.BRAISED_PORK_RIBS)
                 .save(consumer);
-
-        // 冷肉炙：4熟驴肉/4熟牛肉
-        PotRecipeBuilder.builder()
-                .addInput(ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get(),
-                        ModItems.RAW_DONKEY_MEAT.get(), ModItems.RAW_DONKEY_MEAT.get())
-                .setBowlCarrier()
-                .setResult(FoodBiteRegistry.COLD_ROASTED_MEAT)
-                .save(consumer, "cold_roasted_donkey_meat");
 
         PotRecipeBuilder.builder()
                 .addInput(TagCommon.COOKED_BEEF, TagCommon.COOKED_BEEF,

@@ -31,11 +31,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "kaleidoscope_cookery:suspicious_stir_fry_rice_bowl",
-          "weight": 10
-        },
-        {
-          "type": "minecraft:item",
           "name": "kaleidoscope_cookery:egg_fried_rice",
           "weight": 10
         },
