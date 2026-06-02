@@ -5,8 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "kaleidoscope_cookery.refmap.json",
   "mixins": [
-    "FallingBlockEntityMixin", "LivingEntityMixin", "MobBucketItemAccessor", "MobBucketItemMixin",
-    "PowderSnowBlockMixin", "VillagerMixin","BlockMixin"
+    "BlockMixin",
+    "FallingBlockEntityMixin",
+    "LivingEntityMixin",
+    "MobBucketItemAccessor",
+    "MobBucketItemMixin",
+    "PowderSnowBlockMixin",
+    "VillagerMixin"
   ],
   "client": [
   ],

@@ -32,22 +32,6 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         PotRecipeBuilder.builder()
-                .addInput(ModItems.RAW_COW_OFFAL.get(), ModItems.RAW_COW_OFFAL.get(), ModItems.RAW_COW_OFFAL.get(),
-                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
-                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
-                .setBowlCarrier()
-                .setResult(ModItems.STIR_FRIED_BEEF_OFFAL.get())
-                .save(consumer);
-
-        PotRecipeBuilder.builder()
-                .addInput(ModItems.RAW_COW_OFFAL.get(), ModItems.RAW_COW_OFFAL.get())
-                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
-                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
-                .setCarrier(TagCommon.COOKED_RICE)
-                .setResult(ModItems.STIR_FRIED_BEEF_OFFAL_RICE_BOWL.get())
-                .save(consumer);
-
-        PotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
                 .setBowlCarrier()
@@ -105,13 +89,6 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .save(consumer);
 
         PotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_TOMATO)
-                .addInput(Items.CARROT, Items.POTATO)
-                .setBowlCarrier()
-                .setResult(ModItems.COUNTRY_STYLE_MIXED_VEGETABLES.get())
-                .save(consumer);
-
-        PotRecipeBuilder.builder()
                 .addInput(Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, TagCommon.RAW_PORK,
                         TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.CROPS_CHILI_PEPPER)
                 .setBowlCarrier()
@@ -145,18 +122,5 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .setBowlCarrier()
                 .setResult(ModItems.EGG_FRIED_RICE.get(), 3)
                 .save(consumer, "egg_fried_rice_3");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.EGGS, TagCommon.EGGS, TagCommon.CROPS_LETTUCE,
-                        TagCommon.CROPS_LETTUCE, TagCommon.COOKED_RICE)
-                .addInput(Items.CARROT).setBowlCarrier()
-                .setResult(ModItems.DELICIOUS_EGG_FRIED_RICE.get())
-                .save(consumer);
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
-                .addInput(TagCommon.DOUGH, TagCommon.DOUGH, ModItems.RAW_DONKEY_MEAT, ModItems.RAW_DONKEY_MEAT)
-                .setResult(ModItems.DONKEY_BURGER.get())
-                .save(consumer);
     }
 }

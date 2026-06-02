@@ -64,7 +64,6 @@ public class ChestLootTables extends VanillaChestLoot {
                 .add(LootItem.lootTableItem(ModItems.PORK_BONE_SOUP.get()).setWeight(10))
                 .add(LootItem.lootTableItem(ModItems.BRAISED_BEEF_WITH_POTATOES.get()).setWeight(10))
                 .add(LootItem.lootTableItem(ModItems.BEEF_MEATBALL_SOUP.get()).setWeight(10))
-                .add(LootItem.lootTableItem(ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get()).setWeight(10))
                 .add(LootItem.lootTableItem(ModItems.EGG_FRIED_RICE.get()).setWeight(10))
                 .add(LootItem.lootTableItem(FoodBiteRegistry.getItem(FoodBiteRegistry.SLIME_BALL_MEAL)).setWeight(10))
         ));

@@ -30,10 +30,8 @@ public class FoodBiteRegistry {
     public static ResourceLocation DONGPO_PORK;
     public static ResourceLocation FONDANT_SPIDER_EYE;
     public static ResourceLocation CHORUS_FRIED_EGG;
-    public static ResourceLocation BRAISED_FISH;
     public static ResourceLocation GOLDEN_SALAD;
     public static ResourceLocation SPICY_CHICKEN;
-    public static ResourceLocation YAKITORI;
     public static ResourceLocation PAN_SEARED_KNIGHT_STEAK;
     public static ResourceLocation STARGAZY_PIE;
     public static ResourceLocation SWEET_AND_SOUR_ENDER_PEARLS;
@@ -94,18 +92,11 @@ public class FoodBiteRegistry {
         CHORUS_FRIED_EGG = registry.registerFoodData("chorus_fried_egg", FoodData
                 .create(3, CHORUS_FRIED_EGG_BLOCK, CHORUS_FRIED_EGG_ITEM));
 
-        BRAISED_FISH = registry.registerFoodData("braised_fish", FoodData
-                .create(4, BRAISED_FISH_BLOCK, BRAISED_FISH_ITEM)
-                .addLootItems(Items.BONE, Items.BONE_MEAL));
-
         GOLDEN_SALAD = registry.registerFoodData("golden_salad", FoodData
                 .create(6, GOLDEN_SALAD_BLOCK, GOLDEN_SALAD_ITEM));
 
         SPICY_CHICKEN = registry.registerFoodData("spicy_chicken", FoodData
                 .create(4, SPICY_CHICKEN_BLOCK, SPICY_CHICKEN_ITEM));
-
-        YAKITORI = registry.registerFoodData("yakitori", FoodData
-                .create(4, YAKITORI_BLOCK, YAKITORI_ITEM));
 
         PAN_SEARED_KNIGHT_STEAK = registry.registerFoodData("pan_seared_knight_steak", FoodData
                 .create(4, PAN_SEARED_KNIGHT_STEAK_BLOCK, PAN_SEARED_KNIGHT_STEAK_ITEM)

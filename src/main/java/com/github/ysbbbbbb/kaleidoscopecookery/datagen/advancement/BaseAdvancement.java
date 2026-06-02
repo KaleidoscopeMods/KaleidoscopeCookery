@@ -153,16 +153,13 @@ public class BaseAdvancement {
                 .addCriterion("stir_fry_in_pot", ModEventTrigger.create(ModEventTriggerType.STIR_FRY_IN_POT))
                 .save(saver, modLoc("stir_fry"), existingFileHelper);
 
-        Advancement darkCuisine = makeTask(ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get(), "dark_cuisine")
+        Advancement darkCuisine = makeTask(FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY), "dark_cuisine")
                 .parent(stirFry)
                 .addCriterion("has_suspicious_stew", InventoryChangeTrigger.TriggerInstance.hasItems(
                         FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY)
                 ))
                 .addCriterion("has_dark_cuisine", InventoryChangeTrigger.TriggerInstance.hasItems(
                         FoodBiteRegistry.getItem(FoodBiteRegistry.DARK_CUISINE)
-                ))
-                .addCriterion("has_suspicious_stir_fry_rice_bowl", InventoryChangeTrigger.TriggerInstance.hasItems(
-                        ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get()
                 ))
                 .requirements(RequirementsStrategy.OR)
                 .save(saver, modLoc("dark_cuisine"), existingFileHelper);

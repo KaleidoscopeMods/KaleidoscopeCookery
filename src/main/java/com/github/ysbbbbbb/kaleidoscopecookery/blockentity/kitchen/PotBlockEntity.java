@@ -6,7 +6,6 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.PotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
@@ -314,14 +313,6 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         }
         // 烧焦时取出的是黑暗料理
         ItemStack finallyResult = this.status == FINISHED ? this.result : getItem(DARK_CUISINE).getDefaultInstance();
-
-        // 迷之炒菜盖饭特判逻辑
-        if (finallyResult.is(getItem(SUSPICIOUS_STIR_FRY)) && stack.is(TagCommon.COOKED_RICE)) {
-            stack.shrink(1);
-            ItemUtils.getItemToLivingEntity(user, ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get().getDefaultInstance());
-            this.reset();
-            return true;
-        }
 
         if (!this.carrier.isEmpty()) {
             return this.takeOutWithCarrier(level, user, stack, finallyResult);
