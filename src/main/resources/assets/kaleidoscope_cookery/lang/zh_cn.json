@@ -1,6 +1,8 @@
 {
   "item_group.kaleidoscope_cookery.cookery_main.name": "森罗物语：厨房",
   "item_group.kaleidoscope_cookery.cookery_food.name": "森罗物语：美食",
+  "pack.kaleidoscope_cookery.legacy_resources_pack.title": "森罗厨房旧版资源包",
+  "pack.kaleidoscope_cookery.legacy_resources_pack.desc": "包含了部分旧版资源，适用于喜欢旧版材质的玩家",
   "block.kaleidoscope_cookery.stove": "炉灶",
   "block.kaleidoscope_cookery.pot": "炒锅",
   "block.kaleidoscope_cookery.stockpot": "汤锅",
