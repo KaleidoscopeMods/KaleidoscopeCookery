@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.decoration;
 
+import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
@@ -138,11 +139,12 @@ public class PlateBlock extends HorizontalDirectionalBlock {
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        List<ItemStack> drops = super.getDrops(state, params);
+        List<ItemStack> drops = Lists.newArrayList(super.getDrops(state, params));
         int count = state.getValue(servings);
         if (count > 0) {
             List<ItemStack> stacks = items.stream()
-                    .map(s -> s.get().getDefaultInstance().copyWithCount(count)).toList();
+                    .map(s -> s.get().getDefaultInstance().copyWithCount(count))
+                    .toList();
             drops.addAll(stacks);
         }
         return drops;
