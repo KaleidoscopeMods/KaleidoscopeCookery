@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.registries.Registries;
@@ -45,6 +46,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.RAW_DOUGH.get());
                 output.accept(ModItems.RAW_NOODLES.get());
                 output.accept(ModItems.STUFFED_DOUGH_FOOD.get());
+                output.accept(ModItems.RAW_ZONGZI.get());
                 output.accept(ModItems.CHILI_RISTRA.get());
                 output.accept(ModItems.STRUNG_MUSHROOMS.get());
                 output.accept(ModItems.RICE_SEED.get());
@@ -130,11 +132,15 @@ public class ModCreativeTabs {
                 // 基础食物
                 output.accept(ModItems.DONKEY_BURGER.get());
                 output.accept(ModItems.MANTOU.get());
+                output.accept(ModItems.QINGTUAN.get());
                 output.accept(ModItems.BAOZI.get());
                 output.accept(ModItems.SAMSA.get());
                 output.accept(ModItems.MEAT_PIE.get());
                 output.accept(ModItems.DUMPLING.get());
                 output.accept(ModItems.FRIED_EGG.get());
+                output.accept(ModItems.STICKY_CANDY.get());
+                output.accept(ModItems.STICKY_RICE_CAKE.get());
+                output.accept(ModItems.ZONGZI.get());
                 // 小碗菜和盖饭
                 output.accept(ModItems.COOKED_RICE.get());
                 output.accept(ModItems.EGG_FRIED_RICE.get());
@@ -173,6 +179,14 @@ public class ModCreativeTabs {
                     var foodItem = ForgeRegistries.ITEMS.getValue(foodName);
                     if (foodItem != null) {
                         output.accept(foodItem);
+                    }
+                });
+
+                // 盘装食物
+                PlateRegistry.PLATE_DATA_MAP.keySet().forEach(plateName -> {
+                    var plateItem = ForgeRegistries.ITEMS.getValue(plateName);
+                    if (plateItem != null) {
+                        output.accept(plateItem);
                     }
                 });
 

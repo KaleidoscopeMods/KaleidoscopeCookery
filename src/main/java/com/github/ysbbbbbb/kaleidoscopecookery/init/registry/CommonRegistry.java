@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init.registry;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.dispenser.OilPotDispenseBehavior;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
@@ -14,8 +15,11 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModVillager;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.WithTooltipsBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -69,6 +73,19 @@ public class CommonRegistry {
                         }
                         return teacupBlock;
                     }));
+
+            // 方块类盘装食物
+            PlateRegistry.PLATE_DATA_MAP.forEach((resourceLocation, data) -> {
+                    event.register(ForgeRegistries.Keys.BLOCKS, resourceLocation, () -> {
+                        PlateBlock plateBlock = new PlateBlock(data.getMaxCount(), data.getServingItems());
+
+                        VoxelShape aabb = data.getAABB();
+                        if (aabb != null) {
+                            plateBlock.setAABB(aabb);
+                        }
+                        return plateBlock;
+                    });
+            });
         }
 
         if (event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS)) {
@@ -85,6 +102,14 @@ public class CommonRegistry {
                 if (block != null) {
                     event.register(ForgeRegistries.Keys.ITEMS, resourceLocation,
                             () -> new TeacupItem(block, data.getEffects()));
+                }
+            });
+
+            PlateRegistry.PLATE_DATA_MAP.forEach((resourceLocation, data) -> {
+                Block block = ForgeRegistries.BLOCKS.getValue(resourceLocation);
+                if (block != null) {
+                    event.register(ForgeRegistries.Keys.ITEMS, resourceLocation,
+                            () -> new WithTooltipsBlockItem(block, resourceLocation.getPath()));
                 }
             });
         }

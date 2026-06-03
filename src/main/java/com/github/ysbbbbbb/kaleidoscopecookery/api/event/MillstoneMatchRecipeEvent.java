@@ -45,7 +45,7 @@ public abstract class MillstoneMatchRecipeEvent extends Event {
     }
 
     /**
-     * 在汤锅检索自己配方之前触发
+     * 在石磨检索自己配方之前触发
      */
     public static class Pre extends MillstoneMatchRecipeEvent {
         public Pre(Level level, MillstoneBlockEntity millstone, SimpleContainer container) {
@@ -54,7 +54,7 @@ public abstract class MillstoneMatchRecipeEvent extends Event {
     }
 
     /**
-     * 在汤锅检索自己配方之后触发
+     * 在石磨检索自己配方之后触发
      */
     public static class Post extends MillstoneMatchRecipeEvent {
         private final MillstoneRecipe rawOutput;
