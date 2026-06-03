@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
@@ -12,6 +13,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -133,6 +135,13 @@ public class BlockStateGenerator extends BlockStateProvider {
                 } else {
                     addFoodBiteBlock(block, key);
                 }
+            }
+        });
+
+        PlateRegistry.PLATE_DATA_MAP.forEach((key, value) -> {
+            Block block = ForgeRegistries.BLOCKS.getValue(key);
+            if (block != null) {
+                addPlateBlock(block, key);
             }
         });
 
@@ -371,6 +380,17 @@ public class BlockStateGenerator extends BlockStateProvider {
             } else {
                 model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_right_%d".formatted(id.getPath(), id.getPath(), bites));
             }
+            return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    public void addPlateBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof PlateBlock plateBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of PlateBlock");
+            }
+            int count = blockState.getValue(plateBlock.getServingsProperty());
+            ResourceLocation model = new ResourceLocation(id.getNamespace(), "block/plate/%s/%s_%d".formatted(id.getPath(), id.getPath(), count));
             return new ModelFile.UncheckedModelFile(model);
         });
     }

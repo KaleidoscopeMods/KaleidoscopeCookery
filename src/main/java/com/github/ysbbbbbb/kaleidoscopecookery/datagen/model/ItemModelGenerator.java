@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -101,6 +102,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.SAMSA.get());
         basicItem(ModItems.MANTOU.get());
         basicItem(ModItems.MEAT_PIE.get());
+        basicItem(ModItems.STICKY_CANDY.get());
+        basicItem(ModItems.STICKY_RICE_CAKE.get());
+        basicItem(ModItems.QINGTUAN.get());
+        basicItem(ModItems.RAW_ZONGZI.get());
+        basicItem(ModItems.ZONGZI.get());
 
         basicItem(ModItems.BEEF_NOODLE.get());
         basicItem(ModItems.HUI_NOODLE.get());
@@ -193,6 +199,13 @@ public class ItemModelGenerator extends ItemModelProvider {
         }
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {
+            Item item = ForgeRegistries.ITEMS.getValue(key);
+            if (item != null) {
+                basicItem(item);
+            }
+        });
+
+        PlateRegistry.PLATE_DATA_MAP.forEach((key, value) -> {
             Item item = ForgeRegistries.ITEMS.getValue(key);
             if (item != null) {
                 basicItem(item);

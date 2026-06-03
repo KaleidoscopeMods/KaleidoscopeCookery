@@ -128,6 +128,27 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(WARMTH.get(), 80 * 20), 1.0F)
             .alwaysEat().build();
 
+    // 青团
+    FoodProperties QINGTUAN = (new FoodProperties.Builder())
+            .nutrition(5).saturationMod(0.6F)
+            .alwaysEat().build();
+
+    // 牛皮糖
+    FoodProperties STICKY_CANDY = (new FoodProperties.Builder())
+            .nutrition(6).saturationMod(1)
+            .alwaysEat().build();
+
+    // 糍粑
+    FoodProperties STICKY_RICE_CAKE = (new FoodProperties.Builder())
+            .nutrition(8).saturationMod(0.875F)
+            .alwaysEat().build();
+
+    // 粽子
+    FoodProperties ZONGZI = (new FoodProperties.Builder())
+            .nutrition(8).saturationMod(0.625F)
+            .effect(() -> new MobEffectInstance(REGENERATION, 20 * 20), 1.0F)
+            .alwaysEat().build();
+
     // 牛肉面
     FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)

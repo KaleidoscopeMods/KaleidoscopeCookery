@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "facing=east,servings=0": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_0",
+      "y": 90
+    },
+    "facing=east,servings=1": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_1",
+      "y": 90
+    },
+    "facing=east,servings=2": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_2",
+      "y": 90
+    },
+    "facing=east,servings=3": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_3",
+      "y": 90
+    },
+    "facing=east,servings=4": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_4",
+      "y": 90
+    },
+    "facing=north,servings=0": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_0"
+    },
+    "facing=north,servings=1": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_1"
+    },
+    "facing=north,servings=2": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_2"
+    },
+    "facing=north,servings=3": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_3"
+    },
+    "facing=north,servings=4": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_4"
+    },
+    "facing=south,servings=0": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_0",
+      "y": 180
+    },
+    "facing=south,servings=1": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_1",
+      "y": 180
+    },
+    "facing=south,servings=2": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_2",
+      "y": 180
+    },
+    "facing=south,servings=3": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_3",
+      "y": 180
+    },
+    "facing=south,servings=4": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_4",
+      "y": 180
+    },
+    "facing=west,servings=0": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_0",
+      "y": 270
+    },
+    "facing=west,servings=1": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_1",
+      "y": 270
+    },
+    "facing=west,servings=2": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_2",
+      "y": 270
+    },
+    "facing=west,servings=3": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_3",
+      "y": 270
+    },
+    "facing=west,servings=4": {
+      "model": "kaleidoscope_cookery:block/plate/qingtuan_plate/qingtuan_plate_4",
+      "y": 270
+    }
+  }
+}
