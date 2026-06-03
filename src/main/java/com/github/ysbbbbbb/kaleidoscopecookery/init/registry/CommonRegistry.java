@@ -18,8 +18,6 @@ import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.WithTooltipsBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;

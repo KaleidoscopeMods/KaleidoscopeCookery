@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModEffects.*;
