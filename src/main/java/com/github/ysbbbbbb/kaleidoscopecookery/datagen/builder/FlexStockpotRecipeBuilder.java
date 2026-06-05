@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class StockpotRecipeBuilder implements RecipeBuilder {
-    private static final String NAME = "stockpot";
+public class FlexStockpotRecipeBuilder implements RecipeBuilder {
+    private static final String NAME = "flex_stockpot";
     private List<Ingredient> ingredients = Lists.newArrayList();
     private ItemStack result = ItemStack.EMPTY;
     private int time = StockpotRecipeSerializer.DEFAULT_TIME;
@@ -34,12 +34,12 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     private ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
     private StockpotVisuals visuals = StockpotVisuals.DEFAULT;
 
-    public static StockpotRecipeBuilder builder() {
-        return new StockpotRecipeBuilder();
+    public static FlexStockpotRecipeBuilder builder() {
+        return new FlexStockpotRecipeBuilder();
     }
 
     @SuppressWarnings("all")
-    public StockpotRecipeBuilder addInput(Object... ingredients) {
+    public FlexStockpotRecipeBuilder addInput(Object... ingredients) {
         for (Object ingredient : ingredients) {
             if (ingredient instanceof ItemLike itemLike) {
                 this.ingredients.add(Ingredient.of(itemLike));
@@ -56,87 +56,67 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
         return this;
     }
 
-    public StockpotRecipeBuilder setSoupBase(ResourceLocation soupBase) {
+    public FlexStockpotRecipeBuilder setSoupBase(ResourceLocation soupBase) {
         this.soupBase = soupBase;
         return this;
     }
 
-    public StockpotRecipeBuilder setResult(Item result) {
+    public FlexStockpotRecipeBuilder setResult(Item result) {
         this.result = new ItemStack(result, 3);
         return this;
     }
 
-    public StockpotRecipeBuilder setResult(Item result, int count) {
+    public FlexStockpotRecipeBuilder setResult(Item result, int count) {
         return this.setResult(new ItemStack(result, count));
     }
 
-    public StockpotRecipeBuilder setResult(ResourceLocation result) {
+    public FlexStockpotRecipeBuilder setResult(ResourceLocation result) {
         this.result = new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(result)));
         return this;
     }
 
-    public StockpotRecipeBuilder setResult(ItemStack result) {
+    public FlexStockpotRecipeBuilder setResult(ItemStack result) {
         this.result = result;
         return this;
     }
 
-    public StockpotRecipeBuilder setTime(int time) {
+    public FlexStockpotRecipeBuilder setTime(int time) {
         this.time = time;
         return this;
     }
 
-    public StockpotRecipeBuilder setCarrier(ItemLike carrier) {
+    public FlexStockpotRecipeBuilder setCarrier(ItemLike carrier) {
         this.carrier = Ingredient.of(carrier);
         return this;
     }
 
-    public StockpotRecipeBuilder setCookingTexture(ResourceLocation cookingTexture) {
-        this.visuals = new StockpotVisuals(
-                cookingTexture,
-                this.visuals.finishedTexture(),
-                this.visuals.cookingBubbleColor(),
-                this.visuals.finishedBubbleColor()
-        );
+    public FlexStockpotRecipeBuilder setCookingTexture(ResourceLocation cookingTexture) {
+        this.visuals = new StockpotVisuals(cookingTexture, this.visuals.finishedTexture(),
+                this.visuals.cookingBubbleColor(), this.visuals.finishedBubbleColor());
         return this;
     }
 
-    public StockpotRecipeBuilder setFinishedTexture(ResourceLocation finishedTexture) {
-        this.visuals = new StockpotVisuals(
-                this.visuals.cookingTexture(),
-                finishedTexture,
-                this.visuals.cookingBubbleColor(),
-                this.visuals.finishedBubbleColor()
-        );
+    public FlexStockpotRecipeBuilder setFinishedTexture(ResourceLocation finishedTexture) {
+        this.visuals = new StockpotVisuals(this.visuals.cookingTexture(), finishedTexture,
+                this.visuals.cookingBubbleColor(), this.visuals.finishedBubbleColor());
         return this;
     }
 
-    public StockpotRecipeBuilder setCookingBubbleColor(int cookingBubbleColor) {
-        this.visuals = new StockpotVisuals(
-                this.visuals.cookingTexture(),
-                this.visuals.finishedTexture(),
-                cookingBubbleColor,
-                this.visuals.finishedBubbleColor()
-        );
+    public FlexStockpotRecipeBuilder setCookingBubbleColor(int cookingBubbleColor) {
+        this.visuals = new StockpotVisuals(this.visuals.cookingTexture(), this.visuals.finishedTexture(),
+                cookingBubbleColor, this.visuals.finishedBubbleColor());
         return this;
     }
 
-    public StockpotRecipeBuilder setFinishedBubbleColor(int finishedBubbleColor) {
-        this.visuals = new StockpotVisuals(
-                this.visuals.cookingTexture(),
-                this.visuals.finishedTexture(),
-                this.visuals.cookingBubbleColor(),
-                finishedBubbleColor
-        );
+    public FlexStockpotRecipeBuilder setFinishedBubbleColor(int finishedBubbleColor) {
+        this.visuals = new StockpotVisuals(this.visuals.cookingTexture(), this.visuals.finishedTexture(),
+                this.visuals.cookingBubbleColor(), finishedBubbleColor);
         return this;
     }
 
-    public StockpotRecipeBuilder setBubbleColors(int cookingBubbleColor, int finishedBubbleColor) {
-        this.visuals = new StockpotVisuals(
-                this.visuals.cookingTexture(),
-                this.visuals.finishedTexture(),
-                cookingBubbleColor,
-                finishedBubbleColor
-        );
+    public FlexStockpotRecipeBuilder setBubbleColors(int cookingBubbleColor, int finishedBubbleColor) {
+        this.visuals = new StockpotVisuals(this.visuals.cookingTexture(), this.visuals.finishedTexture(),
+                cookingBubbleColor, finishedBubbleColor);
         return this;
     }
 
@@ -170,11 +150,11 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
-        recipeOutput.accept(new StockpotFinishedRecipe(id, this.ingredients, this.soupBase, this.result,
+        recipeOutput.accept(new FlexStockpotFinishedRecipe(id, this.ingredients, this.soupBase, this.result,
                 this.time, this.carrier, this.visuals));
     }
 
-    public static class StockpotFinishedRecipe implements FinishedRecipe {
+    public static class FlexStockpotFinishedRecipe implements FinishedRecipe {
         private final ResourceLocation id;
         private final List<Ingredient> ingredients;
         private final ResourceLocation soupBase;
@@ -183,10 +163,8 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
         private final Ingredient carrier;
         private final StockpotVisuals visuals;
 
-        public StockpotFinishedRecipe(ResourceLocation id, List<Ingredient> ingredients,
-                                      ResourceLocation soupBase, ItemStack result,
-                                      int time, Ingredient carrier, StockpotVisuals visuals
-        ) {
+        public FlexStockpotFinishedRecipe(ResourceLocation id, List<Ingredient> ingredients, ResourceLocation soupBase, ItemStack result,
+                                          int time, Ingredient carrier, StockpotVisuals visuals) {
             this.id = id;
             this.ingredients = ingredients;
             this.soupBase = soupBase;
@@ -226,7 +204,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return ModRecipes.STOCKPOT_SERIALIZER.get();
+            return ModRecipes.FLEX_STOCKPOT_SERIALIZER.get();
         }
 
         @Override

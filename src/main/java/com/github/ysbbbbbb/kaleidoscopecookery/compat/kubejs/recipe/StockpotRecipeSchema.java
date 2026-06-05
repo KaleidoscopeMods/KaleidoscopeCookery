@@ -8,6 +8,7 @@ import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.component.StringComponent;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals.*;
 import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.*;
 
 public interface StockpotRecipeSchema {

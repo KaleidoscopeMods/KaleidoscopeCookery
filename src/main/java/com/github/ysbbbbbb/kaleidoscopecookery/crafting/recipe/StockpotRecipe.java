@@ -14,25 +14,41 @@ import net.minecraftforge.common.util.RecipeMatcher;
 
 import java.util.List;
 
-import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.*;
+import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
 
 public record StockpotRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients,
                              ResourceLocation soupBase, ItemStack result, int time,
-                             Ingredient carrier, ResourceLocation cookingTexture,
-                             ResourceLocation finishedTexture, int cookingBubbleColor,
-                             int finishedBubbleColor) implements BaseRecipe<StockpotContainer> {
-    public StockpotRecipe(ResourceLocation id, List<Ingredient> ingredients, ResourceLocation soupBase, ItemStack result,
-                          int time, Ingredient carrier, ResourceLocation cookingTexture, ResourceLocation finishedTexture,
-                          int cookingBubbleColor, int finishedBubbleColor) {
+                             Ingredient carrier, StockpotVisuals visuals) implements BaseRecipe<StockpotContainer> {
+
+    public StockpotRecipe(ResourceLocation id, List<Ingredient> ingredients,
+                          ResourceLocation soupBase, ItemStack result,
+                          int time, Ingredient carrier, StockpotVisuals visuals
+    ) {
         this(id, NonNullList.of(Ingredient.EMPTY, BaseRecipe.fillInputs(ingredients)),
-                soupBase, result, time, carrier, cookingTexture, finishedTexture,
-                cookingBubbleColor, finishedBubbleColor);
+                soupBase, result, time, carrier, visuals);
     }
 
-    public StockpotRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients, ItemStack result, int time, ItemStack container) {
-        this(id, ingredients, DEFAULT_SOUP_BASE, result, time, Ingredient.of(container),
-                DEFAULT_COOKING_TEXTURE, DEFAULT_FINISHED_TEXTURE,
-                DEFAULT_COOKING_BUBBLE_COLOR, DEFAULT_FINISHED_BUBBLE_COLOR);
+    public StockpotRecipe(ResourceLocation id, NonNullList<Ingredient> ingredients,
+                          ItemStack result, int time, ItemStack container) {
+        this(id, ingredients, DEFAULT_SOUP_BASE, result,
+                time, Ingredient.of(container), StockpotVisuals.DEFAULT
+        );
+    }
+
+    public ResourceLocation cookingTexture() {
+        return this.visuals.cookingTexture();
+    }
+
+    public ResourceLocation finishedTexture() {
+        return this.visuals.finishedTexture();
+    }
+
+    public int cookingBubbleColor() {
+        return this.visuals.cookingBubbleColor();
+    }
+
+    public int finishedBubbleColor() {
+        return this.visuals.finishedBubbleColor();
     }
 
     @Override

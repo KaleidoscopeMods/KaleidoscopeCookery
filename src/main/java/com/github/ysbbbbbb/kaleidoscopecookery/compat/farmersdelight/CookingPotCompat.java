@@ -39,10 +39,9 @@ public class CookingPotCompat {
 
     @SubscribeEvent
     static void afterStockpotRecipeMatch(StockpotMatchRecipeEvent.Post event) {
-        StockpotRecipe rawOutput = event.getRawOutput();
         RecipeManager recipeManager = event.getLevel().getRecipeManager();
 
-        if (rawOutput.getId() != StockpotRecipeSerializer.EMPTY_ID) {
+        if (!event.getRawOutput().equals(StockpotRecipeSerializer.EMPTY_ID)) {
             return;
         }
 

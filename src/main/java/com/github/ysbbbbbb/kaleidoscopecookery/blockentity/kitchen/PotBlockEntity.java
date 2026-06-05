@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTr
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IPot;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.tetra.TetraCompat;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.FlexPotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.PotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
@@ -33,6 +34,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -288,19 +290,52 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
 
     private void startCooking(Level level) {
         SimpleContainer container = this.getContainer();
-        level.getRecipeManager().getRecipeFor(ModRecipes.POT_RECIPE, container, level).ifPresentOrElse(recipe -> {
-            // 如果合成表符合，那么进入炒菜阶段
-            this.carrier = recipe.carrier();
-            this.result = recipe.assemble(container, level.registryAccess());
-            this.currentTick = recipe.time();
-            this.stirFryCount = recipe.stirFryCount();
-        }, () -> {
-            // 不符合，进入迷之炒菜阶段
-            this.carrier = Ingredient.of(Items.BOWL);
-            this.result = getItem(SUSPICIOUS_STIR_FRY).getDefaultInstance();
-            this.currentTick = 10 * 20; // 迷之炒菜时间
-            this.stirFryCount = 0; // 迷之炒菜不计翻炒次数
-        });
+        RecipeManager manager = level.getRecipeManager();
+
+        var potRecipe = manager.getRecipeFor(ModRecipes.POT_RECIPE, container, level);
+        if (potRecipe.isPresent()) {
+            this.applyRecipe(level, container, potRecipe.get());
+            return;
+        }
+
+        var flexPotRecipe = manager.getRecipeFor(ModRecipes.FLEX_POT_RECIPE, container, level);
+        if (flexPotRecipe.isPresent()) {
+            this.applyFlexRecipe(level, container, flexPotRecipe.get());
+            return;
+        }
+
+        this.applySuspiciousRecipe();
+    }
+
+    private void applyRecipe(Level level, SimpleContainer container, PotRecipe recipe) {
+        // 如果合成表符合，那么进入炒菜阶段
+        this.carrier = recipe.carrier();
+        this.result = recipe.assemble(container, level.registryAccess());
+        this.currentTick = recipe.time();
+        this.stirFryCount = recipe.stirFryCount();
+
+        this.status = COOKING;
+        this.refresh();
+    }
+
+    private void applyFlexRecipe(Level level, SimpleContainer container, FlexPotRecipe recipe) {
+        // 如果合成表符合，那么进入炒菜阶段
+        this.carrier = recipe.carrier();
+        this.result = recipe.assemble(container, level.registryAccess());
+        this.currentTick = recipe.time();
+        this.stirFryCount = recipe.stirFryCount();
+
+        this.status = COOKING;
+        this.refresh();
+    }
+
+    private void applySuspiciousRecipe() {
+        // 不符合，进入迷之炒菜阶段
+        this.carrier = Ingredient.of(Items.BOWL);
+        this.result = getItem(SUSPICIOUS_STIR_FRY).getDefaultInstance();
+        this.currentTick = 10 * 20; // 迷之炒菜时间
+        this.stirFryCount = 0; // 迷之炒菜不计翻炒次数
+
         this.status = COOKING;
         this.refresh();
     }

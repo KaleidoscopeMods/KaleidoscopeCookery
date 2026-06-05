@@ -1,9 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.FlexStockpotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -12,7 +10,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -20,33 +17,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe> {
-    public static final int DEFAULT_TIME = 300;
-    public static final Ingredient DEFAULT_CARRIER = Ingredient.of(Items.BOWL);
-    public static final ResourceLocation DEFAULT_SOUP_BASE = ModSoupBases.WATER;
-    public static final ResourceLocation EMPTY_ID = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "stockpot/empty");
-
-    public static StockpotRecipe getEmptyRecipe() {
-        return new StockpotRecipe(
-                EMPTY_ID,
-                Lists.newArrayList(),
-                DEFAULT_SOUP_BASE,
-                ItemStack.EMPTY,
-                DEFAULT_TIME,
-                DEFAULT_CARRIER,
-                StockpotVisuals.DEFAULT
-        );
-    }
-
+public class FlexStockpotRecipeSerializer implements RecipeSerializer<FlexStockpotRecipe> {
     @Override
-    public StockpotRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public FlexStockpotRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
         JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
         List<Ingredient> inputs = Lists.newArrayList();
         for (JsonElement e : ingredients) {
             inputs.add(Ingredient.fromJson(e));
         }
 
-        ResourceLocation soupBase = DEFAULT_SOUP_BASE;
+        ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
         if (json.has("soup_base")) {
             soupBase = new ResourceLocation(GsonHelper.getAsString(json, "soup_base"));
         }
@@ -56,9 +36,9 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 true, true
         );
 
-        int time = GsonHelper.getAsInt(json, "time", DEFAULT_TIME);
+        int time = GsonHelper.getAsInt(json, "time", StockpotRecipeSerializer.DEFAULT_TIME);
 
-        Ingredient carrier = DEFAULT_CARRIER;
+        Ingredient carrier = StockpotRecipeSerializer.DEFAULT_CARRIER;
         if (json.has("carrier")) {
             carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
         }
@@ -72,21 +52,25 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 StockpotVisuals.DEFAULT_FINISHED_TEXTURE.toString()
         ));
 
-        int cookingBubbleColor = GsonHelper.getAsInt(json, "cooking_bubble_color",
-                StockpotVisuals.DEFAULT_COOKING_BUBBLE_COLOR);
-        int finishedBubbleColor = GsonHelper.getAsInt(json, "finished_bubble_color",
-                StockpotVisuals.DEFAULT_FINISHED_BUBBLE_COLOR);
+        int cookingBubbleColor = GsonHelper.getAsInt(
+                json, "cooking_bubble_color",
+                StockpotVisuals.DEFAULT_COOKING_BUBBLE_COLOR
+        );
+        int finishedBubbleColor = GsonHelper.getAsInt(
+                json, "finished_bubble_color",
+                StockpotVisuals.DEFAULT_FINISHED_BUBBLE_COLOR
+        );
 
         StockpotVisuals visuals = new StockpotVisuals(
                 cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor
         );
 
-        return new StockpotRecipe(recipeId, inputs, soupBase, result, time, carrier, visuals);
+        return new FlexStockpotRecipe(recipeId, inputs, soupBase, result, time, carrier, visuals);
     }
 
     @Override
-    public @Nullable StockpotRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buf) {
+    public @Nullable FlexStockpotRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buf) {
         int ingredientsSize = buf.readVarInt();
         List<Ingredient> inputs = Lists.newArrayList();
         for (int i = 0; i < ingredientsSize; i++) {
@@ -104,14 +88,14 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor
         );
-        return new StockpotRecipe(
+        return new FlexStockpotRecipe(
                 recipeId, inputs, soupBase, result,
                 time, carrier, visuals
         );
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buffer, StockpotRecipe recipe) {
+    public void toNetwork(FriendlyByteBuf buffer, FlexStockpotRecipe recipe) {
         buffer.writeVarInt(recipe.getIngredients().size());
         recipe.getIngredients().forEach(i -> i.toNetwork(buffer));
         buffer.writeResourceLocation(recipe.soupBase());
