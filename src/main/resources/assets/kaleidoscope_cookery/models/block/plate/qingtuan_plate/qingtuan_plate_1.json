@@ -23,9 +23,9 @@
 			}
 		},
 		{
-			"from": [4, 2, 6],
-			"to": [9, 6, 11],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [7, 4, 8]},
+			"from": [8, 2, 4],
+			"to": [13, 6, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 4, 7]},
 			"faces": {
 				"north": {"uv": [2.5, 3.5, 5, 5.5], "texture": "#3"},
 				"east": {"uv": [2.5, 3.5, 5, 5.5], "texture": "#3"},
