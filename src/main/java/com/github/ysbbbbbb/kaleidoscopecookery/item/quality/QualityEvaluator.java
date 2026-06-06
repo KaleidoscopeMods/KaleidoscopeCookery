@@ -100,7 +100,7 @@ public class QualityEvaluator {
         }
 
         // 评估函数获取分数
-        double finalScore = getFinalScore(size, inputsVec, recipesVec);
+        double finalScore = getFinalScore(size, inputs.size(), inputsVec, recipesVec);
 
         // 根据得分划分品质档位
         for (Quality quality : Quality.values()) {
@@ -112,7 +112,7 @@ public class QualityEvaluator {
         return Quality.STANDARD;
     }
 
-    private static double getFinalScore(int size, int[] inputsVec, int[] recipesVec) {
+    private static double getFinalScore(int size, int inputSize, int[] inputsVec, int[] recipesVec) {
         // 计算基础余弦相似度
         double dotProduct = 0.0;
         double normA = 0.0;
@@ -130,7 +130,7 @@ public class QualityEvaluator {
         double similarityScore = Math.pow(cosine, 4);
 
         // 数量因子
-        double quantityFactor = 0.8 + 0.2 * (size / (double) MAX_CAPACITY);
+        double quantityFactor = 0.7 + 0.3 * (inputSize / (double) MAX_CAPACITY);
 
         // 复合得分
         return Mth.clamp(similarityScore * quantityFactor, 0.0, 1.0);
