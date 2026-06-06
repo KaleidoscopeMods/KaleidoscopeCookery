@@ -5,7 +5,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "kaleidoscope_cookery:block/plate/fruit_platter",
-		"particle": "kaleidoscope_cookery:block/plate/fruit_platter"
+		"particle": "kaleidoscope_cookery:block/plate/fruit_platter_particle"
 	},
 	"elements": [
 		{
@@ -122,7 +122,6 @@
 		{
 			"name": "bb_main",
 			"origin": [8, 0, 8],
-			"scope": 0,
 			"color": 0,
 			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 		}

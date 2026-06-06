@@ -53,7 +53,6 @@
 		{
 			"name": "bb_main",
 			"origin": [8, 0, 8],
-			"scope": 0,
 			"color": 0,
 			"children": [0, 1, 2]
 		}
