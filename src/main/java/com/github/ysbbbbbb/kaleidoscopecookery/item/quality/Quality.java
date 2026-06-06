@@ -13,10 +13,10 @@ public enum Quality implements StringRepresentable {
     /**
      * 极佳、优秀、普通、生疏
      */
-    SUPERB(0, "superb", ChatFormatting.GOLD, 0.95),
-    EXCELLENT(1, "excellent", ChatFormatting.GREEN, 0.82),
-    STANDARD(2, "standard", ChatFormatting.WHITE, 0.55),
-    POOR(3, "poor", ChatFormatting.DARK_GRAY, 0);
+    SUPERB(0, "superb", ChatFormatting.GOLD, 0.95, 1.2),
+    EXCELLENT(1, "excellent", ChatFormatting.GREEN, 0.82, 0.9),
+    STANDARD(2, "standard", ChatFormatting.WHITE, 0.55, 0.6),
+    POOR(3, "poor", ChatFormatting.DARK_GRAY, 0, 0.3);
 
     public static final IntFunction<Quality> BY_ID = ByIdMap.continuous(
             Quality::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO
@@ -26,12 +26,14 @@ public enum Quality implements StringRepresentable {
     private final String name;
     private final ChatFormatting color;
     private final double score;
+    private final double ratio;
 
-    Quality(int id, String name, ChatFormatting color, double score) {
+    Quality(int id, String name, ChatFormatting color, double score, double ratio) {
         this.id = id;
         this.name = name;
         this.color = color;
         this.score = score;
+        this.ratio = ratio;
     }
 
     public int getId() {
@@ -50,6 +52,10 @@ public enum Quality implements StringRepresentable {
 
     public double getScore() {
         return score;
+    }
+
+    public double getRatio() {
+        return ratio;
     }
 
     public MutableComponent getTooltip() {

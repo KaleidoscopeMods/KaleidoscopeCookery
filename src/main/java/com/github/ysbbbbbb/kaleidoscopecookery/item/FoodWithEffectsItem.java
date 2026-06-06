@@ -6,11 +6,13 @@ import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityUtils;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,9 +23,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class FoodWithEffectsItem extends Item {
     private final List<MobEffectInstance> effectInstances = Lists.newArrayList();
+    private final Function<Quality, List<MobEffectInstance>> effectCache = Util.memoize(
+            quality -> QualityUtils.modifyEffects(this.effectInstances, quality)
+    );
+    private final BiFunction<Quality, FoodProperties, FoodProperties> foodPropertiesCache = Util.memoize(
+            (quality, raw) -> QualityUtils.modifyFoodProperties(raw, quality)
+    );
 
     public FoodWithEffectsItem(FoodProperties properties) {
         super(new Item.Properties().food(properties));
@@ -32,6 +42,17 @@ public class FoodWithEffectsItem extends Item {
                 effectInstances.add(effect.getFirst());
             }
         });
+    }
+
+    @Override
+    public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+        FoodProperties raw = super.getFoodProperties(stack, entity);
+        if (!QualityUtils.hasQuality(stack) || raw == null) {
+            return raw;
+        }
+        // 如果有品质，那么依据品质
+        Quality quality = QualityUtils.getQuality(stack);
+        return this.foodPropertiesCache.apply(quality, raw);
     }
 
     @Override
@@ -51,13 +72,19 @@ public class FoodWithEffectsItem extends Item {
             }
         }
 
+        boolean showEffect = !this.effectInstances.isEmpty()
+                             && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS
+                             && ClientConfig.SHOW_FOOD_EFFECT_TOOLTIPS.get();
+
         // 品质
         if (QualityUtils.hasQuality(stack)) {
             Quality quality = QualityUtils.getQuality(stack);
             tooltip.add(quality.getTooltip());
-        }
-
-        if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS && ClientConfig.SHOW_FOOD_EFFECT_TOOLTIPS.get()) {
+            if (showEffect) {
+                tooltip.add(CommonComponents.space());
+                PotionUtils.addPotionTooltip(this.effectCache.apply(quality), tooltip, 1.0F);
+            }
+        } else {
             tooltip.add(CommonComponents.space());
             PotionUtils.addPotionTooltip(this.effectInstances, tooltip, 1.0F);
         }

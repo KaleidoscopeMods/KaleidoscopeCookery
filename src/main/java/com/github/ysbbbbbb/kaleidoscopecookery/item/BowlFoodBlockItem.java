@@ -8,6 +8,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityUtils;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -31,9 +32,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class BowlFoodBlockItem extends BlockItem implements IHasContainer {
     private final List<MobEffectInstance> effectInstances = Lists.newArrayList();
+    private final Function<Quality, List<MobEffectInstance>> effectCache = Util.memoize(
+            quality -> QualityUtils.modifyEffects(this.effectInstances, quality)
+    );
+    private final BiFunction<Quality, FoodProperties, FoodProperties> foodPropertiesCache = Util.memoize(
+            (quality, raw) -> QualityUtils.modifyFoodProperties(raw, quality)
+    );
 
     public BowlFoodBlockItem(Block pBlock, FoodProperties properties) {
         super(pBlock, new Item.Properties().stacksTo(16).food(properties));
@@ -42,6 +51,17 @@ public class BowlFoodBlockItem extends BlockItem implements IHasContainer {
                 effectInstances.add(effect.getFirst());
             }
         });
+    }
+
+    @Override
+    public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+        FoodProperties raw = super.getFoodProperties(stack, entity);
+        if (!QualityUtils.hasQuality(stack) || raw == null) {
+            return raw;
+        }
+        // 如果有品质，那么依据品质
+        Quality quality = QualityUtils.getQuality(stack);
+        return this.foodPropertiesCache.apply(quality, raw);
     }
 
     @Override
@@ -87,14 +107,19 @@ public class BowlFoodBlockItem extends BlockItem implements IHasContainer {
             }
         }
 
+        boolean showEffect = !this.effectInstances.isEmpty()
+                             && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS
+                             && ClientConfig.SHOW_FOOD_EFFECT_TOOLTIPS.get();
+
         // 品质
         if (QualityUtils.hasQuality(stack)) {
             Quality quality = QualityUtils.getQuality(stack);
             tooltip.add(quality.getTooltip());
-        }
-
-        // 药水效果
-        if (!this.effectInstances.isEmpty() && CompatRegistry.SHOW_POTION_EFFECT_TOOLTIPS && ClientConfig.SHOW_FOOD_EFFECT_TOOLTIPS.get()) {
+            if (showEffect) {
+                tooltip.add(CommonComponents.space());
+                PotionUtils.addPotionTooltip(this.effectCache.apply(quality), tooltip, 1.0F);
+            }
+        } else {
             tooltip.add(CommonComponents.space());
             PotionUtils.addPotionTooltip(this.effectInstances, tooltip, 1.0F);
         }
