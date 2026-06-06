@@ -10,6 +10,9 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityEvaluator;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -324,6 +327,14 @@ public class PotBlockEntity extends BaseBlockEntity implements IPot {
         this.result = recipe.assemble(container, level.registryAccess());
         this.currentTick = recipe.time();
         this.stirFryCount = recipe.stirFryCount();
+
+        // 计算品质
+        if (level instanceof ServerLevel serverLevel) {
+            // 计算品质
+            Quality quality = QualityEvaluator.evaluate(this.inputs, recipe.ingredients(), recipe.getId(), serverLevel.getSeed());
+            // 将品质保存在 NBT 里，供客户端渲染使用
+            QualityUtils.setQuality(this.result, quality);
+        }
 
         this.status = COOKING;
         this.refresh();

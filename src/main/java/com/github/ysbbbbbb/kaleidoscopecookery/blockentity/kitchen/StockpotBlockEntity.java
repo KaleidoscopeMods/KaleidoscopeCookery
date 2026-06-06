@@ -17,6 +17,9 @@ import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.FluidSoupBase;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityEvaluator;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.BlockDrop;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.mojang.datafixers.util.Either;
@@ -310,6 +313,14 @@ public class StockpotBlockEntity extends BaseBlockEntity implements IStockpot {
         this.result = recipe.assemble(container, level.registryAccess());
         this.currentTick = recipe.time();
         this.takeoutCount = Math.min(this.result.getCount(), MAX_TAKEOUT_COUNT);
+
+        // 计算品质
+        if (level instanceof ServerLevel serverLevel) {
+            // 计算品质
+            Quality quality = QualityEvaluator.evaluate(this.inputs, recipe.ingredients(), recipe.getId(), serverLevel.getSeed());
+            // 将品质保存在 NBT 里，供客户端渲染使用
+            QualityUtils.setQuality(this.result, quality);
+        }
     }
 
     @Nullable

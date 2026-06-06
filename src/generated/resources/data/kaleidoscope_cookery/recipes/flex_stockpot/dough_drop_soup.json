@@ -1,5 +1,5 @@
 {
-  "type": "kaleidoscope_cookery:stockpot",
+  "type": "kaleidoscope_cookery:flex_stockpot",
   "carrier": {
     "item": "minecraft:bowl"
   },
@@ -9,19 +9,7 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
   "ingredients": [
     {
-      "tag": "forge:crops/tomato"
-    },
-    {
-      "tag": "forge:crops/tomato"
-    },
-    {
       "tag": "forge:flour"
-    },
-    {
-      "tag": "forge:flour"
-    },
-    {
-      "tag": "forge:crops/lettuce"
     },
     {
       "tag": "forge:crops/lettuce"

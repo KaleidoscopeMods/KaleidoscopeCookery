@@ -1,12 +1,9 @@
 {
-  "type": "kaleidoscope_cookery:pot",
+  "type": "kaleidoscope_cookery:flex_pot",
   "carrier": {
     "item": "minecraft:bowl"
   },
   "ingredients": [
-    {
-      "tag": "forge:eggs"
-    },
     {
       "tag": "forge:eggs"
     },

@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.FlexPotRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.PotRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
@@ -102,25 +103,11 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .setResult(ModItems.FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL.get())
                 .save(consumer);
 
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.EGGS, TagCommon.EGGS, TagCommon.COOKED_RICE)
+        // 模糊配方
+        FlexPotRecipeBuilder.builder()
+                .addInput(TagCommon.EGGS, TagCommon.COOKED_RICE)
                 .setBowlCarrier()
                 .setResult(ModItems.EGG_FRIED_RICE.get())
                 .save(consumer);
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.EGGS, TagCommon.EGGS, TagCommon.EGGS, TagCommon.EGGS,
-                        TagCommon.COOKED_RICE, TagCommon.COOKED_RICE)
-                .setBowlCarrier()
-                .setResult(ModItems.EGG_FRIED_RICE.get(), 2)
-                .save(consumer, "egg_fried_rice_2");
-
-        PotRecipeBuilder.builder()
-                .addInput(TagCommon.EGGS, TagCommon.EGGS, TagCommon.EGGS,
-                        TagCommon.EGGS, TagCommon.EGGS, TagCommon.EGGS,
-                        TagCommon.COOKED_RICE, TagCommon.COOKED_RICE, TagCommon.COOKED_RICE)
-                .setBowlCarrier()
-                .setResult(ModItems.EGG_FRIED_RICE.get(), 3)
-                .save(consumer, "egg_fried_rice_3");
     }
 }

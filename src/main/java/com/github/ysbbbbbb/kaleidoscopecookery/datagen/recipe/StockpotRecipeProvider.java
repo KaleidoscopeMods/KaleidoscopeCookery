@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.FlexStockpotRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.StockpotRecipeBuilder;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
@@ -191,14 +192,6 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SHENGJIAN_MANTOU), 2)
                 .save(consumer, "shengjian_mantou_count_2");
 
-        // 疙瘩汤: 2番茄+2面粉+2青菜
-        StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO,
-                        TagCommon.FLOUR, TagCommon.FLOUR,
-                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
-                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.DOUGH_DROP_SOUP), 1)
-                .save(consumer);
-
         // 四喜丸子汤: 4丸子+骨粉
         StockpotRecipeBuilder.builder()
                 .addInput(ModItems.RAW_MEATBALL.get(), ModItems.RAW_MEATBALL.get(),
@@ -265,6 +258,13 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                         TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.BUDDHA_JUMPS_OVER_THE_WALL), 1)
+                .save(consumer);
+
+        // 模糊配方
+        // 疙瘩汤: 生菜+面粉
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.FLOUR, TagCommon.CROPS_LETTUCE)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.DOUGH_DROP_SOUP), 1)
                 .save(consumer);
     }
 }
