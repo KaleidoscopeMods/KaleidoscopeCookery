@@ -17,8 +17,10 @@ public class ModJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new PotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FlexPotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChoppingBoardRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new StockpotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FlexStockpotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MillstoneRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new SteamerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new TeapotRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
@@ -27,8 +29,10 @@ public class ModJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(PotRecipeCategory.TYPE, PotRecipeCategory.getRecipes());
+        registration.addRecipes(FlexPotRecipeCategory.TYPE, FlexPotRecipeCategory.getRecipes());
         registration.addRecipes(ChoppingBoardRecipeCategory.TYPE, ChoppingBoardRecipeCategory.getRecipes());
         registration.addRecipes(StockpotRecipeCategory.TYPE, StockpotRecipeCategory.getRecipes());
+        registration.addRecipes(FlexStockpotRecipeCategory.TYPE, FlexStockpotRecipeCategory.getRecipes());
         registration.addRecipes(MillstoneRecipeCategory.TYPE, MillstoneRecipeCategory.getRecipes());
         registration.addRecipes(SteamerRecipeCategory.TYPE, SteamerRecipeCategory.getRecipes());
         registration.addRecipes(TeapotRecipeCategory.TYPE, TeapotRecipeCategory.getRecipes());
@@ -37,8 +41,10 @@ public class ModJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(ModItems.POT.get(), PotRecipeCategory.TYPE);
+        registration.addRecipeCatalyst(ModItems.POT.get(), FlexPotRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.CHOPPING_BOARD.get(), ChoppingBoardRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.STOCKPOT.get(), StockpotRecipeCategory.TYPE);
+        registration.addRecipeCatalyst(ModItems.STOCKPOT.get(), FlexStockpotRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.MILLSTONE.get(), MillstoneRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.STEAMER.get(), SteamerRecipeCategory.TYPE);
         registration.addRecipeCatalyst(ModItems.TEAPOT.get(), TeapotRecipeCategory.TYPE);
