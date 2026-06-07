@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "tag": "forge:raw_pork"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:braised_pork_ribs"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

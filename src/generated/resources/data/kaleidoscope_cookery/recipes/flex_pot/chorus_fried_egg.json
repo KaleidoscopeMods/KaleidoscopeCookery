@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:chorus_fried_egg"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

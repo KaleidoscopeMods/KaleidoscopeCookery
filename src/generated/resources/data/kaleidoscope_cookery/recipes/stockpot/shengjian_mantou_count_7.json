@@ -1,0 +1,39 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "cooking_bubble_color": 16772291,
+  "cooking_texture": "kaleidoscope_cookery:stockpot/default_cooking",
+  "finished_bubble_color": 16034443,
+  "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    },
+    {
+      "item": "kaleidoscope_cookery:stuffed_dough_food"
+    }
+  ],
+  "result": {
+    "count": 7,
+    "item": "kaleidoscope_cookery:shengjian_mantou"
+  },
+  "soup_base": "minecraft:lava",
+  "time": 300
+}

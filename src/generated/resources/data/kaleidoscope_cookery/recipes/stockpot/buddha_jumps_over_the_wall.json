@@ -12,19 +12,19 @@
       "tag": "forge:eggs"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "tag": "forge:eggs"
     },
     {
       "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:kelp"
+      "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:kelp"
+      "tag": "forge:crops/lettuce"
     },
     {
-      "item": "minecraft:kelp"
+      "tag": "forge:crops/lettuce"
     },
     {
       "tag": "forge:crops/lettuce"

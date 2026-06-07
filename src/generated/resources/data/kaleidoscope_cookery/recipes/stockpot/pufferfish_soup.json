@@ -15,17 +15,16 @@
       "item": "minecraft:pufferfish"
     },
     {
-      "item": "minecraft:pufferfish"
+      "tag": "forge:crops/lettuce"
     },
     {
-      "item": "minecraft:seagrass"
+      "tag": "forge:crops/lettuce"
     },
     {
-      "item": "minecraft:seagrass"
+      "tag": "forge:crops/lettuce"
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:pufferfish_soup"
   },
   "soup_base": "minecraft:water",

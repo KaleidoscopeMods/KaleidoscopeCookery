@@ -21,11 +21,13 @@
       "tag": "forge:crops/tomato"
     },
     {
-      "tag": "forge:crops/lettuce"
+      "tag": "forge:crops/tomato"
+    },
+    {
+      "tag": "forge:crops/tomato"
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:borscht"
   },
   "soup_base": "minecraft:water",

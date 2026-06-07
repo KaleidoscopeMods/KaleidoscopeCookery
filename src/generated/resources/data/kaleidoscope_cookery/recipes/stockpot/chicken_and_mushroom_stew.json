@@ -15,12 +15,6 @@
       "tag": "forge:raw_chicken"
     },
     {
-      "tag": "forge:raw_chicken"
-    },
-    {
-      "tag": "forge:mushrooms"
-    },
-    {
       "tag": "forge:mushrooms"
     },
     {
@@ -31,7 +25,6 @@
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:chicken_and_mushroom_stew"
   },
   "soup_base": "minecraft:water",

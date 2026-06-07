@@ -1,0 +1,23 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "cooking_bubble_color": 16772291,
+  "cooking_texture": "kaleidoscope_cookery:stockpot/default_cooking",
+  "finished_bubble_color": 16034443,
+  "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "tag": "forge:mushrooms"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:wild_mushroom_rabbit_soup"
+  },
+  "soup_base": "minecraft:water",
+  "time": 300
+}

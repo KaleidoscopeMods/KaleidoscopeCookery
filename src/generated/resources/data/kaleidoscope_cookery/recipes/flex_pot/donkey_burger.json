@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "ingredients": [
+    {
+      "tag": "forge:crops/chilipepper"
+    },
+    {
+      "tag": "forge:dough"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:donkey_burger"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

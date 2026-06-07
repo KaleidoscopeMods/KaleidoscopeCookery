@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:snowball"
+    },
+    {
+      "item": "minecraft:snowball"
+    },
+    {
+      "item": "minecraft:snowball"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:cold_style_sashimi"
+  }
+}

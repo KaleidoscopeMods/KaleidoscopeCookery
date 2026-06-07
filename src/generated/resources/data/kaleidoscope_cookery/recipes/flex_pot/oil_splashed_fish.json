@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:raw_fishes"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:oil_splashed_fish"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

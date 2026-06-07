@@ -18,12 +18,6 @@
       "item": "minecraft:potato"
     },
     {
-      "item": "minecraft:potato"
-    },
-    {
-      "tag": "forge:raw_beef"
-    },
-    {
       "tag": "forge:raw_beef"
     },
     {
@@ -31,7 +25,6 @@
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:braised_beef_with_potatoes"
   },
   "soup_base": "minecraft:water",

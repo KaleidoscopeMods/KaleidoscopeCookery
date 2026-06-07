@@ -9,10 +9,10 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
   "ingredients": [
     {
-      "tag": "forge:flour"
+      "tag": "forge:crops/lettuce"
     },
     {
-      "tag": "forge:crops/lettuce"
+      "tag": "forge:flour"
     }
   ],
   "result": {

@@ -1,0 +1,20 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "cooking_bubble_color": 16772291,
+  "cooking_texture": "kaleidoscope_cookery:stockpot/default_cooking",
+  "finished_bubble_color": 16034443,
+  "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
+  "ingredients": [
+    {
+      "tag": "forge:crops/lettuce"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:seafood_miso_soup"
+  },
+  "soup_base": "minecraft:salmon_bucket",
+  "time": 300
+}

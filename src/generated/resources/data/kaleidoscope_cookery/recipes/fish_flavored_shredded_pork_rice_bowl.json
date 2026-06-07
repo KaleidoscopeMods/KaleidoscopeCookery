@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:fish_flavored_shredded_pork"
+    },
+    {
+      "tag": "forge:cooked_rice"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:fish_flavored_shredded_pork_rice_bowl"
+  }
+}

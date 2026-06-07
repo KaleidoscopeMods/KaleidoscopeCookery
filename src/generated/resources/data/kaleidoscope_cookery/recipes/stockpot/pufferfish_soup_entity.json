@@ -9,10 +9,13 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
   "ingredients": [
     {
-      "item": "minecraft:seagrass"
+      "tag": "forge:crops/lettuce"
     },
     {
-      "item": "minecraft:seagrass"
+      "tag": "forge:crops/lettuce"
+    },
+    {
+      "tag": "forge:crops/lettuce"
     }
   ],
   "result": {

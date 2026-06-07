@@ -18,12 +18,6 @@
       "item": "minecraft:carrot"
     },
     {
-      "item": "minecraft:carrot"
-    },
-    {
-      "tag": "forge:raw_mutton"
-    },
-    {
       "tag": "forge:raw_mutton"
     },
     {
@@ -31,7 +25,6 @@
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:lamb_and_radish_soup"
   },
   "soup_base": "minecraft:water",

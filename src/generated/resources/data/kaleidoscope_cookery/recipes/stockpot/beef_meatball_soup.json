@@ -9,16 +9,13 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
   "ingredients": [
     {
-      "tag": "forge:raw_beef"
+      "item": "kaleidoscope_cookery:raw_meatball"
     },
     {
-      "tag": "forge:raw_beef"
+      "item": "kaleidoscope_cookery:raw_meatball"
     },
     {
-      "tag": "forge:raw_beef"
-    },
-    {
-      "tag": "forge:raw_beef"
+      "tag": "forge:crops/lettuce"
     },
     {
       "tag": "forge:crops/lettuce"
@@ -28,7 +25,6 @@
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:beef_meatball_soup"
   },
   "soup_base": "minecraft:water",

@@ -5,6 +5,18 @@
   },
   "ingredients": [
     {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
       "tag": "forge:crops/chilipepper"
     },
     {
@@ -14,16 +26,7 @@
       "tag": "forge:crops/chilipepper"
     },
     {
-      "tag": "forge:raw_chicken"
-    },
-    {
-      "tag": "forge:raw_chicken"
-    },
-    {
-      "tag": "forge:raw_chicken"
-    },
-    {
-      "tag": "forge:raw_chicken"
+      "tag": "forge:crops/chilipepper"
     }
   ],
   "result": {

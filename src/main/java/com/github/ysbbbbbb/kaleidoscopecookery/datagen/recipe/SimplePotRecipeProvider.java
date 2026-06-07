@@ -44,25 +44,23 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
         this.addSingleItemRecipe(inputItem, outputItem, idInput, Ingredient.EMPTY, consumer);
     }
 
-    @SuppressWarnings("all")
     public void addSingleItemRecipe(TagKey<Item> inputItem, Item outputItem, String idInput, Ingredient carrier, Consumer<FinishedRecipe> consumer) {
         for (int i = 1; i <= 9; i++) {
             TagKey<Item>[] inputs = this.getItemsWithCount(inputItem, i);
             ItemStack output = new ItemStack(outputItem, i);
             String idOutput = this.getRecipeIdWithCount(outputItem, i);
             String id = String.format("%s_to_%s", idInput, idOutput);
-            PotRecipeBuilder.builder().addInput(inputs).setResult(output).setCarrier(carrier).save(consumer, id);
+            PotRecipeBuilder.builder().addInput((Object[]) inputs).setResult(output).setCarrier(carrier).save(consumer, id);
         }
     }
 
-    @SuppressWarnings("all")
     public void addSingleItemRecipe(ItemLike inputItem, Item outputItem, String idInput, Ingredient carrier, Consumer<FinishedRecipe> consumer) {
         for (int i = 1; i <= 9; i++) {
             ItemLike[] inputs = this.getItemsWithCount(inputItem, i);
             ItemStack output = new ItemStack(outputItem, i);
             String idOutput = this.getRecipeIdWithCount(outputItem, i);
             String id = String.format("%s_to_%s", idInput, idOutput);
-            PotRecipeBuilder.builder().addInput(inputs).setResult(output).setCarrier(carrier).save(consumer, id);
+            PotRecipeBuilder.builder().addInput((Object[]) inputs).setResult(output).setCarrier(carrier).save(consumer, id);
         }
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:crops/tomato"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:scramble_egg_with_tomatoes"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

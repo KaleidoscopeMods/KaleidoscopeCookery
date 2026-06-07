@@ -6,15 +6,11 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
-import com.google.common.collect.Lists;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems.STUFFED_DOUGH_FOOD;
@@ -26,189 +22,130 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE)
-                .setFinishedTexture(modLoc("stockpot/rice_finished"))
-                .setResult(ModItems.COOKED_RICE.get(), 3)
-                .setFinishedBubbleColor(0xE9E3DB).setTime(300)
-                .save(consumer, "rice_3");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE,
-                        TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE)
-                .setFinishedTexture(modLoc("stockpot/rice_finished"))
-                .setResult(ModItems.COOKED_RICE.get(), 4)
-                .setFinishedBubbleColor(0xE9E3DB).setTime(400)
-                .save(consumer, "rice_4");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE,
-                        TagCommon.SEEDS_RICE, TagCommon.SEEDS_RICE)
-                .setFinishedTexture(modLoc("stockpot/rice_finished"))
-                .setResult(ModItems.COOKED_RICE.get(), 5)
-                .setFinishedBubbleColor(0xE9E3DB).setTime(500)
-                .save(consumer, "rice_5");
+        addRiceRecipes(consumer);
+        addDumplingRecipes(consumer);
+        addShengjianMantouRecipes(consumer);
 
         StockpotRecipeBuilder.builder()
                 .addInput(Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE)
-                .setResult(ModItems.PORK_BONE_SOUP.get())
-                .save(consumer);
+                .setResult(ModItems.PORK_BONE_SOUP.get(), 1)
+                .save(consumer, "pork_bone_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON, TagCommon.RAW_FISHES_SALMON)
-                .addInput(Items.KELP, Items.BONE_MEAL)
-                .setResult(ModItems.SEAFOOD_MISO_SOUP.get())
-                .save(consumer, "seafood_miso_soup_salmon");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD)
-                .addInput(Items.KELP, Items.BONE_MEAL)
-                .setResult(ModItems.SEAFOOD_MISO_SOUP.get())
-                .save(consumer, "seafood_miso_soup_cod");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(Items.KELP, Items.BONE_MEAL)
-                .setSoupBase(ModSoupBases.SALMON_BUCKET)
+                .addInput(TagCommon.RAW_FISHES, TagCommon.RAW_FISHES,
+                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
                 .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
-                .save(consumer, "seafood_miso_soup_salmon_entity");
+                .save(consumer, "seafood_miso_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.KELP, Items.BONE_MEAL)
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
                 .setSoupBase(ModSoupBases.COD_BUCKET)
                 .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
                 .save(consumer, "seafood_miso_soup_cod_entity");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.ROTTEN_FLESH, Items.ROTTEN_FLESH,
-                        Items.ROTTEN_FLESH, Items.ROTTEN_FLESH)
-                .addInput(Items.SCULK, Items.SCULK, Items.SCULK)
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.SALMON_BUCKET)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup_salmon_entity");
+
+        StockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.TROPICAL_FISH_BUCKET)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup_tropical_entity");
+
+        StockpotRecipeBuilder.builder()
+                .addInput(Items.ROTTEN_FLESH, Items.ROTTEN_FLESH, Items.ROTTEN_FLESH, Items.ROTTEN_FLESH,
+                        Items.SCULK, Items.SCULK, Items.SCULK, Items.SCULK, Items.SCULK)
                 .setSoupBase(ModSoupBases.LAVA)
-                .addInput(Blocks.SCULK, Blocks.SCULK)
-                .setResult(ModItems.FEARSOME_THICK_SOUP.get())
-                .save(consumer);
+                .setResult(ModItems.FEARSOME_THICK_SOUP.get(), 1)
+                .save(consumer, "fearsome_thick_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.CARROT, Items.CARROT, Items.CARROT, Items.CARROT)
-                .addInput(TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON)
-                .setResult(ModItems.LAMB_AND_RADISH_SOUP.get())
-                .save(consumer);
+                .addInput(Items.CARROT, Items.CARROT, Items.CARROT, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON)
+                .setResult(ModItems.LAMB_AND_RADISH_SOUP.get(), 1)
+                .save(consumer, "lamb_and_radish_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.POTATO, Items.POTATO, Items.POTATO, Items.POTATO)
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF)
-                .setResult(ModItems.BRAISED_BEEF_WITH_POTATOES.get())
-                .save(consumer);
+                .addInput(Items.POTATO, Items.POTATO, Items.POTATO, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF)
+                .setResult(ModItems.BRAISED_BEEF_WITH_POTATOES.get(), 1)
+                .save(consumer, "braised_beef_with_potatoes");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.RABBIT, Items.RABBIT, Items.RABBIT)
-                .addInput(Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS)
-                .setResult(ModItems.WILD_MUSHROOM_RABBIT_SOUP.get())
-                .save(consumer);
+                .addInput(Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, Items.RABBIT, Items.RABBIT)
+                .setResult(ModItems.WILD_MUSHROOM_RABBIT_SOUP.get(), 1)
+                .save(consumer, "wild_mushroom_rabbit_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.PUFFERFISH, Items.PUFFERFISH, Items.PUFFERFISH,
-                        Items.SEAGRASS, Items.SEAGRASS)
-                .setResult(ModItems.PUFFERFISH_SOUP.get())
-                .save(consumer);
+                .addInput(Items.PUFFERFISH, Items.PUFFERFISH,
+                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
+                .setResult(ModItems.PUFFERFISH_SOUP.get(), 1)
+                .save(consumer, "pufferfish_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(Items.SEAGRASS, Items.SEAGRASS)
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
                 .setSoupBase(ModSoupBases.PUFFERFISH_BUCKET)
                 .setResult(ModItems.PUFFERFISH_SOUP.get(), 1)
                 .save(consumer, "pufferfish_soup_entity");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.CROPS_TOMATO,
-                        TagCommon.CROPS_TOMATO, TagCommon.CROPS_LETTUCE)
-                .setResult(ModItems.BORSCHT.get())
-                .save(consumer);
+                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
+                        TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO, TagCommon.CROPS_TOMATO)
+                .setResult(ModItems.BORSCHT.get(), 1)
+                .save(consumer, "borscht");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.CROPS_TOMATO)
-                .addInput(Items.BEETROOT, Items.BEETROOT)
-                .setResult(ModItems.BORSCHT.get())
-                .save(consumer, "borscht_beetroot");
+                .addInput(ModItems.RAW_MEATBALL, ModItems.RAW_MEATBALL,
+                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
+                .setResult(ModItems.BEEF_MEATBALL_SOUP.get(), 1)
+                .save(consumer, "beef_meatball_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
-                        TagCommon.RAW_BEEF, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
-                .setResult(ModItems.BEEF_MEATBALL_SOUP.get())
-                .save(consumer);
+                .addInput(TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
+                        Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS)
+                .setResult(ModItems.CHICKEN_AND_MUSHROOM_STEW.get(), 1)
+                .save(consumer, "chicken_and_mushroom_stew");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN,
-                        Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS,
-                        Tags.Items.MUSHROOMS, Tags.Items.MUSHROOMS)
-                .setResult(ModItems.CHICKEN_AND_MUSHROOM_STEW.get())
-                .save(consumer);
+                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
+                        ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
+                .setResult(ModItems.BEEF_NOODLE.get(), 1)
+                .save(consumer, "beef_noodle");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF)
-                .addInput(ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
-                .setResult(ModItems.BEEF_NOODLE.get())
-                .save(consumer);
+                .addInput(TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON,
+                        ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
+                .setResult(ModItems.HUI_NOODLE.get(), 1)
+                .save(consumer, "hui_noodle");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_MUTTON, TagCommon.RAW_MUTTON, ModItems.FRIED_EGG)
-                .addInput(Items.KELP, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
-                .setResult(ModItems.HUI_NOODLE.get())
-                .save(consumer, "hui_noodle_eggs");
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE,
+                        TagCommon.EGGS, TagCommon.EGGS,
+                        ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
+                .setResult(ModItems.UDON_NOODLE.get(), 1)
+                .save(consumer, "udon_noodle");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_FISHES_COD, TagCommon.RAW_FISHES_COD)
-                .addInput(TagCommon.EGGS, TagCommon.VEGETABLES, TagCommon.VEGETABLES)
-                .addInput(ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
-                .setResult(ModItems.UDON_NOODLE.get())
-                .save(consumer, "udon_noodle_eggs");
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE,
+                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE,
+                        TagCommon.FLOUR, TagCommon.FLOUR)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.DOUGH_DROP_SOUP), 1)
+                .save(consumer, "dough_drop_soup");
 
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.RAW_MEATS, TagCommon.RAW_MEATS)
-                .addInput(TagCommon.COOKED_EGGS, TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE, ModItems.RAW_NOODLES)
-                .setResult(ModItems.UDON_NOODLE.get())
-                .save(consumer, "udon_noodle_cooked_eggs");
-
-        {
-            List<Item> inputs = Lists.newArrayList();
-            for (int i = 0; i < 9; i++) {
-                int count = i + 1;
-                inputs.add(STUFFED_DOUGH_FOOD.get());
-                StockpotRecipeBuilder.builder()
-                        .addInput(inputs.toArray())
-                        .setResult(ModItems.DUMPLING.get(), count)
-                        .save(consumer, "dumpling_count_" + count);
-            }
-        }
-
-        StockpotRecipeBuilder.builder()
-                .addInput(STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get())
-                .setSoupBase(ModSoupBases.LAVA)
-                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SHENGJIAN_MANTOU), 1)
-                .save(consumer, "shengjian_mantou_count_1");
-
-        StockpotRecipeBuilder.builder()
-                .addInput(STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(),
-                        STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get(), STUFFED_DOUGH_FOOD.get())
-                .setSoupBase(ModSoupBases.LAVA)
-                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SHENGJIAN_MANTOU), 2)
-                .save(consumer, "shengjian_mantou_count_2");
-
-        // 四喜丸子汤: 4丸子+骨粉
-        StockpotRecipeBuilder.builder()
-                .addInput(ModItems.RAW_MEATBALL.get(), ModItems.RAW_MEATBALL.get(),
-                        ModItems.RAW_MEATBALL.get(), ModItems.RAW_MEATBALL.get(),
-                        Items.BONE_MEAL)
+                .addInput(ModItems.RAW_MEATBALL, ModItems.RAW_MEATBALL,
+                        ModItems.RAW_MEATBALL, ModItems.RAW_MEATBALL)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.FOUR_JOY_MEATBALL_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "four_joy_meatball_soup");
 
-        // 椒麻鸡: 2辣椒+3鸡肉，岩浆汤底
         StockpotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
                         TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN, TagCommon.RAW_CHICKEN)
                 .setSoupBase(ModSoupBases.LAVA)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.NUMBING_SPICY_CHICKEN), 1)
-                .save(consumer);
+                .save(consumer, "numbing_spicy_chicken");
 
-        // 毛血旺: 4猪肉+4辣椒+1烈焰粉，岩浆汤底
         StockpotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK, TagCommon.RAW_PORK,
                         TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER,
@@ -216,55 +153,217 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                         Items.BLAZE_POWDER)
                 .setSoupBase(ModSoupBases.LAVA)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SPICY_BLOOD_STEW), 1)
-                .save(consumer);
+                .save(consumer, "spicy_blood_stew");
 
-        // 棕色蘑菇瓦罐汤: 6棕色蘑菇
         StockpotRecipeBuilder.builder()
                 .addInput(Items.BROWN_MUSHROOM, Items.BROWN_MUSHROOM, Items.BROWN_MUSHROOM,
                         Items.BROWN_MUSHROOM, Items.BROWN_MUSHROOM, Items.BROWN_MUSHROOM)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.BROWN_MUSHROOM_POT_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "brown_mushroom_pot_soup");
 
-        // 红色蘑菇瓦罐汤: 6红色蘑菇
         StockpotRecipeBuilder.builder()
                 .addInput(Items.RED_MUSHROOM, Items.RED_MUSHROOM, Items.RED_MUSHROOM,
                         Items.RED_MUSHROOM, Items.RED_MUSHROOM, Items.RED_MUSHROOM)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.RED_MUSHROOM_POT_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "red_mushroom_pot_soup");
 
-        // 诡异菌瓦罐汤: 6诡异菌
         StockpotRecipeBuilder.builder()
                 .addInput(Items.WARPED_FUNGUS, Items.WARPED_FUNGUS, Items.WARPED_FUNGUS,
                         Items.WARPED_FUNGUS, Items.WARPED_FUNGUS, Items.WARPED_FUNGUS)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.WARPED_FUNGUS_POT_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "warped_fungus_pot_soup");
 
-        // 绯红菌瓦罐汤: 6绯红菌
         StockpotRecipeBuilder.builder()
                 .addInput(Items.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS,
                         Items.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS, Items.CRIMSON_FUNGUS)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.CRIMSON_FUNGUS_POT_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "crimson_fungus_pot_soup");
 
-        // 佛跳墙: 1鸡蛋、2幻翼膜、3干海带、2生菜
         StockpotRecipeBuilder.builder()
-                .addInput(TagCommon.EGGS,
+                .addInput(TagCommon.EGGS, TagCommon.EGGS,
                         Items.PHANTOM_MEMBRANE, Items.PHANTOM_MEMBRANE,
-                        Items.KELP, Items.KELP, Items.KELP,
+                        TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE,
                         TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE)
                 .setCarrier(Items.FLOWER_POT)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.BUDDHA_JUMPS_OVER_THE_WALL), 1)
-                .save(consumer);
+                .save(consumer, "buddha_jumps_over_the_wall");
 
         // 模糊配方
-        // 疙瘩汤: 生菜+面粉
         FlexStockpotRecipeBuilder.builder()
-                .addInput(TagCommon.FLOUR, TagCommon.CROPS_LETTUCE)
+                .addInput(Items.BONE)
+                .setResult(ModItems.PORK_BONE_SOUP.get(), 1)
+                .save(consumer, "pork_bone_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_FISHES, TagCommon.CROPS_LETTUCE)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.COD_BUCKET)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup_cod_entity");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.SALMON_BUCKET)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup_salmon_entity");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.TROPICAL_FISH_BUCKET)
+                .setResult(ModItems.SEAFOOD_MISO_SOUP.get(), 1)
+                .save(consumer, "seafood_miso_soup_tropical_entity");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.ROTTEN_FLESH, Items.SCULK)
+                .setSoupBase(ModSoupBases.LAVA)
+                .setResult(ModItems.FEARSOME_THICK_SOUP.get(), 1)
+                .save(consumer, "fearsome_thick_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_MUTTON, Items.CARROT)
+                .setResult(ModItems.LAMB_AND_RADISH_SOUP.get(), 1)
+                .save(consumer, "lamb_and_radish_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_BEEF, Items.POTATO)
+                .setResult(ModItems.BRAISED_BEEF_WITH_POTATOES.get(), 1)
+                .save(consumer, "braised_beef_with_potatoes");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.RABBIT, Tags.Items.MUSHROOMS)
+                .setResult(ModItems.WILD_MUSHROOM_RABBIT_SOUP.get(), 1)
+                .save(consumer, "wild_mushroom_rabbit_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.PUFFERFISH, TagCommon.CROPS_LETTUCE)
+                .setResult(ModItems.PUFFERFISH_SOUP.get(), 1)
+                .save(consumer, "pufferfish_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE)
+                .setSoupBase(ModSoupBases.PUFFERFISH_BUCKET)
+                .setResult(ModItems.PUFFERFISH_SOUP.get(), 1)
+                .save(consumer, "pufferfish_soup_entity");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_BEEF, TagCommon.CROPS_TOMATO)
+                .setResult(ModItems.BORSCHT.get(), 1)
+                .save(consumer, "borscht");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(ModItems.RAW_MEATBALL, TagCommon.CROPS_LETTUCE)
+                .setResult(ModItems.BEEF_MEATBALL_SOUP.get(), 1)
+                .save(consumer, "beef_meatball_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_CHICKEN, Tags.Items.MUSHROOMS)
+                .setResult(ModItems.CHICKEN_AND_MUSHROOM_STEW.get(), 1)
+                .save(consumer, "chicken_and_mushroom_stew");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_BEEF, ModItems.RAW_NOODLES)
+                .setResult(ModItems.BEEF_NOODLE.get(), 1)
+                .save(consumer, "beef_noodle");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_MUTTON, ModItems.RAW_NOODLES)
+                .setResult(ModItems.HUI_NOODLE.get(), 1)
+                .save(consumer, "hui_noodle");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.EGGS, ModItems.RAW_NOODLES)
+                .setResult(ModItems.UDON_NOODLE.get(), 1)
+                .save(consumer, "udon_noodle");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_LETTUCE, TagCommon.FLOUR)
                 .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.DOUGH_DROP_SOUP), 1)
-                .save(consumer);
+                .save(consumer, "dough_drop_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(ModItems.RAW_MEATBALL)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.FOUR_JOY_MEATBALL_SOUP), 1)
+                .save(consumer, "four_joy_meatball_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.RAW_CHICKEN)
+                .setSoupBase(ModSoupBases.LAVA)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.NUMBING_SPICY_CHICKEN), 1)
+                .save(consumer, "numbing_spicy_chicken");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.RAW_PORK, TagCommon.CROPS_CHILI_PEPPER, Items.BLAZE_POWDER)
+                .setSoupBase(ModSoupBases.LAVA)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SPICY_BLOOD_STEW), 1)
+                .save(consumer, "spicy_blood_stew");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.BROWN_MUSHROOM)
+                .setCarrier(Items.FLOWER_POT)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.BROWN_MUSHROOM_POT_SOUP), 1)
+                .save(consumer, "brown_mushroom_pot_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.RED_MUSHROOM)
+                .setCarrier(Items.FLOWER_POT)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.RED_MUSHROOM_POT_SOUP), 1)
+                .save(consumer, "red_mushroom_pot_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.WARPED_FUNGUS)
+                .setCarrier(Items.FLOWER_POT)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.WARPED_FUNGUS_POT_SOUP), 1)
+                .save(consumer, "warped_fungus_pot_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(Items.CRIMSON_FUNGUS)
+                .setCarrier(Items.FLOWER_POT)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.CRIMSON_FUNGUS_POT_SOUP), 1)
+                .save(consumer, "crimson_fungus_pot_soup");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.EGGS, Items.PHANTOM_MEMBRANE, TagCommon.CROPS_LETTUCE)
+                .setCarrier(Items.FLOWER_POT)
+                .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.BUDDHA_JUMPS_OVER_THE_WALL), 1)
+                .save(consumer, "buddha_jumps_over_the_wall");
+    }
+
+    private void addRiceRecipes(Consumer<FinishedRecipe> consumer) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(TagCommon.GRAIN_RICE, count))
+                    .setFinishedTexture(modLoc("stockpot/rice_finished"))
+                    .setResult(ModItems.COOKED_RICE.get(), count)
+                    .setFinishedBubbleColor(0xE9E3DB)
+                    .setTime(count * 100)
+                    .save(consumer, "rice_" + count);
+        }
+    }
+
+    private void addDumplingRecipes(Consumer<FinishedRecipe> consumer) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(STUFFED_DOUGH_FOOD.get(), count))
+                    .setResult(ModItems.DUMPLING.get(), count)
+                    .save(consumer, "dumpling_count_" + count);
+        }
+    }
+
+    private void addShengjianMantouRecipes(Consumer<FinishedRecipe> consumer) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(STUFFED_DOUGH_FOOD.get(), count))
+                    .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SHENGJIAN_MANTOU), count)
+                    .setSoupBase(ModSoupBases.LAVA)
+                    .save(consumer, "shengjian_mantou_count_" + count);
+        }
     }
 }

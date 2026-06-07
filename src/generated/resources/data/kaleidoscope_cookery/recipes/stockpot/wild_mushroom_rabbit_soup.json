@@ -9,29 +9,22 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
   "ingredients": [
     {
+      "tag": "forge:mushrooms"
+    },
+    {
+      "tag": "forge:mushrooms"
+    },
+    {
+      "tag": "forge:mushrooms"
+    },
+    {
       "item": "minecraft:rabbit"
     },
     {
       "item": "minecraft:rabbit"
-    },
-    {
-      "item": "minecraft:rabbit"
-    },
-    {
-      "tag": "forge:mushrooms"
-    },
-    {
-      "tag": "forge:mushrooms"
-    },
-    {
-      "tag": "forge:mushrooms"
-    },
-    {
-      "tag": "forge:mushrooms"
     }
   ],
   "result": {
-    "count": 3,
     "item": "kaleidoscope_cookery:wild_mushroom_rabbit_soup"
   },
   "soup_base": "minecraft:water",

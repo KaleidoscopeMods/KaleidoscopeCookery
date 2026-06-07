@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "tag": "forge:raw_mutton"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:blaze_lamb_chop"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

@@ -1,0 +1,19 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "carrier": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "tag": "forge:raw_pork"
+    },
+    {
+      "tag": "forge:crops/chilipepper"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:stir_fried_pork_with_peppers"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}
