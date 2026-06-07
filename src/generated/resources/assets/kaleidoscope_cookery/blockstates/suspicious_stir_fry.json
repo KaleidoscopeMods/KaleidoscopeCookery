@@ -1,32 +1,152 @@
 {
   "variants": {
-    "bites=0,facing=east": {
+    "bites=0,facing=east,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
       "y": 90
     },
-    "bites=0,facing=north": {
+    "bites=0,facing=east,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 90
+    },
+    "bites=0,facing=east,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 90
+    },
+    "bites=0,facing=east,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 90
+    },
+    "bites=0,facing=east,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 90
+    },
+    "bites=0,facing=north,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0"
     },
-    "bites=0,facing=south": {
+    "bites=0,facing=north,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0"
+    },
+    "bites=0,facing=north,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0"
+    },
+    "bites=0,facing=north,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0"
+    },
+    "bites=0,facing=north,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0"
+    },
+    "bites=0,facing=south,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
       "y": 180
     },
-    "bites=0,facing=west": {
+    "bites=0,facing=south,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 180
+    },
+    "bites=0,facing=south,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 180
+    },
+    "bites=0,facing=south,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 180
+    },
+    "bites=0,facing=south,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 180
+    },
+    "bites=0,facing=west,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
       "y": 270
     },
-    "bites=1,facing=east": {
+    "bites=0,facing=west,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 270
+    },
+    "bites=0,facing=west,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 270
+    },
+    "bites=0,facing=west,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 270
+    },
+    "bites=0,facing=west,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_0",
+      "y": 270
+    },
+    "bites=1,facing=east,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
       "y": 90
     },
-    "bites=1,facing=north": {
+    "bites=1,facing=east,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 90
+    },
+    "bites=1,facing=east,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 90
+    },
+    "bites=1,facing=east,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 90
+    },
+    "bites=1,facing=east,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 90
+    },
+    "bites=1,facing=north,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1"
     },
-    "bites=1,facing=south": {
+    "bites=1,facing=north,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1"
+    },
+    "bites=1,facing=north,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1"
+    },
+    "bites=1,facing=north,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1"
+    },
+    "bites=1,facing=north,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1"
+    },
+    "bites=1,facing=south,quality=0": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
       "y": 180
     },
-    "bites=1,facing=west": {
+    "bites=1,facing=south,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 180
+    },
+    "bites=1,facing=south,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 180
+    },
+    "bites=1,facing=south,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 180
+    },
+    "bites=1,facing=south,quality=4": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 180
+    },
+    "bites=1,facing=west,quality=0": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 270
+    },
+    "bites=1,facing=west,quality=1": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 270
+    },
+    "bites=1,facing=west,quality=2": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 270
+    },
+    "bites=1,facing=west,quality=3": {
+      "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
+      "y": 270
+    },
+    "bites=1,facing=west,quality=4": {
       "model": "kaleidoscope_cookery:block/food/suspicious_stir_fry/suspicious_stir_fry_1",
       "y": 270
     }

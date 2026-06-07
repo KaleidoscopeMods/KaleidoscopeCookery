@@ -53,7 +53,12 @@ public class FoodBiteThreeByThreeBlock extends FoodBiteBlock implements EntityBl
     public FoodBiteThreeByThreeBlock(FoodProperties foodProperties, int maxBites,
                                      @Nullable FoodBiteAnimateTicks.AnimateTick animateTick) {
         super(foodProperties, maxBites, animateTick);
-        this.registerDefaultState(this.stateDefinition.any().setValue(bites, 0).setValue(FACING, Direction.SOUTH).setValue(PART, NinePart.CENTER));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(bites, 0)
+                .setValue(FACING, Direction.SOUTH)
+                .setValue(PART, NinePart.CENTER)
+                .setValue(QUALITY, DEFAULT_QUALITY)
+        );
     }
 
     private static void handleRemove(Level world, BlockPos pos, BlockState state, @Nullable Player player) {
@@ -151,12 +156,12 @@ public class FoodBiteThreeByThreeBlock extends FoodBiteBlock implements EntityBl
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, PART);
+        pBuilder.add(FACING, QUALITY, PART);
     }
 
     @Override
     protected void createBitesBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(bites, FACING, PART);
+        builder.add(bites, FACING, QUALITY, PART);
     }
 
     @Nullable

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,8 +32,36 @@ public class QualityEvaluator {
             return Quality.POOR;
         }
 
+        // 如果种类数量为 1，那么仅依据投料数量进行判断
+        if (nonEmpty.size() == 1) {
+            return oneInputQuality(inputs, recipeId, worldSeed);
+        }
+
         var recipeVector = randomVector(nonEmpty, recipeId, worldSeed);
         return evalQuality(inputs, recipeVector);
+    }
+
+    private static @NotNull Quality oneInputQuality(List<ItemStack> inputs, ResourceLocation recipeId, long worldSeed) {
+        // 生成专属的种子
+        long recipeSeed = worldSeed * 31 + recipeId.hashCode();
+        Random random = new Random(recipeSeed);
+
+        int count = inputs.size();
+        if (count <= 1) {
+            return Quality.POOR;
+        }
+
+        int standard = 1 + random.nextInt(2);
+        if (count <= standard) {
+            return Quality.STANDARD;
+        }
+
+        int excellent = 2 + random.nextInt(2);
+        if (count <= excellent) {
+            return Quality.EXCELLENT;
+        }
+
+        return Quality.SUPERB;
     }
 
     /**
