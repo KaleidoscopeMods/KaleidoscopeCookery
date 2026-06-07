@@ -30,5 +30,10 @@ public class SteamerRecipeProvider extends ModRecipeProvider {
                 .setIngredient(Items.SLIME_BALL)
                 .setResult(ModItems.QINGTUAN.get())
                 .save(consumer);
+
+        SteamerBuilder.builder()
+                .setIngredient(ModItems.RAW_BAMBOO_TUBE_RICE.get())
+                .setResult(ModItems.BAMBOO_TUBE_RICE.get())
+                .save(consumer);
     }
 }

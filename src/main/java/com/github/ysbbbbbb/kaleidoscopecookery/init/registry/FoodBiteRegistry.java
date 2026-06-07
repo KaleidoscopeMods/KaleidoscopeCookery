@@ -90,9 +90,6 @@ public class FoodBiteRegistry {
         CHORUS_FRIED_EGG = registry.registerFoodData("chorus_fried_egg", FoodData
                 .create(3, CHORUS_FRIED_EGG_BLOCK, CHORUS_FRIED_EGG_ITEM));
 
-        GOLDEN_SALAD = registry.registerFoodData("golden_salad", FoodData
-                .create(6, GOLDEN_SALAD_BLOCK, GOLDEN_SALAD_ITEM));
-
         SPICY_CHICKEN = registry.registerFoodData("spicy_chicken", FoodData
                 .create(4, SPICY_CHICKEN_BLOCK, SPICY_CHICKEN_ITEM));
 
@@ -140,23 +137,11 @@ public class FoodBiteRegistry {
         CANDIED_POTATO = registry.registerFoodData("candied_potato", FoodData
                 .create(3, CANDIED_POTATO_BLOCK, CANDIED_POTATO_ITEM));
 
-        DOUGH_DROP_SOUP = registry.registerFoodData("dough_drop_soup", FoodData
-                .create(3, DOUGH_DROP_SOUP_BLOCK, DOUGH_DROP_SOUP_ITEM)
-                .bowlAABB());
-
         STUFFED_TIGER_SKIN_PEPPER = registry.registerFoodData("stuffed_tiger_skin_pepper", FoodData
                 .create(5, STUFFED_TIGER_SKIN_PEPPER_BLOCK, STUFFED_TIGER_SKIN_PEPPER_ITEM));
 
         SPICY_RABBIT_HEAD = registry.registerFoodData("spicy_rabbit_head", FoodData
                 .create(3, SPICY_RABBIT_HEAD_BLOCK, SPICY_RABBIT_HEAD_ITEM));
-
-        FOUR_JOY_MEATBALL_SOUP = registry.registerFoodData("four_joy_meatball_soup", FoodData
-                .create(4, FOUR_JOY_MEATBALL_SOUP_BLOCK, FOUR_JOY_MEATBALL_SOUP_ITEM)
-                .bowlAABB());
-
-        NUMBING_SPICY_CHICKEN = registry.registerFoodData("numbing_spicy_chicken", FoodData
-                .create(3, NUMBING_SPICY_CHICKEN_BLOCK, NUMBING_SPICY_CHICKEN_ITEM)
-                .bowlAABB());
 
         FRIED_CATERPILLAR = registry.registerFoodData("fried_caterpillar", FoodData
                 .create(3, FRIED_CATERPILLAR_BLOCK, FRIED_CATERPILLAR_ITEM)
@@ -164,10 +149,6 @@ public class FoodBiteRegistry {
 
         FRIED_SPRING_ROLL = registry.registerFoodData("fried_spring_roll", FoodData
                 .create(3, FRIED_SPRING_ROLL_BLOCK, FRIED_SPRING_ROLL_ITEM));
-
-        SPICY_BLOOD_STEW = registry.registerFoodData("spicy_blood_stew", FoodData
-                .create(3, SPICY_BLOOD_STEW_BLOCK, SPICY_BLOOD_STEW_ITEM)
-                .bowlAABB());
 
         // ========================== 1x2 食物 ==========================
 
@@ -181,6 +162,24 @@ public class FoodBiteRegistry {
         OIL_SPLASHED_FISH = registry.registerFoodData("oil_splashed_fish", FoodData
                 .createOneByTwo(5, OIL_SPLASHED_FISH_BLOCK, OIL_SPLASHED_FISH_ITEM)
                 .addLootItems(Items.BONE_MEAL));
+
+        // ========================== 汤食类 ==========================
+
+        DOUGH_DROP_SOUP = registry.registerFoodData("dough_drop_soup", FoodData
+                .create(3, DOUGH_DROP_SOUP_BLOCK, DOUGH_DROP_SOUP_ITEM)
+                .bowlAABB());
+
+        FOUR_JOY_MEATBALL_SOUP = registry.registerFoodData("four_joy_meatball_soup", FoodData
+                .create(4, FOUR_JOY_MEATBALL_SOUP_BLOCK, FOUR_JOY_MEATBALL_SOUP_ITEM)
+                .bowlAABB());
+
+        NUMBING_SPICY_CHICKEN = registry.registerFoodData("numbing_spicy_chicken", FoodData
+                .create(3, NUMBING_SPICY_CHICKEN_BLOCK, NUMBING_SPICY_CHICKEN_ITEM)
+                .bowlAABB());
+
+        SPICY_BLOOD_STEW = registry.registerFoodData("spicy_blood_stew", FoodData
+                .create(3, SPICY_BLOOD_STEW_BLOCK, SPICY_BLOOD_STEW_ITEM)
+                .bowlAABB());
 
         // ========================== 瓦罐汤 ==========================
 
@@ -213,6 +212,10 @@ public class FoodBiteRegistry {
                 .setLootItem(Items.FLOWER_POT)
                 .soupPotAABB()
                 .potSoupAnimateTick());
+
+        //  ========================== 其他 ==========================
+        GOLDEN_SALAD = registry.registerFoodData("golden_salad", FoodData
+                .create(6, GOLDEN_SALAD_BLOCK, GOLDEN_SALAD_ITEM));
     }
 
     public ResourceLocation registerFoodData(ResourceLocation foodName, FoodData data) {

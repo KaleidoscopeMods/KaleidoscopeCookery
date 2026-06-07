@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
@@ -157,6 +158,8 @@ public class BlockStateGenerator extends BlockStateProvider {
                 addTeacupBlock(block, key);
             }
         });
+
+        addStackableFoodBlock(ModBlocks.BAMBOO_TUBE_RICE.get(), modLoc("bamboo_tube_rice"));
 
         horizontalBlock(ModBlocks.FRUIT_BASKET.get(), new ModelFile.UncheckedModelFile(modLoc("block/fruit_basket")));
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
@@ -380,6 +383,17 @@ public class BlockStateGenerator extends BlockStateProvider {
             } else {
                 model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_right_%d".formatted(id.getPath(), id.getPath(), bites));
             }
+            return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    public void addStackableFoodBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof StackableFoodBlock stackableFoodBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of StackableFoodBlock");
+            }
+            int count = blockState.getValue(stackableFoodBlock.getCountProperty());
+            ResourceLocation model = new ResourceLocation(id.getNamespace(), "block/food/%s/%s_%d".formatted(id.getPath(), id.getPath(), count));
             return new ModelFile.UncheckedModelFile(model);
         });
     }

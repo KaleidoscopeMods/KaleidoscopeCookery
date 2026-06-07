@@ -1,0 +1,17 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:beef"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:cooked_beef"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

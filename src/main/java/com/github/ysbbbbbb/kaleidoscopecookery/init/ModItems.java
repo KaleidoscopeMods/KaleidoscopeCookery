@@ -118,14 +118,15 @@ public final class ModItems {
     public static RegistryObject<Item> RAW_DOUGH = ITEMS.register("raw_dough", RawDoughItem::new);
     public static RegistryObject<Item> RAW_NOODLES = ITEMS.register("raw_noodles", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> STUFFED_DOUGH_FOOD = ITEMS.register("stuffed_dough_food", () -> new Item(new Item.Properties()));
-    public static RegistryObject<Item> RAW_ZONGZI = ITEMS.register("raw_zongzi", () -> new WithTooltipsItem(new Item.Properties(), "raw_zongzi"));
+    public static RegistryObject<Item> RAW_ZONGZI = ITEMS.register("raw_zongzi", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> RAW_BAMBOO_TUBE_RICE = ITEMS.register("raw_bamboo_tube_rice", () -> new Item(new Item.Properties()));
 
     // 基础食物
     public static RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFoods.FRIED_EGG)));
     public static RegistryObject<Item> DONKEY_BURGER = ITEMS.register("donkey_burger", () -> new FoodWithEffectsItem(ModFoods.DONKEY_BURGER));
     public static RegistryObject<Item> BAOZI = ITEMS.register("baozi", () -> new FoodWithEffectsItem(ModFoods.BAOZI));
     public static RegistryObject<Item> SHENGJIAN_MANTOU = ITEMS.register("shengjian_mantou", () -> new FoodWithEffectsItem(ModFoods.SHENGJIAN_MANTOU_ITEM));
-    public static RegistryObject<Item> DUMPLING = ITEMS.register("dumpling", () -> new BowlFoodOnlyItem(ModFoods.DUMPLING));
+    public static RegistryObject<Item> DUMPLING = ITEMS.register("dumpling", () -> new Item(new Item.Properties().food(ModFoods.DUMPLING)));
     public static RegistryObject<Item> SAMSA = ITEMS.register("samsa", () -> new FoodWithEffectsItem(ModFoods.SAMSA));
     public static RegistryObject<Item> MANTOU = ITEMS.register("mantou", () -> new FoodWithEffectsItem(ModFoods.MANTOU));
     public static RegistryObject<Item> MEAT_PIE = ITEMS.register("meat_pie", () -> new FoodWithEffectsItem(ModFoods.MEAT_PIE));
@@ -133,6 +134,7 @@ public final class ModItems {
     public static RegistryObject<Item> STICKY_CANDY = ITEMS.register("sticky_candy", () -> new FoodWithEffectsItem(ModFoods.STICKY_CANDY));
     public static RegistryObject<Item> STICKY_RICE_CAKE = ITEMS.register("sticky_rice_cake", () -> new FoodWithEffectsItem(ModFoods.STICKY_RICE_CAKE));
     public static RegistryObject<Item> ZONGZI = ITEMS.register("zongzi", () -> new FoodWithEffectsItem(ModFoods.ZONGZI));
+    public static RegistryObject<Item> BAMBOO_TUBE_RICE = ITEMS.register("bamboo_tube_rice", () -> new BambooTubeRiceBlockItem(ModBlocks.BAMBOO_TUBE_RICE.get(), ModFoods.BAMBOO_TUBE_RICE));
 
     // 小碗菜和盖饭
     public static RegistryObject<Item> COOKED_RICE = ITEMS.register("cooked_rice", () -> new BowlFoodOnlyItem(ModFoods.COOKED_RICE));
@@ -159,11 +161,13 @@ public final class ModItems {
     public static RegistryObject<Item> BORSCHT = ITEMS.register("borscht", () -> new BowlFoodOnlyItem(ModFoods.BORSCHT));
     public static RegistryObject<Item> BEEF_MEATBALL_SOUP = ITEMS.register("beef_meatball_soup", () -> new BowlFoodOnlyItem(ModFoods.BEEF_MEATBALL_SOUP));
     public static RegistryObject<Item> CHICKEN_AND_MUSHROOM_STEW = ITEMS.register("chicken_and_mushroom_stew", () -> new BowlFoodOnlyItem(ModFoods.CHICKEN_AND_MUSHROOM_STEW));
+    public static RegistryObject<Item> LABA_CONGEE = ITEMS.register("laba_congee", () -> new BowlFoodOnlyItem(ModFoods.LABA_CONGEE));
 
     // 面条类
     public static RegistryObject<Item> BEEF_NOODLE = ITEMS.register("beef_noodle", () -> new BowlFoodOnlyItem(ModFoods.BEEF_NOODLE));
     public static RegistryObject<Item> HUI_NOODLE = ITEMS.register("hui_noodle", () -> new BowlFoodOnlyItem(ModFoods.HUI_NOODLE));
     public static RegistryObject<Item> UDON_NOODLE = ITEMS.register("udon_noodle", () -> new BowlFoodOnlyItem(ModFoods.UDON_NOODLE));
+    public static RegistryObject<Item> HOT_DRY_NOODLES = ITEMS.register("hot_dry_noodles", () -> new BowlFoodOnlyItem(ModFoods.HOT_DRY_NOODLES));
 
     // 生肉类
     public static RegistryObject<Item> SASHIMI = ITEMS.register("sashimi", () -> new Item(new Item.Properties().food(ModFoods.SASHIMI)));

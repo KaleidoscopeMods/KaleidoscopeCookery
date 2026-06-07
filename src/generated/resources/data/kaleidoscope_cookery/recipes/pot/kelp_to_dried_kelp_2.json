@@ -1,0 +1,17 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:kelp"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:dried_kelp"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

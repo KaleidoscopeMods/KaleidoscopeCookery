@@ -149,6 +149,15 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(REGENERATION, 20 * 20), 1.0F)
             .alwaysEat().build();
 
+    // 竹筒饭
+    FoodProperties RAW_BAMBOO_TUBE_RICE = (new FoodProperties.Builder())
+            .nutrition(10).saturationMod(0.5F)
+            .alwaysEat().build();
+
+    FoodProperties BAMBOO_TUBE_RICE = (new FoodProperties.Builder())
+            .nutrition(10).saturationMod(0.5F)
+            .alwaysEat().build();
+
     // 牛肉面
     FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)
@@ -165,6 +174,18 @@ public interface ModFoods {
     FoodProperties UDON_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)
             .effect(() -> new MobEffectInstance(VITALITY.get(), 8 * 60 * 20), 1.0F)
+            .alwaysEat().build();
+
+    // 热干面
+    FoodProperties HOT_DRY_NOODLES = (new FoodProperties.Builder())
+            .nutrition(14).saturationMod(0.643f)
+            .effect(() -> new MobEffectInstance(VITALITY.get(), 8 * 60 * 20), 1.0F)
+            .alwaysEat().build();
+
+    // 腊八粥
+    FoodProperties LABA_CONGEE = (new FoodProperties.Builder())
+            .nutrition(12).saturationMod(0.5F)
+            .effect(() -> new MobEffectInstance(WARMTH.get(), 5 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     // 煎蛋

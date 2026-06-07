@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder.PotRecipeBuilder;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -14,6 +13,8 @@ import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Consumer;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems.*;
+
 public class SimplePotRecipeProvider extends ModRecipeProvider {
     public SimplePotRecipeProvider(PackOutput output) {
         super(output);
@@ -21,20 +22,29 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        PotRecipeBuilder.builder().addInput(Items.POTATO).setResult(Items.BAKED_POTATO).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.KELP).setResult(Items.DRIED_KELP).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.CHORUS_FRUIT).setResult(Items.POPPED_CHORUS_FRUIT).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.BEEF).setResult(Items.COOKED_BEEF).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.CHICKEN).setResult(Items.COOKED_CHICKEN).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.COD).setResult(Items.COOKED_COD).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.SALMON).setResult(Items.COOKED_SALMON).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.MUTTON).setResult(Items.COOKED_MUTTON).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.PORKCHOP).setResult(Items.COOKED_PORKCHOP).save(consumer);
-        PotRecipeBuilder.builder().addInput(Items.RABBIT).setResult(Items.COOKED_RABBIT).save(consumer);
+        addSingleItemRecipe(Items.POTATO, Items.BAKED_POTATO, "potato", consumer);
+        addSingleItemRecipe(Items.KELP, Items.DRIED_KELP, "kelp", consumer);
+        addSingleItemRecipe(Items.CHORUS_FRUIT, Items.POPPED_CHORUS_FRUIT, "chorus_fruit", consumer);
 
-        addSingleItemRecipe(TagCommon.EGGS, ModItems.FRIED_EGG.get(), "egg", consumer);
-        addSingleItemRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.MEAT_PIE.get(), "stuffed_dough_food", consumer);
-        addSingleItemRecipe(ModItems.COOKED_RICE.get(), ModItems.STICKY_RICE_CAKE.get(), "cooked_rice", consumer);
+        addSingleItemRecipe(TagCommon.EGGS, FRIED_EGG.get(), "egg", consumer);
+
+        addSingleItemRecipe(Items.BEEF, Items.COOKED_BEEF, "beef", consumer);
+        addSingleItemRecipe(Items.CHICKEN, Items.COOKED_CHICKEN, "chicken", consumer);
+        addSingleItemRecipe(Items.COD, Items.COOKED_COD, "cod", consumer);
+        addSingleItemRecipe(Items.SALMON, Items.COOKED_SALMON, "salmon", consumer);
+        addSingleItemRecipe(Items.MUTTON, Items.COOKED_MUTTON, "mutton", consumer);
+        addSingleItemRecipe(Items.PORKCHOP, Items.COOKED_PORKCHOP, "porkchop", consumer);
+        addSingleItemRecipe(Items.RABBIT, Items.COOKED_RABBIT, "rabbit", consumer);
+
+        addSingleItemRecipe(RAW_LAMB_CHOPS.get(), COOKED_LAMB_CHOPS.get(), "raw_lamb_chops", consumer);
+        addSingleItemRecipe(RAW_COW_OFFAL.get(), COOKED_COW_OFFAL.get(), "raw_cow_offal", consumer);
+        addSingleItemRecipe(RAW_PORK_BELLY.get(), COOKED_PORK_BELLY.get(), "raw_pork_belly", consumer);
+        addSingleItemRecipe(RAW_CUT_SMALL_MEATS.get(), COOKED_CUT_SMALL_MEATS.get(), "raw_cut_small_meats", consumer);
+
+        addSingleItemRecipe(RAW_MEATBALL.get(), COOKED_MEATBALL.get(), "raw_meatball", consumer);
+        addSingleItemRecipe(STUFFED_DOUGH_FOOD.get(), MEAT_PIE.get(), "stuffed_dough_food", consumer);
+
+        addSingleItemRecipe(COOKED_RICE.get(), STICKY_RICE_CAKE.get(), "cooked_rice", consumer);
     }
 
     public void addSingleItemRecipe(TagKey<Item> inputItem, Item outputItem, String idInput, Consumer<FinishedRecipe> consumer) {

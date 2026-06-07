@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:steamer",
+  "cook_tick": 1200,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:raw_bamboo_tube_rice"
+  },
+  "result": {
+    "item": "kaleidoscope_cookery:bamboo_tube_rice"
+  }
+}

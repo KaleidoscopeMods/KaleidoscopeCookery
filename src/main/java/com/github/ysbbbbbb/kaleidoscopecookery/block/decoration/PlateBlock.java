@@ -101,7 +101,7 @@ public class PlateBlock extends HorizontalDirectionalBlock {
             if (itemInHand.isEmpty()) {
                 stacks.forEach(s -> ItemHandlerHelper.giveItemToPlayer(player, s));
             } else {
-                stacks.forEach(s -> Block.popResource(level, pos, s));
+                stacks.forEach(s -> Block.popResourceFromFace(level, pos, Direction.UP, s));
             }
             level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.setBlockAndUpdate(pos, state.setValue(servings, count - 1));

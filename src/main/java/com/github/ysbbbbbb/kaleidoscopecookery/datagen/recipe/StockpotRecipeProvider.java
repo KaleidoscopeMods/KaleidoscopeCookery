@@ -109,6 +109,13 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "chicken_and_mushroom_stew");
 
         StockpotRecipeBuilder.builder()
+                .addInput(Tags.Items.SEEDS, Tags.Items.SEEDS, Tags.Items.SEEDS,
+                        Tags.Items.SEEDS, Tags.Items.SEEDS, Tags.Items.SEEDS,
+                        Items.SUGAR, Items.SUGAR, Items.SUGAR)
+                .setResult(ModItems.LABA_CONGEE.get(), 1)
+                .save(consumer, "laba_congee");
+
+        StockpotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF, TagCommon.RAW_BEEF,
                         ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
                 .setResult(ModItems.BEEF_NOODLE.get(), 1)
@@ -126,6 +133,13 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                         ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES)
                 .setResult(ModItems.UDON_NOODLE.get(), 1)
                 .save(consumer, "udon_noodle");
+
+        StockpotRecipeBuilder.builder()
+                .addInput(ModItems.RAW_NOODLES, ModItems.RAW_NOODLES, ModItems.RAW_NOODLES,
+                        TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER, TagCommon.CROPS_CHILI_PEPPER)
+                .setSoupBase(ModSoupBases.LAVA)
+                .setResult(ModItems.HOT_DRY_NOODLES.get(), 1)
+                .save(consumer, "hot_dry_noodles");
 
         StockpotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_LETTUCE, TagCommon.CROPS_LETTUCE,
@@ -270,6 +284,11 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "chicken_and_mushroom_stew");
 
         FlexStockpotRecipeBuilder.builder()
+                .addInput(Tags.Items.SEEDS, Items.SUGAR)
+                .setResult(ModItems.LABA_CONGEE.get(), 1)
+                .save(consumer, "laba_congee");
+
+        FlexStockpotRecipeBuilder.builder()
                 .addInput(TagCommon.RAW_BEEF, ModItems.RAW_NOODLES)
                 .setResult(ModItems.BEEF_NOODLE.get(), 1)
                 .save(consumer, "beef_noodle");
@@ -283,6 +302,12 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.CROPS_LETTUCE, TagCommon.EGGS, ModItems.RAW_NOODLES)
                 .setResult(ModItems.UDON_NOODLE.get(), 1)
                 .save(consumer, "udon_noodle");
+
+        FlexStockpotRecipeBuilder.builder()
+                .addInput(TagCommon.CROPS_CHILI_PEPPER, ModItems.RAW_NOODLES)
+                .setSoupBase(ModSoupBases.LAVA)
+                .setResult(ModItems.HOT_DRY_NOODLES.get(), 1)
+                .save(consumer, "hot_dry_noodles");
 
         FlexStockpotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_LETTUCE, TagCommon.FLOUR)

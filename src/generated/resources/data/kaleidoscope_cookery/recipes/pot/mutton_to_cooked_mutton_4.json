@@ -1,0 +1,23 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "minecraft:mutton"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "minecraft:cooked_mutton"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

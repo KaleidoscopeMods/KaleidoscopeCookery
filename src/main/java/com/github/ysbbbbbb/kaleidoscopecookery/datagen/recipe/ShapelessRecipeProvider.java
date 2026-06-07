@@ -32,6 +32,13 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_lily_pad", has(Items.LILY_PAD))
                 .save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.RAW_BAMBOO_TUBE_RICE.get(), 1)
+                .requires(Items.BAMBOO)
+                .requires(TagCommon.GRAIN_RICE)
+                .requires(TagCommon.RAW_MEATS)
+                .unlockedBy("has_bamboo", has(Items.BAMBOO))
+                .save(consumer);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.RICE_PANICLE.get(), 9)
                 .requires(ModItems.STRAW_BLOCK.get())
                 .unlockedBy("has_rice_panicle", has(ModItems.RICE_PANICLE.get()))

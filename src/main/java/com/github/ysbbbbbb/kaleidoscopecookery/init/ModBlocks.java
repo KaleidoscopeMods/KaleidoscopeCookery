@@ -5,10 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.BaseCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.ChiliCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.LettuceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.ChairBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.CookStoolBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.FruitBasketBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
@@ -19,6 +16,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -94,6 +92,19 @@ public class ModBlocks {
     public static RegistryObject<Block> COLD_CUT_HAM_SLICES = BLOCKS.register("cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
+
+    public static RegistryObject<Block> BAMBOO_TUBE_RICE = BLOCKS.register("bamboo_tube_rice", StackableFoodBlock.create()
+            .maxCount(4)
+            .item(() -> ModItems.BAMBOO_TUBE_RICE.get())
+            .shapes(
+                    Block.box(4, 0, 4, 12, 10, 12),
+                    Block.box(0, 0, 4, 16, 10, 12),
+                    Shapes.or(
+                            Block.box(0, 0, 8, 16, 10, 16),
+                            Block.box(4, 0, 0, 12, 10, 16)
+                    ),
+                    Block.box(0, 0, 0, 16, 10, 16)
+            ).build());
 
     public static RegistryObject<BlockEntityType<PotBlockEntity>> POT_BE = BLOCK_ENTITIES.register("pot",
             () -> BlockEntityType.Builder.of(PotBlockEntity::new, POT.get()).build(null));

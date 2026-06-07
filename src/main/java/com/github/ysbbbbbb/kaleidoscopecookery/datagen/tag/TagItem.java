@@ -150,6 +150,7 @@ public class TagItem extends ItemTagsProvider {
                 ModItems.WILD_RICE_SEED.get(),
                 ModItems.RICE_SEED.get()
         );
+        tag(Tags.Items.EGGS).add(ModItems.FRIED_EGG.get());
 
         // 社区兼容
         tag(TagCommon.CROPS_CHILI_PEPPER).add(ModItems.RED_CHILI.get(), ModItems.GREEN_CHILI.get());
