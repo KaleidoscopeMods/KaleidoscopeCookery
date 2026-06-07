@@ -1,14 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "kaleidoscope_cookery:rice_bowl",
   "category": "misc",
-  "ingredients": [
-    {
-      "item": "kaleidoscope_cookery:stir_fried_pork_with_peppers"
-    },
-    {
-      "tag": "forge:cooked_rice"
-    }
-  ],
+  "ingredient": {
+    "item": "kaleidoscope_cookery:stir_fried_pork_with_peppers"
+  },
   "result": {
     "item": "kaleidoscope_cookery:stir_fried_pork_with_peppers_rice_bowl"
   }

@@ -28,6 +28,7 @@ public class ModRecipes {
     public static RegistryObject<RecipeSerializer<?>> MILLSTONE_SERIALIZER = RECIPE_SERIALIZERS.register("millstone", MillstoneRecipeSerializer::new);
     public static RegistryObject<RecipeSerializer<?>> STEAMER_SERIALIZER = RECIPE_SERIALIZERS.register("steamer", SteamerRecipeSerializer::new);
     public static RegistryObject<RecipeSerializer<?>> TEAPOT_SERIALIZER = RECIPE_SERIALIZERS.register("teapot", TeapotRecipeSerializer::new);
+    public static RegistryObject<RecipeSerializer<?>> RICE_BOWL_SERIALIZER = RECIPE_SERIALIZERS.register("rice_bowl", RiceBowlRecipeSerializer::new);
 
     public static RecipeType<PotRecipe> POT_RECIPE;
     public static RecipeType<FlexPotRecipe> FLEX_POT_RECIPE;

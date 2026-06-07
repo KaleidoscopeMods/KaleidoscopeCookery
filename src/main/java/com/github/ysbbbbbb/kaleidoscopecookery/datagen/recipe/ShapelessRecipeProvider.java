@@ -182,10 +182,6 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
     }
 
     private void addRiceBowlRecipe(Consumer<FinishedRecipe> consumer, ItemLike dish, Item result, String id) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, result, 1)
-                .requires(dish)
-                .requires(TagCommon.COOKED_RICE)
-                .unlockedBy("has_cooked_rice", has(TagCommon.COOKED_RICE))
-                .save(consumer, modLoc(id));
+        consumer.accept(new RiceBowlFinishedRecipe(modLoc(id), dish, result));
     }
 }
