@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.decoration;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -87,6 +88,7 @@ public class PlateBlock extends HorizontalDirectionalBlock {
         if (!itemInHand.isEmpty()) {
             if (count < maxCount && canRefill(itemInHand)) {
                 itemInHand.shrink(1);
+                level.playSound(player, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.setBlockAndUpdate(pos, state.cycle(servings));
                 return InteractionResult.SUCCESS;
             }
@@ -101,7 +103,7 @@ public class PlateBlock extends HorizontalDirectionalBlock {
             } else {
                 stacks.forEach(s -> Block.popResource(level, pos, s));
             }
-            level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.setBlockAndUpdate(pos, state.setValue(servings, count - 1));
         } else {
             level.destroyBlock(pos, true, player);

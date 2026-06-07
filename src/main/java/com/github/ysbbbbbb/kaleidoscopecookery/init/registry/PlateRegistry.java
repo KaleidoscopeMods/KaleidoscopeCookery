@@ -22,6 +22,7 @@ import java.util.function.Supplier;
 public class PlateRegistry {
     public static final Map<ResourceLocation, PlateData> PLATE_DATA_MAP = Maps.newLinkedHashMap();
 
+    public static ResourceLocation SHENGJIAN_MANTOU_PLATE;
     public static ResourceLocation BAOZI_PLATE;
     public static ResourceLocation QINGTUAN_PLATE;
     public static ResourceLocation STICKY_CANDY_PLATE;
@@ -35,6 +36,11 @@ public class PlateRegistry {
 
     public static void init() {
         PlateRegistry registry = new PlateRegistry();
+
+        SHENGJIAN_MANTOU_PLATE = registry.registerPlateData("shengjian_mantou_plate", PlateData.create(5)
+                .setServingItems(ModItems.SHENGJIAN_MANTOU)
+                .setLootItem(Items.BOWL)
+        );
 
         BAOZI_PLATE = registry.registerPlateData("baozi_plate", PlateData.create(5)
                 .setServingItems(ModItems.BAOZI)
