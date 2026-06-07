@@ -61,7 +61,7 @@ public class EmiStockpotRecipe extends BasicEmiRecipe {
     private static void registerRecipe(EmiRegistry registry, StockpotRecipe r) {
         List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
         List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
-        List<EmiIngredient> catalysts = List.of(EmiIngredient.of(r.carrier()));
+        List<EmiIngredient> catalysts = r.carrier().isEmpty() ? List.of() : List.of(EmiIngredient.of(r.carrier()));
         ISoupBase soupBase = SoupBaseManager.getSoupBase(r.soupBase());
         if (soupBase == null) {
             throw new RuntimeException("No soup found for " + r.soupBase());

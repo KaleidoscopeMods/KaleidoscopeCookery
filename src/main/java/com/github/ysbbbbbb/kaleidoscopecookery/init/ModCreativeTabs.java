@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -134,6 +135,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.MANTOU.get());
                 output.accept(ModItems.QINGTUAN.get());
                 output.accept(ModItems.BAOZI.get());
+                output.accept(ModItems.SHENGJIAN_MANTOU.get());
                 output.accept(ModItems.SAMSA.get());
                 output.accept(ModItems.MEAT_PIE.get());
                 output.accept(ModItems.DUMPLING.get());
@@ -172,14 +174,18 @@ public class ModCreativeTabs {
 
                 // 硬菜
                 FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
+                    if (isMovedAfterColdCutHam(foodName)) {
+                        return;
+                    }
                     // 棕色蘑菇汤之前加入厚切火腿片
                     if (foodName.equals(FoodBiteRegistry.BROWN_MUSHROOM_POT_SOUP)) {
                         output.accept(ModItems.COLD_CUT_HAM_SLICES.get());
+                        acceptFoodBite(output, FoodBiteRegistry.DOUGH_DROP_SOUP);
+                        acceptFoodBite(output, FoodBiteRegistry.FOUR_JOY_MEATBALL_SOUP);
+                        acceptFoodBite(output, FoodBiteRegistry.NUMBING_SPICY_CHICKEN);
+                        acceptFoodBite(output, FoodBiteRegistry.SPICY_BLOOD_STEW);
                     }
-                    var foodItem = ForgeRegistries.ITEMS.getValue(foodName);
-                    if (foodItem != null) {
-                        output.accept(foodItem);
-                    }
+                    acceptFoodBite(output, foodName);
                 });
 
                 // 盘装食物
@@ -199,4 +205,18 @@ public class ModCreativeTabs {
                     }
                 });
             }).build());
+
+    private static boolean isMovedAfterColdCutHam(ResourceLocation foodName) {
+        return foodName.equals(FoodBiteRegistry.DOUGH_DROP_SOUP)
+               || foodName.equals(FoodBiteRegistry.FOUR_JOY_MEATBALL_SOUP)
+               || foodName.equals(FoodBiteRegistry.NUMBING_SPICY_CHICKEN)
+               || foodName.equals(FoodBiteRegistry.SPICY_BLOOD_STEW);
+    }
+
+    private static void acceptFoodBite(CreativeModeTab.Output output, ResourceLocation foodName) {
+        var foodItem = ForgeRegistries.ITEMS.getValue(foodName);
+        if (foodItem != null) {
+            output.accept(foodItem);
+        }
+    }
 }

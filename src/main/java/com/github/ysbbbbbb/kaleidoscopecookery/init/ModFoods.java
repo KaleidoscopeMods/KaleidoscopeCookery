@@ -152,19 +152,19 @@ public interface ModFoods {
     // 牛肉面
     FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH.get(), 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY.get(), 8 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     // 烩面
     FoodProperties HUI_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH.get(), 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY.get(), 8 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     // 乌冬面
     FoodProperties UDON_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationMod(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH.get(), 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY.get(), 8 * 60 * 20), 1.0F)
             .alwaysEat().build();
 
     // 煎蛋

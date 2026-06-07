@@ -353,6 +353,7 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
             StockpotRecipeBuilder.builder()
                     .addInput((Object[]) this.getItemsWithCount(STUFFED_DOUGH_FOOD.get(), count))
                     .setResult(ModItems.DUMPLING.get(), count)
+                    .setEmptyCarrier()
                     .save(consumer, "dumpling_count_" + count);
         }
     }
@@ -361,8 +362,9 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
         for (int count = 1; count <= 9; count++) {
             StockpotRecipeBuilder.builder()
                     .addInput((Object[]) this.getItemsWithCount(STUFFED_DOUGH_FOOD.get(), count))
-                    .setResult(FoodBiteRegistry.getItem(FoodBiteRegistry.SHENGJIAN_MANTOU), count)
+                    .setResult(ModItems.SHENGJIAN_MANTOU.get(), count)
                     .setSoupBase(ModSoupBases.LAVA)
+                    .setEmptyCarrier()
                     .save(consumer, "shengjian_mantou_count_" + count);
         }
     }

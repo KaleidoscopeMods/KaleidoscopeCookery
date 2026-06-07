@@ -71,7 +71,7 @@
   "block.kaleidoscope_cookery.shawarma_spit": "샤와르마 꼬챙이",
   "block.kaleidoscope_cookery.millstone": "맷돌",
   "block.kaleidoscope_cookery.oil_pot": "기름 주전자",
-  "block.kaleidoscope_cookery.shengjian_mantou": "물만두",
+  "item.kaleidoscope_cookery.shengjian_mantou": "물만두",
   "block.kaleidoscope_cookery.recipe_block": "레시피",
   "block.kaleidoscope_cookery.recipe_block.has_record": "레시피：%s，%s에 사용",
   "block.kaleidoscope_cookery.steamer": "찜기",

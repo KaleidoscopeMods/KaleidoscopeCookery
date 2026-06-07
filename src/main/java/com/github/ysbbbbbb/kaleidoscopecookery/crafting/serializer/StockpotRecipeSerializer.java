@@ -59,7 +59,9 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         int time = GsonHelper.getAsInt(json, "time", DEFAULT_TIME);
 
         Ingredient carrier = DEFAULT_CARRIER;
-        if (json.has("carrier")) {
+        if (GsonHelper.getAsBoolean(json, "empty_carrier", false)) {
+            carrier = Ingredient.EMPTY;
+        } else if (json.has("carrier")) {
             carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
         }
 

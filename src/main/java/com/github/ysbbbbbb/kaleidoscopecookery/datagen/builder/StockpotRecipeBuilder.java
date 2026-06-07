@@ -31,6 +31,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     private ItemStack result = ItemStack.EMPTY;
     private int time = StockpotRecipeSerializer.DEFAULT_TIME;
     private Ingredient carrier = StockpotRecipeSerializer.DEFAULT_CARRIER;
+    private boolean emptyCarrier = false;
     private ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
     private StockpotVisuals visuals = StockpotVisuals.DEFAULT;
 
@@ -87,6 +88,13 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
 
     public StockpotRecipeBuilder setCarrier(ItemLike carrier) {
         this.carrier = Ingredient.of(carrier);
+        this.emptyCarrier = false;
+        return this;
+    }
+
+    public StockpotRecipeBuilder setEmptyCarrier() {
+        this.carrier = Ingredient.EMPTY;
+        this.emptyCarrier = true;
         return this;
     }
 
@@ -171,7 +179,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
         recipeOutput.accept(new StockpotFinishedRecipe(id, this.ingredients, this.soupBase, this.result,
-                this.time, this.carrier, this.visuals));
+                this.time, this.carrier, this.emptyCarrier, this.visuals));
     }
 
     public static class StockpotFinishedRecipe implements FinishedRecipe {
@@ -181,11 +189,12 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
         private final ItemStack result;
         private final int time;
         private final Ingredient carrier;
+        private final boolean emptyCarrier;
         private final StockpotVisuals visuals;
 
         public StockpotFinishedRecipe(ResourceLocation id, List<Ingredient> ingredients,
-                                      ResourceLocation soupBase, ItemStack result,
-                                      int time, Ingredient carrier, StockpotVisuals visuals
+                                       ResourceLocation soupBase, ItemStack result,
+                                       int time, Ingredient carrier, boolean emptyCarrier, StockpotVisuals visuals
         ) {
             this.id = id;
             this.ingredients = ingredients;
@@ -193,6 +202,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
             this.result = result;
             this.time = time;
             this.carrier = carrier;
+            this.emptyCarrier = emptyCarrier;
             this.visuals = visuals;
         }
 
@@ -212,6 +222,8 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
             json.addProperty("time", this.time);
             if (!this.carrier.isEmpty()) {
                 json.add("carrier", this.carrier.toJson());
+            } else if (this.emptyCarrier) {
+                json.addProperty("empty_carrier", true);
             }
             json.addProperty("cooking_texture", this.visuals.cookingTexture().toString());
             json.addProperty("finished_texture", this.visuals.finishedTexture().toString());

@@ -14,8 +14,8 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModVillager;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.PlateBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
-import com.github.ysbbbbbb.kaleidoscopecookery.item.WithTooltipsBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.block.Block;
@@ -107,7 +107,7 @@ public class CommonRegistry {
                 Block block = ForgeRegistries.BLOCKS.getValue(resourceLocation);
                 if (block != null) {
                     event.register(ForgeRegistries.Keys.ITEMS, resourceLocation,
-                            () -> new WithTooltipsBlockItem(block, resourceLocation.getPath()));
+                            () -> new PlateBlockItem(block, resourceLocation.getPath()));
                 }
             });
         }
