@@ -9,22 +9,16 @@
       "item": "minecraft:apple"
     },
     {
-      "item": "minecraft:glow_berries"
+      "item": "minecraft:apple"
     },
     {
-      "item": "minecraft:glow_berries"
-    },
-    {
-      "item": "minecraft:sweet_berries"
-    },
-    {
-      "item": "minecraft:sweet_berries"
+      "item": "minecraft:apple"
     },
     {
       "item": "minecraft:bowl"
     }
   ],
   "result": {
-    "item": "kaleidoscope_cookery:fruit_platter"
+    "item": "kaleidoscope_cookery:apple_platter"
   }
 }

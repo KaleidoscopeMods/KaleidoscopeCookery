@@ -66,6 +66,11 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .setResult(ModItems.FISH_FLAVORED_SHREDDED_PORK.get())
                 .save(consumer);
 
+        PotRecipeBuilder.builder()
+                .addInput(Items.LEATHER, Items.SUGAR, Items.SUGAR, Items.SUGAR, Items.SUGAR)
+                .setResult(ModItems.STICKY_CANDY.get())
+                .save(consumer);
+
         // 模糊配方
         FlexPotRecipeBuilder.builder()
                 .addInput(TagCommon.CROPS_CHILI_PEPPER, TagCommon.DOUGH, ModItems.RAW_CUT_SMALL_MEATS.get())
@@ -106,6 +111,11 @@ public class PotRecipeProvider extends ModRecipeProvider {
                 .addInput(TagCommon.RAW_PORK, TagCommon.CROPS_CHILI_PEPPER, Tags.Items.MUSHROOMS)
                 .setBowlCarrier()
                 .setResult(ModItems.FISH_FLAVORED_SHREDDED_PORK.get())
+                .save(consumer);
+
+        FlexPotRecipeBuilder.builder()
+                .addInput(Items.LEATHER, Items.SUGAR)
+                .setResult(ModItems.STICKY_CANDY.get())
                 .save(consumer);
     }
 }

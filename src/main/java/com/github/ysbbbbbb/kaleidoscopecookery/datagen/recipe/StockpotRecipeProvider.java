@@ -25,6 +25,7 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
         addRiceRecipes(consumer);
         addDumplingRecipes(consumer);
         addShengjianMantouRecipes(consumer);
+        addZongziRecipes(consumer);
 
         StockpotRecipeBuilder.builder()
                 .addInput(Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE)
@@ -366,6 +367,16 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                     .setSoupBase(ModSoupBases.LAVA)
                     .setEmptyCarrier()
                     .save(consumer, "shengjian_mantou_count_" + count);
+        }
+    }
+
+    private void addZongziRecipes(Consumer<FinishedRecipe> consumer) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(ModItems.RAW_ZONGZI.get(), count))
+                    .setResult(ModItems.ZONGZI.get(), count)
+                    .setEmptyCarrier()
+                    .save(consumer, "zongzi_count_" + count);
         }
     }
 }

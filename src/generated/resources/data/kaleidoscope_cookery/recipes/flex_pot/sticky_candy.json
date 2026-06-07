@@ -1,0 +1,16 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "ingredients": [
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:sticky_candy"
+  },
+  "stir_fry_count": 3,
+  "time": 200
+}

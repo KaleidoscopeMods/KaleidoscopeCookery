@@ -730,15 +730,6 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 80 * 20), 1.0F)
             .alwaysEat().build();
 
-    // 水果拼盘
-    FoodProperties FRUIT_PLATTER_BLOCK = (new FoodProperties.Builder())
-            .nutrition(3).saturationMod(0.667F)
-            .alwaysEat().build();
-
-    FoodProperties FRUIT_PLATTER_ITEM = (new FoodProperties.Builder())
-            .nutrition(13).saturationMod(0.615F)
-            .alwaysEat().build();
-
     // 棕色蘑菇瓦罐汤
     FoodProperties BROWN_MUSHROOM_POT_SOUP_BLOCK = (new FoodProperties.Builder())
             .nutrition(6).saturationMod(0.667F)

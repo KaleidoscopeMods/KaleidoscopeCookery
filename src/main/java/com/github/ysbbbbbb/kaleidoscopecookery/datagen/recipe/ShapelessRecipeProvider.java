@@ -2,11 +2,13 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -15,6 +17,8 @@ import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Consumer;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry.*;
+
 public class ShapelessRecipeProvider extends ModRecipeProvider {
     public ShapelessRecipeProvider(PackOutput output) {
         super(output);
@@ -22,6 +26,12 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.RAW_ZONGZI.get(), 1)
+                .requires(ModItems.RICE_SEED.get())
+                .requires(Items.LILY_PAD)
+                .unlockedBy("has_lily_pad", has(Items.LILY_PAD))
+                .save(consumer);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.RICE_PANICLE.get(), 9)
                 .requires(ModItems.STRAW_BLOCK.get())
                 .unlockedBy("has_rice_panicle", has(ModItems.RICE_PANICLE.get()))
@@ -71,14 +81,12 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_flower_pot", has(Items.FLOWER_POT))
                 .save(consumer);
 
-        // 水果拼盘: 2苹果+2发光浆果+2甜浆果+1碗
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.FRUIT_PLATTER), 1)
-                .requires(Items.APPLE, 2)
-                .requires(Items.GLOW_BERRIES, 2)
-                .requires(Items.SWEET_BERRIES, 2)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, PlateRegistry.getItem(PlateRegistry.BERRY_PLATTER), 1)
+                .requires(Items.SWEET_BERRIES, 4)
+                .requires(Items.GLOW_BERRIES, 4)
                 .requires(Items.BOWL)
-                .unlockedBy("has_apple", has(Items.APPLE))
-                .save(consumer);
+                .unlockedBy("has_berry_platter", has(Items.SWEET_BERRIES))
+                .save(consumer, modLoc("berry_platter"));
 
         // 沙拉类
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.GOLDEN_SALAD), 1)
@@ -179,9 +187,31 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                     .unlockedBy("has_wheat", has(Items.WHEAT))
                     .save(consumer, name);
         }
+
+        // 盘装
+        addPlateRecipe(consumer, ModItems.SHENGJIAN_MANTOU.get(), SHENGJIAN_MANTOU_PLATE);
+        addPlateRecipe(consumer, ModItems.BAOZI.get(), BAOZI_PLATE);
+        addPlateRecipe(consumer, ModItems.QINGTUAN.get(), QINGTUAN_PLATE);
+        addPlateRecipe(consumer, ModItems.STICKY_CANDY.get(), STICKY_CANDY_PLATE);
+        addPlateRecipe(consumer, ModItems.STICKY_RICE_CAKE.get(), STICKY_RICE_CAKE_PLATE);
+        addPlateRecipe(consumer, ModItems.ZONGZI.get(), ZONGZI_PLATE);
+        addPlateRecipe(consumer, ModItems.TOMATO.get(), TOMATO_PLATTER);
+        addPlateRecipe(consumer, Items.APPLE, APPLE_PLATTER);
+        addPlateRecipe(consumer, Items.MELON_SLICE, WATERMELON_PLATTER);
+        addPlateRecipe(consumer, Items.CHORUS_FRUIT, CHORUS_FRUIT_PLATTER);
     }
 
     private void addRiceBowlRecipe(Consumer<FinishedRecipe> consumer, ItemLike dish, Item result, String id) {
         consumer.accept(new RiceBowlFinishedRecipe(modLoc(id), dish, result));
+    }
+
+    private void addPlateRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingredient, ResourceLocation result) {
+        Item resultItem = PlateRegistry.getItem(result);
+        int count = PlateRegistry.getCount(result);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, resultItem, 1)
+                .requires(ingredient, count)
+                .requires(Items.BOWL)
+                .unlockedBy("has_ingredient", has(ingredient))
+                .save(consumer);
     }
 }

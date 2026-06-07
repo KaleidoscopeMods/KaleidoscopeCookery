@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:steamer",
+  "cook_tick": 1200,
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "result": {
+    "item": "kaleidoscope_cookery:qingtuan"
+  }
+}

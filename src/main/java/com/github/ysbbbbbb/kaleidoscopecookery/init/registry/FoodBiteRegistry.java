@@ -52,7 +52,6 @@ public class FoodBiteRegistry {
     public static ResourceLocation FRIED_CATERPILLAR;
     public static ResourceLocation FRIED_SPRING_ROLL;
     public static ResourceLocation SPICY_BLOOD_STEW;
-    public static ResourceLocation FRUIT_PLATTER;
 
     public static ResourceLocation BRAISED_PORK_RIBS;
     public static ResourceLocation COLD_ROASTED_MEAT;
@@ -169,9 +168,6 @@ public class FoodBiteRegistry {
         SPICY_BLOOD_STEW = registry.registerFoodData("spicy_blood_stew", FoodData
                 .create(3, SPICY_BLOOD_STEW_BLOCK, SPICY_BLOOD_STEW_ITEM)
                 .bowlAABB());
-
-        FRUIT_PLATTER = registry.registerFoodData("fruit_platter", FoodData
-                .create(4, FRUIT_PLATTER_BLOCK, FRUIT_PLATTER_ITEM));
 
         // ========================== 1x2 食物 ==========================
 

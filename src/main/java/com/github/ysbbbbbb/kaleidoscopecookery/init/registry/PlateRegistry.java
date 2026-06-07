@@ -107,6 +107,13 @@ public class PlateRegistry {
         return registerPlateData(new ResourceLocation(KaleidoscopeCookery.MOD_ID, name), data);
     }
 
+    public static int getCount(ResourceLocation id) {
+        if (PLATE_DATA_MAP.containsKey(id)) {
+            return PLATE_DATA_MAP.get(id).getMaxCount();
+        }
+        return 0;
+    }
+
     public static Item getItem(ResourceLocation name) {
         return ForgeRegistries.ITEMS.getValue(name);
     }

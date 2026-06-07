@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;
 
@@ -23,6 +24,11 @@ public class SteamerRecipeProvider extends ModRecipeProvider {
         SteamerBuilder.builder()
                 .setIngredient(TagCommon.DOUGH)
                 .setResult(ModItems.MANTOU.get())
+                .save(consumer);
+
+        SteamerBuilder.builder()
+                .setIngredient(Items.SLIME_BALL)
+                .setResult(ModItems.QINGTUAN.get())
                 .save(consumer);
     }
 }

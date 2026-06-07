@@ -34,6 +34,7 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
 
         addSingleItemRecipe(TagCommon.EGGS, ModItems.FRIED_EGG.get(), "egg", consumer);
         addSingleItemRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.MEAT_PIE.get(), "stuffed_dough_food", consumer);
+        addSingleItemRecipe(ModItems.COOKED_RICE.get(), ModItems.STICKY_RICE_CAKE.get(), "cooked_rice", consumer);
     }
 
     public void addSingleItemRecipe(TagKey<Item> inputItem, Item outputItem, String idInput, Consumer<FinishedRecipe> consumer) {
