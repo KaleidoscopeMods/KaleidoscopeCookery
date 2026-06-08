@@ -380,6 +380,8 @@
   "jei.kaleidoscope_cookery.strict_recipe": "精确配方",
   "emi.category.kaleidoscope_cookery.pot": "炒锅",
   "emi.category.kaleidoscope_cookery.stockpot": "汤锅",
+  "emi.category.kaleidoscope_cookery.flex_pot": "模糊配方 炒锅",
+  "emi.category.kaleidoscope_cookery.flex_stockpot": "模糊配方 汤锅",
   "emi.category.kaleidoscope_cookery.chopping_board": "菜板",
   "emi.category.kaleidoscope_cookery.millstone": "石磨",
   "emi.category.kaleidoscope_cookery.steamer": "蒸笼",

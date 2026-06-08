@@ -1,13 +1,10 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.rei.category;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
-import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.rei.ReiUtil;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -21,60 +18,62 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ReiStockpotRecipeCategory implements DisplayCategory<ReiStockpotRecipeCategory.StockpotRecipeDisplay> {
-    public static final CategoryIdentifier<StockpotRecipeDisplay> ID = CategoryIdentifier.of(KaleidoscopeCookery.MOD_ID, "plugin/stockpot");
-    private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/stockpot.png");
+public class ReiFlexPotRecipeCategory implements DisplayCategory<ReiFlexPotRecipeCategory.FlexPotRecipeDisplay> {
+    public static final CategoryIdentifier<FlexPotRecipeDisplay> ID = CategoryIdentifier.of(KaleidoscopeCookery.MOD_ID, "plugin/flex_pot");
+    private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/pot.png");
     private static final Component TITLE = ComponentUtils.formatList(List.of(
-            Component.translatable("jei.kaleidoscope_cookery.strict_recipe"),
-            Component.translatable("block.kaleidoscope_cookery.stockpot")
+            Component.translatable("jei.kaleidoscope_cookery.flex_recipe"),
+            Component.translatable("block.kaleidoscope_cookery.pot")
     ), CommonComponents.SPACE);
     public static final int WIDTH = 176;
     public static final int HEIGHT = 102;
 
     @Override
-    public CategoryIdentifier<StockpotRecipeDisplay> getCategoryIdentifier() {
+    public CategoryIdentifier<FlexPotRecipeDisplay> getCategoryIdentifier() {
         return ID;
     }
 
     @Override
-    public List<Widget> setupDisplay(StockpotRecipeDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(FlexPotRecipeDisplay display, Rectangle bounds) {
         List<Widget> widgets = new ArrayList<>();
         int startX = bounds.x;
         int startY = bounds.y;
+        Component stirFryCount = Component.translatable("jei.kaleidoscope_cookery.pot.stir_fry_count", display.stirFryCount);
 
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(BG, startX, startY, 0, 0, WIDTH, HEIGHT));
         widgets.add(Widgets.withTranslate(Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, v) -> {
-            drawCenteredString(guiGraphics, Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 90);
+            drawCenteredString(guiGraphics, Component.translatable("jei.kaleidoscope_cookery.flex_recipe"), WIDTH / 2, 5);
+            drawCenteredString(guiGraphics, stirFryCount, WIDTH / 2, 85);
         }), startX, startY, 0));
 
-        if (!display.soupBase.isEmpty()) {
-            widgets.add(Widgets.createSlot(new Point(startX + 72, startY + 61))
-                    .entries(display.soupBase)
-                    .disableBackground()
-                    .markInput());
-        }
         List<EntryIngredient> inputs = display.getInputEntries();
         for (int i = 0; i < inputs.size(); i++) {
             int xOffset = (i % 3) * 18 + 15;
-            int yOffset = (i / 3) * 18 + 25;
+            int yOffset = (i / 3) * 18 + 24;
             widgets.add(Widgets.createSlot(new Point(startX + xOffset, startY + yOffset))
-                .entries(inputs.get(i))
-                .disableBackground()
-                .markInput());
+                    .entries(inputs.get(i))
+                    .disableBackground()
+                    .markInput());
+            if (!inputs.get(i).isEmpty()) {
+                widgets.add(Widgets.withTranslate(Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, v) -> {
+                    guiGraphics.drawString(Minecraft.getInstance().font, Component.literal("*"), xOffset, yOffset, 0xFFFFFF, true);
+                }), startX, startY, 0));
+            }
         }
         if (!display.carrier.isEmpty()) {
             widgets.add(Widgets.createSlot(new Point(startX + 133, startY + 18))
@@ -97,7 +96,7 @@ public class ReiStockpotRecipeCategory implements DisplayCategory<ReiStockpotRec
     }
 
     @Override
-    public int getDisplayWidth(StockpotRecipeDisplay display) {
+    public int getDisplayWidth(FlexPotRecipeDisplay display) {
         return WIDTH;
     }
 
@@ -113,44 +112,37 @@ public class ReiStockpotRecipeCategory implements DisplayCategory<ReiStockpotRec
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModItems.STOCKPOT.get());
+        return EntryStacks.of(ModItems.POT.get());
     }
 
     public static void registerCategories(CategoryRegistry registry) {
-        registry.add(new ReiStockpotRecipeCategory());
-        registry.addWorkstations(ReiStockpotRecipeCategory.ID,
-                ReiUtil.ofItem(ModItems.STOCKPOT.get()),
-                ReiUtil.ofItem(ModItems.STOCKPOT_LID.get())
+        registry.add(new ReiFlexPotRecipeCategory());
+        registry.addWorkstations(ReiFlexPotRecipeCategory.ID,
+                ReiUtil.ofItem(ModItems.POT.get()),
+                ReiUtil.ofIngredient(Ingredient.of(TagMod.KITCHEN_SHOVEL)),
+                ReiUtil.ofItem(ModItems.OIL.get())
         );
     }
 
     public static void registerDisplays(DisplayRegistry registry) {
-        List<StockpotRecipe> list = new ArrayList<>(registry.getRecipeManager().getAllRecipesFor(ModRecipes.STOCKPOT_RECIPE));
-        FarmersDelightCompat.getTransformRecipeForJei(Minecraft.getInstance().level, list);
-
-        list.forEach(r -> {
+        registry.getRecipeManager().getAllRecipesFor(ModRecipes.FLEX_POT_RECIPE)
+                .forEach(r -> {
                     List<EntryIngredient> inputs = ReiUtil.ofIngredients(r.getIngredients());
                     List<EntryIngredient> output = ReiUtil.ofItemStacks(r.getResultItem(RegistryAccess.EMPTY));
                     EntryIngredient carrier = r.carrier().isEmpty() ? EntryIngredient.empty() : ReiUtil.ofIngredient(r.carrier());
 
-                    ISoupBase soupBase = SoupBaseManager.getSoupBase(r.soupBase());
-                    if (soupBase == null) {
-                        throw new RuntimeException("No soup found for " + r.soupBase());
-                    }
-                    EntryIngredient soupBaseEntry = ReiUtil.ofItemStack(soupBase.getDisplayStack());
-
-                    registry.add(new StockpotRecipeDisplay(r.getId(), inputs, output, carrier, soupBaseEntry));
+                    registry.add(new FlexPotRecipeDisplay(r.getId(), inputs, output, carrier, r.stirFryCount()));
                 });
     }
 
-    public static class StockpotRecipeDisplay extends BasicDisplay {
+    public static class FlexPotRecipeDisplay extends BasicDisplay {
         public final EntryIngredient carrier;
-        public final EntryIngredient soupBase;
+        public final int stirFryCount;
 
-        public StockpotRecipeDisplay(ResourceLocation location, List<EntryIngredient> inputs, List<EntryIngredient> outputs, EntryIngredient carrier, EntryIngredient soupBase) {
+        public FlexPotRecipeDisplay(ResourceLocation location, List<EntryIngredient> inputs, List<EntryIngredient> outputs, EntryIngredient carrier, int stirFryCount) {
             super(inputs, outputs, Optional.of(location));
             this.carrier = carrier;
-            this.soupBase = soupBase;
+            this.stirFryCount = stirFryCount;
         }
 
         @Override

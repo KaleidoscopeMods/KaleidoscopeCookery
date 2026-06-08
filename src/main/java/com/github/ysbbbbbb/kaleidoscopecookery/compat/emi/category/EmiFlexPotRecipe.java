@@ -17,9 +17,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 
-public class EmiPotRecipe extends BasicEmiRecipe {
+public class EmiFlexPotRecipe extends BasicEmiRecipe {
     public static final EmiRecipeCategory CATEGORY = new EmiRecipeCategory(
-            new ResourceLocation(ModRecipes.POT_RECIPE.toString()),
+            new ResourceLocation(ModRecipes.FLEX_POT_RECIPE.toString()),
             EmiIngredient.of(Ingredient.of(ModItems.POT.get()))
     );
 
@@ -28,7 +28,7 @@ public class EmiPotRecipe extends BasicEmiRecipe {
     public static final int HEIGHT = 102;
     private final int stirFryCount;
 
-    public EmiPotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts, int stirFryCount) {
+    public EmiFlexPotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts, int stirFryCount) {
         super(CATEGORY, id, WIDTH, HEIGHT);
         this.inputs = inputs;
         this.outputs = outputs;
@@ -41,19 +41,19 @@ public class EmiPotRecipe extends BasicEmiRecipe {
         registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.POT.get()));
         registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.KITCHEN_SHOVEL.get()));
 
-        registry.getRecipeManager().getAllRecipesFor(ModRecipes.POT_RECIPE).forEach(r -> {
+        registry.getRecipeManager().getAllRecipesFor(ModRecipes.FLEX_POT_RECIPE).forEach(r -> {
             List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
             List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
             List<EmiIngredient> catalysts = r.carrier().isEmpty() ? List.of() : List.of(EmiIngredient.of(r.carrier()));
 
-            registry.addRecipe(new EmiPotRecipe(r.getId(), inputs, outputs, catalysts, r.stirFryCount()));
+            registry.addRecipe(new EmiFlexPotRecipe(r.getId(), inputs, outputs, catalysts, r.stirFryCount()));
         });
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(BG, 1, 1, WIDTH, HEIGHT, 0, 0);
-        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 5, 0x555555, false)
+        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.flex_recipe"), WIDTH / 2, 5, 0x555555, false)
                 .horizontalAlign(TextWidget.Alignment.CENTER);
         widgets.addText(Component.translatable("jei.kaleidoscope_cookery.pot.stir_fry_count", stirFryCount), WIDTH / 2, 85, 0x555555, false)
                 .horizontalAlign(TextWidget.Alignment.CENTER);
@@ -63,6 +63,9 @@ public class EmiPotRecipe extends BasicEmiRecipe {
             int yOffset = (i / 3) * 18 + 24;
             widgets.addSlot(inputs.get(i), xOffset, yOffset)
                     .drawBack(false);
+            if (!inputs.get(i).isEmpty()) {
+                widgets.addText(Component.literal("*"), xOffset, yOffset, 0xFFFFFF, true);
+            }
         }
         if (!catalysts.isEmpty()) {
             widgets.addSlot(catalysts.get(0), 133, 18)

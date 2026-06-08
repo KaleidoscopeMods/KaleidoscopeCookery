@@ -1,6 +1,8 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.emi.category;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SoupBaseManager;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import dev.emi.emi.api.EmiRegistry;
@@ -17,51 +19,62 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 
-public class EmiPotRecipe extends BasicEmiRecipe {
+public class EmiFlexStockpotRecipe extends BasicEmiRecipe {
     public static final EmiRecipeCategory CATEGORY = new EmiRecipeCategory(
-            new ResourceLocation(ModRecipes.POT_RECIPE.toString()),
-            EmiIngredient.of(Ingredient.of(ModItems.POT.get()))
+            new ResourceLocation(ModRecipes.FLEX_STOCKPOT_RECIPE.toString()),
+            EmiIngredient.of(Ingredient.of(ModItems.STOCKPOT.get()))
     );
 
-    private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/pot.png");
+    private static final ResourceLocation BG = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/stockpot.png");
     public static final int WIDTH = 176;
     public static final int HEIGHT = 102;
-    private final int stirFryCount;
 
-    public EmiPotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts, int stirFryCount) {
+    private final EmiStack soupBase;
+
+    public EmiFlexStockpotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts, EmiStack soupBase) {
         super(CATEGORY, id, WIDTH, HEIGHT);
         this.inputs = inputs;
         this.outputs = outputs;
         this.catalysts = catalysts;
-        this.stirFryCount = stirFryCount;
+        this.soupBase = soupBase;
     }
 
     public static void register(EmiRegistry registry) {
         registry.addCategory(CATEGORY);
-        registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.POT.get()));
-        registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.KITCHEN_SHOVEL.get()));
+        registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.STOCKPOT.get()));
+        registry.addWorkstation(CATEGORY, EmiStack.of(ModItems.STOCKPOT_LID.get()));
 
-        registry.getRecipeManager().getAllRecipesFor(ModRecipes.POT_RECIPE).forEach(r -> {
+        registry.getRecipeManager().getAllRecipesFor(ModRecipes.FLEX_STOCKPOT_RECIPE).forEach(r -> {
             List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
             List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
             List<EmiIngredient> catalysts = r.carrier().isEmpty() ? List.of() : List.of(EmiIngredient.of(r.carrier()));
+            ISoupBase soupBase = SoupBaseManager.getSoupBase(r.soupBase());
+            if (soupBase == null) {
+                throw new RuntimeException("No soup found for " + r.soupBase());
+            }
+            EmiStack soupBaseItem = EmiStack.of(soupBase.getDisplayStack());
 
-            registry.addRecipe(new EmiPotRecipe(r.getId(), inputs, outputs, catalysts, r.stirFryCount()));
+            registry.addRecipe(new EmiFlexStockpotRecipe(r.getId(), inputs, outputs, catalysts, soupBaseItem));
         });
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(BG, 1, 1, WIDTH, HEIGHT, 0, 0);
-        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 5, 0x555555, false)
-                .horizontalAlign(TextWidget.Alignment.CENTER);
-        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.pot.stir_fry_count", stirFryCount), WIDTH / 2, 85, 0x555555, false)
+        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.flex_recipe"), WIDTH / 2, 90, 0x555555, false)
                 .horizontalAlign(TextWidget.Alignment.CENTER);
 
         for (int i = 0; i < inputs.size(); i++) {
             int xOffset = (i % 3) * 18 + 15;
-            int yOffset = (i / 3) * 18 + 24;
+            int yOffset = (i / 3) * 18 + 25;
             widgets.addSlot(inputs.get(i), xOffset, yOffset)
+                    .drawBack(false);
+            if (!inputs.get(i).isEmpty()) {
+                widgets.addText(Component.literal("*"), xOffset, yOffset, 0xFFFFFF, true);
+            }
+        }
+        if (!soupBase.isEmpty()) {
+            widgets.addSlot(soupBase, 72, 61)
                     .drawBack(false);
         }
         if (!catalysts.isEmpty()) {
