@@ -1,0 +1,16 @@
+{
+  "overrides": [
+    {
+      "model": "kaleidoscope_cookery:item/kitchen_shovel_no_oil",
+      "predicate": {
+        "kaleidoscope_cookery:has_oil": 0.0
+      }
+    },
+    {
+      "model": "kaleidoscope_cookery:item/kitchen_shovel_has_oil",
+      "predicate": {
+        "kaleidoscope_cookery:has_oil": 1.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+	"credit": "by YSBB  2025",
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "kaleidoscope_cookery:item/raw_dough_1"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [-5.5, 0, -1.5],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"thirdperson_lefthand": {
+			"translation": [-6.25, 0, -1.5],
+			"scale": [0.75, 0.55, 0.55]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 1, 8],
+			"translation": [-4.25, -1.25, -10.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 1, 8],
+			"translation": [-4.25, -1.25, -10.5]
+		}
+	}
+}

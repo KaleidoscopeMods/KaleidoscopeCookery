@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage0"
+    },
+    "age=1": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage1"
+    },
+    "age=2": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage2"
+    },
+    "age=3": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage3"
+    },
+    "age=4": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage4"
+    },
+    "age=5": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage5"
+    },
+    "age=6": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage6"
+    },
+    "age=7": {
+      "model": "kaleidoscope_cookery:block/crop/tomato/stage7"
+    }
+  }
+}

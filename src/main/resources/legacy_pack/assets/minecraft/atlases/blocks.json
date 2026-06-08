@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "type": "directory",
+      "source": "chopping_board",
+      "prefix": "chopping_board/"
+    },
+    {
+      "type": "directory",
+      "source": "stockpot",
+      "prefix": "stockpot/"
+    }
+  ]
+}

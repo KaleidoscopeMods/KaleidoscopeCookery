@@ -1,0 +1,148 @@
+{
+  "variants": {
+    "age=0,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_down"
+    },
+    "age=0,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_down"
+    },
+    "age=0,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_middle"
+    },
+    "age=0,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_middle"
+    },
+    "age=0,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_up"
+    },
+    "age=0,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage0_up"
+    },
+    "age=1,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_down"
+    },
+    "age=1,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_down"
+    },
+    "age=1,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_middle"
+    },
+    "age=1,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_middle"
+    },
+    "age=1,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_up"
+    },
+    "age=1,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage1_up"
+    },
+    "age=2,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_down"
+    },
+    "age=2,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_down"
+    },
+    "age=2,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_middle"
+    },
+    "age=2,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_middle"
+    },
+    "age=2,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_up"
+    },
+    "age=2,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage2_up"
+    },
+    "age=3,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_down"
+    },
+    "age=3,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_down"
+    },
+    "age=3,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_middle"
+    },
+    "age=3,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_middle"
+    },
+    "age=3,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_up"
+    },
+    "age=3,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage3_up"
+    },
+    "age=4,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_down"
+    },
+    "age=4,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_down"
+    },
+    "age=4,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_middle"
+    },
+    "age=4,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_middle"
+    },
+    "age=4,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_up"
+    },
+    "age=4,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage4_up"
+    },
+    "age=5,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_down"
+    },
+    "age=5,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_down"
+    },
+    "age=5,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_middle"
+    },
+    "age=5,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_middle"
+    },
+    "age=5,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_up"
+    },
+    "age=5,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage5_up"
+    },
+    "age=6,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_down"
+    },
+    "age=6,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_down"
+    },
+    "age=6,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_middle"
+    },
+    "age=6,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_middle"
+    },
+    "age=6,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_up"
+    },
+    "age=6,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage6_up"
+    },
+    "age=7,location=0,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_down"
+    },
+    "age=7,location=0,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_down"
+    },
+    "age=7,location=1,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_middle"
+    },
+    "age=7,location=1,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_middle"
+    },
+    "age=7,location=2,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_up"
+    },
+    "age=7,location=2,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/crop/rice/stage7_up"
+    }
+  }
+}

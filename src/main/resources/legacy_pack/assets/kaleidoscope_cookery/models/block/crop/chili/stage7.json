@@ -1,0 +1,7 @@
+{
+  "parent": "kaleidoscope_cookery:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "kaleidoscope_cookery:block/crop/chili/stage7"
+  }
+}

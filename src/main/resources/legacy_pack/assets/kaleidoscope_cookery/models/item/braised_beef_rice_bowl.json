@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kaleidoscope_cookery:item/braised_beef_rice_bowl"
+  }
+}
