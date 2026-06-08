@@ -98,10 +98,13 @@ public class ModBlocks {
             .item(() -> ModItems.BAMBOO_TUBE_RICE.get())
             .shapes(
                     Block.box(4, 0, 4, 12, 10, 12),
-                    Block.box(0, 0, 4, 16, 10, 12),
                     Shapes.or(
-                            Block.box(0, 0, 8, 16, 10, 16),
-                            Block.box(4, 0, 0, 12, 10, 16)
+                            Block.box(7, 0, 1, 15, 10, 9),
+                            Block.box(1, 0, 7, 9, 10, 15)
+                    ),
+                    Shapes.or(
+                            Block.box(0, 0, 6, 16, 10, 15),
+                            Block.box(4, 0, 0, 12, 10, 15)
                     ),
                     Block.box(0, 0, 0, 16, 10, 16)
             ).build());
