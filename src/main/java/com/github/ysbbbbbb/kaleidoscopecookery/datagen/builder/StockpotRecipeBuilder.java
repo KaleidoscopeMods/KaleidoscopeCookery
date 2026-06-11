@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer;
 import com.google.common.collect.Lists;
 import net.minecraft.advancements.Criterion;
@@ -26,11 +27,9 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     private ItemStack result = ItemStack.EMPTY;
     private int time = StockpotRecipeSerializer.DEFAULT_TIME;
     private Ingredient carrier = StockpotRecipeSerializer.DEFAULT_CARRIER;
+    private boolean emptyCarrier = false;
     private ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
-    private ResourceLocation cookingTexture = StockpotRecipeSerializer.DEFAULT_COOKING_TEXTURE;
-    private ResourceLocation finishedTexture = StockpotRecipeSerializer.DEFAULT_FINISHED_TEXTURE;
-    private int cookingBubbleColor = StockpotRecipeSerializer.DEFAULT_COOKING_BUBBLE_COLOR;
-    private int finishedBubbleColor = StockpotRecipeSerializer.DEFAULT_FINISHED_BUBBLE_COLOR;
+    private StockpotVisuals visuals = StockpotVisuals.DEFAULT;
 
     public static StockpotRecipeBuilder builder() {
         return new StockpotRecipeBuilder();
@@ -85,32 +84,63 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
 
     public StockpotRecipeBuilder setCarrier(ItemLike carrier) {
         this.carrier = Ingredient.of(carrier);
+        this.emptyCarrier = false;
+        return this;
+    }
+
+    public StockpotRecipeBuilder setEmptyCarrier() {
+        this.carrier = Ingredient.EMPTY;
+        this.emptyCarrier = true;
         return this;
     }
 
     public StockpotRecipeBuilder setCookingTexture(ResourceLocation cookingTexture) {
-        this.cookingTexture = cookingTexture;
+        this.visuals = new StockpotVisuals(
+                cookingTexture,
+                this.visuals.finishedTexture(),
+                this.visuals.cookingBubbleColor(),
+                this.visuals.finishedBubbleColor()
+        );
         return this;
     }
 
     public StockpotRecipeBuilder setFinishedTexture(ResourceLocation finishedTexture) {
-        this.finishedTexture = finishedTexture;
+        this.visuals = new StockpotVisuals(
+                this.visuals.cookingTexture(),
+                finishedTexture,
+                this.visuals.cookingBubbleColor(),
+                this.visuals.finishedBubbleColor()
+        );
         return this;
     }
 
     public StockpotRecipeBuilder setCookingBubbleColor(int cookingBubbleColor) {
-        this.cookingBubbleColor = cookingBubbleColor;
+        this.visuals = new StockpotVisuals(
+                this.visuals.cookingTexture(),
+                this.visuals.finishedTexture(),
+                cookingBubbleColor,
+                this.visuals.finishedBubbleColor()
+        );
         return this;
     }
 
     public StockpotRecipeBuilder setFinishedBubbleColor(int finishedBubbleColor) {
-        this.finishedBubbleColor = finishedBubbleColor;
+        this.visuals = new StockpotVisuals(
+                this.visuals.cookingTexture(),
+                this.visuals.finishedTexture(),
+                this.visuals.cookingBubbleColor(),
+                finishedBubbleColor
+        );
         return this;
     }
 
     public StockpotRecipeBuilder setBubbleColors(int cookingBubbleColor, int finishedBubbleColor) {
-        this.cookingBubbleColor = cookingBubbleColor;
-        this.finishedBubbleColor = finishedBubbleColor;
+        this.visuals = new StockpotVisuals(
+                this.visuals.cookingTexture(),
+                this.visuals.finishedTexture(),
+                cookingBubbleColor,
+                finishedBubbleColor
+        );
         return this;
     }
 
@@ -132,19 +162,27 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     @Override
     public void save(RecipeOutput output) {
         String path = RecipeBuilder.getDefaultRecipeId(this.getResult()).getPath();
-        ResourceLocation filePath = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, NAME + "/" + path);
+        ResourceLocation filePath = ResourceLocation.fromNamespaceAndPath(
+                KaleidoscopeCookery.MOD_ID, NAME + "/" + path
+        );
         this.save(output, filePath);
     }
 
     @Override
     public void save(RecipeOutput output, String recipeId) {
-        ResourceLocation filePath = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, NAME + "/" + recipeId);
+        ResourceLocation filePath = ResourceLocation.fromNamespaceAndPath(
+                KaleidoscopeCookery.MOD_ID, NAME + "/" + recipeId
+        );
         this.save(output, filePath);
     }
 
     @Override
     public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        recipeOutput.accept(id, new StockpotRecipe(this.ingredients, this.soupBase, this.result, this.time, this.carrier,
-                this.cookingTexture, this.finishedTexture, this.cookingBubbleColor, this.finishedBubbleColor), null);
+        StockpotRecipe recipe = new StockpotRecipe(
+                this.ingredients, this.soupBase, this.result,
+                this.time, this.carrier, this.visuals
+        );
+        recipeOutput.accept(id, recipe, null);
     }
+
 }

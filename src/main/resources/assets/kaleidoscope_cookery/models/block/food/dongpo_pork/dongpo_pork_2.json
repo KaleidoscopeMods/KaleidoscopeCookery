@@ -1,4 +1,5 @@
 {
+	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
@@ -22,9 +23,9 @@
 			}
 		},
 		{
-			"from": [3, 2, 2],
-			"to": [6, 8, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [4.5, 5, 6]},
+			"from": [3, 2, 4],
+			"to": [6, 8, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4.5, 5, 8]},
 			"faces": {
 				"north": {"uv": [1.5, 2.5, 3, 5.5], "texture": "#3"},
 				"east": {"uv": [0, 2.5, 4, 5.5], "texture": "#3"},
@@ -34,81 +35,36 @@
 			}
 		},
 		{
-			"from": [8, 2, 12],
-			"to": [10, 14, 14],
-			"rotation": {"angle": 0, "axis": "z", "origin": [9, 8, 13]},
+			"name": "leaf",
+			"from": [8.75, 2.5, 7],
+			"to": [15.75, 2.5, 14],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [12.25, 2.5, 10.5]},
 			"faces": {
-				"north": {"uv": [1, 8.5, 2, 14.5], "texture": "#3"},
-				"east": {"uv": [1, 8.5, 2, 14.5], "texture": "#3"},
-				"south": {"uv": [1, 8.5, 2, 14.5], "texture": "#3"},
-				"west": {"uv": [1, 8.5, 2, 14.5], "texture": "#3"},
-				"up": {"uv": [1, 8.5, 2, 9.5], "texture": "#3"}
-			}
-		},
-		{
-			"from": [11, 2, 11],
-			"to": [13, 12, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 2, 10]},
-			"faces": {
-				"north": {"uv": [1, 7, 2, 12], "texture": "#3"},
-				"east": {"uv": [1, 7, 2, 12], "texture": "#3"},
-				"south": {"uv": [1, 7, 2, 12], "texture": "#3"},
-				"west": {"uv": [1, 7, 2, 12], "texture": "#3"},
-				"up": {"uv": [1, 8.5, 2, 9.5], "texture": "#3"}
-			}
-		},
-		{
-			"from": [3, 2, 11],
-			"to": [5, 10, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [1, 2, 10]},
-			"faces": {
-				"north": {"uv": [1, 8.5, 2, 12], "texture": "#3"},
-				"east": {"uv": [1, 8.5, 2, 12], "texture": "#3"},
-				"south": {"uv": [1, 8.5, 2, 12], "texture": "#3"},
-				"west": {"uv": [1, 8.5, 2, 12], "texture": "#3"},
-				"up": {"uv": [1, 8.5, 2, 9.5], "texture": "#3"}
-			}
-		},
-		{
-			"from": [7, 4, 10.35],
-			"to": [14, 11, 10.35],
-			"rotation": {"angle": 0, "axis": "z", "origin": [10.5, 7.5, 10.35]},
-			"faces": {
-				"north": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
-				"south": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"}
+				"up": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
+				"down": {"uv": [5, 11, 8.5, 14.5], "rotation": 180, "texture": "#3"}
 			}
 		},
 		{
 			"name": "leaf",
-			"from": [9.75, 3, 13.5],
-			"to": [16.75, 10, 13.5],
+			"from": [4.75, 2.5, 9],
+			"to": [11.75, 2.5, 16],
 			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [13.25, 6.5, 13.5]},
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8.25, 2.5, 12.5]},
 			"faces": {
-				"north": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
-				"south": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"}
+				"up": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
+				"down": {"uv": [5, 11, 8.5, 14.5], "rotation": 180, "texture": "#3"}
 			}
 		},
 		{
 			"name": "leaf",
-			"from": [4, 6, 14.35],
-			"to": [11, 13, 14.35],
+			"from": [2.75, 2.5, 0],
+			"to": [9.75, 2.5, 7],
 			"shade": false,
-			"rotation": {"angle": 0, "axis": "z", "origin": [7.5, 9.5, 14.35]},
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [6.25, 2.5, 3.5]},
 			"faces": {
-				"north": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
-				"south": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"}
-			}
-		},
-		{
-			"name": "leaf",
-			"from": [0, 4, 13.35],
-			"to": [7, 11, 13.35],
-			"shade": false,
-			"rotation": {"angle": 0, "axis": "z", "origin": [3.5, 7.5, 13.35]},
-			"faces": {
-				"north": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"},
-				"south": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"}
+				"up": {"uv": [11.5, 3.5, 15, 0], "rotation": 180, "texture": "#3"},
+				"down": {"uv": [5, 11, 8.5, 14.5], "texture": "#3"}
 			}
 		}
 	],
@@ -128,7 +84,7 @@
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
+			"rotation": [0, -135, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
@@ -136,7 +92,7 @@
 			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
+			"rotation": [30, -135, 0],
 			"translation": [0, 0.5, 0],
 			"scale": [0.65, 0.65, 0.65]
 		},
@@ -161,10 +117,6 @@
 		1,
 		2,
 		3,
-		4,
-		5,
-		6,
-		7,
-		8
+		4
 	]
 }

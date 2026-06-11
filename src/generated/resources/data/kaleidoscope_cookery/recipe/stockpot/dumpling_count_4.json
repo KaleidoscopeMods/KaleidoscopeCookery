@@ -1,5 +1,6 @@
 {
   "type": "kaleidoscope_cookery:stockpot",
+  "carrier": [],
   "ingredients": [
     {
       "item": "kaleidoscope_cookery:stuffed_dough_food"

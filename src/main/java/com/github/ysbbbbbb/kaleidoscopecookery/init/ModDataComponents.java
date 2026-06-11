@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.FruitBasketItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.RecipeItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TransmutationLunchBagItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -43,5 +44,11 @@ public class ModDataComponents {
             DataComponentType.<Integer>builder()
                     .persistent(Codec.INT)
                     .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .build());
+
+    public static final Supplier<DataComponentType<Quality>> QUALITY = DATA_COMPONENT_TYPES.register("quality", () ->
+            DataComponentType.<Quality>builder()
+                    .persistent(Quality.CODEC)
+                    .networkSynchronized(Quality.STREAM_CODEC)
                     .build());
 }

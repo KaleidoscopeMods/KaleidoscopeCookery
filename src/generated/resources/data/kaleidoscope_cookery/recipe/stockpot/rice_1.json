@@ -1,0 +1,15 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "finished_bubble_color": 15328219,
+  "finished_texture": "kaleidoscope_cookery:stockpot/rice_finished",
+  "ingredients": [
+    {
+      "tag": "c:grain/rice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cooked_rice"
+  },
+  "time": 100
+}

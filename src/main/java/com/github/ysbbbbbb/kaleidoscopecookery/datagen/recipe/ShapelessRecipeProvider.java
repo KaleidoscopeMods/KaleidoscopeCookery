@@ -1,16 +1,26 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.recipe;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.RiceBowlRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.concurrent.CompletableFuture;
+
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry.*;
 
 public class ShapelessRecipeProvider extends ModRecipeProvider {
     public ShapelessRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -19,6 +29,18 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput consumer) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.RAW_ZONGZI.get(), 1)
+                .requires(ModItems.RICE_SEED.get())
+                .requires(Items.LILY_PAD)
+                .unlockedBy("has_lily_pad", has(Items.LILY_PAD))
+                .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.RAW_BAMBOO_TUBE_RICE.get(), 1)
+                .requires(Items.BAMBOO)
+                .requires(TagCommon.GRAIN_RICE)
+                .requires(TagCommon.RAW_MEATS)
+                .unlockedBy("has_bamboo", has(Items.BAMBOO))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.RICE_PANICLE.get(), 9)
                 .requires(ModItems.STRAW_BLOCK.get())
                 .unlockedBy("has_rice_panicle", has(ModItems.RICE_PANICLE.get()))
@@ -68,15 +90,103 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_flower_pot", has(Items.FLOWER_POT))
                 .save(consumer);
 
-        // 水果拼盘: 2苹果+2发光浆果+2甜浆果+1碗
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.FRUIT_PLATTER), 1)
-                .requires(Items.APPLE, 2)
-                .requires(Items.GLOW_BERRIES, 2)
-                .requires(Items.SWEET_BERRIES, 2)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, PlateRegistry.getItem(PlateRegistry.BERRY_PLATTER), 1)
+                .requires(Items.SWEET_BERRIES, 4)
+                .requires(Items.GLOW_BERRIES, 4)
                 .requires(Items.BOWL)
-                .unlockedBy("has_apple", has(Items.APPLE))
-                .save(consumer);
+                .unlockedBy("has_berry_platter", has(Items.SWEET_BERRIES))
+                .save(consumer, modLoc("berry_platter"));
 
+        // 沙拉类
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.GOLDEN_SALAD), 1)
+                .requires(Items.GOLDEN_APPLE, 2)
+                .requires(Items.GOLDEN_CARROT, 2)
+                .requires(Items.GLISTERING_MELON_SLICE, 2)
+                .requires(Items.BOWL)
+                .unlockedBy("has_golden_apple", has(Items.GOLDEN_APPLE))
+                .save(consumer, modLoc("golden_salad"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.NETHER_STYLE_SASHIMI), 1)
+                .requires(Items.CRIMSON_FUNGUS)
+                .requires(Items.WARPED_FUNGUS)
+                .requires(ModItems.SASHIMI.get(), 4)
+                .requires(Items.BOWL)
+                .unlockedBy("has_sashimi", has(ModItems.SASHIMI.get()))
+                .save(consumer, modLoc("nether_style_sashimi"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.DESERT_STYLE_SASHIMI), 1)
+                .requires(Items.CACTUS, 2)
+                .requires(ModItems.SASHIMI.get(), 4)
+                .requires(Items.BOWL)
+                .unlockedBy("has_sashimi", has(ModItems.SASHIMI.get()))
+                .save(consumer, modLoc("desert_style_sashimi"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.COLD_STYLE_SASHIMI), 1)
+                .requires(Items.SNOWBALL, 3)
+                .requires(ModItems.SASHIMI.get(), 4)
+                .requires(Items.BOWL)
+                .unlockedBy("has_sashimi", has(ModItems.SASHIMI.get()))
+                .save(consumer, modLoc("cold_style_sashimi"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.END_STYLE_SASHIMI), 1)
+                .requires(Items.CHORUS_FRUIT, 3)
+                .requires(ModItems.SASHIMI.get(), 4)
+                .requires(Items.BOWL)
+                .unlockedBy("has_sashimi", has(ModItems.SASHIMI.get()))
+                .save(consumer, modLoc("end_style_sashimi"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.TUNDRA_STYLE_SASHIMI), 1)
+                .requires(Ingredient.of(ItemTags.FLOWERS), 2)
+                .requires(ModItems.SASHIMI.get(), 4)
+                .requires(Items.BOWL)
+                .unlockedBy("has_sashimi", has(ModItems.SASHIMI.get()))
+                .save(consumer, modLoc("tundra_style_sashimi"));
+
+        // 冷切类
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, FoodBiteRegistry.getItem(FoodBiteRegistry.COLD_ROASTED_MEAT), 1)
+                .requires(Items.COOKED_BEEF, 3)
+                .requires(Items.BOWL)
+                .unlockedBy("has_cooked_beef", has(Items.COOKED_BEEF))
+                .save(consumer, modLoc("cold_roasted_meat"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COLD_CUT_HAM_SLICES.get(), 1)
+                .requires(ModItems.COOKED_PORK_BELLY.get(), 8)
+                .requires(Items.BOWL)
+                .unlockedBy("has_cooked_pork_belly", has(ModItems.COOKED_PORK_BELLY.get()))
+                .save(consumer, modLoc("cold_cut_ham_slices"));
+
+        // 盖饭类
+        addRiceBowlRecipe(consumer,
+                ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get(),
+                ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get(),
+                "scramble_egg_with_tomatoes_rice_bowl"
+        );
+
+        addRiceBowlRecipe(consumer,
+                ModItems.BRAISED_BEEF.get(),
+                ModItems.BRAISED_BEEF_RICE_BOWL.get(),
+                "braised_beef_rice_bowl"
+        );
+
+        addRiceBowlRecipe(consumer,
+                ModItems.STIR_FRIED_PORK_WITH_PEPPERS.get(),
+                ModItems.STIR_FRIED_PORK_WITH_PEPPERS_RICE_BOWL.get(),
+                "stir_fried_pork_with_peppers_rice_bowl"
+        );
+
+        addRiceBowlRecipe(consumer,
+                ModItems.SWEET_AND_SOUR_PORK.get(),
+                ModItems.SWEET_AND_SOUR_PORK_RICE_BOWL.get(),
+                "sweet_and_sour_pork_rice_bowl"
+        );
+
+        addRiceBowlRecipe(consumer,
+                ModItems.FISH_FLAVORED_SHREDDED_PORK.get(),
+                ModItems.FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL.get(),
+                "fish_flavored_shredded_pork_rice_bowl"
+        );
+
+        // 面团
         for (int i = 0; i < 8; i++) {
             int count = i + 1;
             String name = "flour_from_" + count + "_wheat";
@@ -86,5 +196,33 @@ public class ShapelessRecipeProvider extends ModRecipeProvider {
                     .unlockedBy("has_wheat", has(Items.WHEAT))
                     .save(consumer, name);
         }
+
+        // 盘装
+        addPlateRecipe(consumer, ModItems.SHENGJIAN_MANTOU.get(), SHENGJIAN_MANTOU_PLATE);
+        addPlateRecipe(consumer, ModItems.BAOZI.get(), BAOZI_PLATE);
+        addPlateRecipe(consumer, ModItems.QINGTUAN.get(), QINGTUAN_PLATE);
+        addPlateRecipe(consumer, ModItems.STICKY_CANDY.get(), STICKY_CANDY_PLATE);
+        addPlateRecipe(consumer, ModItems.STICKY_RICE_CAKE.get(), STICKY_RICE_CAKE_PLATE);
+        addPlateRecipe(consumer, ModItems.ZONGZI.get(), ZONGZI_PLATE);
+        addPlateRecipe(consumer, ModItems.TOMATO.get(), TOMATO_PLATTER);
+        addPlateRecipe(consumer, Items.APPLE, APPLE_PLATTER);
+        addPlateRecipe(consumer, Items.MELON_SLICE, WATERMELON_PLATTER);
+        addPlateRecipe(consumer, Items.CHORUS_FRUIT, CHORUS_FRUIT_PLATTER);
+    }
+
+    private void addRiceBowlRecipe(RecipeOutput consumer, ItemLike dish, Item result, String id) {
+        Ingredient ingredient = Ingredient.of(dish);
+        RiceBowlRecipe recipe = new RiceBowlRecipe(CraftingBookCategory.MISC, ingredient, result.getDefaultInstance());
+        consumer.accept(modLoc(id), recipe, null);
+    }
+
+    private void addPlateRecipe(RecipeOutput consumer, ItemLike ingredient, ResourceLocation result) {
+        Item resultItem = PlateRegistry.getItem(result);
+        int count = PlateRegistry.getCount(result);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, resultItem, 1)
+                .requires(ingredient, count)
+                .requires(Items.BOWL)
+                .unlockedBy("has_ingredient", has(ingredient))
+                .save(consumer);
     }
 }

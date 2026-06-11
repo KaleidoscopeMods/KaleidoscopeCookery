@@ -1,0 +1,15 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "tag": "c:mushrooms"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:wild_mushroom_rabbit_soup"
+  }
+}

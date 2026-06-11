@@ -1,15 +1,18 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init.registry;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.dispenser.OilPotDispenseBehavior;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteOneByTwoBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.create.CreateCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.farmersdelight.FarmersDelightCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.harvest.HarvestCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.BowlFoodBlockItem;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.PlateBlockItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.ItemLike;
@@ -61,6 +64,19 @@ public class CommonRegistry {
                         }
                         return teacupBlock;
                     }));
+
+            // 方块类盘装食物
+            PlateRegistry.PLATE_DATA_MAP.forEach((resourceLocation, data) -> {
+                event.register(BuiltInRegistries.BLOCK.key(), resourceLocation, () -> {
+                    PlateBlock plateBlock = new PlateBlock(data.getMaxCount(), data.getServingItems());
+
+                    VoxelShape aabb = data.getAABB();
+                    if (aabb != null) {
+                        plateBlock.setAABB(aabb);
+                    }
+                    return plateBlock;
+                });
+            });
         }
 
         if (event.getRegistry().equals(BuiltInRegistries.ITEM)) {
@@ -77,11 +93,18 @@ public class CommonRegistry {
                 event.register(BuiltInRegistries.ITEM.key(), resourceLocation,
                         () -> new TeacupItem(block, data.getEffects()));
             });
+
+            PlateRegistry.PLATE_DATA_MAP.forEach((resourceLocation, data) -> {
+                Block block = BuiltInRegistries.BLOCK.get(resourceLocation);
+                event.register(BuiltInRegistries.ITEM.key(), resourceLocation,
+                        () -> new PlateBlockItem(block, resourceLocation.getPath()));
+            });
         }
     }
 
     private static void modCompat() {
         FarmersDelightCompat.init();
+        CreateCompat.init();
         HarvestCompat.init();
     }
 

@@ -2,6 +2,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
@@ -12,6 +14,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -127,13 +130,16 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {
             Block block = BuiltInRegistries.BLOCK.get(key);
-            if (block != null) {
-                if (value.blockType() == FoodBiteRegistry.BlockType.ONE_BY_TWO) {
-                    addOneByTwoFoodBiteBlock(block, key);
-                } else {
-                    addFoodBiteBlock(block, key);
-                }
+            if (value.blockType() == FoodBiteRegistry.BlockType.ONE_BY_TWO) {
+                addOneByTwoFoodBiteBlock(block, key);
+            } else {
+                addFoodBiteBlock(block, key);
             }
+        });
+
+        PlateRegistry.PLATE_DATA_MAP.forEach((key, value) -> {
+            Block block = BuiltInRegistries.BLOCK.get(key);
+            addPlateBlock(block, key);
         });
 
         horizontalBlock(ModBlocks.EMPTY_CUP.get(), blockState -> {
@@ -146,6 +152,8 @@ public class BlockStateGenerator extends BlockStateProvider {
             Block block = BuiltInRegistries.BLOCK.get(key);
             addTeacupBlock(block, key);
         });
+
+        addStackableFoodBlock(ModBlocks.BAMBOO_TUBE_RICE.get(), modLoc("bamboo_tube_rice"));
 
         horizontalBlock(ModBlocks.FRUIT_BASKET.get(), new ModelFile.UncheckedModelFile(modLoc("block/fruit_basket")));
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
@@ -351,7 +359,10 @@ public class BlockStateGenerator extends BlockStateProvider {
                 throw new IllegalArgumentException("Block must be an instance of FoodBiteBlock");
             }
             int bites = blockState.getValue(foodBiteBlock.getBites());
-            ResourceLocation model = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "block/food/%s/%s_%d".formatted(id.getPath(), id.getPath(), bites));
+            ResourceLocation model = ResourceLocation.fromNamespaceAndPath(
+                    id.getNamespace(),
+                    "block/food/%s/%s_%d".formatted(id.getPath(), id.getPath(), bites)
+            );
             return new ModelFile.UncheckedModelFile(model);
         });
     }
@@ -365,10 +376,42 @@ public class BlockStateGenerator extends BlockStateProvider {
             int position = blockState.getValue(FoodBiteOneByTwoBlock.POSITION);
             ResourceLocation model;
             if (position == FoodBiteOneByTwoBlock.LEFT) {
-                model = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "block/food/%s/%s_left_%d".formatted(id.getPath(), id.getPath(), bites));
+                model = ResourceLocation.fromNamespaceAndPath(
+                        id.getNamespace(),
+                        "block/food/%s/%s_left_%d".formatted(id.getPath(), id.getPath(), bites)
+                );
             } else {
-                model = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "block/food/%s/%s_right_%d".formatted(id.getPath(), id.getPath(), bites));
+                model = ResourceLocation.fromNamespaceAndPath(
+                        id.getNamespace(),
+                        "block/food/%s/%s_right_%d".formatted(id.getPath(), id.getPath(), bites)
+                );
             }
+            return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    public void addStackableFoodBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof StackableFoodBlock stackableFoodBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of StackableFoodBlock");
+            }
+            int count = blockState.getValue(stackableFoodBlock.getCountProperty());
+            ResourceLocation model = ResourceLocation.fromNamespaceAndPath(
+                    id.getNamespace(), "block/food/%s/%s_%d".formatted(id.getPath(), id.getPath(), count)
+            );
+            return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    public void addPlateBlock(Block block, ResourceLocation id) {
+        horizontalBlock(block, blockState -> {
+            if (!(blockState.getBlock() instanceof PlateBlock plateBlock)) {
+                throw new IllegalArgumentException("Block must be an instance of PlateBlock");
+            }
+            int count = blockState.getValue(plateBlock.getServingsProperty());
+            ResourceLocation model = ResourceLocation.fromNamespaceAndPath(
+                    id.getNamespace(), "block/plate/%s/%s_%d".formatted(id.getPath(), id.getPath(), count)
+            );
             return new ModelFile.UncheckedModelFile(model);
         });
     }

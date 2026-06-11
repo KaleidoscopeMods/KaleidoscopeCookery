@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "bites=0,facing=east": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_0",
+      "y": 90
+    },
+    "bites=0,facing=north": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_0"
+    },
+    "bites=0,facing=south": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_0",
+      "y": 180
+    },
+    "bites=0,facing=west": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_0",
+      "y": 270
+    },
+    "bites=1,facing=east": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_1",
+      "y": 90
+    },
+    "bites=1,facing=north": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_1"
+    },
+    "bites=1,facing=south": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_1",
+      "y": 180
+    },
+    "bites=1,facing=west": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_1",
+      "y": 270
+    },
+    "bites=2,facing=east": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_2",
+      "y": 90
+    },
+    "bites=2,facing=north": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_2"
+    },
+    "bites=2,facing=south": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_2",
+      "y": 180
+    },
+    "bites=2,facing=west": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_2",
+      "y": 270
+    },
+    "bites=3,facing=east": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_3",
+      "y": 90
+    },
+    "bites=3,facing=north": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_3"
+    },
+    "bites=3,facing=south": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_3",
+      "y": 180
+    },
+    "bites=3,facing=west": {
+      "model": "kaleidoscope_cookery:block/food/dark_cuisine/dark_cuisine_3",
+      "y": 270
+    }
+  }
+}

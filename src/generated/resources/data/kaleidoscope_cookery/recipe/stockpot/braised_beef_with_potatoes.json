@@ -11,12 +11,6 @@
       "item": "minecraft:potato"
     },
     {
-      "item": "minecraft:potato"
-    },
-    {
-      "tag": "c:foods/raw_beef"
-    },
-    {
       "tag": "c:foods/raw_beef"
     },
     {
@@ -24,7 +18,7 @@
     }
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "kaleidoscope_cookery:braised_beef_with_potatoes"
   }
 }

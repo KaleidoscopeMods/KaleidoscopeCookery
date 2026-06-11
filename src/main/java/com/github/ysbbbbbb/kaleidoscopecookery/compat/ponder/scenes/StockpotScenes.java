@@ -3,7 +3,6 @@ package com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.scenes;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.StockpotBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.StoveBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.StockpotBlockEntity;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.scene.*;

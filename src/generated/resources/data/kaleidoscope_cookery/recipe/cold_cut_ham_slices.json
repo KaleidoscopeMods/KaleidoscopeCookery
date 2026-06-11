@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:cold_cut_ham_slices"
+  }
+}

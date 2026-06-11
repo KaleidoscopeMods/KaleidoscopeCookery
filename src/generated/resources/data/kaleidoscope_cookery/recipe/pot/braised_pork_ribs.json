@@ -5,18 +5,6 @@
   },
   "ingredients": [
     {
-      "item": "kaleidoscope_cookery:raw_pork_belly"
-    },
-    {
-      "item": "kaleidoscope_cookery:raw_pork_belly"
-    },
-    {
-      "item": "kaleidoscope_cookery:raw_pork_belly"
-    },
-    {
-      "item": "kaleidoscope_cookery:raw_pork_belly"
-    },
-    {
       "item": "minecraft:bone"
     },
     {
@@ -27,6 +15,18 @@
     },
     {
       "item": "minecraft:bone"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
+    },
+    {
+      "tag": "c:foods/raw_pork"
     }
   ],
   "result": {

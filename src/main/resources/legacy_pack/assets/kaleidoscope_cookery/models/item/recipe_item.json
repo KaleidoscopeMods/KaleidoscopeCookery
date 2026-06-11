@@ -1,0 +1,16 @@
+{
+  "overrides": [
+    {
+      "model": "kaleidoscope_cookery:item/recipe_item_no_recipe",
+      "predicate": {
+        "kaleidoscope_cookery:has_recipe": 0.0
+      }
+    },
+    {
+      "model": "kaleidoscope_cookery:item/recipe_item_has_recipe",
+      "predicate": {
+        "kaleidoscope_cookery:has_recipe": 1.0
+      }
+    }
+  ]
+}

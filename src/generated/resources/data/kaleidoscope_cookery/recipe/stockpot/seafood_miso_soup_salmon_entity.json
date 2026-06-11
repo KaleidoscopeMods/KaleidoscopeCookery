@@ -2,10 +2,13 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "item": "minecraft:kelp"
+      "tag": "c:crops/lettuce"
     },
     {
-      "item": "minecraft:bone_meal"
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:crops/lettuce"
     }
   ],
   "result": {

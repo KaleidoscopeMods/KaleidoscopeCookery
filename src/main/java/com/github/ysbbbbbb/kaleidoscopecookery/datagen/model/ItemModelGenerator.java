@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -42,29 +43,21 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.TOMATO.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get());
-        basicItem(ModItems.STIR_FRIED_BEEF_OFFAL.get());
-        basicItem(ModItems.STIR_FRIED_BEEF_OFFAL_RICE_BOWL.get());
         basicItem(ModItems.BRAISED_BEEF.get());
         basicItem(ModItems.BRAISED_BEEF_RICE_BOWL.get());
         basicItem(ModItems.STIR_FRIED_PORK_WITH_PEPPERS.get());
         basicItem(ModItems.STIR_FRIED_PORK_WITH_PEPPERS_RICE_BOWL.get());
         basicItem(ModItems.SWEET_AND_SOUR_PORK.get());
         basicItem(ModItems.SWEET_AND_SOUR_PORK_RICE_BOWL.get());
-        basicItem(ModItems.COUNTRY_STYLE_MIXED_VEGETABLES.get());
         basicItem(ModItems.FISH_FLAVORED_SHREDDED_PORK.get());
         basicItem(ModItems.FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL.get());
-        basicItem(ModItems.BRAISED_FISH_RICE_BOWL.get());
-        basicItem(ModItems.SPICY_CHICKEN_RICE_BOWL.get());
-        basicItem(ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get());
         basicItem(ModItems.EGG_FRIED_RICE.get());
-        basicItem(ModItems.DELICIOUS_EGG_FRIED_RICE.get());
         basicItem(ModItems.PORK_BONE_SOUP.get());
         basicItem(ModItems.SEAFOOD_MISO_SOUP.get());
         basicItem(ModItems.FEARSOME_THICK_SOUP.get());
         basicItem(ModItems.LAMB_AND_RADISH_SOUP.get());
         basicItem(ModItems.BRAISED_BEEF_WITH_POTATOES.get());
         basicItem(ModItems.WILD_MUSHROOM_RABBIT_SOUP.get());
-        basicItem(ModItems.TOMATO_BEEF_BRISKET_SOUP.get());
         basicItem(ModItems.PUFFERFISH_SOUP.get());
         basicItem(ModItems.BORSCHT.get());
         basicItem(ModItems.BEEF_MEATBALL_SOUP.get());
@@ -95,12 +88,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.ENAMEL_BASIN.get());
         basicItem(ModItems.KITCHENWARE_RACKS.get());
         basicItem(ModItems.MILLSTONE.get());
-        basicItem(ModItems.RAW_DONKEY_MEAT.get());
-        basicItem(ModItems.COOKED_DONKEY_MEAT.get());
         basicItem(ModItems.RAW_NOODLES.get());
         basicItem(ModItems.STUFFED_DOUGH_FOOD.get());
         basicItem(ModItems.DONKEY_BURGER.get());
-        basicItem(ModItems.DONKEY_SOUP.get());
         basicItem(ModItems.FLOUR.get());
         basicItem(ModItems.RAW_CUT_SMALL_MEATS.get());
         basicItem(ModItems.COOKED_CUT_SMALL_MEATS.get());
@@ -108,14 +98,24 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.COOKED_MEATBALL.get());
 
         basicItem(ModItems.BAOZI.get());
+        basicItem(ModItems.SHENGJIAN_MANTOU.get());
         basicItem(ModItems.DUMPLING.get());
         basicItem(ModItems.SAMSA.get());
         basicItem(ModItems.MANTOU.get());
         basicItem(ModItems.MEAT_PIE.get());
+        basicItem(ModItems.STICKY_CANDY.get());
+        basicItem(ModItems.STICKY_RICE_CAKE.get());
+        basicItem(ModItems.QINGTUAN.get());
+        basicItem(ModItems.RAW_ZONGZI.get());
+        basicItem(ModItems.ZONGZI.get());
+        basicItem(ModItems.RAW_BAMBOO_TUBE_RICE.get());
+        basicItem(ModItems.BAMBOO_TUBE_RICE.get());
 
         basicItem(ModItems.BEEF_NOODLE.get());
         basicItem(ModItems.HUI_NOODLE.get());
         basicItem(ModItems.UDON_NOODLE.get());
+        basicItem(ModItems.HOT_DRY_NOODLES.get());
+        basicItem(ModItems.LABA_CONGEE.get());
 
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
@@ -196,6 +196,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         }
 
         FoodBiteRegistry.FOOD_DATA_MAP.forEach((key, value) -> {
+            Item item = BuiltInRegistries.ITEM.get(key);
+            basicItem(item);
+        });
+
+        PlateRegistry.PLATE_DATA_MAP.forEach((key, value) -> {
             Item item = BuiltInRegistries.ITEM.get(key);
             basicItem(item);
         });

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cooked_pork_belly": {
+      "conditions": {
+        "items": [
+          {
+            "items": "kaleidoscope_cookery:cooked_pork_belly"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "kaleidoscope_cookery:cold_cut_ham_slices"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cooked_pork_belly"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "kaleidoscope_cookery:cold_cut_ham_slices"
+    ]
+  }
+}

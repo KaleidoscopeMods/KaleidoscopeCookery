@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import com.mojang.logging.LogUtils;
@@ -25,6 +26,7 @@ public class KaleidoscopeCookery {
 
         FoodBiteRegistry.init();
         TeacupRegistry.init();
+        PlateRegistry.init();
 
         ModArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         ModTrigger.TRIGGERS.register(modEventBus);

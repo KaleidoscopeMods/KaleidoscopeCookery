@@ -1,0 +1,11 @@
+{
+  "type": "kaleidoscope_cookery:rice_bowl",
+  "category": "misc",
+  "ingredient": {
+    "item": "kaleidoscope_cookery:scramble_egg_with_tomatoes"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:scramble_egg_with_tomatoes_rice_bowl"
+  }
+}

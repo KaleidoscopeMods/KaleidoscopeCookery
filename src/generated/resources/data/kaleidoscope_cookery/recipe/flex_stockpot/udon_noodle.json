@@ -1,0 +1,18 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "ingredients": [
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:udon_noodle"
+  }
+}

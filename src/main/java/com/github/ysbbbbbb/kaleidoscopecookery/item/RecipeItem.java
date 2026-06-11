@@ -12,6 +12,9 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModDataComponents;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.RecipeItemTooltip;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.Quality;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityEvaluator;
+import com.github.ysbbbbbb.kaleidoscopecookery.item.quality.QualityUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
@@ -27,13 +30,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -123,8 +127,7 @@ public class RecipeItem extends BlockItem {
         if (hasRecipe(itemInHand)) {
             return this.onPutRecipe(blockEntity, player, itemInHand);
         } else {
-            InteractionHand hand = context.getHand();
-            return this.onRecordRecipe(context.getLevel(), player, blockEntity, recipeManager, itemInHand, hand);
+            return this.onRecordRecipe(context.getLevel(), player, blockEntity, recipeManager, itemInHand);
         }
     }
 
@@ -245,21 +248,16 @@ public class RecipeItem extends BlockItem {
         return InteractionResult.SUCCESS;
     }
 
-    private InteractionResult onRecordRecipe(Level level, Player player, BlockEntity blockEntity, RecipeManager recipeManager,
-                                             ItemStack itemInHand, InteractionHand hand) {
+    private InteractionResult onRecordRecipe(Level level, Player player, BlockEntity blockEntity,
+                                             RecipeManager recipeManager, ItemStack itemInHand) {
         if (blockEntity instanceof PotBlockEntity pot && pot.getStatus() == IPot.PUT_INGREDIENT) {
             List<ItemStack> inputs = pot.getInputs().stream().filter(s -> !s.isEmpty()).toList();
             if (inputs.isEmpty()) {
                 return InteractionResult.PASS;
             }
             ItemStack recordStack = itemInHand.split(1);
-            recipeManager.getRecipeFor(ModRecipes.POT_RECIPE, pot.getContainer(), level).ifPresentOrElse(recipe -> {
-                ItemStack resultItem = recipe.value().getResultItem(level.registryAccess());
-                setRecipe(recordStack, new RecipeRecord(inputs, resultItem, POT));
-            }, () -> {
-                ItemStack instance = FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY).getDefaultInstance();
-                setRecipe(recordStack, new RecipeRecord(inputs, instance, POT));
-            });
+            RecipeResult recipeResult = getPotRecipeResult(level, recipeManager, pot, inputs, recordStack);
+            setRecipe(recordStack, new RecipeRecord(inputs, recipeResult.output(), POT, recipeResult.flexRecipe()));
             ItemUtils.getItemToLivingEntity(player, recordStack);
             return InteractionResult.SUCCESS;
         }
@@ -269,25 +267,66 @@ public class RecipeItem extends BlockItem {
             if (inputs.isEmpty()) {
                 return InteractionResult.PASS;
             }
-            // 如果数量大于 1，那么复制一个，其他的返回背包
-            ItemStack recordStack = itemInHand.copyWithCount(1);
-            int count = itemInHand.getCount();
-            if (count > 1) {
-                ItemStack returnStack = itemInHand.copyWithCount(count - 1);
-                ItemUtils.getItemToLivingEntity(player, returnStack);
-            }
-            recipeManager.getRecipeFor(ModRecipes.STOCKPOT_RECIPE, stockpot.getContainer(), level).ifPresentOrElse(recipe -> {
-                ItemStack resultItem = recipe.value().getResultItem(level.registryAccess());
-                setRecipe(recordStack, new RecipeRecord(inputs, resultItem, STOCKPOT));
-            }, () -> {
-                ItemStack instance = Items.SUSPICIOUS_STEW.getDefaultInstance();
-                setRecipe(recordStack, new RecipeRecord(inputs, instance, STOCKPOT));
-            });
-            player.setItemInHand(hand, recordStack);
+            ItemStack recordStack = itemInHand.split(1);
+            RecipeResult recipeResult = getStockpotRecipeResult(level, recipeManager, stockpot, inputs, recordStack);
+            setRecipe(recordStack, new RecipeRecord(inputs, recipeResult.output(), STOCKPOT, recipeResult.flexRecipe()));
+            ItemUtils.getItemToLivingEntity(player, recordStack);
             return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
+    }
+
+    private RecipeResult getPotRecipeResult(Level level, RecipeManager recipeManager, PotBlockEntity pot,
+                                            List<ItemStack> inputs, ItemStack recordStack) {
+        var container = pot.getContainer();
+        var potRecipe = recipeManager.getRecipeFor(ModRecipes.POT_RECIPE, container, level);
+        if (potRecipe.isPresent()) {
+            ItemStack assemble = potRecipe.get().value()
+                    .assemble(container, level.registryAccess());
+            return new RecipeResult(assemble, false);
+        }
+
+        var flexPotRecipe = recipeManager.getRecipeFor(ModRecipes.FLEX_POT_RECIPE, container, level);
+        if (flexPotRecipe.isPresent()) {
+            var recipe = flexPotRecipe.get();
+            ItemStack result = recipe.value().assemble(container, level.registryAccess());
+            setQuality(level, inputs, recipe.value().ingredients(), recipe.id(), result, recordStack);
+            return new RecipeResult(result, true);
+        }
+
+        ItemStack instance = FoodBiteRegistry.getItem(FoodBiteRegistry.SUSPICIOUS_STIR_FRY).getDefaultInstance();
+        return new RecipeResult(instance, false);
+    }
+
+    private RecipeResult getStockpotRecipeResult(Level level, RecipeManager recipeManager, StockpotBlockEntity stockpot,
+                                                 List<ItemStack> inputs, ItemStack recordStack) {
+        var container = stockpot.getInput();
+        var stockpotRecipe = recipeManager.getRecipeFor(ModRecipes.STOCKPOT_RECIPE, container, level);
+        if (stockpotRecipe.isPresent()) {
+            ItemStack assemble = stockpotRecipe.get().value()
+                    .assemble(container, level.registryAccess());
+            return new RecipeResult(assemble, false);
+        }
+
+        var flexStockpotRecipe = recipeManager.getRecipeFor(ModRecipes.FLEX_STOCKPOT_RECIPE, container, level);
+        if (flexStockpotRecipe.isPresent()) {
+            var recipe = flexStockpotRecipe.get();
+            ItemStack result = recipe.value().assemble(container, level.registryAccess());
+            setQuality(level, inputs, recipe.value().ingredients(), recipe.id(), result, recordStack);
+            return new RecipeResult(result, true);
+        }
+
+        return new RecipeResult(Items.SUSPICIOUS_STEW.getDefaultInstance(), false);
+    }
+
+    private void setQuality(Level level, List<ItemStack> inputs, List<Ingredient> ingredients,
+                            ResourceLocation recipeId, ItemStack result, ItemStack recordStack) {
+        if (level instanceof ServerLevel serverLevel) {
+            Quality quality = QualityEvaluator.evaluate(inputs, ingredients, recipeId, serverLevel.getSeed());
+            QualityUtils.setQuality(result, quality);
+            QualityUtils.setQuality(recordStack, quality);
+        }
     }
 
     @Override
@@ -297,7 +336,11 @@ public class RecipeItem extends BlockItem {
             if (recipe == null) {
                 return Optional.empty();
             }
-            return Optional.of(new RecipeItemTooltip(recipe));
+            Quality quality = null;
+            if (QualityUtils.hasQuality(stack)) {
+                quality = QualityUtils.getQuality(stack);
+            }
+            return Optional.of(new RecipeItemTooltip(recipe, quality));
         }
         return Optional.empty();
     }
@@ -307,11 +350,15 @@ public class RecipeItem extends BlockItem {
         tooltip.add(Component.translatable("tooltip.kaleidoscope_cookery.recipe_item").withStyle(ChatFormatting.GRAY));
     }
 
-    public record RecipeRecord(List<ItemStack> input, ItemStack output, ResourceLocation type) {
+    private record RecipeResult(ItemStack output, boolean flexRecipe) {
+    }
+
+    public record RecipeRecord(List<ItemStack> input, ItemStack output, ResourceLocation type, boolean flexRecipe) {
         public static final Codec<RecipeRecord> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 ItemStack.OPTIONAL_CODEC.listOf().fieldOf("input").forGetter(RecipeRecord::input),
                 ItemStack.CODEC.fieldOf("output").forGetter(RecipeRecord::output),
-                ResourceLocation.CODEC.fieldOf("type").forGetter(RecipeRecord::type)
+                ResourceLocation.CODEC.fieldOf("type").forGetter(RecipeRecord::type),
+                Codec.BOOL.fieldOf("flex_recipe").forGetter(RecipeRecord::flexRecipe)
         ).apply(instance, RecipeRecord::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, RecipeRecord> STREAM_CODEC = new StreamCodec<>() {
@@ -324,7 +371,8 @@ public class RecipeItem extends BlockItem {
                 }
                 ItemStack output = ItemStack.STREAM_CODEC.decode(buffer);
                 ResourceLocation type = buffer.readResourceLocation();
-                return new RecipeRecord(inputs, output, type);
+                boolean flexRecipe = buffer.readBoolean();
+                return new RecipeRecord(inputs, output, type, flexRecipe);
             }
 
             @Override
@@ -335,29 +383,29 @@ public class RecipeItem extends BlockItem {
                 }
                 ItemStack.STREAM_CODEC.encode(buffer, value.output());
                 buffer.writeResourceLocation(value.type());
+                buffer.writeBoolean(value.flexRecipe());
             }
         };
-
         public static RecipeRecord pot(ItemLike output, ItemLike... input) {
             List<ItemStack> inputList = Arrays.stream(input).map(ItemStack::new).toList();
-            return new RecipeRecord(inputList, new ItemStack(output), POT);
+            return new RecipeRecord(inputList, new ItemStack(output), POT, false);
         }
 
         @SafeVarargs
         public static RecipeRecord pot(DeferredItem<Item> output, DeferredItem<Item>... input) {
             List<ItemStack> inputList = Arrays.stream(input).map(s -> new ItemStack(s.get())).toList();
-            return new RecipeRecord(inputList, new ItemStack(output.get()), POT);
+            return new RecipeRecord(inputList, new ItemStack(output.get()), POT, false);
         }
 
         public static RecipeRecord stockpot(ItemLike output, ItemLike... input) {
             List<ItemStack> inputList = Arrays.stream(input).map(ItemStack::new).toList();
-            return new RecipeRecord(inputList, new ItemStack(output), STOCKPOT);
+            return new RecipeRecord(inputList, new ItemStack(output), STOCKPOT, false);
         }
 
         @SafeVarargs
         public static RecipeRecord stockpot(DeferredItem<Item> output, DeferredItem<Item>... input) {
             List<ItemStack> inputList = Arrays.stream(input).map(s -> new ItemStack(s.get())).toList();
-            return new RecipeRecord(inputList, new ItemStack(output.get()), STOCKPOT);
+            return new RecipeRecord(inputList, new ItemStack(output.get()), STOCKPOT, false);
         }
     }
 }

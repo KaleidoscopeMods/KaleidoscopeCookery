@@ -1,0 +1,31 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "kaleidoscope_cookery:chopping_board/raw_dough"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 4],
+			"to": [13, 3, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 9]},
+			"faces": {
+				"north": {"uv": [9, 0, 11, 0.75], "texture": "#0"},
+				"east": {"uv": [11, 0, 13, 0.75], "texture": "#0"},
+				"south": {"uv": [13, 0, 15, 0.75], "texture": "#0"},
+				"west": {"uv": [9, 0.75, 11, 1.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 2, 2], "texture": "#0"},
+				"down": {"uv": [2, 0, 4, 2], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "cut_count_4",
+			"origin": [0, 0, 0],
+			"color": 1,
+			"children": [0]
+		}
+	]
+}

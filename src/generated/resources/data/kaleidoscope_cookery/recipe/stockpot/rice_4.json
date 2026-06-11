@@ -4,16 +4,16 @@
   "finished_texture": "kaleidoscope_cookery:stockpot/rice_finished",
   "ingredients": [
     {
-      "tag": "c:seeds/rice"
+      "tag": "c:grain/rice"
     },
     {
-      "tag": "c:seeds/rice"
+      "tag": "c:grain/rice"
     },
     {
-      "tag": "c:seeds/rice"
+      "tag": "c:grain/rice"
     },
     {
-      "tag": "c:seeds/rice"
+      "tag": "c:grain/rice"
     }
   ],
   "result": {

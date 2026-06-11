@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/fruit_basket"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/fruit_basket"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/fruit_basket",
+      "y": 270
+    }
+  }
+}

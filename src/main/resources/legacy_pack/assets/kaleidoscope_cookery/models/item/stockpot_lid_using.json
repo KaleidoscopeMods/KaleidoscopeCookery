@@ -1,0 +1,74 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "kaleidoscope_cookery:block/stockpot",
+		"particle": "kaleidoscope_cookery:block/stockpot"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 2, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 1]},
+			"faces": {
+				"north": {"uv": [0, 1, 6, 2], "texture": "#2"},
+				"east": {"uv": [0, 1, 6, 2], "texture": "#2"},
+				"south": {"uv": [0, 1, 6, 2], "texture": "#2"},
+				"west": {"uv": [0, 1, 6, 2], "texture": "#2"},
+				"up": {"uv": [9.5, 9.5, 15.5, 15.5], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [9, 3, 15, 9], "texture": "#2"}
+			}
+		},
+		{
+			"from": [7, 2, 7],
+			"to": [9, 3, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 2, 7]},
+			"faces": {
+				"north": {"uv": [1.5, 0.5, 2.5, 1], "texture": "#2"},
+				"east": {"uv": [1.5, 0.5, 2.5, 1], "texture": "#2"},
+				"south": {"uv": [1.5, 0.5, 2.5, 1], "texture": "#2"},
+				"west": {"uv": [1.5, 0.5, 2.5, 1], "texture": "#2"},
+				"up": {"uv": [1.5, 0, 2.5, 1], "texture": "#2"},
+				"down": {"uv": [1.5, 0, 2.5, 1], "texture": "#2"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-127.82, -68.96, 106.93],
+			"translation": [0, -2.75, 3.5],
+			"scale": [1, 0.85, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-132, -73.5, 102.5],
+			"translation": [0, -2.75, 3.5],
+			"scale": [1, 0.85, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [93.35, 74.3, -3.45],
+			"translation": [-3.75, 2.35, 2.05],
+			"scale": [1.3, 1.3, 1.3]
+		},
+		"firstperson_lefthand": {
+			"rotation": [93.35, 74.3, -3.45],
+			"translation": [-3.75, 2.35, 2.05],
+			"scale": [1.3, 1.3, 1.3]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [-129.5, -45, -180],
+			"translation": [0, 2.75, 0],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"head": {
+			"translation": [0, 14.5, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"format_version": "1.21.6"
+}

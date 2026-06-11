@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/cook_stool/cherry",
+      "y": 270
+    }
+  }
+}

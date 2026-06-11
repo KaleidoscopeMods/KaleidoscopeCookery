@@ -177,7 +177,7 @@ dependencies {
     runtimeOnly "maven.modrinth:food-effect-tooltips-forge:1.4.0-neoforge,1.21.1"
 
     implementation "net.createmod.ponder:Ponder-NeoForge-1.21.1:1.0.56"
-    runtimeOnly "maven.modrinth:create:1.21.1-6.0.6"
+    implementation "maven.modrinth:create:1.21.1-6.0.6"
 
     runtimeOnly "maven.modrinth:item-banning:1.21.1-1.1.4-neoforge"
 }

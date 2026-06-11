@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "is_head=false,sheared=false": {
+      "model": "kaleidoscope_cookery:block/chili_ristra/body"
+    },
+    "is_head=false,sheared=true": {
+      "model": "kaleidoscope_cookery:block/chili_ristra/body_sheared"
+    },
+    "is_head=true,sheared=false": {
+      "model": "kaleidoscope_cookery:block/chili_ristra/head"
+    },
+    "is_head=true,sheared=true": {
+      "model": "kaleidoscope_cookery:block/chili_ristra/head_sheared"
+    }
+  }
+}

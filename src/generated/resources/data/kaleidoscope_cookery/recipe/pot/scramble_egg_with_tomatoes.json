@@ -5,13 +5,13 @@
   },
   "ingredients": [
     {
-      "tag": "c:foods/cooked_eggs"
+      "tag": "c:eggs"
     },
     {
-      "tag": "c:foods/cooked_eggs"
+      "tag": "c:eggs"
     },
     {
-      "tag": "c:foods/cooked_eggs"
+      "tag": "c:eggs"
     },
     {
       "tag": "c:crops/tomato"

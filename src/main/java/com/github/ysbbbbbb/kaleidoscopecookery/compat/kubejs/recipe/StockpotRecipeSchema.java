@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 
+import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals.*;
 import static com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer.*;
 
 public interface StockpotRecipeSchema {

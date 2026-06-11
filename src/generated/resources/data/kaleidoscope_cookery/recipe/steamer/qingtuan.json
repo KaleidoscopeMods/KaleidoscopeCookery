@@ -1,0 +1,10 @@
+{
+  "type": "kaleidoscope_cookery:steamer",
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:qingtuan"
+  }
+}

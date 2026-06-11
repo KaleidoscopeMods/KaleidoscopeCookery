@@ -8,17 +8,17 @@
       "item": "minecraft:pufferfish"
     },
     {
-      "item": "minecraft:pufferfish"
+      "tag": "c:crops/lettuce"
     },
     {
-      "item": "minecraft:seagrass"
+      "tag": "c:crops/lettuce"
     },
     {
-      "item": "minecraft:seagrass"
+      "tag": "c:crops/lettuce"
     }
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "kaleidoscope_cookery:pufferfish_soup"
   }
 }

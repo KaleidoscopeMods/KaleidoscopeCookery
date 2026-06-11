@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TrashCanOverla
 import com.github.ysbbbbbb.kaleidoscopecookery.client.model.StrawHatModel;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.block.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacerReloadListener;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.LegacyPackRepositorySource;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.init.PonderCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
@@ -18,6 +19,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,6 +34,7 @@ import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.jetbrains.annotations.NotNull;
 
 import static net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR;
@@ -121,5 +124,12 @@ public class ClientSetupEvent {
                 return cachedModel;
             }
         }, ModItems.STRAW_HAT.get(), ModItems.STRAW_HAT_FLOWER.get());
+    }
+
+    @SubscribeEvent
+    public static void onAddPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            event.addRepositorySource(new LegacyPackRepositorySource());
+        }
     }
 }

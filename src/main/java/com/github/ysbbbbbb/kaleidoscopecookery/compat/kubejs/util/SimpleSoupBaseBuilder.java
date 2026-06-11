@@ -1,6 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.kubejs.util;
 
-import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.StockpotRecipeSerializer;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.soupbase.SimpleSoupBase;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.rhino.util.HideFromJS;
@@ -21,8 +21,8 @@ public final class SimpleSoupBaseBuilder {
     private final ResourceLocation name;
 
     private ItemStack displayStack = Items.APPLE.getDefaultInstance();
-    private ResourceLocation soupBaseTexture = StockpotRecipeSerializer.DEFAULT_COOKING_TEXTURE;
-    private int bubbleColor = StockpotRecipeSerializer.DEFAULT_COOKING_BUBBLE_COLOR;
+    private ResourceLocation soupBaseTexture = StockpotVisuals.DEFAULT_COOKING_TEXTURE;
+    private int bubbleColor = StockpotVisuals.DEFAULT_COOKING_BUBBLE_COLOR;
 
     private Predicate<ItemStack> soupBasePredicate = stack -> false;
     private Predicate<ItemStack> containerPredicate = stack -> false;

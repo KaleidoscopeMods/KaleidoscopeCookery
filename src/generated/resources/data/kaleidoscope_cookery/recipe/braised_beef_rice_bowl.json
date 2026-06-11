@@ -1,0 +1,11 @@
+{
+  "type": "kaleidoscope_cookery:rice_bowl",
+  "category": "misc",
+  "ingredient": {
+    "item": "kaleidoscope_cookery:braised_beef"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:braised_beef_rice_bowl"
+  }
+}

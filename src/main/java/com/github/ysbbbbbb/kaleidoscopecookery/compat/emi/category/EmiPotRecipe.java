@@ -9,8 +9,10 @@ import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.api.widget.TextWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -25,12 +27,14 @@ public class EmiPotRecipe extends BasicEmiRecipe {
     private static final ResourceLocation BG = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/pot.png");
     public static final int WIDTH = 176;
     public static final int HEIGHT = 102;
+    private final int stirFryCount;
 
-    public EmiPotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts) {
+    public EmiPotRecipe(ResourceLocation id, List<EmiIngredient> inputs, List<EmiStack> outputs, List<EmiIngredient> catalysts, int stirFryCount) {
         super(CATEGORY, id, WIDTH, HEIGHT);
         this.inputs = inputs;
         this.outputs = outputs;
         this.catalysts = catalysts;
+        this.stirFryCount = stirFryCount;
     }
 
     public static void register(EmiRegistry registry) {
@@ -44,13 +48,17 @@ public class EmiPotRecipe extends BasicEmiRecipe {
             List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
             List<EmiIngredient> catalysts = r.carrier().isEmpty() ? List.of() : List.of(EmiIngredient.of(r.carrier()));
 
-            registry.addRecipe(new EmiPotRecipe(recipeHolder.id(), inputs, outputs, catalysts));
+            registry.addRecipe(new EmiPotRecipe(recipeHolder.id(), inputs, outputs, catalysts, r.stirFryCount()));
         });
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(BG, 1, 1, WIDTH, HEIGHT, 0, 0);
+        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 5, 0x555555, false)
+                .horizontalAlign(TextWidget.Alignment.CENTER);
+        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.pot.stir_fry_count", stirFryCount), WIDTH / 2, 85, 0x555555, false)
+                .horizontalAlign(TextWidget.Alignment.CENTER);
 
         for (int i = 0; i < inputs.size(); i++) {
             int xOffset = (i % 3) * 18 + 15;
@@ -59,10 +67,10 @@ public class EmiPotRecipe extends BasicEmiRecipe {
                     .drawBack(false);
         }
         if (!catalysts.isEmpty()) {
-            widgets.addSlot(catalysts.get(0), 133, 18)
+            widgets.addSlot(catalysts.getFirst(), 133, 18)
                     .drawBack(false);
         }
-        widgets.addSlot(outputs.get(0), 143, 60)
+        widgets.addSlot(outputs.getFirst(), 143, 60)
                 .drawBack(false)
                 .recipeContext(this);
     }

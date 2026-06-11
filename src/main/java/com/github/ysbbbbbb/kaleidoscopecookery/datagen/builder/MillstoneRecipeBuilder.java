@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.crafting.output.RandomOutput;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.MillstoneRecipe;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.data.recipes.RecipeBuilder;
@@ -12,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class MillstoneRecipeBuilder implements RecipeBuilder {
     private static final String NAME = "millstone";
@@ -78,7 +81,8 @@ public class MillstoneRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput recipeOutput, ResourceLocation id) {
-        MillstoneRecipe recipe = new MillstoneRecipe(this.ingredient, this.result);
+        RandomOutput output = new RandomOutput(this.result, 1.0F);
+        MillstoneRecipe recipe = new MillstoneRecipe(this.ingredient, List.of(output));
         recipeOutput.accept(id, recipe, null);
     }
 }

@@ -14,11 +14,14 @@
       "tag": "c:crops/tomato"
     },
     {
-      "tag": "c:crops/lettuce"
+      "tag": "c:crops/tomato"
+    },
+    {
+      "tag": "c:crops/tomato"
     }
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "kaleidoscope_cookery:borscht"
   }
 }

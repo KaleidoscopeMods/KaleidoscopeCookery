@@ -8,12 +8,6 @@
       "tag": "c:foods/raw_chicken"
     },
     {
-      "tag": "c:foods/raw_chicken"
-    },
-    {
-      "tag": "c:mushrooms"
-    },
-    {
       "tag": "c:mushrooms"
     },
     {
@@ -24,7 +18,7 @@
     }
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "kaleidoscope_cookery:chicken_and_mushroom_stew"
   }
 }

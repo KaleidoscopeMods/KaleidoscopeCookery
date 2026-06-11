@@ -1,0 +1,18 @@
+{
+  "type": "kaleidoscope_cookery:flex_pot",
+  "ingredients": [
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:dough"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:donkey_burger"
+  }
+}

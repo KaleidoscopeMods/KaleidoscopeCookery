@@ -1,0 +1,15 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:beef_meatball_soup"
+  }
+}

@@ -46,9 +46,9 @@ public class MillstoneBlockEntityRender implements BlockEntityRenderer<Millstone
         Direction facing = millstone.getBlockState().getValue(MillstoneBlock.FACING);
         this.renderBody(poseStack, buffer, packedLight, packedOverlay, partialTick, facing, millstone, level);
 
-        if (!millstone.getOutput().isEmpty()) {
+        if (!millstone.getOutputs().getStackInSlot(0).isEmpty()) {
             renderItems(millstone, poseStack, buffer, packedLight, packedOverlay,
-                    millstone.getOutput(), context.getItemRenderer());
+                    millstone.getOutputs().getStackInSlot(0), context.getItemRenderer());
         } else if (!millstone.getInput().isEmpty()) {
             renderItems(millstone, poseStack, buffer, packedLight, packedOverlay,
                     millstone.getInput(), context.getItemRenderer());

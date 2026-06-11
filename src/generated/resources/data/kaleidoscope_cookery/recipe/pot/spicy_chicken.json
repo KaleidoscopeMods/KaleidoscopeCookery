@@ -5,6 +5,18 @@
   },
   "ingredients": [
     {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
       "tag": "c:crops/chilipepper"
     },
     {
@@ -14,16 +26,7 @@
       "tag": "c:crops/chilipepper"
     },
     {
-      "tag": "c:foods/raw_chicken"
-    },
-    {
-      "tag": "c:foods/raw_chicken"
-    },
-    {
-      "tag": "c:foods/raw_chicken"
-    },
-    {
-      "tag": "c:foods/raw_chicken"
+      "tag": "c:crops/chilipepper"
     }
   ],
   "result": {

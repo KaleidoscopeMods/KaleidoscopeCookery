@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kaleidoscope_cookery:item/warped_fungus_pot_soup"
+  }
+}

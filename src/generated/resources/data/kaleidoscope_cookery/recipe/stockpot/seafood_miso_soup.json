@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:raw_fishes"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:seafood_miso_soup"
+  }
+}

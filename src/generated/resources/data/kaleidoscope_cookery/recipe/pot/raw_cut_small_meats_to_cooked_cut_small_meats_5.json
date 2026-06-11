@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    }
+  ],
+  "result": {
+    "count": 5,
+    "id": "kaleidoscope_cookery:cooked_cut_small_meats"
+  }
+}

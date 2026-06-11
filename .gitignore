@@ -126,3 +126,4 @@ runs/
 .factorypath
 .project
 /bin/
+/.sisyphus/

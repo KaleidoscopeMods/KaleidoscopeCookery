@@ -1,0 +1,61 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "kaleidoscope_cookery:block/chopping_board",
+		"particle": "kaleidoscope_cookery:block/chopping_board"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 2],
+			"to": [15, 2, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 3]},
+			"faces": {
+				"north": {"uv": [1, 16, 15, 14], "texture": "#1"},
+				"east": {"uv": [2, 2, 14, 0], "texture": "#1"},
+				"south": {"uv": [1, 16, 15, 14], "texture": "#1"},
+				"west": {"uv": [2, 0, 14, 2], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [1, 2, 15, 14], "texture": "#1"},
+				"down": {"uv": [1, 2, 15, 14], "texture": "#1", "cullface": "down"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-13.92, 3.65, 85.64],
+			"translation": [-3, 2, -0.75],
+			"scale": [0.45, 0.45, 0.45]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-13.92, 3.65, 85.64],
+			"translation": [-3, 2, -0.75],
+			"scale": [0.45, 0.45, 0.45]
+		},
+		"firstperson_righthand": {
+			"rotation": [-28.73, -4.4, 76.4],
+			"translation": [-0.25, 4, -1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-28.73, -4.4, 76.4],
+			"translation": [-0.25, 4, -1.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, 2.25, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"head": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 14.5, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

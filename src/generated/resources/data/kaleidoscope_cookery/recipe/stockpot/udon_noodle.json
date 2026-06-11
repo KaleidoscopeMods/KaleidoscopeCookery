@@ -1,0 +1,30 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:udon_noodle"
+  }
+}

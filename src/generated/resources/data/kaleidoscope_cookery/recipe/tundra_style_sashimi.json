@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "minecraft:flowers"
+    },
+    {
+      "tag": "minecraft:flowers"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "kaleidoscope_cookery:sashimi"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:tundra_style_sashimi"
+  }
+}

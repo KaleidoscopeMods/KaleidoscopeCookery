@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:cooked_rice"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_rice"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_rice"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_rice"
+    },
+    {
+      "item": "kaleidoscope_cookery:cooked_rice"
+    }
+  ],
+  "result": {
+    "count": 5,
+    "id": "kaleidoscope_cookery:sticky_rice_cake"
+  }
+}

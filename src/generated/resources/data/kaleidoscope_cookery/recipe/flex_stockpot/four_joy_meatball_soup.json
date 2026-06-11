@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_meatball"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:four_joy_meatball_soup"
+  }
+}

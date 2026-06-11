@@ -20,16 +20,6 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_suspicious_stir_fry_rice_bowl": {
-      "conditions": {
-        "items": [
-          {
-            "items": "kaleidoscope_cookery:suspicious_stir_fry_rice_bowl"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "display": {
@@ -39,7 +29,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "kaleidoscope_cookery:suspicious_stir_fry_rice_bowl"
+      "id": "kaleidoscope_cookery:suspicious_stir_fry"
     },
     "title": {
       "translate": "advancements.kaleidoscope_cookery.dark_cuisine.title"
@@ -48,8 +38,7 @@
   "requirements": [
     [
       "has_suspicious_stew",
-      "has_dark_cuisine",
-      "has_suspicious_stir_fry_rice_bowl"
+      "has_dark_cuisine"
     ]
   ],
   "sends_telemetry_event": true

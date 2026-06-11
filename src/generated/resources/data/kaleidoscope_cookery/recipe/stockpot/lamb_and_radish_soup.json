@@ -11,12 +11,6 @@
       "item": "minecraft:carrot"
     },
     {
-      "item": "minecraft:carrot"
-    },
-    {
-      "tag": "c:foods/raw_mutton"
-    },
-    {
       "tag": "c:foods/raw_mutton"
     },
     {
@@ -24,7 +18,7 @@
     }
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "kaleidoscope_cookery:lamb_and_radish_soup"
   }
 }

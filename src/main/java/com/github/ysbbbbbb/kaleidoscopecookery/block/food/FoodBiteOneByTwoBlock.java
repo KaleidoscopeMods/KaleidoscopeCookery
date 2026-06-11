@@ -31,7 +31,12 @@ public class FoodBiteOneByTwoBlock extends FoodBiteBlock {
     public FoodBiteOneByTwoBlock(FoodProperties foodProperties, int maxBites,
                                  @Nullable FoodBiteAnimateTicks.AnimateTick animateTick) {
         super(foodProperties, maxBites, animateTick);
-        this.registerDefaultState(this.stateDefinition.any().setValue(bites, 0).setValue(FACING, Direction.SOUTH).setValue(POSITION, RIGHT));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(bites, 0)
+                .setValue(FACING, Direction.SOUTH)
+                .setValue(POSITION, RIGHT)
+                .setValue(QUALITY, DEFAULT_QUALITY)
+        );
     }
 
     @Override
@@ -95,12 +100,12 @@ public class FoodBiteOneByTwoBlock extends FoodBiteBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, POSITION);
+        builder.add(FACING, QUALITY, POSITION);
     }
 
     @Override
     protected void createBitesBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(bites, FACING, POSITION);
+        builder.add(bites, FACING, QUALITY, POSITION);
     }
 
     @Override

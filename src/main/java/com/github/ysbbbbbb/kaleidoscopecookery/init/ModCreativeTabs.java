@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.OilPotItem;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -47,6 +48,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.RAW_DOUGH.get());
                 output.accept(ModItems.RAW_NOODLES.get());
                 output.accept(ModItems.STUFFED_DOUGH_FOOD.get());
+                output.accept(ModItems.RAW_ZONGZI.get());
+                output.accept(ModItems.RAW_BAMBOO_TUBE_RICE.get());
                 output.accept(ModItems.CHILI_RISTRA.get());
                 output.accept(ModItems.STRUNG_MUSHROOMS.get());
                 output.accept(ModItems.RICE_SEED.get());
@@ -125,8 +128,6 @@ public class ModCreativeTabs {
                 output.accept(ModItems.COOKED_COW_OFFAL.get());
                 output.accept(ModItems.RAW_PORK_BELLY.get());
                 output.accept(ModItems.COOKED_PORK_BELLY.get());
-                output.accept(ModItems.RAW_DONKEY_MEAT.get());
-                output.accept(ModItems.COOKED_DONKEY_MEAT.get());
                 output.accept(ModItems.RAW_CUT_SMALL_MEATS.get());
                 output.accept(ModItems.COOKED_CUT_SMALL_MEATS.get());
                 output.accept(ModItems.RAW_MEATBALL.get());
@@ -135,30 +136,29 @@ public class ModCreativeTabs {
                 output.accept(ModItems.DONKEY_BURGER.get());
                 output.accept(ModItems.MANTOU.get());
                 output.accept(ModItems.BAOZI.get());
+                output.accept(ModItems.SHENGJIAN_MANTOU.get());
                 output.accept(ModItems.SAMSA.get());
                 output.accept(ModItems.MEAT_PIE.get());
                 output.accept(ModItems.DUMPLING.get());
                 output.accept(ModItems.FRIED_EGG.get());
+                output.accept(ModItems.STICKY_CANDY.get());
+                output.accept(ModItems.STICKY_RICE_CAKE.get());
+                output.accept(ModItems.BAMBOO_TUBE_RICE.get());
+                output.accept(ModItems.ZONGZI.get());
+                output.accept(ModItems.QINGTUAN.get());
                 // 小碗菜和盖饭
                 output.accept(ModItems.COOKED_RICE.get());
                 output.accept(ModItems.EGG_FRIED_RICE.get());
-                output.accept(ModItems.DELICIOUS_EGG_FRIED_RICE.get());
                 output.accept(ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get());
                 output.accept(ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get());
-                output.accept(ModItems.STIR_FRIED_BEEF_OFFAL.get());
-                output.accept(ModItems.STIR_FRIED_BEEF_OFFAL_RICE_BOWL.get());
                 output.accept(ModItems.BRAISED_BEEF.get());
                 output.accept(ModItems.BRAISED_BEEF_RICE_BOWL.get());
                 output.accept(ModItems.STIR_FRIED_PORK_WITH_PEPPERS.get());
                 output.accept(ModItems.STIR_FRIED_PORK_WITH_PEPPERS_RICE_BOWL.get());
                 output.accept(ModItems.SWEET_AND_SOUR_PORK.get());
                 output.accept(ModItems.SWEET_AND_SOUR_PORK_RICE_BOWL.get());
-                output.accept(ModItems.COUNTRY_STYLE_MIXED_VEGETABLES.get());
                 output.accept(ModItems.FISH_FLAVORED_SHREDDED_PORK.get());
                 output.accept(ModItems.FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL.get());
-                output.accept(ModItems.BRAISED_FISH_RICE_BOWL.get());
-                output.accept(ModItems.SPICY_CHICKEN_RICE_BOWL.get());
-                output.accept(ModItems.SUSPICIOUS_STIR_FRY_RICE_BOWL.get());
                 // 汤类
                 output.accept(ModItems.PORK_BONE_SOUP.get());
                 output.accept(ModItems.SEAFOOD_MISO_SOUP.get());
@@ -166,25 +166,31 @@ public class ModCreativeTabs {
                 output.accept(ModItems.LAMB_AND_RADISH_SOUP.get());
                 output.accept(ModItems.BRAISED_BEEF_WITH_POTATOES.get());
                 output.accept(ModItems.WILD_MUSHROOM_RABBIT_SOUP.get());
-                output.accept(ModItems.TOMATO_BEEF_BRISKET_SOUP.get());
                 output.accept(ModItems.PUFFERFISH_SOUP.get());
                 output.accept(ModItems.BORSCHT.get());
                 output.accept(ModItems.BEEF_MEATBALL_SOUP.get());
                 output.accept(ModItems.CHICKEN_AND_MUSHROOM_STEW.get());
-                output.accept(ModItems.DONKEY_SOUP.get());
+                output.accept(ModItems.LABA_CONGEE.get());
                 // 面条
                 output.accept(ModItems.BEEF_NOODLE.get());
                 output.accept(ModItems.HUI_NOODLE.get());
                 output.accept(ModItems.UDON_NOODLE.get());
+                output.accept(ModItems.HOT_DRY_NOODLES.get());
 
                 // 硬菜
                 FoodBiteRegistry.FOOD_DATA_MAP.keySet().forEach(foodName -> {
-                    // 棕色蘑菇汤之前加入厚切火腿片
-                    if (foodName.equals(FoodBiteRegistry.BROWN_MUSHROOM_POT_SOUP)) {
+                    // 疙瘩汤之前加入厚切火腿片
+                    if (foodName.equals(FoodBiteRegistry.DOUGH_DROP_SOUP)) {
                         output.accept(ModItems.COLD_CUT_HAM_SLICES.get());
                     }
                     var foodItem = BuiltInRegistries.ITEM.get(foodName);
                     output.accept(foodItem);
+                });
+
+                // 盘装食物
+                PlateRegistry.PLATE_DATA_MAP.keySet().forEach(plateName -> {
+                    var plateItem = BuiltInRegistries.ITEM.get(plateName);
+                    output.accept(plateItem);
                 });
 
                 // 茶水

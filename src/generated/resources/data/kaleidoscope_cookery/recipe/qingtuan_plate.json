@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:qingtuan"
+    },
+    {
+      "item": "kaleidoscope_cookery:qingtuan"
+    },
+    {
+      "item": "kaleidoscope_cookery:qingtuan"
+    },
+    {
+      "item": "kaleidoscope_cookery:qingtuan"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:qingtuan_plate"
+  }
+}

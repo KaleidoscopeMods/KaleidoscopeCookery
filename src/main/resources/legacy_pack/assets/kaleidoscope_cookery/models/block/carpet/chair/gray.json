@@ -1,0 +1,6 @@
+{
+  "parent": "kaleidoscope_cookery:block/carpet/chair/chair_carpet",
+  "textures": {
+    "particle": "kaleidoscope_cookery:block/carpet/chair/gray"
+  }
+}

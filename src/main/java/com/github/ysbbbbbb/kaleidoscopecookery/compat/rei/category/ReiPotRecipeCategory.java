@@ -21,8 +21,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -34,7 +35,10 @@ import java.util.Optional;
 public class ReiPotRecipeCategory implements DisplayCategory<ReiPotRecipeCategory.PotRecipeDisplay> {
     public static final CategoryIdentifier<PotRecipeDisplay> ID = CategoryIdentifier.of(KaleidoscopeCookery.MOD_ID, "plugin/pot");
     private static final ResourceLocation BG = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "textures/gui/jei/pot.png");
-    private static final MutableComponent TITLE = Component.translatable("block.kaleidoscope_cookery.pot");
+    private static final Component TITLE = ComponentUtils.formatList(List.of(
+            Component.translatable("jei.kaleidoscope_cookery.strict_recipe"),
+            Component.translatable("block.kaleidoscope_cookery.pot")
+    ), CommonComponents.SPACE);
     public static final int WIDTH = 176;
     public static final int HEIGHT = 102;
 
@@ -53,6 +57,7 @@ public class ReiPotRecipeCategory implements DisplayCategory<ReiPotRecipeCategor
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(BG, startX, startY, 0, 0, WIDTH, HEIGHT));
         widgets.add(Widgets.withTranslate(Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, v) -> {
+            drawCenteredString(guiGraphics, Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 5);
             drawCenteredString(guiGraphics, stirFryCount, WIDTH / 2, 85);
         }), startX, startY, 0));
 

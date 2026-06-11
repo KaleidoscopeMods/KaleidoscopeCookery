@@ -1,0 +1,30 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_cow_offal"
+    }
+  ],
+  "result": {
+    "count": 7,
+    "id": "kaleidoscope_cookery:cooked_cow_offal"
+  }
+}

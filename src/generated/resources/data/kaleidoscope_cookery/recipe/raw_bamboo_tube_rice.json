@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bamboo"
+    },
+    {
+      "tag": "c:grain/rice"
+    },
+    {
+      "tag": "c:raw_meats"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:raw_bamboo_tube_rice"
+  }
+}

@@ -128,22 +128,64 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
             .alwaysEdible().build();
 
+    // 青团
+    FoodProperties QINGTUAN = (new FoodProperties.Builder())
+            .nutrition(5).saturationModifier(0.6F)
+            .alwaysEdible().build();
+
+    // 牛皮糖
+    FoodProperties STICKY_CANDY = (new FoodProperties.Builder())
+            .nutrition(6).saturationModifier(1)
+            .alwaysEdible().build();
+
+    // 糍粑
+    FoodProperties STICKY_RICE_CAKE = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(0.875F)
+            .alwaysEdible().build();
+
+    // 粽子
+    FoodProperties ZONGZI = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(0.625F)
+            .effect(() -> new MobEffectInstance(REGENERATION, 20 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 竹筒饭
+    FoodProperties RAW_BAMBOO_TUBE_RICE = (new FoodProperties.Builder())
+            .nutrition(10).saturationModifier(0.5F)
+            .alwaysEdible().build();
+
+    FoodProperties BAMBOO_TUBE_RICE = (new FoodProperties.Builder())
+            .nutrition(10).saturationModifier(0.5F)
+            .alwaysEdible().build();
+
     // 牛肉面
     FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
             .alwaysEdible().build();
 
     // 烩面
     FoodProperties HUI_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
             .alwaysEdible().build();
 
     // 乌冬面
     FoodProperties UDON_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
+            .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 热干面
+    FoodProperties HOT_DRY_NOODLES = (new FoodProperties.Builder())
+            .nutrition(14).saturationModifier(0.643f)
+            .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
+    // 腊八粥
+    FoodProperties LABA_CONGEE = (new FoodProperties.Builder())
+            .nutrition(12).saturationModifier(0.5F)
+            .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
             .alwaysEdible().build();
 
     // 煎蛋
@@ -707,15 +749,6 @@ public interface ModFoods {
     FoodProperties SPICY_BLOOD_STEW_ITEM = (new FoodProperties.Builder())
             .nutrition(13).saturationModifier(0.615F)
             .effect(() -> new MobEffectInstance(FIRE_RESISTANCE, 80 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 水果拼盘
-    FoodProperties FRUIT_PLATTER_BLOCK = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.667F)
-            .alwaysEdible().build();
-
-    FoodProperties FRUIT_PLATTER_ITEM = (new FoodProperties.Builder())
-            .nutrition(13).saturationModifier(0.615F)
             .alwaysEdible().build();
 
     // 棕色蘑菇瓦罐汤

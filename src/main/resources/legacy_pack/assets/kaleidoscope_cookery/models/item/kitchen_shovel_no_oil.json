@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "kaleidoscope_cookery:item/kitchen_shovel_no_oil"
+  }
+}

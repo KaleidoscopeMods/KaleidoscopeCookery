@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.compat.jade;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.ChoppingBoardBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.EnamelBasinBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.MillstoneBlock;
@@ -28,6 +29,7 @@ public class ModPlugin implements IWailaPlugin {
     public static final ResourceLocation CHOPPING_BOARD = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "chopping_board");
     public static final ResourceLocation MILLSTONE = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "millstone");
     public static final ResourceLocation ENAMEL_BASIN = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "enamel_basin");
+    public static final ResourceLocation FOOD_BITE_BLOCK = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "food_bite_block");
     public static final ResourceLocation TABLE = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "table");
     public static final ResourceLocation FRUIT_BASKET = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "fruit_basket");
     public static final ResourceLocation KITCHENWARE_RACK = ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "kitchenware_rack");
@@ -51,6 +53,7 @@ public class ModPlugin implements IWailaPlugin {
         registration.registerBlockComponent(ShawarmaSpitComponentProvider.INSTANCE, ShawarmaSpitBlock.class);
         registration.registerBlockComponent(ChoppingBoardComponentProvider.INSTANCE, ChoppingBoardBlock.class);
         registration.registerBlockComponent(EnamelBasinComponentProvider.INSTANCE, EnamelBasinBlock.class);
+        registration.registerBlockComponent(FoodBiteBlockComponentProvider.INSTANCE, FoodBiteBlock.class);
 
         registration.registerItemStorageClient(FruitBasketComponentProvider.INSTANCE);
         registration.registerItemStorageClient(KitchenwareRackComponentProvider.INSTANCE);

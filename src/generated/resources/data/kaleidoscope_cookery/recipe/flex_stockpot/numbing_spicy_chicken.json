@@ -1,0 +1,16 @@
+{
+  "type": "kaleidoscope_cookery:flex_stockpot",
+  "ingredients": [
+    {
+      "tag": "c:crops/chilipepper"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:numbing_spicy_chicken"
+  },
+  "soup_base": "minecraft:lava"
+}

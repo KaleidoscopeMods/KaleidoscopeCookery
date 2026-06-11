@@ -13,9 +13,11 @@ import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.api.widget.TextWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -63,7 +65,7 @@ public class EmiStockpotRecipe extends BasicEmiRecipe {
         StockpotRecipe recipe = holder.value();
         List<EmiIngredient> inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
         List<EmiStack> outputs = List.of(EmiStack.of(recipe.getResultItem(RegistryAccess.EMPTY)));
-        List<EmiIngredient> catalysts = List.of(EmiIngredient.of(recipe.carrier()));
+        List<EmiIngredient> catalysts = recipe.carrier().isEmpty() ? List.of() : List.of(EmiIngredient.of(recipe.carrier()));
         ISoupBase soupBase = SoupBaseManager.getSoupBase(recipe.soupBase());
         if (soupBase == null) {
             throw new RuntimeException("No soup found for " + recipe.soupBase());
@@ -75,6 +77,8 @@ public class EmiStockpotRecipe extends BasicEmiRecipe {
     @Override
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(BG, 1, 1, WIDTH, HEIGHT, 0, 0);
+        widgets.addText(Component.translatable("jei.kaleidoscope_cookery.strict_recipe"), WIDTH / 2, 90, 0x555555, false)
+                .horizontalAlign(TextWidget.Alignment.CENTER);
 
         for (int i = 0; i < inputs.size(); i++) {
             int xOffset = (i % 3) * 18 + 15;
@@ -87,10 +91,10 @@ public class EmiStockpotRecipe extends BasicEmiRecipe {
                     .drawBack(false);
         }
         if (!catalysts.isEmpty()) {
-            widgets.addSlot(catalysts.get(0), 133, 18)
+            widgets.addSlot(catalysts.getFirst(), 133, 18)
                     .drawBack(false);
         }
-        widgets.addSlot(outputs.get(0), 143, 60)
+        widgets.addSlot(outputs.getFirst(), 143, 60)
                 .drawBack(false)
                 .recipeContext(this);
     }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "kaleidoscope_cookery:block/straw_block_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "kaleidoscope_cookery:block/straw_block"
+    },
+    "axis=z": {
+      "model": "kaleidoscope_cookery:block/straw_block_horizontal",
+      "x": 90
+    }
+  }
+}

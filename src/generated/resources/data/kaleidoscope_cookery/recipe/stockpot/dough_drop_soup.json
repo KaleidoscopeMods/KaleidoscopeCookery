@@ -2,22 +2,22 @@
   "type": "kaleidoscope_cookery:stockpot",
   "ingredients": [
     {
-      "tag": "c:crops/tomato"
+      "tag": "c:crops/lettuce"
     },
     {
-      "tag": "c:crops/tomato"
-    },
-    {
-      "tag": "c:flour"
-    },
-    {
-      "tag": "c:flour"
+      "tag": "c:crops/lettuce"
     },
     {
       "tag": "c:crops/lettuce"
     },
     {
       "tag": "c:crops/lettuce"
+    },
+    {
+      "tag": "c:flour"
+    },
+    {
+      "tag": "c:flour"
     }
   ],
   "result": {

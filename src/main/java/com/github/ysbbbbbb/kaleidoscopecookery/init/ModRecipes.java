@@ -19,15 +19,20 @@ public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, KaleidoscopeCookery.MOD_ID);
 
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> POT_SERIALIZER = RECIPE_SERIALIZERS.register("pot", PotRecipeSerializer::new);
+    public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> FLEX_POT_SERIALIZER = RECIPE_SERIALIZERS.register("flex_pot", FlexPotRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> CHOPPING_BOARD_SERIALIZER = RECIPE_SERIALIZERS.register("chopping_board", ChoppingBoardRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> STOCKPOT_SERIALIZER = RECIPE_SERIALIZERS.register("stockpot", StockpotRecipeSerializer::new);
+    public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> FLEX_STOCKPOT_SERIALIZER = RECIPE_SERIALIZERS.register("flex_stockpot", FlexStockpotRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> MILLSTONE_SERIALIZER = RECIPE_SERIALIZERS.register("millstone", MillstoneRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> STEAMER_SERIALIZER = RECIPE_SERIALIZERS.register("steamer", SteamerRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> TEAPOT_SERIALIZER = RECIPE_SERIALIZERS.register("teapot", TeapotRecipeSerializer::new);
+    public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> RICE_BOWL_SERIALIZER = RECIPE_SERIALIZERS.register("rice_bowl", RiceBowlRecipeSerializer::new);
 
     public static RecipeType<PotRecipe> POT_RECIPE;
+    public static RecipeType<FlexPotRecipe> FLEX_POT_RECIPE;
     public static RecipeType<ChoppingBoardRecipe> CHOPPING_BOARD_RECIPE;
     public static RecipeType<StockpotRecipe> STOCKPOT_RECIPE;
+    public static RecipeType<FlexStockpotRecipe> FLEX_STOCKPOT_RECIPE;
     public static RecipeType<MillstoneRecipe> MILLSTONE_RECIPE;
     public static RecipeType<SteamerRecipe> STEAMER_RECIPE;
     public static RecipeType<TeapotRecipe> TEAPOT_RECIPE;
@@ -36,8 +41,10 @@ public class ModRecipes {
     public static void register(RegisterEvent evt) {
         if (evt.getRegistryKey().equals(Registries.RECIPE_SERIALIZER)) {
             POT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "pot"));
+            FLEX_POT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "flex_pot"));
             CHOPPING_BOARD_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "chopping_board"));
             STOCKPOT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "stockpot"));
+            FLEX_STOCKPOT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "flex_stockpot"));
             MILLSTONE_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "millstone"));
             STEAMER_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "steamer"));
             TEAPOT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "teapot"));

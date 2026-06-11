@@ -1,0 +1,70 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "kaleidoscope_cookery:chopping_board/raw_dough"
+	},
+	"elements": [
+		{
+			"from": [4.5, 0, 4],
+			"to": [6.5, 1, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4.5, 0, 9]},
+			"faces": {
+				"north": {"uv": [8, 2, 8.5, 2.25], "texture": "#0"},
+				"east": {"uv": [0, 2, 2, 2.25], "texture": "#0"},
+				"south": {"uv": [8.5, 2, 9, 2.25], "texture": "#0"},
+				"west": {"uv": [2, 2, 4, 2.25], "texture": "#0"},
+				"up": {"uv": [15, 0, 15.5, 2], "texture": "#0"},
+				"down": {"uv": [15.5, 0, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2.75, 0.5, 4],
+			"to": [4.75, 1.5, 12],
+			"rotation": {"angle": 45, "axis": "z", "origin": [3.75, 1, 8]},
+			"faces": {
+				"north": {"uv": [15, 6, 15.5, 6.25], "texture": "#0"},
+				"east": {"uv": [7, 2.25, 9, 2.5], "texture": "#0"},
+				"south": {"uv": [15.5, 6, 16, 6.25], "texture": "#0"},
+				"west": {"uv": [9, 2.25, 11, 2.5], "texture": "#0"},
+				"up": {"uv": [0, 4, 0.5, 6], "texture": "#0"},
+				"down": {"uv": [0.5, 4, 1, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 1.5, 4],
+			"to": [6, 2.5, 12],
+			"rotation": {"angle": -45, "axis": "z", "origin": [5, 2, 8]},
+			"faces": {
+				"north": {"uv": [14, 3.75, 14.5, 4], "texture": "#0"},
+				"east": {"uv": [4, 2, 6, 2.25], "texture": "#0"},
+				"south": {"uv": [14.5, 3.75, 15, 4], "texture": "#0"},
+				"west": {"uv": [6, 2, 8, 2.25], "texture": "#0"},
+				"up": {"uv": [15, 2, 15.5, 4], "texture": "#0"},
+				"down": {"uv": [15.5, 2, 16, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 0, 4],
+			"to": [13, 3, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 9]},
+			"faces": {
+				"north": {"uv": [2, 2.25, 3.5, 3], "texture": "#0"},
+				"east": {"uv": [11, 0.75, 13, 1.5], "texture": "#0"},
+				"south": {"uv": [3.5, 2.25, 5, 3], "texture": "#0"},
+				"west": {"uv": [13, 0.75, 15, 1.5], "texture": "#0"},
+				"up": {"uv": [4, 0, 5.5, 2], "texture": "#0"},
+				"down": {"uv": [5.5, 0, 7, 2], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "cut_count_3",
+			"origin": [8, 0, 8],
+			"color": 2,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

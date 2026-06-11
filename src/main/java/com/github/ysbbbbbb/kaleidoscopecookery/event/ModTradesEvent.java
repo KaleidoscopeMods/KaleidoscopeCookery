@@ -78,13 +78,7 @@ public class ModTradesEvent {
 
     // 老手交易（等级3）
     private static void addJourneymanTrades(VillagerTradesEvent event) {
-        addTrade(event, 3, DELICIOUS_EGG_FRIED_RICE.get(), 1, EMERALD, 3, 16, 5, 0.05f);
-        addTrade(event, 3, SUSPICIOUS_STIR_FRY_RICE_BOWL.get(), 3, EMERALD, 1, 16, 5, 0.05f);
         addTrade(event, 3, FoodBiteRegistry.getItem(FoodBiteRegistry.DARK_CUISINE), 5, EMERALD, 2, 16, 5, 0.1f);
-
-        addTrade(event, 3, EMERALD, 3,
-                RecipeItem.RecipeRecord.stockpot(TOMATO_BEEF_BRISKET_SOUP.get(), BEEF, BEEF, BEEF, TOMATO.get(), TOMATO.get(), TOMATO.get()),
-                16, 4, 0.1f);
 
         addTrade(event, 3, EMERALD, 3,
                 RecipeItem.RecipeRecord.stockpot(PUFFERFISH_SOUP.get(), PUFFERFISH, PUFFERFISH, PUFFERFISH, SEAGRASS, SEAGRASS),
@@ -108,7 +102,6 @@ public class ModTradesEvent {
         addTrade(event, 4, LAMB_AND_RADISH_SOUP.get(), 1, EMERALD, 2, 16, 10, 0.1f);
         addTrade(event, 4, BRAISED_BEEF_WITH_POTATOES.get(), 1, EMERALD, 2, 16, 10, 0.1f);
         addTrade(event, 4, WILD_MUSHROOM_RABBIT_SOUP.get(), 1, EMERALD, 3, 16, 10, 0.1f);
-        addTrade(event, 4, TOMATO_BEEF_BRISKET_SOUP.get(), 1, EMERALD, 2, 16, 10, 0.1f);
         addTrade(event, 4, BORSCHT.get(), 1, EMERALD, 2, 16, 10, 0.1f);
         addTrade(event, 4, BEEF_MEATBALL_SOUP.get(), 1, EMERALD, 3, 16, 10, 0.1f);
         addTrade(event, 4, FEARSOME_THICK_SOUP.get(), 1, EMERALD, 5, 16, 10, 0.1f);
@@ -142,12 +135,6 @@ public class ModTradesEvent {
         addTrade(event, 4, EMERALD, 5,
                 RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.SPICY_CHICKEN),
                         RED_CHILI.get(), RED_CHILI.get(), RED_CHILI.get(),
-                        RED_CHILI.get(), RED_CHILI.get(),
-                        CHICKEN, CHICKEN, CHICKEN, CHICKEN),
-                16, 4, 0.1f);
-
-        addTrade(event, 4, EMERALD, 5,
-                RecipeItem.RecipeRecord.pot(FoodBiteRegistry.getItem(FoodBiteRegistry.YAKITORI),
                         RED_CHILI.get(), RED_CHILI.get(),
                         CHICKEN, CHICKEN, CHICKEN, CHICKEN),
                 16, 4, 0.1f);

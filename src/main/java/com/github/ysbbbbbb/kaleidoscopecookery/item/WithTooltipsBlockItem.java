@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.List;
 
 public class WithTooltipsBlockItem extends BlockItem {
-    private final String key;
+    protected final String key;
 
     public WithTooltipsBlockItem(Block block, Properties properties, String name) {
         super(block, properties);

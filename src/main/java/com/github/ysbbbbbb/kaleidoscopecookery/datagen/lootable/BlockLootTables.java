@@ -8,6 +8,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.PlateRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.loot.AdvanceBlockMatchTool;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -139,6 +140,8 @@ public class BlockLootTables extends BlockLootSubProvider {
         // 特殊的方块食物
         dropFoodBite(ModBlocks.COLD_CUT_HAM_SLICES.get(), ModItems.COLD_CUT_HAM_SLICES.get(), Items.BOWL);
 
+        PlateRegistry.PLATE_DATA_MAP.forEach(this::dropPlate);
+
         this.add(ModBlocks.CHILI_RISTRA.get(), createChiliRistraLootTable());
         this.add(ModBlocks.STRUNG_MUSHROOMS.get(), createStrungMushroomsLootTable());
     }
@@ -257,6 +260,24 @@ public class BlockLootTables extends BlockLootSubProvider {
             lootTable.withPool(rolls);
         }
 
+        this.add(block, lootTable);
+    }
+
+    private void dropPlate(ResourceLocation id, PlateRegistry.PlateData data) {
+        Block block = BuiltInRegistries.BLOCK.get(id);
+        ItemLike[] lootItems = data.getLootItems().toArray(new ItemLike[0]);
+        dropOthers(block, lootItems);
+    }
+
+    private void dropOthers(Block block, ItemLike... lootItems) {
+        ConstantValue exactly = ConstantValue.exactly(1);
+        LootTable.Builder lootTable = LootTable.lootTable();
+        for (ItemLike itemLike : lootItems) {
+            LootPool.Builder rolls = LootPool.lootPool().setRolls(exactly)
+                    .when(ExplosionCondition.survivesExplosion())
+                    .add(LootItem.lootTableItem(itemLike));
+            lootTable.withPool(rolls);
+        }
         this.add(block, lootTable);
     }
 

@@ -11,10 +11,16 @@
       "tag": "c:foods/raw_beef"
     },
     {
-      "tag": "c:crops/chilipepper"
+      "tag": "c:foods/raw_beef"
     },
     {
-      "tag": "c:crops/chilipepper"
+      "item": "kaleidoscope_cookery:red_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:red_chili"
+    },
+    {
+      "item": "kaleidoscope_cookery:red_chili"
     }
   ],
   "result": {

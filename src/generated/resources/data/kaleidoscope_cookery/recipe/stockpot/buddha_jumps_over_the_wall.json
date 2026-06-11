@@ -8,19 +8,19 @@
       "tag": "c:eggs"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "tag": "c:eggs"
     },
     {
       "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:kelp"
+      "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:kelp"
+      "tag": "c:crops/lettuce"
     },
     {
-      "item": "minecraft:kelp"
+      "tag": "c:crops/lettuce"
     },
     {
       "tag": "c:crops/lettuce"

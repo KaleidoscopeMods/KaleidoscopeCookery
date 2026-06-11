@@ -1,0 +1,30 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "ingredients": [
+    {
+      "tag": "c:foods/raw_mutton"
+    },
+    {
+      "tag": "c:foods/raw_mutton"
+    },
+    {
+      "tag": "c:foods/raw_mutton"
+    },
+    {
+      "tag": "c:foods/raw_mutton"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_noodles"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:hui_noodle"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,half=lower,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 90
+    },
+    "facing=east,half=lower,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 90
+    },
+    "facing=east,half=lower,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 90
+    },
+    "facing=east,half=lower,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 90
+    },
+    "facing=east,half=upper,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 90
+    },
+    "facing=east,half=upper,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 90
+    },
+    "facing=east,half=upper,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 90
+    },
+    "facing=east,half=upper,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 90
+    },
+    "facing=north,half=lower,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower"
+    },
+    "facing=north,half=lower,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower"
+    },
+    "facing=north,half=lower,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower"
+    },
+    "facing=north,half=lower,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower"
+    },
+    "facing=north,half=upper,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper"
+    },
+    "facing=north,half=upper,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper"
+    },
+    "facing=north,half=upper,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper"
+    },
+    "facing=north,half=upper,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper"
+    },
+    "facing=south,half=lower,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 180
+    },
+    "facing=south,half=lower,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 180
+    },
+    "facing=south,half=lower,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 180
+    },
+    "facing=south,half=lower,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 180
+    },
+    "facing=south,half=upper,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 180
+    },
+    "facing=south,half=upper,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 180
+    },
+    "facing=south,half=upper,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 180
+    },
+    "facing=south,half=upper,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 180
+    },
+    "facing=west,half=lower,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 270
+    },
+    "facing=west,half=lower,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_lower",
+      "y": 270
+    },
+    "facing=west,half=lower,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 270
+    },
+    "facing=west,half=lower,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_lower",
+      "y": 270
+    },
+    "facing=west,half=upper,powered=false,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 270
+    },
+    "facing=west,half=upper,powered=false,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_upper",
+      "y": 270
+    },
+    "facing=west,half=upper,powered=true,waterlogged=false": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 270
+    },
+    "facing=west,half=upper,powered=true,waterlogged=true": {
+      "model": "kaleidoscope_cookery:block/shawarma_spit_powered_upper",
+      "y": 270
+    }
+  }
+}

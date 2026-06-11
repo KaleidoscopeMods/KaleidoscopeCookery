@@ -1,0 +1,15 @@
+{
+  "type": "kaleidoscope_cookery:pot",
+  "ingredients": [
+    {
+      "item": "kaleidoscope_cookery:raw_pork_belly"
+    },
+    {
+      "item": "kaleidoscope_cookery:raw_pork_belly"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "kaleidoscope_cookery:cooked_pork_belly"
+  }
+}
