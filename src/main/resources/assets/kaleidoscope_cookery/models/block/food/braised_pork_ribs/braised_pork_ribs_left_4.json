@@ -5,6 +5,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "kaleidoscope_cookery:block/braised_pork_ribs",
+		"2": "kaleidoscope_cookery:block/cold_roasted_meat",
 		"particle": "kaleidoscope_cookery:block/porcelain_plate"
 	},
 	"elements": [
@@ -19,7 +20,7 @@
 				"south": {"uv": [8, 7, 15.5, 8], "texture": "#0"},
 				"west": {"uv": [0.5, 7, 7.5, 8], "texture": "#0"},
 				"up": {"uv": [8, 0.5, 15.5, 7.5], "texture": "#0"},
-				"down": {"uv": [8, 0.5, 15.5, 7.5], "texture": "#0"}
+				"down": {"uv": [8, 0.5, 15.5, 7.5], "texture": "#2"}
 			}
 		},
 		{
