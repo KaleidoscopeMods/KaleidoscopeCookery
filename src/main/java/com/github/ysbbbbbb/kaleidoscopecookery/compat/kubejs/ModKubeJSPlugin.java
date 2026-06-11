@@ -13,8 +13,10 @@ public class ModKubeJSPlugin extends KubeJSPlugin {
     @Override
     public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
         event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.POT_SERIALIZER.getId().getPath(), PotRecipeSchema.SCHEMA);
+        event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.FLEX_POT_SERIALIZER.getId().getPath(), PotRecipeSchema.SCHEMA);
         event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.CHOPPING_BOARD_SERIALIZER.getId().getPath(), ChoppingBoardRecipeSchema.SCHEMA);
         event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.STOCKPOT_SERIALIZER.getId().getPath(), StockpotRecipeSchema.SCHEMA);
+        event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.FLEX_STOCKPOT_SERIALIZER.getId().getPath(), StockpotRecipeSchema.SCHEMA);
         event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.MILLSTONE_SERIALIZER.getId().getPath(), MillstoneRecipeSchema.SCHEMA);
         event.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.STEAMER_SERIALIZER.getId().getPath(), SteamerRecipeSchema.SCHEMA);
     }
