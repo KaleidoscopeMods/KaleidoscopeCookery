@@ -16,6 +16,10 @@ public class BowlFoodOnlyItem extends FoodWithEffectsItem implements IHasContain
         super(properties);
     }
 
+    public BowlFoodOnlyItem(FoodProperties properties, Item craftingItem) {
+        super(properties, craftingItem);
+    }
+
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         ItemStack itemStack = super.finishUsingItem(stack, level, entity);

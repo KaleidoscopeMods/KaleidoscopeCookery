@@ -44,6 +44,15 @@ public class FoodWithEffectsItem extends Item {
         });
     }
 
+    public FoodWithEffectsItem(FoodProperties properties, Item craftingItem) {
+        super(new Item.Properties().food(properties).craftRemainder(craftingItem));
+        properties.getEffects().forEach(effect -> {
+            if (effect.getSecond() >= 1F) {
+                effectInstances.add(effect.getFirst());
+            }
+        });
+    }
+
     @Override
     public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
         FoodProperties raw = super.getFoodProperties(stack, entity);

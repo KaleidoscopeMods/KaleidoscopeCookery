@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.decoration;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.util.VoxelShapeUtils;
+import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -26,7 +27,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.EnumMap;
 import java.util.List;

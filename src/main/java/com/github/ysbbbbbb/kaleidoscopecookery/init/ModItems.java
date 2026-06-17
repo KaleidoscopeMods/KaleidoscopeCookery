@@ -137,7 +137,7 @@ public final class ModItems {
     public static RegistryObject<Item> BAMBOO_TUBE_RICE = ITEMS.register("bamboo_tube_rice", () -> new BambooTubeRiceBlockItem(ModBlocks.BAMBOO_TUBE_RICE.get(), ModFoods.BAMBOO_TUBE_RICE));
 
     // 小碗菜和盖饭
-    public static RegistryObject<Item> COOKED_RICE = ITEMS.register("cooked_rice", () -> new BowlFoodOnlyItem(ModFoods.COOKED_RICE));
+    public static RegistryObject<Item> COOKED_RICE = ITEMS.register("cooked_rice", () -> new BowlFoodOnlyItem(ModFoods.COOKED_RICE, Items.BOWL));
     public static RegistryObject<Item> EGG_FRIED_RICE = ITEMS.register("egg_fried_rice", () -> new BowlFoodOnlyItem(ModFoods.EGG_FRIED_RICE));
     public static RegistryObject<Item> SCRAMBLE_EGG_WITH_TOMATOES = ITEMS.register("scramble_egg_with_tomatoes", () -> new BowlFoodOnlyItem(ModFoods.SCRAMBLE_EGG_WITH_TOMATOES));
     public static RegistryObject<Item> SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL = ITEMS.register("scramble_egg_with_tomatoes_rice_bowl", () -> new BowlFoodOnlyItem(ModFoods.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL));
