@@ -12,6 +12,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.MillstoneInputHandler;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,6 +43,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
@@ -72,6 +74,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             refresh();
         }
     };
+
+    // 仅用于 cap，对外暴露给 Create 溜槽/漏斗等，使其能直接投料
+    private final IItemHandler inputHandler = new MillstoneInputHandler(this);
 
     private ItemStack input = ItemStack.EMPTY;
     private UUID entityId = Util.NIL_UUID;
@@ -479,5 +484,13 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             return 0f;
         }
         return Math.abs(value) % 360;
+    }
+
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER && !this.remove && side == Direction.UP) {
+            return LazyOptional.of(() -> this.inputHandler).cast();
+        }
+        return super.getCapability(cap, side);
     }
 }

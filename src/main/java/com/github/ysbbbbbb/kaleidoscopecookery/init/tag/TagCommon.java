@@ -55,6 +55,9 @@ public interface TagCommon {
     // 虽然面团是不可数名词，但为了兼容性……
     TagKey<Item> DOUGHS = itemTag("doughs");
 
+    // 刀具
+    TagKey<Item> KNIVES = itemTag("tools/knives");
+
     // 均衡饮食模组
     TagKey<Item> FRUITS = dietTag("fruits");
     TagKey<Item> GRAINS = dietTag("grains");
