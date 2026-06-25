@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon.FD_KNIVES;
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon.KNIVES;
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod.*;
 import static net.minecraft.tags.ItemTags.VILLAGER_PLANTABLE_SEEDS;
 import static net.minecraft.world.item.Items.*;
@@ -48,6 +49,11 @@ public class TagItem extends ItemTagsProvider {
         tag(KITCHEN_SHOVEL).add(ModItems.KITCHEN_SHOVEL.get());
 
         tag(CATERPILLARS).add(ModItems.CATERPILLAR.get());
+
+        tag(KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
+                ModItems.GOLD_KITCHEN_KNIFE.get(),
+                ModItems.DIAMOND_KITCHEN_KNIFE.get(),
+                ModItems.NETHERITE_KITCHEN_KNIFE.get());
 
         // 农夫乐事
         tag(FD_KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),

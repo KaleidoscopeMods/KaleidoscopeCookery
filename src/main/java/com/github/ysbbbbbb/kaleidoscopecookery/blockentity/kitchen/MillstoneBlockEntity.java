@@ -12,6 +12,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.MillstoneInputHandler;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -48,7 +49,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -74,58 +74,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             refresh();
         }
     };
-    // 输入用的 ItemHandler，对外暴露给 Create 溜槽/漏斗等，使其能直接投料
-    // 插入逻辑转交给 onPutItem 处理（含配方匹配与状态检查）
-    private final IItemHandler inputHandler = new IItemHandler() {
-        @Override
-        public int getSlots(){
-            return 1;
-        }
-        @Override
-        public ItemStack getStackInSlot(int slot){
-            return MillstoneBlockEntity.this.input;
-        }
-        @Override
-        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate){
-            if (stack.isEmpty()){
-                return ItemStack.EMPTY;
-            }
-            Level level = MillstoneBlockEntity.this.level;
-            if (level == null){
-                return stack;
-            }
-            // 模拟模式：只判断能否接受，绝不改变石磨状态（否则会导致物品复制/丢失）
-            if (simulate){
-                SimpleContainer container = new SimpleContainer(stack);
-                boolean canAccept = MillstoneBlockEntity.this.isOutputEmpty()
-                        && MillstoneBlockEntity.this.input.isEmpty()
-                        && MillstoneBlockEntity.this.matchRecipe(container, level).isPresent();
-                return canAccept ? ItemStack.EMPTY : stack;
-            }
-            // onPutItem 内部用 split 最多取走 MAX_INPUT_COUNT 个，
-            // 返回 stack 中剩余的部分，避免多余物品被溜槽当作"已接收"而销毁
-            if (MillstoneBlockEntity.this.onPutItem(level,stack)){
-                return stack.isEmpty() ? ItemStack.EMPTY : stack;
-            }
-            return stack;
-        }
 
-        @Override
-        public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return ItemStack.EMPTY;
-        }
-
-        @Override
-        public int getSlotLimit(int slot) {
-            return MAX_INPUT_COUNT;
-        }
-
-        @Override
-        public boolean isItemValid(int slot, ItemStack stack) {
-            return true;
-        }
-    };
-
+    // 仅用于 cap，对外暴露给 Create 溜槽/漏斗等，使其能直接投料
+    private final IItemHandler inputHandler = new MillstoneInputHandler(this);
 
     private ItemStack input = ItemStack.EMPTY;
     private UUID entityId = Util.NIL_UUID;
@@ -511,17 +462,6 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         return this.outputs;
     }
 
-    // 仅对上方暴露输入能力，符合石磨"从上方投料"的设计
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side){
-        if (cap == ForgeCapabilities.ITEM_HANDLER && !this.remove){
-            if (side == Direction.UP){
-                return LazyOptional.of(() -> this.inputHandler).cast();
-            }
-        }
-        return super.getCapability(cap, side);
-    }
-
     public boolean isOutputEmpty() {
         for (int i = 0; i < this.outputs.getSlots(); i++) {
             if (!this.outputs.getStackInSlot(i).isEmpty()) {
@@ -544,5 +484,13 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             return 0f;
         }
         return Math.abs(value) % 360;
+    }
+
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER && !this.remove && side == Direction.UP) {
+            return LazyOptional.of(() -> this.inputHandler).cast();
+        }
+        return super.getCapability(cap, side);
     }
 }
