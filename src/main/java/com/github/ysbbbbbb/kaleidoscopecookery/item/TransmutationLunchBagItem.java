@@ -165,24 +165,24 @@ public class TransmutationLunchBagItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        // 里面有物品
-        if (hasItems(itemInHand)) {
-            boolean hasFood = false;
-            ItemStackHandler items = getItems(itemInHand);
-            for (int i = 0; i < items.getSlots(); i++) {
-                ItemStack stackInSlot = items.getStackInSlot(i);
-                if (!stackInSlot.isEmpty()) {
-                    hasFood = true;
-                    break;
-                }
-            }
-            if (hasFood) {
+        Optional<ItemStack> nextConsumable = findNextConsumable(itemInHand, player);
+        if (nextConsumable.isPresent()) {
+            FoodProperties foodProperties = nextConsumable.get().getFoodProperties(player);
+            // 药水不受玩家饱食度限制
+            if (foodProperties == null || player.canEat(foodProperties.canAlwaysEat())) {
                 player.startUsingItem(hand);
                 return InteractionResultHolder.consume(itemInHand);
             }
         }
 
         return InteractionResultHolder.fail(itemInHand);
+    }
+
+    @Override
+    public @Nullable FoodProperties getFoodProperties(ItemStack bag, @Nullable LivingEntity entity) {
+        return findNextConsumable(bag, entity)
+                .map(stack -> stack.getFoodProperties(entity))
+                .orElse(null);
     }
 
     @Override
@@ -196,12 +196,12 @@ public class TransmutationLunchBagItem extends Item {
         ItemStackHandler items = getItems(bag);
         for (int i = 0; i < items.getSlots(); i++) {
             ItemStack stackInSlot = items.getStackInSlot(i);
-            if (stackInSlot.isEmpty()) {
+            if (stackInSlot.isEmpty() || stackInSlot.getItem() instanceof TransmutationLunchBagItem) {
                 continue;
             }
 
             // 先检查是不是食物
-            FoodProperties foodProperties = stackInSlot.getItem().getFoodProperties(stackInSlot, null);
+            FoodProperties foodProperties = stackInSlot.getFoodProperties(entity);
             if (foodProperties != null) {
                 // 第一个食物的效果不加入其中，避免重复
                 if (!food.isEmpty()) {
@@ -353,6 +353,23 @@ public class TransmutationLunchBagItem extends Item {
             return false;
         }
         return food.has(DataComponents.FOOD) || food.has(DataComponents.POTION_CONTENTS);
+    }
+
+    private static Optional<ItemStack> findNextConsumable(ItemStack bag, @Nullable LivingEntity entity) {
+        if (!hasItems(bag)) {
+            return Optional.empty();
+        }
+        ItemStackHandler items = getItems(bag);
+        for (int i = 0; i < items.getSlots(); i++) {
+            ItemStack stack = items.getStackInSlot(i);
+            if (stack.isEmpty() || stack.getItem() instanceof TransmutationLunchBagItem) {
+                continue;
+            }
+            if (stack.getFoodProperties(entity) != null || stack.has(DataComponents.POTION_CONTENTS)) {
+                return Optional.of(stack);
+            }
+        }
+        return Optional.empty();
     }
 
     private static Optional<ItemStack> removeOne(ItemStack bag) {
