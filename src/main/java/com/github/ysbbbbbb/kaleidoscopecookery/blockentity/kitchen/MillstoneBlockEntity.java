@@ -164,11 +164,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
 
         // 如果实体带有库存，那么可以尝试往磨盘里放物品
         if (this.bindEntity.tickCount % 10 == 0 && this.isOutputEmpty() && this.input.isEmpty() && this.progress <= 0) {
-            IItemHandler handler = this.bindEntity.getCapability(Capabilities.ItemHandler.ENTITY);
+            IItemHandler handler = this.bindEntity.getCapability(Capabilities.ItemHandler.ENTITY_AUTOMATION, null);
             if (handler != null) {
-                // 跳过马的 0 号槽位
-                int firstInputSlot = this.bindEntity instanceof AbstractHorse ? AbstractHorse.INV_BASE_COUNT : 0;
-                for (int i = firstInputSlot; i < handler.getSlots(); i++) {
+                for (int i = 0; i < handler.getSlots(); i++) {
                     ItemStack stackInSlot = handler.getStackInSlot(i);
                     if (stackInSlot.isEmpty()) {
                         continue;
