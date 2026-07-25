@@ -166,7 +166,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
         if (this.bindEntity.tickCount % 10 == 0 && this.isOutputEmpty() && this.input.isEmpty() && this.progress <= 0) {
             IItemHandler handler = this.bindEntity.getCapability(Capabilities.ItemHandler.ENTITY);
             if (handler != null) {
-                for (int i = 0; i < handler.getSlots(); i++) {
+                // 跳过马的 0 号槽位
+                int firstInputSlot = this.bindEntity instanceof AbstractHorse ? AbstractHorse.INV_BASE_COUNT : 0;
+                for (int i = firstInputSlot; i < handler.getSlots(); i++) {
                     ItemStack stackInSlot = handler.getStackInSlot(i);
                     if (stackInSlot.isEmpty()) {
                         continue;
