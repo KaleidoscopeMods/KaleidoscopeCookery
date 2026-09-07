@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
@@ -207,6 +208,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         crop(ModBlocks.CHILI_CROP, "chili");
         crop(ModBlocks.LETTUCE_CROP, "lettuce");
 
+        teaTree();
+
         axisBlock((RotatedPillarBlock) ModBlocks.STRAW_BLOCK.get());
 
         horizontalFaceBlock(ModBlocks.RECIPE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/recipe_block")));
@@ -268,6 +271,16 @@ public class BlockStateGenerator extends BlockStateProvider {
         getVariantBuilder(block.get()).forAllStates(state -> {
             int age = state.getValue(CropBlock.AGE);
             ResourceLocation file = modLoc("block/crop/%s/stage%d".formatted(name, age));
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(file))
+                    .build();
+        });
+    }
+
+    public void teaTree() {
+        getVariantBuilder(ModBlocks.TEA_TREE.get()).forAllStates(state -> {
+            int age = state.getValue(TeaTreeBlock.AGE);
+            ResourceLocation file = modLoc("block/crop/tea_tree/stage%d".formatted(age));
             return ConfiguredModel.builder()
                     .modelFile(new ModelFile.UncheckedModelFile(file))
                     .build();

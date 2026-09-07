@@ -21,6 +21,11 @@ public class SimpleCookingRecipeProvider extends ModRecipeProvider {
         vanillaCookingRecipe(ModItems.RAW_CUT_SMALL_MEATS.get(), ModItems.COOKED_CUT_SMALL_MEATS.get(), 0.35F, consumer);
         vanillaCookingRecipe(ModItems.RAW_MEATBALL.get(), ModItems.COOKED_MEATBALL.get(), 0.35F, consumer);
         vanillaCookingRecipe(ModItems.STUFFED_DOUGH_FOOD.get(), ModItems.SAMSA.get(), 0.35F, consumer);
+
+        simpleCookingRecipe(consumer, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600,
+                ModItems.FRESH_TEA_LEAVES.get(), ModItems.DRIED_TEA_LEAVES.get(), 0.1F);
+        simpleCookingRecipe(consumer, "smelting", RecipeSerializer.SMELTING_RECIPE, 200,
+                ModItems.FRESH_TEA_LEAVES.get(), ModItems.DRIED_TEA_LEAVES.get(), 0.1F);
     }
 
     public void vanillaCookingRecipe(ItemLike input, ItemLike output, float experience, Consumer<FinishedRecipe> consumer) {

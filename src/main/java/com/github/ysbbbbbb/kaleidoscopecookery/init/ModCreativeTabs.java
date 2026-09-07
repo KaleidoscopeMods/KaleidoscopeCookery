@@ -55,6 +55,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.TOMATO_SEED.get());
                 output.accept(ModItems.CHILI_SEED.get());
                 output.accept(ModItems.LETTUCE_SEED.get());
+                output.accept(ModItems.TEA_SEED.get());
                 // 工具
                 output.accept(ModItems.KITCHEN_SHOVEL.get());
                 output.accept(ModItems.SICKLE.get());
@@ -117,6 +118,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.GREEN_CHILI.get());
                 output.accept(ModItems.LETTUCE.get());
                 output.accept(ModItems.RICE_PANICLE.get());
+                output.accept(ModItems.FRESH_TEA_LEAVES.get());
+                output.accept(ModItems.DRIED_TEA_LEAVES.get());
                 output.accept(ModItems.CATERPILLAR.get());
                 // 肉类
                 output.accept(ModItems.SASHIMI.get());

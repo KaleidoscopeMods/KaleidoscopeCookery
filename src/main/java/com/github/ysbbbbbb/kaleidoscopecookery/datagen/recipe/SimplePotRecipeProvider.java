@@ -25,6 +25,7 @@ public class SimplePotRecipeProvider extends ModRecipeProvider {
         addSingleItemRecipe(Items.POTATO, Items.BAKED_POTATO, "potato", consumer);
         addSingleItemRecipe(Items.KELP, Items.DRIED_KELP, "kelp", consumer);
         addSingleItemRecipe(Items.CHORUS_FRUIT, Items.POPPED_CHORUS_FRUIT, "chorus_fruit", consumer);
+        addSingleItemRecipe(FRESH_TEA_LEAVES.get(), DRIED_TEA_LEAVES.get(), "fresh_tea_leaves", consumer);
 
         addSingleItemRecipe(TagCommon.EGGS, FRIED_EGG.get(), "egg", consumer);
 

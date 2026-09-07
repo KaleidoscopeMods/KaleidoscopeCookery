@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.BaseCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.ChiliCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.LettuceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
@@ -52,6 +53,7 @@ public class ModBlocks {
     public static RegistryObject<Block> CHILI_CROP = BLOCKS.register("chili_crop", ChiliCropBlock::new);
     public static RegistryObject<Block> LETTUCE_CROP = BLOCKS.register("lettuce_crop", LettuceCropBlock::new);
     public static RegistryObject<Block> RICE_CROP = BLOCKS.register("rice_crop", RiceCropBlock::new);
+    public static RegistryObject<Block> TEA_TREE = BLOCKS.register("tea_tree", TeaTreeBlock::new);
 
     public static RegistryObject<Block> COOK_STOOL_OAK = BLOCKS.register("cook_stool_oak", CookStoolBlock::new);
     public static RegistryObject<Block> COOK_STOOL_SPRUCE = BLOCKS.register("cook_stool_spruce", CookStoolBlock::new);

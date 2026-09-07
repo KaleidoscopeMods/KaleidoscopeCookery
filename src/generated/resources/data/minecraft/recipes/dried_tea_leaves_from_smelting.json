@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:fresh_tea_leaves"
+  },
+  "result": "kaleidoscope_cookery:dried_tea_leaves"
+}

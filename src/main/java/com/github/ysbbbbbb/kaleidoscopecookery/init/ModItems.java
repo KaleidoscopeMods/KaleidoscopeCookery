@@ -65,6 +65,7 @@ public final class ModItems {
     public static RegistryObject<Item> LETTUCE_SEED = ITEMS.register("lettuce_seed", () -> new ItemNameBlockItem(ModBlocks.LETTUCE_CROP.get(), new Item.Properties()));
     public static RegistryObject<Item> RICE_SEED = ITEMS.register("rice", RiceItem::new);
     public static RegistryObject<Item> WILD_RICE_SEED = ITEMS.register("wild_rice", () -> new ItemNameBlockItem(ModBlocks.RICE_CROP.get(), new Item.Properties()));
+    public static RegistryObject<Item> TEA_SEED = ITEMS.register("tea_seed", () -> new ItemNameBlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));
 
     // 凳子
     public static RegistryObject<Item> COOK_STOOL_OAK = ITEMS.register("cook_stool_oak", () -> new BlockItem(ModBlocks.COOK_STOOL_OAK.get(), new Item.Properties()));
@@ -111,6 +112,8 @@ public final class ModItems {
     public static RegistryObject<Item> GREEN_CHILI = ITEMS.register("green_chili", () -> new ChiliItem(1));
     public static RegistryObject<Item> LETTUCE = ITEMS.register("lettuce", () -> new Item(new Item.Properties().food(ModFoods.LETTUCE)));
     public static RegistryObject<Item> RICE_PANICLE = ITEMS.register("rice_panicle", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> FRESH_TEA_LEAVES = ITEMS.register("fresh_tea_leaves", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> DRIED_TEA_LEAVES = ITEMS.register("dried_tea_leaves", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
 
     // 面类食材

@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.lootable;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.ChiliRistraBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.StrungMushroomsBlock;
@@ -130,6 +131,9 @@ public class BlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.RICE_CROP.get(), this.applyExplosionDecay(ModBlocks.RICE_CROP.get(),
                 LootTable.lootTable().withPool(ricePanicle).withPool(extraRiceSeeds)));
 
+        this.add(ModBlocks.TEA_TREE.get(), createCropDrops(ModBlocks.TEA_TREE.get(), ModItems.FRESH_TEA_LEAVES.get(),
+                ModItems.TEA_SEED.get(), createTeaTreeBuilder()));
+
         FoodBiteRegistry.FOOD_DATA_MAP.forEach(this::dropFoodBite);
         // 特殊的方块食物
         dropFoodBite(ModBlocks.COLD_CUT_HAM_SLICES.get(), ModItems.COLD_CUT_HAM_SLICES.get(), Items.BOWL);
@@ -191,6 +195,14 @@ public class BlockLootTables extends BlockLootSubProvider {
                 .setProperties(property);
     }
 
+    private LootItemCondition.Builder createTeaTreeBuilder() {
+        StatePropertiesPredicate.Builder property = StatePropertiesPredicate.Builder
+                .properties().hasProperty(TeaTreeBlock.AGE, TeaTreeBlock.MAX_AGE);
+        return LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.TEA_TREE.get())
+                .setProperties(property);
+    }
+
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> output) {
         super.generate(output);
@@ -200,6 +212,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         var chili = getSeed(ModItems.CHILI_SEED.get());
         var lettuce = getSeed(ModItems.LETTUCE_SEED.get());
         var rice = getSeed(ModItems.WILD_RICE_SEED.get());
+        var tea = getSeed(ModItems.TEA_SEED.get());
 
         // 原版其他几个种子也掉，但是概率较低
         // 甜菜、南瓜、西瓜种子
@@ -209,7 +222,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
         LootTable.Builder dropSeed = LootTable.lootTable().withPool(LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .add(tomato).add(chili).add(lettuce).add(rice)
+                .add(tomato).add(chili).add(lettuce).add(rice).add(tea)
                 .add(beetRootSeed).add(pumpkinSeed).add(melonSeed));
         output.accept(modLoc("straw_hat_seed_drop"), dropSeed);
     }

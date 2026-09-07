@@ -69,7 +69,8 @@ public class TagItem extends ItemTagsProvider {
 
         this.tag(COOKERY_MOD_SEEDS).add(
                 ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
-                ModItems.WILD_RICE_SEED.get(), ModItems.LETTUCE_SEED.get()
+                ModItems.WILD_RICE_SEED.get(), ModItems.LETTUCE_SEED.get(),
+                ModItems.TEA_SEED.get()
         );
 
         this.tag(INGREDIENT_CONTAINER).add(BUCKET, BOWL, GLASS_BOTTLE);
@@ -154,7 +155,8 @@ public class TagItem extends ItemTagsProvider {
                 ModItems.TOMATO_SEED.get(),
                 ModItems.LETTUCE_SEED.get(),
                 ModItems.WILD_RICE_SEED.get(),
-                ModItems.RICE_SEED.get()
+                ModItems.RICE_SEED.get(),
+                ModItems.TEA_SEED.get()
         );
         tag(Tags.Items.EGGS).add(ModItems.FRIED_EGG.get());
 
@@ -224,9 +226,12 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.DIET_VEGETABLES).addTag(TagCommon.VEGETABLES);
 
         // 兼容静谧四季
-        tag(TagCommon.SPRING_CROPS).add(ModItems.LETTUCE_SEED.get());
-        tag(TagCommon.SUMMER_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get());
-        tag(TagCommon.AUTUMN_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(), ModItems.LETTUCE_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get());
+        tag(TagCommon.SPRING_CROPS).add(ModItems.LETTUCE_SEED.get(), ModItems.TEA_SEED.get());
+        tag(TagCommon.SUMMER_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
+                ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get(), ModItems.TEA_SEED.get());
+        tag(TagCommon.AUTUMN_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
+                ModItems.LETTUCE_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get(),
+                ModItems.TEA_SEED.get());
     }
 
     private void addModItems() {

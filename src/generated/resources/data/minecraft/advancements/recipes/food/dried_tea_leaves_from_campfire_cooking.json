@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fresh_tea_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kaleidoscope_cookery:fresh_tea_leaves"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:dried_tea_leaves_from_campfire_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_fresh_tea_leaves",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:dried_tea_leaves_from_campfire_cooking"
+    ]
+  },
+  "sends_telemetry_event": false
+}

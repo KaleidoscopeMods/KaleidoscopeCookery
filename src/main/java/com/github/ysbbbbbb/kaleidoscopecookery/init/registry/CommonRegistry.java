@@ -129,11 +129,13 @@ public class CommonRegistry {
         ComposterBlock.COMPOSTABLES.put(ModItems.LETTUCE_SEED.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ModItems.WILD_RICE_SEED.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ModItems.RICE_SEED.get(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(ModItems.TEA_SEED.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ModItems.TOMATO.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(ModItems.RED_CHILI.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(ModItems.GREEN_CHILI.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(ModItems.LETTUCE.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(ModItems.RICE_PANICLE.get(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(ModItems.FRESH_TEA_LEAVES.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(ModItems.CATERPILLAR.get(), 1.0F);
     }
 

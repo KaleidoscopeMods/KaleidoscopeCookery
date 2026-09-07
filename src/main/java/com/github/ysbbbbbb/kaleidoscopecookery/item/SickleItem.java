@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.api.event.SickleHarvestEvent;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -109,6 +110,17 @@ public class SickleItem extends SwordItem {
         SickleHarvestEvent event = new SickleHarvestEvent(player, stack, newPos, blockState);
         if (MinecraftForge.EVENT_BUS.post(event)) {
             return event.isCostDurability();
+        }
+
+        // 如果是茶树
+        if (block instanceof TeaTreeBlock teaTreeBlock) {
+            if (teaTreeBlock.isMaxAge(blockState)) {
+                teaTreeBlock.playerDestroy(level, player, newPos, blockState, null, ItemStack.EMPTY);
+                level.setBlock(newPos, teaTreeBlock.getStateForAge(0), Block.UPDATE_ALL);
+                level.levelEvent(null, LevelEvent.PARTICLES_DESTROY_BLOCK, newPos, Block.getId(blockState));
+                return true;
+            }
+            return false;
         }
 
         // 如果是作物，那么检查是否成熟
