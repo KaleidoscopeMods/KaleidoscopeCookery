@@ -28,7 +28,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
@@ -163,14 +162,14 @@ public class ScarecrowEntity extends LivingEntity {
             }
             return InteractionResult.PASS;
         }
-        if (itemInHand.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof LanternBlock) {
-            if (swapHand(InteractionHand.OFF_HAND, player, itemInHand)) {
-                this.level().playSound(null, this.blockPosition(), SoundEvents.LANTERN_PLACE, this.getSoundSource());
+        if (itemInHand.getItem().canBeDepleted()) {
+            if (swapHand(InteractionHand.MAIN_HAND, player, itemInHand)) {
+                this.level().playSound(null, this.blockPosition(), SoundEvents.ITEM_FRAME_ADD_ITEM, this.getSoundSource());
                 return InteractionResult.SUCCESS;
             }
         }
         if (itemInHand.getItem().canBeDepleted()) {
-            if (swapHand(InteractionHand.MAIN_HAND, player, itemInHand)) {
+            if (swapHand(InteractionHand.OFF_HAND, player, itemInHand)) {
                 this.level().playSound(null, this.blockPosition(), SoundEvents.ITEM_FRAME_ADD_ITEM, this.getSoundSource());
                 return InteractionResult.SUCCESS;
             }
@@ -180,20 +179,18 @@ public class ScarecrowEntity extends LivingEntity {
 
     private boolean swapHand(InteractionHand hand, Player player, ItemStack itemInHand) {
         ItemStack scarecrowStack = this.getItemInHand(hand);
-        if (player.getAbilities().instabuild && scarecrowStack.isEmpty() && !itemInHand.isEmpty()) {
-            this.setItemInHand(hand, itemInHand.copyWithCount(1));
-            return true;
-        }
-        if (!itemInHand.isEmpty() && itemInHand.getCount() > 1) {
-            if (scarecrowStack.isEmpty()) {
-                this.setItemInHand(hand, itemInHand.split(1));
-                return true;
-            }
+        if (!scarecrowStack.isEmpty()) {
             return false;
         }
-        this.setItemInHand(hand, itemInHand);
-        player.setItemInHand(InteractionHand.MAIN_HAND, scarecrowStack);
-        return true;
+        if (!itemInHand.isEmpty()) {
+            if (player.getAbilities().instabuild) {
+                this.setItemInHand(hand, itemInHand.copyWithCount(1));
+            } else {
+                this.setItemInHand(hand, itemInHand.split(1));
+            }
+            return true;
+        }
+        return false;
     }
 
     private boolean isClickHand(Vec3 vector) {
