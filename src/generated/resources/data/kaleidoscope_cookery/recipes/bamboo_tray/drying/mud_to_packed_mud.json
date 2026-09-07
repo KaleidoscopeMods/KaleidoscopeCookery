@@ -1,0 +1,11 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 2400,
+  "ingredient": {
+    "item": "minecraft:mud"
+  },
+  "result": {
+    "item": "minecraft:packed_mud"
+  },
+  "subtype": "drying"
+}
