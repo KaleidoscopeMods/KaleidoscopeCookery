@@ -47,7 +47,9 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
                 ModBlocks.TABLE_WARPED.get(),
 
-                ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.CHOPPING_BOARD.get());
+                ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.BAMBOO_TRAY.get(),
+                ModBlocks.CHOPPING_BOARD.get()
+        );
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.STRAW_BLOCK.get());
         this.tag(TagMod.TUNDRA_STRIDER_SPEED_BLOCKS).add(
                 Blocks.SNOW, Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW,

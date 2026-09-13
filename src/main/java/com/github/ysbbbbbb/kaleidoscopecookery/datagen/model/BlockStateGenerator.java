@@ -166,6 +166,14 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
         horizontalBlock(ModBlocks.KITCHENWARE_RACKS.get(), new ModelFile.UncheckedModelFile(modLoc("block/kitchenware_racks")));
 
+        getVariantBuilder(ModBlocks.BAMBOO_TRAY.get()).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(new ModelFile.UncheckedModelFile(
+                        modLoc(state.getValue(BambooTrayBlock.STAND)
+                                ? "block/bamboo_tray/stand"
+                                : "block/bamboo_tray/base"
+                        )
+                )).build());
+
         cookStool(ModBlocks.COOK_STOOL_OAK, "oak");
         cookStool(ModBlocks.COOK_STOOL_SPRUCE, "spruce");
         cookStool(ModBlocks.COOK_STOOL_ACACIA, "acacia");

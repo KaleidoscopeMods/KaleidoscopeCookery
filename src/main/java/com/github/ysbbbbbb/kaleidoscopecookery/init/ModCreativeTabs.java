@@ -33,6 +33,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.TEAPOT.get());
                 output.accept(ModItems.TRASH_CAN.get());
                 output.accept(ModItems.KITCHENWARE_RACKS.get());
+                output.accept(ModItems.BAMBOO_TRAY.get());
                 output.accept(ModItems.FRUIT_BASKET.get());
                 output.accept(ModItems.SCARECROW.get());
                 output.accept(ModItems.ENAMEL_BASIN.get());

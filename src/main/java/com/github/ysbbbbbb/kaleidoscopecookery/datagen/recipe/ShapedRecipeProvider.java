@@ -160,6 +160,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.BAMBOO_TRAY.get())
+                .pattern(" S ")
+                .pattern("STS")
+                .pattern(" S ")
+                .define('S', Items.STRING)
+                .define('T', Items.BAMBOO_TRAPDOOR)
+                .unlockedBy("has_bamboo_trapdoor", has(Items.BAMBOO_TRAPDOOR))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.KITCHENWARE_RACKS.get())
                 .pattern("SSS")
                 .pattern("INI")

@@ -124,6 +124,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(modLoc("egg"));
         basicItem(modLoc("oil_in_millstone"));
 
+        withExistingParent("bamboo_tray", modLoc("block/bamboo_tray/base"));
+
         ResourceLocation chileRistra = ForgeRegistries.ITEMS.getKey(ModItems.CHILI_RISTRA.get());
         if (chileRistra != null) {
             getBuilder(chileRistra.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))

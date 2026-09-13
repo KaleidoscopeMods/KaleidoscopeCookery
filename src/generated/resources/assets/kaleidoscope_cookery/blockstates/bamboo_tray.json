@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stand=false": {
+      "model": "kaleidoscope_cookery:block/bamboo_tray/base"
+    },
+    "stand=true": {
+      "model": "kaleidoscope_cookery:block/bamboo_tray/stand"
+    }
+  }
+}

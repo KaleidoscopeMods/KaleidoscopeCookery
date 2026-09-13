@@ -34,6 +34,7 @@ public class ModBlocks {
     public static RegistryObject<Block> OIL_BLOCK = BLOCKS.register("oil_block", OilBlock::new);
     public static RegistryObject<Block> ENAMEL_BASIN = BLOCKS.register("enamel_basin", EnamelBasinBlock::new);
     public static RegistryObject<Block> KITCHENWARE_RACKS = BLOCKS.register("kitchenware_racks", KitchenwareRacksBlock::new);
+    public static RegistryObject<Block> BAMBOO_TRAY = BLOCKS.register("bamboo_tray", BambooTrayBlock::new);
     public static RegistryObject<Block> CHILI_RISTRA = BLOCKS.register("chili_ristra", ChiliRistraBlock::new);
     public static RegistryObject<Block> STRUNG_MUSHROOMS = BLOCKS.register("strung_mushrooms", StrungMushroomsBlock::new);
     public static RegistryObject<Block> STRAW_BLOCK = BLOCKS.register("straw_block", StrawBlocks::new);
@@ -125,6 +126,9 @@ public class ModBlocks {
 
     public static RegistryObject<BlockEntityType<KitchenwareRacksBlockEntity>> KITCHENWARE_RACKS_BE = BLOCK_ENTITIES.register("kitchenware_racks",
             () -> BlockEntityType.Builder.of(KitchenwareRacksBlockEntity::new, KITCHENWARE_RACKS.get()).build(null));
+
+    public static RegistryObject<BlockEntityType<BambooTrayBlockEntity>> BAMBOO_TRAY_BE = BLOCK_ENTITIES.register("bamboo_tray",
+            () -> BlockEntityType.Builder.of(BambooTrayBlockEntity::new, BAMBOO_TRAY.get()).build(null));
 
     public static RegistryObject<BlockEntityType<ShawarmaSpitBlockEntity>> SHAWARMA_SPIT_BE = BLOCK_ENTITIES.register("shawarma_spit",
             () -> BlockEntityType.Builder.of(ShawarmaSpitBlockEntity::new, SHAWARMA_SPIT.get()).build(null));
