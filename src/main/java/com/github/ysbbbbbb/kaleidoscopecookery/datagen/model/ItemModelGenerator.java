@@ -39,6 +39,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         basicItem(ModItems.OIL.get());
         basicItem(ModItems.FRIED_EGG.get());
+        basicItem(ModItems.TEA_EGG.get());
         basicItem(ModItems.SCARECROW.get());
         basicItem(ModItems.TOMATO.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get());
@@ -76,6 +77,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.OOLONG_TEA_BAG.get());
         basicItem(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
         basicItem(ModItems.BARLEY_TEA_BAG.get());
+        basicItem(ModItems.BUTTER_TEA_BAG.get());
+        basicItem(ModItems.CLAY_POT_MILK_TEA.get());
         basicItem(ModItems.RICE_SEED.get());
         basicItem(ModItems.WILD_RICE_SEED.get());
         basicItem(ModItems.RICE_PANICLE.get());

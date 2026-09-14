@@ -31,6 +31,8 @@ public final class ModItems {
     public static RegistryObject<Item> OOLONG_TEA_BAG = ITEMS.register("oolong_tea_bag", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> SAKURA_FUBUKI_TEA_BAG = ITEMS.register("sakura_fubuki_tea_bag", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> BARLEY_TEA_BAG = ITEMS.register("barley_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> BUTTER_TEA_BAG = ITEMS.register("butter_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> CLAY_POT_MILK_TEA = ITEMS.register("clay_pot_milk_tea", () -> new ClayPotMilkTeaItem(ModBlocks.CLAY_POT_MILK_TEA.get()));
 
     // 垃圾桶
     public static RegistryObject<Item> TRASH_CAN = ITEMS.register("trash_can", () -> new BlockItem(ModBlocks.TRASH_CAN.get(), new Item.Properties()));
@@ -132,6 +134,7 @@ public final class ModItems {
 
     // 基础食物
     public static RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFoods.FRIED_EGG)));
+    public static RegistryObject<Item> TEA_EGG = ITEMS.register("tea_egg", () -> new FoodWithEffectsItem(ModFoods.TEA_EGG));
     public static RegistryObject<Item> DONKEY_BURGER = ITEMS.register("donkey_burger", () -> new FoodWithEffectsItem(ModFoods.DONKEY_BURGER));
     public static RegistryObject<Item> BAOZI = ITEMS.register("baozi", () -> new FoodWithEffectsItem(ModFoods.BAOZI));
     public static RegistryObject<Item> SHENGJIAN_MANTOU = ITEMS.register("shengjian_mantou", () -> new FoodWithEffectsItem(ModFoods.SHENGJIAN_MANTOU_ITEM));

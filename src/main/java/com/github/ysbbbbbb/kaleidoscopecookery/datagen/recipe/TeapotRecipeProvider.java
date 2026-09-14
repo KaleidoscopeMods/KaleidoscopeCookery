@@ -7,6 +7,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.ForgeMod;
 
 import java.util.function.Consumer;
 
@@ -62,6 +63,14 @@ public class TeapotRecipeProvider extends ModRecipeProvider {
                 .setIngredient(ModItems.SAKURA_FUBUKI_TEA_BAG)
                 .setIngredientCount(1)
                 .setResult(TeacupRegistry.getItem(TeacupRegistry.SAKURA_FUBUKI))
+                .setTime(240)
+                .save(consumer);
+
+        TeapotBuilder.builder()
+                .setTeaFluid(ForgeMod.MILK.get())
+                .setIngredient(ModItems.BUTTER_TEA_BAG)
+                .setIngredientCount(1)
+                .setResult(TeacupRegistry.getItem(TeacupRegistry.BUTTER_TEA))
                 .setTime(240)
                 .save(consumer);
     }

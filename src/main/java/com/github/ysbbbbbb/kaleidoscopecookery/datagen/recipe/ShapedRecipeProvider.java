@@ -208,6 +208,7 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
         addTeaBagRecipe(ModItems.OOLONG_TEA_BAG.get(), Items.DRAGON_BREATH).save(consumer);
         addTeaBagRecipe(ModItems.SAKURA_FUBUKI_TEA_BAG.get(), Items.PINK_PETALS).save(consumer);
         addTeaBagRecipe(ModItems.BARLEY_TEA_BAG.get(), Items.WHEAT_SEEDS).save(consumer);
+        addTeaBagRecipe(ModItems.BUTTER_TEA_BAG.get(), ModItems.OIL.get()).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.FARMER_CHEST_PLATE.get())
                 .pattern("I I")

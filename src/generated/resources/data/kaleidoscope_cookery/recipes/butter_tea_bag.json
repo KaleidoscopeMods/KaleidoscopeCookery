@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "kaleidoscope_cookery:oil"
+    },
+    "L": {
+      "item": "kaleidoscope_cookery:dried_tea_leaves"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LCL",
+    "LLL"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:butter_tea_bag"
+  },
+  "show_notification": true
+}

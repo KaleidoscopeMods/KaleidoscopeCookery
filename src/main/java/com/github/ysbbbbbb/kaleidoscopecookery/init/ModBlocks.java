@@ -8,6 +8,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.ClayPotMilkTeaBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
@@ -44,6 +45,7 @@ public class ModBlocks {
 
     public static RegistryObject<Block> TEAPOT = BLOCKS.register("teapot", TeapotBlock::new);
     public static RegistryObject<Block> EMPTY_CUP = BLOCKS.register("empty_cup", EmptyCupBlock::new);
+    public static RegistryObject<Block> CLAY_POT_MILK_TEA = BLOCKS.register("clay_pot_milk_tea", ClayPotMilkTeaBlock::new);
 
     public static RegistryObject<Block> TRASH_CAN = BLOCKS.register("trash_can", TrashCanBlock::new);
 

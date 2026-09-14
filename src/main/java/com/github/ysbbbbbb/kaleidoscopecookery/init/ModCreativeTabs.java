@@ -143,6 +143,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.MEAT_PIE.get());
                 output.accept(ModItems.DUMPLING.get());
                 output.accept(ModItems.FRIED_EGG.get());
+                output.accept(ModItems.TEA_EGG.get());
                 output.accept(ModItems.STICKY_CANDY.get());
                 output.accept(ModItems.STICKY_RICE_CAKE.get());
                 output.accept(ModItems.BAMBOO_TUBE_RICE.get());
@@ -191,6 +192,9 @@ public class ModCreativeTabs {
                     }
                 });
 
+                // 瓦罐奶茶
+                output.accept(ModItems.CLAY_POT_MILK_TEA.get());
+
                 // 盘装食物
                 PlateRegistry.PLATE_DATA_MAP.keySet().forEach(plateName -> {
                     var plateItem = ForgeRegistries.ITEMS.getValue(plateName);
@@ -205,6 +209,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.OOLONG_TEA_BAG.get());
                 output.accept(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
                 output.accept(ModItems.BARLEY_TEA_BAG.get());
+                output.accept(ModItems.BUTTER_TEA_BAG.get());
 
                 // 茶水
                 output.accept(ModItems.EMPTY_CUP.get());

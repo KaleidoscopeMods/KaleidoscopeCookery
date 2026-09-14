@@ -153,6 +153,9 @@ public class BlockStateGenerator extends BlockStateProvider {
             return new ModelFile.UncheckedModelFile(model);
         });
 
+        horizontalBlock(ModBlocks.CLAY_POT_MILK_TEA.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/clay_pot_milk_tea")));
+
         TeacupRegistry.TEACUP_DATA_MAP.forEach((key, value) -> {
             Block block = ForgeRegistries.BLOCKS.getValue(key);
             if (block != null) {

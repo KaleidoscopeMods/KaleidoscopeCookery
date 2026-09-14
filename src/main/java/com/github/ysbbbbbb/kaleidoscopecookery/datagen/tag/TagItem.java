@@ -50,6 +50,14 @@ public class TagItem extends ItemTagsProvider {
 
         tag(CATERPILLARS).add(ModItems.CATERPILLAR.get());
         tag(FLOWER_TEA_INGREDIENTS).add(LILAC, ROSE_BUSH, PEONY, PITCHER_PLANT, SUNFLOWER);
+        tag(TEA_BAGS).add(
+                ModItems.TIEGUANYIN_TEA_BAG.get(),
+                ModItems.BILUOCHUN_TEA_BAG.get(),
+                ModItems.OOLONG_TEA_BAG.get(),
+                ModItems.SAKURA_FUBUKI_TEA_BAG.get(),
+                ModItems.BARLEY_TEA_BAG.get(),
+                ModItems.BUTTER_TEA_BAG.get()
+        );
 
         tag(KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
                 ModItems.GOLD_KITCHEN_KNIFE.get(),

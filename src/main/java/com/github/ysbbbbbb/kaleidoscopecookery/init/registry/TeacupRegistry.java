@@ -26,6 +26,7 @@ public class TeacupRegistry {
     public static ResourceLocation BILUOCHUN;
     public static ResourceLocation OOLONG;
     public static ResourceLocation SAKURA_FUBUKI;
+    public static ResourceLocation BUTTER_TEA;
     public static ResourceLocation FLOWER_TEA;
     public static ResourceLocation MYSTERY_TEA;
 
@@ -52,6 +53,10 @@ public class TeacupRegistry {
         OOLONG = registry.registerTeacupData("oolong", TeacupData.create(4)
                 .addEffect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 6 * 60 * 20))
                 .addEffect(() -> new MobEffectInstance(MobEffects.JUMP, 6 * 60 * 20))
+        );
+
+        BUTTER_TEA = registry.registerTeacupData("butter_tea", TeacupData.create(4).addEffect(() ->
+                new MobEffectInstance(ModEffects.PROJECTILE_DODGE.get(), 45 * 20))
         );
 
         SAKURA_FUBUKI = registry.registerTeacupData("sakura_fubuki", TeacupData.create(4).addEffect(() ->

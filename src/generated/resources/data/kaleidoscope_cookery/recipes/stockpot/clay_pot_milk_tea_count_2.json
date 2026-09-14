@@ -1,0 +1,24 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "carrier": {
+    "item": "minecraft:flower_pot"
+  },
+  "cooking_bubble_color": 16772291,
+  "cooking_texture": "kaleidoscope_cookery:stockpot/default_cooking",
+  "finished_bubble_color": 16034443,
+  "finished_texture": "kaleidoscope_cookery:stockpot/default_finished",
+  "ingredients": [
+    {
+      "tag": "kaleidoscope_cookery:tea_bags"
+    },
+    {
+      "tag": "kaleidoscope_cookery:tea_bags"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "kaleidoscope_cookery:clay_pot_milk_tea"
+  },
+  "soup_base": "minecraft:milk",
+  "time": 300
+}
