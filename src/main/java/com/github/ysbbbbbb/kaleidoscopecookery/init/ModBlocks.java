@@ -94,6 +94,9 @@ public class ModBlocks {
     public static RegistryObject<Block> TABLE_MANGROVE = BLOCKS.register("table_mangrove", TableBlock::new);
     public static RegistryObject<Block> TABLE_WARPED = BLOCKS.register("table_warped", TableBlock::new);
 
+    public static RegistryObject<Block> BAMBOO_EIGHT_IMMORTALS_TABLE = BLOCKS.register("bamboo_eight_immortals_table", EightImmortalsTableBlock::new);
+    public static RegistryObject<Block> STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE = BLOCKS.register("stripped_bamboo_eight_immortals_table", EightImmortalsTableBlock::new);
+
     public static RegistryObject<Block> COLD_CUT_HAM_SLICES = BLOCKS.register("cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));

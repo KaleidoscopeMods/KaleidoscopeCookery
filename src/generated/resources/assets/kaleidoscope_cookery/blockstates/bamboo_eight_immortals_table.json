@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,part=left_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_bottom",
+      "y": 270
+    },
+    "facing=east,part=left_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_top",
+      "y": 270
+    },
+    "facing=east,part=right_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_bottom",
+      "y": 270
+    },
+    "facing=east,part=right_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_top",
+      "y": 270
+    },
+    "facing=north,part=left_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_bottom",
+      "y": 180
+    },
+    "facing=north,part=left_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_top",
+      "y": 180
+    },
+    "facing=north,part=right_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_bottom",
+      "y": 180
+    },
+    "facing=north,part=right_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_top",
+      "y": 180
+    },
+    "facing=south,part=left_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_bottom"
+    },
+    "facing=south,part=left_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_top"
+    },
+    "facing=south,part=right_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_bottom"
+    },
+    "facing=south,part=right_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_top"
+    },
+    "facing=west,part=left_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_bottom",
+      "y": 90
+    },
+    "facing=west,part=left_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/left_top",
+      "y": 90
+    },
+    "facing=west,part=right_bottom": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_bottom",
+      "y": 90
+    },
+    "facing=west,part=right_top": {
+      "model": "kaleidoscope_cookery:block/eight_immortals_table/bamboo/right_top",
+      "y": 90
+    }
+  }
+}

@@ -108,6 +108,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.RAW_MEATBALL.get());
         basicItem(ModItems.COOKED_MEATBALL.get());
 
+        basicItem(ModItems.BAMBOO_EIGHT_IMMORTALS_TABLE.get());
+        basicItem(ModItems.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE.get());
+
         basicItem(ModItems.BAOZI.get());
         basicItem(ModItems.SHENGJIAN_MANTOU.get());
         basicItem(ModItems.DUMPLING.get());

@@ -47,6 +47,9 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
                 ModBlocks.TABLE_WARPED.get(),
 
+                ModBlocks.BAMBOO_EIGHT_IMMORTALS_TABLE.get(),
+                ModBlocks.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE.get(),
+
                 ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.BAMBOO_TRAY.get(),
                 ModBlocks.CHOPPING_BOARD.get()
         );
@@ -95,7 +98,8 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_BIRCH.get(), ModBlocks.TABLE_CHERRY.get(),
                 ModBlocks.TABLE_CRIMSON.get(), ModBlocks.TABLE_DARK_OAK.get(),
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
-                ModBlocks.TABLE_WARPED.get()
+                ModBlocks.TABLE_WARPED.get(), ModBlocks.BAMBOO_EIGHT_IMMORTALS_TABLE.get(),
+                ModBlocks.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE.get()
         );
 
         this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR).add(ModBlocks.TRASH_CAN.get());

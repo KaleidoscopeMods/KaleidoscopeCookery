@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.EightImmortalsTableBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
@@ -213,6 +214,9 @@ public class BlockStateGenerator extends BlockStateProvider {
         table(ModBlocks.TABLE_MANGROVE, "mangrove");
         table(ModBlocks.TABLE_WARPED, "warped");
 
+        eightImmortalsTable(ModBlocks.BAMBOO_EIGHT_IMMORTALS_TABLE, "bamboo");
+        eightImmortalsTable(ModBlocks.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE, "stripped_bamboo");
+
         simpleBlock(ModBlocks.OIL_BLOCK.get());
 
         crop(ModBlocks.TOMATO_CROP, "tomato");
@@ -361,6 +365,18 @@ public class BlockStateGenerator extends BlockStateProvider {
             } else {
                 return ConfiguredModel.builder().modelFile(middleModel).build();
             }
+        });
+    }
+
+    private void eightImmortalsTable(RegistryObject<Block> block, String material) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            Direction facing = state.getValue(EightImmortalsTableBlock.FACING);
+            String part = state.getValue(EightImmortalsTableBlock.PART).getSerializedName();
+            int rotation = (int) facing.toYRot();
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/eight_immortals_table/%s/%s".formatted(material, part))))
+                    .rotationY(rotation)
+                    .build();
         });
     }
 
