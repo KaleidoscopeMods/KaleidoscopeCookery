@@ -1,9 +1,9 @@
 {
   "type": "kaleidoscope_cookery:teapot",
   "ingredient": {
-    "tag": "minecraft:small_flowers"
+    "tag": "kaleidoscope_cookery:flower_tea_ingredients"
   },
-  "ingredient_count": 12,
+  "ingredient_count": 1,
   "result": {
     "item": "kaleidoscope_cookery:flower_tea"
   },

@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -202,6 +203,12 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_rice_panicle", has(ModItems.RICE_PANICLE.get()))
                 .save(consumer);
 
+        addTeaBagRecipe(ModItems.TIEGUANYIN_TEA_BAG.get(), Items.IRON_NUGGET).save(consumer);
+        addTeaBagRecipe(ModItems.BILUOCHUN_TEA_BAG.get(), Items.NAUTILUS_SHELL).save(consumer);
+        addTeaBagRecipe(ModItems.OOLONG_TEA_BAG.get(), Items.DRAGON_BREATH).save(consumer);
+        addTeaBagRecipe(ModItems.SAKURA_FUBUKI_TEA_BAG.get(), Items.PINK_PETALS).save(consumer);
+        addTeaBagRecipe(ModItems.BARLEY_TEA_BAG.get(), Items.WHEAT_SEEDS).save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.FARMER_CHEST_PLATE.get())
                 .pattern("I I")
                 .pattern("LLL")
@@ -307,5 +314,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('C', Items.COMPOSTER)
                 .unlockedBy("has_ingot_iron", has(Items.IRON_INGOT))
                 .save(consumer);
+    }
+
+    private ShapedRecipeBuilder addTeaBagRecipe(ItemLike result, ItemLike center) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, result)
+                .pattern("LLL")
+                .pattern("LCL")
+                .pattern("LLL")
+                .define('L', ModItems.DRIED_TEA_LEAVES.get())
+                .define('C', center)
+                .unlockedBy("has_dried_tea_leaves", has(ModItems.DRIED_TEA_LEAVES.get()));
     }
 }

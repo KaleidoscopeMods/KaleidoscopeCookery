@@ -26,6 +26,11 @@ public final class ModItems {
     // 茶
     public static RegistryObject<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
     public static RegistryObject<Item> EMPTY_CUP = ITEMS.register("empty_cup", EmptyCupItem::new);
+    public static RegistryObject<Item> TIEGUANYIN_TEA_BAG = ITEMS.register("tieguanyin_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> BILUOCHUN_TEA_BAG = ITEMS.register("biluochun_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> OOLONG_TEA_BAG = ITEMS.register("oolong_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> SAKURA_FUBUKI_TEA_BAG = ITEMS.register("sakura_fubuki_tea_bag", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> BARLEY_TEA_BAG = ITEMS.register("barley_tea_bag", () -> new Item(new Item.Properties()));
 
     // 垃圾桶
     public static RegistryObject<Item> TRASH_CAN = ITEMS.register("trash_can", () -> new BlockItem(ModBlocks.TRASH_CAN.get(), new Item.Properties()));

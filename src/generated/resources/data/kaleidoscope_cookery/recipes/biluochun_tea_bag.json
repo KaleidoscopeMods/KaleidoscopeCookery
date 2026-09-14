@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "L": {
+      "item": "kaleidoscope_cookery:dried_tea_leaves"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LCL",
+    "LLL"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:biluochun_tea_bag"
+  },
+  "show_notification": true
+}

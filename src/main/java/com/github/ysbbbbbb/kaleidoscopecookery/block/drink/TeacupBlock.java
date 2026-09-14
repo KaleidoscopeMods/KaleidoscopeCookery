@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.drink;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteAnimateTicks;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeacupItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.TeapotItem;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
@@ -44,10 +45,11 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
     protected final IntegerProperty cupCount;
     protected final IntegerProperty teaCount;
     protected final int maxCount;
+    protected final @Nullable FoodBiteAnimateTicks.AnimateTick animateTick;
 
     protected VoxelShape aabb = AABB;
 
-    public TeacupBlock(int maxCount) {
+    public TeacupBlock(int maxCount, @Nullable FoodBiteAnimateTicks.AnimateTick animateTick) {
         super(BlockBehaviour.Properties.of()
                 .forceSolidOn()
                 .instabreak()
@@ -57,6 +59,7 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
                 .noOcclusion());
 
         this.maxCount = maxCount;
+        this.animateTick = animateTick;
         this.cupCount = IntegerProperty.create("cup_count", 1, maxCount);
         this.teaCount = IntegerProperty.create("tea_count", 1, maxCount);
 
@@ -71,7 +74,7 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
     }
 
     public TeacupBlock() {
-        this(4);
+        this(4, null);
     }
 
     public TeacupBlock setAABB(VoxelShape aabb) {
@@ -101,19 +104,17 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
         // 如果是茶壶
         if (itemInHand.is(ModItems.TEAPOT.get())) {
             ItemStack pourOut = TeapotItem.getPourOut(itemInHand);
-            if (pourOut.isEmpty() || pourOut.getItem() != this.asItem()) {
-                return InteractionResult.CONSUME;
+            if (!pourOut.isEmpty() && pourOut.getItem() == this.asItem()) {
+                // 如果茶杯茶没有满
+                int count = state.getValue(teaCount);
+                if (count < state.getValue(cupCount)) {
+                    level.setBlockAndUpdate(pos, state.setValue(teaCount, count + 1));
+                    level.playSound(player, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    TeapotItem.pourOut(itemInHand);
+                    spawnPourParticles(level, pos);
+                    return InteractionResult.SUCCESS;
+                }
             }
-            // 如果茶杯茶没有满
-            int count = state.getValue(teaCount);
-            if (count < state.getValue(cupCount)) {
-                level.setBlockAndUpdate(pos, state.setValue(teaCount, count + 1));
-                level.playSound(player, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1.0F, 1.0F);
-                TeapotItem.pourOut(itemInHand);
-                spawnPourParticles(level, pos);
-                return InteractionResult.SUCCESS;
-            }
-            return InteractionResult.CONSUME;
         }
 
         // 如果是空杯
@@ -126,61 +127,56 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
                 itemInHand.shrink(1);
                 return InteractionResult.SUCCESS;
             }
-            return InteractionResult.CONSUME;
         }
 
         // 如果是对应的物品类型
         if (itemInHand.getItem() instanceof TeacupItem teacupItem) {
-            if (teacupItem.getBlock() != this) {
+            if (teacupItem.getBlock() == this) {
+                // 如果茶杯数量没满
+                int cupCountNum = state.getValue(cupCount);
+                int teaCountNum = state.getValue(teaCount);
+                if (cupCountNum < this.maxCount) {
+                    level.setBlockAndUpdate(pos, state
+                            .setValue(cupCount, cupCountNum + 1)
+                            .setValue(teaCount, teaCountNum + 1));
+                    level.playSound(player, pos, this.soundType.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    itemInHand.shrink(1);
+                    return InteractionResult.SUCCESS;
+                }
                 return InteractionResult.CONSUME;
             }
-            // 如果茶杯数量没满
-            int cupCountNum = state.getValue(cupCount);
-            int teaCountNum = state.getValue(teaCount);
-            if (cupCountNum < this.maxCount) {
-                level.setBlockAndUpdate(pos, state
-                        .setValue(cupCount, cupCountNum + 1)
-                        .setValue(teaCount, teaCountNum + 1));
-                level.playSound(player, pos, this.soundType.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                itemInHand.shrink(1);
-                return InteractionResult.SUCCESS;
-            }
-            return InteractionResult.CONSUME;
         }
 
-        // 如果是空手，先取下茶杯，空杯
-        if (itemInHand.isEmpty()) {
-            int cupCountNum = state.getValue(cupCount);
-            int teaCountNum = state.getValue(teaCount);
-            int emptyCountNum = cupCountNum - teaCountNum;
-
-            // 取下空杯
-            if (emptyCountNum > 0) {
-                ItemStack cupStack = new ItemStack(ModItems.EMPTY_CUP.get());
-                ItemUtils.getItemToLivingEntity(player, cupStack);
-                if (cupCountNum == 1) {
-                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                } else {
-                    level.setBlockAndUpdate(pos, state.setValue(cupCount, cupCountNum - 1));
-                }
-                level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                return InteractionResult.SUCCESS;
-            }
-
-            if (teaCountNum > 0) {
-                // 取下茶水
-                ItemStack teaStack = new ItemStack(this);
+        int cupCountNum = state.getValue(cupCount);
+        int teaCountNum = state.getValue(teaCount);
+        if (teaCountNum > 0) {
+            ItemStack teaStack = new ItemStack(this);
+            if (itemInHand.isEmpty()) {
                 ItemUtils.getItemToLivingEntity(player, teaStack);
-                if (cupCountNum == 1) {
-                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                } else {
-                    level.setBlockAndUpdate(pos, state
-                            .setValue(teaCount, teaCountNum - 1)
-                            .setValue(cupCount, cupCountNum - 1));
-                    level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                }
-                return InteractionResult.SUCCESS;
+            } else {
+                Block.popResourceFromFace(level, pos, Direction.UP, teaStack);
             }
+            if (cupCountNum == 1) {
+                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            } else {
+                level.setBlockAndUpdate(pos, state
+                        .setValue(teaCount, teaCountNum - 1)
+                        .setValue(cupCount, cupCountNum - 1));
+            }
+            level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
+        }
+
+        // 茶倒完后仍允许空手取回剩余空杯。
+        if (itemInHand.isEmpty() && cupCountNum > 0) {
+            ItemUtils.getItemToLivingEntity(player, new ItemStack(ModItems.EMPTY_CUP.get()));
+            if (cupCountNum == 1) {
+                level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            } else {
+                level.setBlockAndUpdate(pos, state.setValue(cupCount, cupCountNum - 1));
+            }
+            level.playSound(player, pos, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
@@ -205,6 +201,12 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (animateTick != null) {
+            animateTick.animateTick(state, level, pos, random);
+            return;
+        }
+
+        // 否则使用默认的 animateTick
         if (random.nextInt(20) != 0) {
             return;
         }

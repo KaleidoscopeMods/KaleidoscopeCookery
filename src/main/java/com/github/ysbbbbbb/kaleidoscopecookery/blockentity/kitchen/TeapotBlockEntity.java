@@ -6,6 +6,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.TeapotContaine
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.TeapotRecipeSerializer;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.FluidUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
@@ -111,12 +112,10 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
                     this.refresh();
                     return;
                 }
-                // 如果配方找不到，弹出
-                Block.popResource(level, worldPosition, input);
-                this.input = ItemStack.EMPTY;
-                this.result = ItemStack.EMPTY;
-                this.status = ITeapot.PUT_INGREDIENT;
-                this.currentTick = -1;
+                // 错误配方仍会完成烹饪，但只产出四杯谜之茶。
+                this.result = new ItemStack(TeacupRegistry.getItem(TeacupRegistry.MYSTERY_TEA), 4);
+                this.currentTick = TeapotRecipeSerializer.DEFAULT_TIME;
+                this.status = PROCESSING;
                 this.refresh();
             }
             return;
@@ -270,23 +269,16 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
             return false;
         }
 
-        // 查询配方
-        TeapotContainer container = new TeapotContainer(itemStack, this.teaFluidId);
-        Optional<TeapotRecipe> recipeOpt = this.quickCheck.getRecipeFor(container, level);
-        if (recipeOpt.isPresent()) {
-            TeapotRecipe recipe = recipeOpt.get();
-            int count = recipe.ingredientCount();
-
-            this.input = itemStack.copyWithCount(count);
-            this.currentTick = INGREDIENT_TIME;
-            this.refresh();
-
-            itemStack.shrink(count);
-            return true;
+        if (itemStack.isEmpty()) {
+            return false;
         }
 
-        this.sendActionBarMessage(user, "tooltip.kaleidoscope_cookery.teapot.add_ingredient.recipe_incorrect");
-        return false;
+        this.input = itemStack.copyWithCount(1);
+        this.currentTick = INGREDIENT_TIME;
+        this.refresh();
+
+        itemStack.shrink(1);
+        return true;
     }
 
     @Override

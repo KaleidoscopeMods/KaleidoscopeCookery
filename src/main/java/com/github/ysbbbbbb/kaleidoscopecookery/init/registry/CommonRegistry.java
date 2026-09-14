@@ -64,7 +64,7 @@ public class CommonRegistry {
             // 方块类茶水
             TeacupRegistry.TEACUP_DATA_MAP.forEach((resourceLocation, data) ->
                     event.register(ForgeRegistries.Keys.BLOCKS, resourceLocation, () -> {
-                        TeacupBlock teacupBlock = new TeacupBlock(data.getMaxCount());
+                        TeacupBlock teacupBlock = new TeacupBlock(data.getMaxCount(), data.getAnimateTick());
 
                         VoxelShape aabb = data.getAABB();
                         if (aabb != null) {

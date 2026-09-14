@@ -71,6 +71,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.TEA_SEED.get());
         basicItem(ModItems.FRESH_TEA_LEAVES.get());
         basicItem(ModItems.DRIED_TEA_LEAVES.get());
+        basicItem(ModItems.TIEGUANYIN_TEA_BAG.get());
+        basicItem(ModItems.BILUOCHUN_TEA_BAG.get());
+        basicItem(ModItems.OOLONG_TEA_BAG.get());
+        basicItem(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
+        basicItem(ModItems.BARLEY_TEA_BAG.get());
         basicItem(ModItems.RICE_SEED.get());
         basicItem(ModItems.WILD_RICE_SEED.get());
         basicItem(ModItems.RICE_PANICLE.get());

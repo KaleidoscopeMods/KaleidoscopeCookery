@@ -199,6 +199,13 @@ public class ModCreativeTabs {
                     }
                 });
 
+                // 茶包
+                output.accept(ModItems.TIEGUANYIN_TEA_BAG.get());
+                output.accept(ModItems.BILUOCHUN_TEA_BAG.get());
+                output.accept(ModItems.OOLONG_TEA_BAG.get());
+                output.accept(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
+                output.accept(ModItems.BARLEY_TEA_BAG.get());
+
                 // 茶水
                 output.accept(ModItems.EMPTY_CUP.get());
                 TeacupRegistry.TEACUP_DATA_MAP.keySet().forEach(teacupName -> {

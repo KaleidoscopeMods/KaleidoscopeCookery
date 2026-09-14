@@ -49,6 +49,7 @@ public class TagItem extends ItemTagsProvider {
         tag(KITCHEN_SHOVEL).add(ModItems.KITCHEN_SHOVEL.get());
 
         tag(CATERPILLARS).add(ModItems.CATERPILLAR.get());
+        tag(FLOWER_TEA_INGREDIENTS).add(LILAC, ROSE_BUSH, PEONY, PITCHER_PLANT, SUNFLOWER);
 
         tag(KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
                 ModItems.GOLD_KITCHEN_KNIFE.get(),
