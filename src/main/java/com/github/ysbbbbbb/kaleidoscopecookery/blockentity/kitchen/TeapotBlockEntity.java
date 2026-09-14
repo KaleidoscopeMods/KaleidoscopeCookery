@@ -8,10 +8,12 @@ import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.TeapotRecipeS
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.TeapotInputHandler;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.FluidUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -34,13 +36,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +72,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     private int status = PUT_INGREDIENT;
     private int currentTick = -1;
+    private LazyOptional<IItemHandler> inputHandler;
 
     public AnimationState boilingState = new AnimationState();
 
@@ -443,6 +450,20 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
         return input;
     }
 
+    public boolean canInsertIngredient(ItemStack stack) {
+        return !stack.isEmpty() && this.status == PUT_INGREDIENT
+               && !this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID) && this.input.isEmpty();
+    }
+
+    public void insertIngredient(ItemStack stack) {
+        if (!this.canInsertIngredient(stack)) {
+            return;
+        }
+        this.input = stack.copyWithCount(1);
+        this.currentTick = INGREDIENT_TIME;
+        this.refresh();
+    }
+
     public ResourceLocation getTeaFluidId() {
         return teaFluidId;
     }
@@ -453,5 +474,26 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     public int getCurrentTick() {
         return currentTick;
+    }
+
+    @Override
+    @NotNull
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER && !this.remove) {
+            if (this.inputHandler == null) {
+                this.inputHandler = LazyOptional.of(() -> new TeapotInputHandler(this));
+            }
+            return this.inputHandler.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        if (this.inputHandler != null) {
+            this.inputHandler.invalidate();
+            this.inputHandler = null;
+        }
     }
 }

@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -59,6 +60,7 @@ public class TeapotBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .sound(SoundType.LANTERN)
                 .mapColor(MapColor.COLOR_ORANGE)
                 .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)
                 .instabreak());
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
