@@ -450,6 +450,25 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
         return input;
     }
 
+    public boolean canReceiveDripstoneFluid() {
+        return this.status == PUT_INGREDIENT
+                && this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID)
+                && this.input.isEmpty();
+    }
+
+    public boolean receiveDripstoneFluid(Fluid fluid) {
+        if (!this.canReceiveDripstoneFluid() || (fluid != Fluids.WATER && fluid != Fluids.LAVA)) {
+            return false;
+        }
+        ResourceLocation id = ForgeRegistries.FLUIDS.getKey(fluid);
+        if (id == null) {
+            return false;
+        }
+        this.teaFluidId = id;
+        this.refresh();
+        return true;
+    }
+
     public boolean canInsertIngredient(ItemStack stack) {
         return !stack.isEmpty() && this.status == PUT_INGREDIENT
                && !this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID) && this.input.isEmpty();
