@@ -42,6 +42,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.OIL.get());
                 output.accept(ModItems.RECIPE_ITEM.get());
                 output.accept(ModItems.TRANSMUTATION_LUNCH_BAG.get());
+                output.accept(ModItems.TEA_BANNER.get());
                 // 原材料
                 output.accept(ModItems.FLOUR.get());
                 output.accept(ModItems.RAW_DOUGH.get());

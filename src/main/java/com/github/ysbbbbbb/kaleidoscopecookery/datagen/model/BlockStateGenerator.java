@@ -229,6 +229,9 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         horizontalFaceBlock(ModBlocks.RECIPE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/recipe_block")));
 
+        simpleBlock(ModBlocks.TEA_BANNER.get(), models().getBuilder("tea_banner")
+                .texture("particle", modLoc("item/tea_banner")));
+
         riceCrop();
 
         variantBlock(ModBlocks.ENAMEL_BASIN.get(), blockState -> {

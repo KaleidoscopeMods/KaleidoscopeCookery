@@ -110,6 +110,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.TRASH_CAN.get());
 
+        this.add(ModBlocks.TEA_BANNER.get(), noDrop());
+
         this.add(ModBlocks.TOMATO_CROP.get(), createCropDrops(ModBlocks.TOMATO_CROP.get(), ModItems.TOMATO.get(),
                 ModItems.TOMATO_SEED.get(), createCropBuilder(ModBlocks.TOMATO_CROP.get())));
 

@@ -41,6 +41,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.FRIED_EGG.get());
         basicItem(ModItems.TEA_EGG.get());
         basicItem(ModItems.SCARECROW.get());
+        basicItem(ModItems.TEA_BANNER.get());
         basicItem(ModItems.TOMATO.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get());

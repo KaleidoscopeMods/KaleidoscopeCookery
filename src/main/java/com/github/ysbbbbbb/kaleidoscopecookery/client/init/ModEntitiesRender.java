@@ -1,6 +1,9 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.client.model.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.model.banner.LeftBannerModel;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.model.banner.NormalBannerModel;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.model.banner.PatternModel;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.ScarecrowRender;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.entity.SitRenderer;
 import com.github.ysbbbbbb.kaleidoscopecookery.entity.ScarecrowEntity;
@@ -30,5 +33,8 @@ public class ModEntitiesRender {
         event.registerLayerDefinition(ColdCutHamSlicesModel.LAYER_LOCATION, ColdCutHamSlicesModel::createBodyLayer);
         event.registerLayerDefinition(TeapotModel.LAYER_LOCATION, TeapotModel::createBodyLayer);
         event.registerLayerDefinition(TrashCanModel.LAYER_LOCATION, TrashCanModel::createBodyLayer);
+        event.registerLayerDefinition(NormalBannerModel.LAYER_LOCATION, NormalBannerModel::createBodyLayer);
+        event.registerLayerDefinition(LeftBannerModel.LAYER_LOCATION, LeftBannerModel::createBodyLayer);
+        event.registerLayerDefinition(PatternModel.LAYER_LOCATION, PatternModel::createBodyLayer);
     }
 }
