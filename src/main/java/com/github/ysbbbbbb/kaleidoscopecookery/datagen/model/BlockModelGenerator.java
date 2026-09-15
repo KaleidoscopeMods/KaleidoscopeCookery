@@ -50,7 +50,6 @@ public class BlockModelGenerator extends BlockModelProvider {
         crop("tomato", 8);
         crop("chili", 8);
         crop("lettuce", 8);
-        crop("tea_tree", 6);
 
         riceCrop();
         carpet();
