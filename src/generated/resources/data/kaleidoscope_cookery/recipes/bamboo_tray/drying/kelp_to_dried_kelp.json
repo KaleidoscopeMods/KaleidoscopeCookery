@@ -2,10 +2,10 @@
   "type": "kaleidoscope_cookery:bamboo_tray",
   "duration": 2400,
   "ingredient": {
-    "item": "minecraft:packed_mud"
+    "item": "minecraft:kelp"
   },
   "result": {
-    "item": "minecraft:mud"
+    "item": "minecraft:dried_kelp"
   },
-  "subtype": "wetting"
+  "subtype": "drying"
 }

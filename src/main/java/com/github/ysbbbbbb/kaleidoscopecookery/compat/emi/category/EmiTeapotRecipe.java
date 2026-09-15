@@ -62,9 +62,11 @@ public class EmiTeapotRecipe extends BasicEmiRecipe {
     public void addWidgets(WidgetHolder widgets) {
         widgets.addTexture(BG, 1, 1, WIDTH, HEIGHT, 0, 0);
 
-        widgets.addSlot(EmiStack.of(fluidBucket), 65, 3);
-        widgets.addSlot(inputs.get(0), 83, 3);
-        widgets.addSlot(outputs.get(0), 128, 30)
+        widgets.addSlot(EmiStack.of(fluidBucket), 65, 0);
+        widgets.addSlot(inputs.get(0), 83, 0);
+        widgets.addSlot(EmiStack.of(ModItems.EMPTY_CUP.get()), 122, 0)
+                .drawBack(false);
+        widgets.addSlot(outputs.get(0), 128, 45)
                 .drawBack(false)
                 .recipeContext(this);
 

@@ -30,14 +30,19 @@ public class BambooTrayRecipeProvider extends ModRecipeProvider {
                 .save(consumer, "rotten_flesh_to_leather");
         BambooTrayRecipeBuilder.drying()
                 .setIngredient(Blocks.MUD)
-                .setResult(Blocks.PACKED_MUD)
+                .setResult(Blocks.CLAY)
                 .setDuration(TWO_MINUTES)
-                .save(consumer, "mud_to_packed_mud");
+                .save(consumer, "mud_to_clay");
         BambooTrayRecipeBuilder.drying()
                 .setIngredient(Blocks.WET_SPONGE)
                 .setResult(Blocks.SPONGE)
                 .setDuration(TWO_MINUTES)
                 .save(consumer, "wet_sponge_to_sponge");
+        BambooTrayRecipeBuilder.drying()
+                .setIngredient(Items.KELP)
+                .setResult(Items.DRIED_KELP)
+                .setDuration(TWO_MINUTES)
+                .save(consumer, "kelp_to_dried_kelp");
 
         BambooTrayRecipeBuilder.wetting()
                 .setIngredient(ModItems.DRIED_TEA_LEAVES.get())
@@ -50,10 +55,10 @@ public class BambooTrayRecipeProvider extends ModRecipeProvider {
                 .setDuration(TWO_MINUTES)
                 .save(consumer, "leather_to_rotten_flesh");
         BambooTrayRecipeBuilder.wetting()
-                .setIngredient(Blocks.PACKED_MUD)
+                .setIngredient(Blocks.CLAY)
                 .setResult(Blocks.MUD)
                 .setDuration(TWO_MINUTES)
-                .save(consumer, "packed_mud_to_mud");
+                .save(consumer, "clay_to_mud");
         BambooTrayRecipeBuilder.wetting()
                 .setIngredient(Blocks.SPONGE)
                 .setResult(Blocks.WET_SPONGE)
@@ -69,5 +74,10 @@ public class BambooTrayRecipeProvider extends ModRecipeProvider {
                 .setResult(Blocks.OXIDIZED_COPPER)
                 .setDuration(TWO_MINUTES)
                 .save(consumer, "copper_block_to_oxidized_copper");
+        BambooTrayRecipeBuilder.wetting()
+                .setIngredient(Items.DRIED_KELP)
+                .setResult(Items.KELP)
+                .setDuration(TWO_MINUTES)
+                .save(consumer, "dried_kelp_to_kelp");
     }
 }

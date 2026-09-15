@@ -22,6 +22,7 @@ public class ModREIClientPlugin implements REIClientPlugin {
         ReiFlexStockpotRecipeCategory.registerCategories(registry);
         ReiSteamerRecipeCategory.registerCategories(registry);
         ReiTeapotRecipeCategory.registerCategories(registry);
+        ReiBambooTrayRecipeCategory.registerCategories(registry);
     }
 
     @Override
@@ -34,6 +35,7 @@ public class ModREIClientPlugin implements REIClientPlugin {
         ReiFlexStockpotRecipeCategory.registerDisplays(registry);
         ReiSteamerRecipeCategory.registerDisplays(registry);
         ReiTeapotRecipeCategory.registerDisplays(registry);
+        ReiBambooTrayRecipeCategory.registerDisplays(registry);
 
         for (CraftingRecipe recipe : RiceBowlRecipeMaker.createRecipes()) {
             DefaultCraftingDisplay<?> display = DefaultCraftingDisplay.of(recipe);
