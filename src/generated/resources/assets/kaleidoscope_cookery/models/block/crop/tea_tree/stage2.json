@@ -1,7 +1,32 @@
 {
-  "parent": "kaleidoscope_cookery:block/cross",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "cross": "kaleidoscope_cookery:block/crop/tea_tree/stage2"
-  }
+	"format_version": "1.21.6",
+	"credit": "by YSBB  2025",
+	"parent": "kaleidoscope_cookery:block/cross",
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"cross": "kaleidoscope_cookery:block/crop/tea_tree/stage2"
+	},
+	"elements": [
+		{
+			"from": [8, 0, -8],
+			"to": [8, 32, 24],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 16, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [8, 0, -8],
+			"to": [8, 32, 24],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 16, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		}
+	]
 }
