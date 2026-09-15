@@ -54,6 +54,15 @@ public class DecorationRecipeProvider extends ModRecipeProvider {
         addTable(ModItems.TABLE_JUNGLE, Blocks.JUNGLE_FENCE, Blocks.JUNGLE_SLAB).save(consumer);
         addTable(ModItems.TABLE_MANGROVE, Blocks.MANGROVE_FENCE, Blocks.MANGROVE_SLAB).save(consumer);
         addTable(ModItems.TABLE_WARPED, Blocks.WARPED_FENCE, Blocks.WARPED_SLAB).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.EIGHT_IMMORTALS_TABLE.get())
+                .pattern("FPF")
+                .pattern("PPP")
+                .pattern("FPF")
+                .define('F', Blocks.OAK_FENCE)
+                .define('P', Blocks.OAK_PLANKS)
+                .unlockedBy("has_oak_fence", has(Blocks.OAK_FENCE))
+                .save(consumer);
     }
 
     private ShapedRecipeBuilder addCookStool(RegistryObject<Item> result, Block wood) {

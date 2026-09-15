@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "minecraft:red_wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WWW",
+    "S  "
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:tea_banner"
+  },
+  "show_notification": true
+}

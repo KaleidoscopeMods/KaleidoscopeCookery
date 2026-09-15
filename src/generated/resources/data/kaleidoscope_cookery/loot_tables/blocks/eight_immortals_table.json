@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "kaleidoscope_cookery:bamboo_eight_immortals_table"
+          "name": "kaleidoscope_cookery:eight_immortals_table"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "kaleidoscope_cookery:blocks/bamboo_eight_immortals_table"
+  "random_sequence": "kaleidoscope_cookery:blocks/eight_immortals_table"
 }

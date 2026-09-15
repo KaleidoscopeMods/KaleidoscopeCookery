@@ -114,8 +114,7 @@ public final class ModItems {
     public static RegistryObject<Item> TABLE_JUNGLE = ITEMS.register("table_jungle", () -> new BlockItem(ModBlocks.TABLE_JUNGLE.get(), new Item.Properties()));
     public static RegistryObject<Item> TABLE_MANGROVE = ITEMS.register("table_mangrove", () -> new BlockItem(ModBlocks.TABLE_MANGROVE.get(), new Item.Properties()));
     public static RegistryObject<Item> TABLE_WARPED = ITEMS.register("table_warped", () -> new BlockItem(ModBlocks.TABLE_WARPED.get(), new Item.Properties()));
-    public static RegistryObject<Item> BAMBOO_EIGHT_IMMORTALS_TABLE = ITEMS.register("bamboo_eight_immortals_table", () -> new BlockItem(ModBlocks.BAMBOO_EIGHT_IMMORTALS_TABLE.get(), new Item.Properties()));
-    public static RegistryObject<Item> STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE = ITEMS.register("stripped_bamboo_eight_immortals_table", () -> new BlockItem(ModBlocks.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE.get(), new Item.Properties()));
+    public static RegistryObject<Item> EIGHT_IMMORTALS_TABLE = ITEMS.register("eight_immortals_table", () -> new BlockItem(ModBlocks.EIGHT_IMMORTALS_TABLE.get(), new Item.Properties()));
 
     // 蔬菜食材
     public static RegistryObject<Item> TOMATO = ITEMS.register("tomato", () -> new Item(new Item.Properties().food(ModFoods.TOMATO)));

@@ -48,6 +48,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_chest", has(Items.CHEST))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.TEA_BANNER.get())
+                .pattern("WWW")
+                .pattern("WWW")
+                .pattern("S  ")
+                .define('W', Items.RED_WOOL)
+                .define('S', Items.STICK)
+                .unlockedBy("has_red_wool", has(Items.RED_WOOL))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.SCARECROW.get())
                 .pattern(" H ")
                 .pattern("SPS")

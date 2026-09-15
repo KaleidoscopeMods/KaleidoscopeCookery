@@ -214,8 +214,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         table(ModBlocks.TABLE_MANGROVE, "mangrove");
         table(ModBlocks.TABLE_WARPED, "warped");
 
-        eightImmortalsTable(ModBlocks.BAMBOO_EIGHT_IMMORTALS_TABLE, "bamboo");
-        eightImmortalsTable(ModBlocks.STRIPPED_BAMBOO_EIGHT_IMMORTALS_TABLE, "stripped_bamboo");
+        eightImmortalsTable(ModBlocks.EIGHT_IMMORTALS_TABLE);
 
         simpleBlock(ModBlocks.OIL_BLOCK.get());
 
@@ -371,13 +370,13 @@ public class BlockStateGenerator extends BlockStateProvider {
         });
     }
 
-    private void eightImmortalsTable(RegistryObject<Block> block, String material) {
+    private void eightImmortalsTable(RegistryObject<Block> block) {
         getVariantBuilder(block.get()).forAllStates(state -> {
             Direction facing = state.getValue(EightImmortalsTableBlock.FACING);
             String part = state.getValue(EightImmortalsTableBlock.PART).getSerializedName();
             int rotation = (int) facing.toYRot();
             return ConfiguredModel.builder()
-                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/eight_immortals_table/%s/%s".formatted(material, part))))
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/eight_immortals_table/%s".formatted(part))))
                     .rotationY(rotation)
                     .build();
         });

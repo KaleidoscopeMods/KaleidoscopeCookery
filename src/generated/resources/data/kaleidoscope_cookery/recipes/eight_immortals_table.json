@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:oak_fence"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "pattern": [
+    "FPF",
+    "PPP",
+    "FPF"
+  ],
+  "result": {
+    "item": "kaleidoscope_cookery:eight_immortals_table"
+  },
+  "show_notification": true
+}
