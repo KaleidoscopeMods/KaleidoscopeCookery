@@ -263,6 +263,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         withExistingParent("chair_mangrove", modLoc("block/chair/mangrove"));
         withExistingParent("chair_warped", modLoc("block/chair/warped"));
 
+        withExistingParent("long_bench", modLoc("block/long_bench/single"));
+        withExistingParent("red_lantern", modLoc("block/red_lantern"));
+
         withExistingParent("table_oak", modLoc("block/table/oak_single"));
         withExistingParent("table_spruce", modLoc("block/table/spruce_single"));
         withExistingParent("table_acacia", modLoc("block/table/acacia_single"));

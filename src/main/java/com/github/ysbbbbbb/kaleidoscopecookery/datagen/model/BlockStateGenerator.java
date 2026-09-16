@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.EightImmortalsTableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.LongBenchBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
@@ -202,6 +203,9 @@ public class BlockStateGenerator extends BlockStateProvider {
         chair(ModBlocks.CHAIR_MANGROVE, "mangrove");
         chair(ModBlocks.CHAIR_WARPED, "warped");
 
+        longBench(ModBlocks.LONG_BENCH);
+        simpleBlock(ModBlocks.RED_LANTERN.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_lantern")));
+
         table(ModBlocks.TABLE_OAK, "oak");
         table(ModBlocks.TABLE_SPRUCE, "spruce");
         table(ModBlocks.TABLE_ACACIA, "acacia");
@@ -328,6 +332,21 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     public void chair(RegistryObject<Block> block, String name) {
         horizontalBlock(block.get(), new ModelFile.UncheckedModelFile(modLoc("block/chair/" + name)));
+    }
+
+    private void longBench(RegistryObject<Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            String modelName = switch (state.getValue(LongBenchBlock.POSITION)) {
+                case LongBenchBlock.LEFT -> "left";
+                case LongBenchBlock.MIDDLE -> "middle";
+                case LongBenchBlock.RIGHT -> "right";
+                default -> "single";
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/long_bench/" + modelName)))
+                    .rotationY(state.getValue(LongBenchBlock.AXIS) == Direction.Axis.Z ? 90 : 0)
+                    .build();
+        });
     }
 
     private void table(RegistryObject<Block> block, String name) {

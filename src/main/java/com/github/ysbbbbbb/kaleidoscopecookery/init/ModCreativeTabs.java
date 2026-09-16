@@ -107,8 +107,12 @@ public class ModCreativeTabs {
                 output.accept(ModItems.TABLE_JUNGLE.get());
                 output.accept(ModItems.TABLE_MANGROVE.get());
                 output.accept(ModItems.TABLE_WARPED.get());
+                // 长板凳
+                output.accept(ModItems.LONG_BENCH.get());
                 // 八仙桌
                 output.accept(ModItems.EIGHT_IMMORTALS_TABLE.get());
+                // 红灯笼
+                output.accept(ModItems.RED_LANTERN.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> COOKERY_FOOD_TAB = TABS.register("cookery_food", () -> CreativeModeTab.builder()

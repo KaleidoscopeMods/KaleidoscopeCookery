@@ -1,14 +1,10 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.BaseCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.ChiliCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.LettuceCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.ClayPotMilkTeaBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteThreeByThreeBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.misc.*;
@@ -94,6 +90,10 @@ public class ModBlocks {
     public static RegistryObject<Block> TABLE_JUNGLE = BLOCKS.register("table_jungle", TableBlock::new);
     public static RegistryObject<Block> TABLE_MANGROVE = BLOCKS.register("table_mangrove", TableBlock::new);
     public static RegistryObject<Block> TABLE_WARPED = BLOCKS.register("table_warped", TableBlock::new);
+
+    public static RegistryObject<Block> LONG_BENCH = BLOCKS.register("long_bench", LongBenchBlock::new);
+
+    public static RegistryObject<Block> RED_LANTERN = BLOCKS.register("red_lantern", RedLanternBlock::new);
 
     public static RegistryObject<Block> EIGHT_IMMORTALS_TABLE = BLOCKS.register("eight_immortals_table", EightImmortalsTableBlock::new);
 

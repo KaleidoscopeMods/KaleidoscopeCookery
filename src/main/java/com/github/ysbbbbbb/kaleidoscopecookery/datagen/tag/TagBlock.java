@@ -47,7 +47,7 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
                 ModBlocks.TABLE_WARPED.get(),
 
-                ModBlocks.EIGHT_IMMORTALS_TABLE.get(),
+                ModBlocks.EIGHT_IMMORTALS_TABLE.get(), ModBlocks.LONG_BENCH.get(),
 
                 ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.BAMBOO_TRAY.get(),
                 ModBlocks.CHOPPING_BOARD.get()
@@ -100,7 +100,8 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_WARPED.get(), ModBlocks.EIGHT_IMMORTALS_TABLE.get()
         );
 
-        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR).add(ModBlocks.TRASH_CAN.get());
+        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR)
+                .add(ModBlocks.LONG_BENCH.get(), ModBlocks.TRASH_CAN.get());
 
         this.tag(TagMod.RICE_PLANTABLE).addOptional(new ResourceLocation("farmersdelight:rich_soil_farmland"));
 

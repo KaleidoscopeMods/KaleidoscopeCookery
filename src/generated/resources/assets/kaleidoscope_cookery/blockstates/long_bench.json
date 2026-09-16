@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "axis=x,position=0": {
+      "model": "kaleidoscope_cookery:block/long_bench/single"
+    },
+    "axis=x,position=1": {
+      "model": "kaleidoscope_cookery:block/long_bench/left"
+    },
+    "axis=x,position=2": {
+      "model": "kaleidoscope_cookery:block/long_bench/middle"
+    },
+    "axis=x,position=3": {
+      "model": "kaleidoscope_cookery:block/long_bench/right"
+    },
+    "axis=z,position=0": {
+      "model": "kaleidoscope_cookery:block/long_bench/single",
+      "y": 90
+    },
+    "axis=z,position=1": {
+      "model": "kaleidoscope_cookery:block/long_bench/left",
+      "y": 90
+    },
+    "axis=z,position=2": {
+      "model": "kaleidoscope_cookery:block/long_bench/middle",
+      "y": 90
+    },
+    "axis=z,position=3": {
+      "model": "kaleidoscope_cookery:block/long_bench/right",
+      "y": 90
+    }
+  }
+}
