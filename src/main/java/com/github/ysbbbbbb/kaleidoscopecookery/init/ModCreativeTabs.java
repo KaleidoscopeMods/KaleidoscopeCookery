@@ -28,12 +28,12 @@ public class ModCreativeTabs {
                 output.accept(ModItems.STOCKPOT.get());
                 output.accept(ModItems.STOCKPOT_LID.get());
                 output.accept(ModItems.CHOPPING_BOARD.get());
+                output.accept(ModItems.BAMBOO_TRAY.get());
                 output.accept(ModItems.MILLSTONE.get());
                 output.accept(ModItems.STEAMER.get());
                 output.accept(ModItems.TEAPOT.get());
                 output.accept(ModItems.TRASH_CAN.get());
                 output.accept(ModItems.KITCHENWARE_RACKS.get());
-                output.accept(ModItems.BAMBOO_TRAY.get());
                 output.accept(ModItems.FRUIT_BASKET.get());
                 output.accept(ModItems.SCARECROW.get());
                 output.accept(ModItems.ENAMEL_BASIN.get());

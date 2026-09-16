@@ -31,11 +31,11 @@ public class PatternModel extends Model {
 
         PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
 
-        PartDefinition back = bone.addOrReplaceChild("back", CubeListBuilder.create().texOffs(0, -32).addBox(0.0F, 0.0F, -16.0F, 0.0F, 48.0F, 32.0F, new CubeDeformation(0.0F)), PartPose.offset(2.25F, -65.0F, 0.0F));
+        PartDefinition back = bone.addOrReplaceChild("back", CubeListBuilder.create().texOffs(0, 16).addBox(0.0F, 0.0F, -16.0F, 0.0F, 48.0F, 32.0F, new CubeDeformation(0.0F)), PartPose.offset(2.25F, -65.0F, 0.0F));
 
         PartDefinition front = bone.addOrReplaceChild("front", CubeListBuilder.create().texOffs(0, -32).addBox(0.0F, 0.0F, -16.0F, 0.0F, 48.0F, 32.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.25F, -65.0F, 0.0F));
 
-        return LayerDefinition.create(meshdefinition, 64, 48);
+        return LayerDefinition.create(meshdefinition, 64, 96);
     }
 
     public void setWaveAngle(float angle) {

@@ -2,10 +2,10 @@
   "type": "kaleidoscope_cookery:bamboo_tray",
   "duration": 900,
   "ingredient": {
-    "item": "minecraft:dried_kelp"
+    "item": "minecraft:black_concrete_powder"
   },
   "result": {
-    "item": "minecraft:kelp"
+    "item": "minecraft:black_concrete"
   },
   "subtype": "wetting"
 }

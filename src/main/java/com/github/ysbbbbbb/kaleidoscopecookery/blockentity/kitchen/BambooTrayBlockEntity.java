@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -18,7 +19,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -58,7 +61,7 @@ public class BambooTrayBlockEntity extends BaseBlockEntity implements WorldlyCon
             return;
         }
 
-        boolean wetting = level.isRainingAt(pos.above());
+        boolean wetting = level.isRainingAt(pos.above()) || hasWaterDripstone(level, pos);
         boolean drying = !level.isRaining() && hasDryingExposure(level, pos);
         if (!wetting && !drying) {
             return;
@@ -125,6 +128,14 @@ public class BambooTrayBlockEntity extends BaseBlockEntity implements WorldlyCon
             return false;
         }
         return true;
+    }
+
+    private static boolean hasWaterDripstone(Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return false;
+        }
+        BlockPos tipPos = PointedDripstoneBlock.findStalactiteTipAboveCauldron(level, pos);
+        return tipPos != null && PointedDripstoneBlock.getCauldronFillFluidType(serverLevel, tipPos) == Fluids.WATER;
     }
 
     @Override
