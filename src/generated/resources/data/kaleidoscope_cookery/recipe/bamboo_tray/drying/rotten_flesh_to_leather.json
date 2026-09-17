@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 1800,
+  "ingredient": {
+    "item": "minecraft:rotten_flesh"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:leather"
+  },
+  "subtype": "drying"
+}

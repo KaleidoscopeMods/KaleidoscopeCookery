@@ -30,6 +30,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.STOCKPOT.get());
                 output.accept(ModItems.STOCKPOT_LID.get());
                 output.accept(ModItems.CHOPPING_BOARD.get());
+                output.accept(ModItems.BAMBOO_TRAY.get());
                 output.accept(ModItems.MILLSTONE.get());
                 output.accept(ModItems.STEAMER.get());
                 output.accept(ModItems.TEAPOT.get());
@@ -43,6 +44,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.OIL.get());
                 output.accept(ModItems.RECIPE_ITEM.get());
                 output.accept(ModItems.TRANSMUTATION_LUNCH_BAG.get());
+                output.accept(ModItems.TEA_BANNER.get());
                 // 原材料
                 output.accept(ModItems.FLOUR.get());
                 output.accept(ModItems.RAW_DOUGH.get());
@@ -57,6 +59,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.TOMATO_SEED.get());
                 output.accept(ModItems.CHILI_SEED.get());
                 output.accept(ModItems.LETTUCE_SEED.get());
+                output.accept(ModItems.TEA_SEED.get());
                 // 工具
                 output.accept(ModItems.KITCHEN_SHOVEL.get());
                 output.accept(ModItems.SICKLE.get());
@@ -106,6 +109,12 @@ public class ModCreativeTabs {
                 output.accept(ModItems.TABLE_JUNGLE.get());
                 output.accept(ModItems.TABLE_MANGROVE.get());
                 output.accept(ModItems.TABLE_WARPED.get());
+                // 长板凳
+                output.accept(ModItems.LONG_BENCH.get());
+                // 八仙桌
+                output.accept(ModItems.EIGHT_IMMORTALS_TABLE.get());
+                // 红灯笼
+                output.accept(ModItems.RED_LANTERN.get());
             }).build());
 
     public static Supplier<CreativeModeTab> COOKERY_FOOD_TAB = TABS.register("cookery_food", () -> CreativeModeTab.builder()
@@ -119,6 +128,8 @@ public class ModCreativeTabs {
                 output.accept(ModItems.GREEN_CHILI.get());
                 output.accept(ModItems.LETTUCE.get());
                 output.accept(ModItems.RICE_PANICLE.get());
+                output.accept(ModItems.FRESH_TEA_LEAVES.get());
+                output.accept(ModItems.DRIED_TEA_LEAVES.get());
                 output.accept(ModItems.CATERPILLAR.get());
                 // 肉类
                 output.accept(ModItems.SASHIMI.get());
@@ -141,6 +152,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.MEAT_PIE.get());
                 output.accept(ModItems.DUMPLING.get());
                 output.accept(ModItems.FRIED_EGG.get());
+                output.accept(ModItems.TEA_EGG.get());
                 output.accept(ModItems.STICKY_CANDY.get());
                 output.accept(ModItems.STICKY_RICE_CAKE.get());
                 output.accept(ModItems.BAMBOO_TUBE_RICE.get());
@@ -187,11 +199,22 @@ public class ModCreativeTabs {
                     output.accept(foodItem);
                 });
 
+                // 瓦罐奶茶
+                output.accept(ModItems.CLAY_POT_MILK_TEA.get());
+
                 // 盘装食物
                 PlateRegistry.PLATE_DATA_MAP.keySet().forEach(plateName -> {
                     var plateItem = BuiltInRegistries.ITEM.get(plateName);
                     output.accept(plateItem);
                 });
+
+                // 茶包
+                output.accept(ModItems.TIEGUANYIN_TEA_BAG.get());
+                output.accept(ModItems.BILUOCHUN_TEA_BAG.get());
+                output.accept(ModItems.OOLONG_TEA_BAG.get());
+                output.accept(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
+                output.accept(ModItems.BARLEY_TEA_BAG.get());
+                output.accept(ModItems.BUTTER_TEA_BAG.get());
 
                 // 茶水
                 output.accept(ModItems.EMPTY_CUP.get());

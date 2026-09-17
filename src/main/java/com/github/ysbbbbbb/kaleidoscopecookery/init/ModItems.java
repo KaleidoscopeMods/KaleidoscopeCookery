@@ -16,6 +16,7 @@ public final class ModItems {
     public static DeferredItem<Item> STOCKPOT_LID = ITEMS.register("stockpot_lid", StockpotLidItem::new);
     public static DeferredItem<Item> CHOPPING_BOARD = ITEMS.register("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
     public static DeferredItem<Item> KITCHENWARE_RACKS = ITEMS.register("kitchenware_racks", () -> new WithTooltipsBlockItem(ModBlocks.KITCHENWARE_RACKS.get(), "kitchenware_racks"));
+    public static DeferredItem<Item> BAMBOO_TRAY = ITEMS.register("bamboo_tray", () -> new BlockItem(ModBlocks.BAMBOO_TRAY.get(), new Item.Properties()));
     public static DeferredItem<Item> SHAWARMA_SPIT = ITEMS.register("shawarma_spit", () -> new BlockItem(ModBlocks.SHAWARMA_SPIT.get(), new Item.Properties()));
     public static DeferredItem<Item> MILLSTONE = ITEMS.register("millstone", () -> new BlockItem(ModBlocks.MILLSTONE.get(), new Item.Properties()));
     public static DeferredItem<Item> STEAMER = ITEMS.register("steamer", SteamerItem::new);
@@ -23,6 +24,13 @@ public final class ModItems {
     // 茶
     public static DeferredItem<Item> TEAPOT = ITEMS.register("teapot", TeapotItem::new);
     public static DeferredItem<Item> EMPTY_CUP = ITEMS.register("empty_cup", EmptyCupItem::new);
+    public static DeferredItem<Item> TIEGUANYIN_TEA_BAG = ITEMS.register("tieguanyin_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> BILUOCHUN_TEA_BAG = ITEMS.register("biluochun_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> OOLONG_TEA_BAG = ITEMS.register("oolong_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> SAKURA_FUBUKI_TEA_BAG = ITEMS.register("sakura_fubuki_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> BARLEY_TEA_BAG = ITEMS.register("barley_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> BUTTER_TEA_BAG = ITEMS.register("butter_tea_bag", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> CLAY_POT_MILK_TEA = ITEMS.register("clay_pot_milk_tea", () -> new ClayPotMilkTeaItem(ModBlocks.CLAY_POT_MILK_TEA.get()));
 
     // 垃圾桶
     public static DeferredItem<Item> TRASH_CAN = ITEMS.register("trash_can", () -> new BlockItem(ModBlocks.TRASH_CAN.get(), new Item.Properties()));
@@ -41,6 +49,7 @@ public final class ModItems {
     public static DeferredItem<Item> SCARECROW = ITEMS.register("scarecrow", ScarecrowItem::new);
     public static DeferredItem<Item> RECIPE_ITEM = ITEMS.register("recipe_item", RecipeItem::new);
     public static DeferredItem<Item> TRANSMUTATION_LUNCH_BAG = ITEMS.register("transmutation_lunch_bag", TransmutationLunchBagItem::new);
+    public static DeferredItem<Item> TEA_BANNER = ITEMS.register("tea_banner", TeaBannerItem::new);
 
     // 工具
     public static DeferredItem<Item> IRON_KITCHEN_KNIFE = ITEMS.register("iron_kitchen_knife", () -> new KitchenKnifeItem(Tiers.IRON));
@@ -63,6 +72,7 @@ public final class ModItems {
     public static DeferredItem<Item> LETTUCE_SEED = ITEMS.register("lettuce_seed", () -> new ItemNameBlockItem(ModBlocks.LETTUCE_CROP.get(), new Item.Properties()));
     public static DeferredItem<Item> RICE_SEED = ITEMS.register("rice", RiceItem::new);
     public static DeferredItem<Item> WILD_RICE_SEED = ITEMS.register("wild_rice", () -> new ItemNameBlockItem(ModBlocks.RICE_CROP.get(), new Item.Properties()));
+    public static DeferredItem<Item> TEA_SEED = ITEMS.register("tea_seed", () -> new ItemNameBlockItem(ModBlocks.TEA_TREE.get(), new Item.Properties()));
 
     // 凳子
     public static DeferredItem<Item> COOK_STOOL_OAK = ITEMS.register("cook_stool_oak", () -> new BlockItem(ModBlocks.COOK_STOOL_OAK.get(), new Item.Properties()));
@@ -102,6 +112,9 @@ public final class ModItems {
     public static DeferredItem<Item> TABLE_JUNGLE = ITEMS.register("table_jungle", () -> new BlockItem(ModBlocks.TABLE_JUNGLE.get(), new Item.Properties()));
     public static DeferredItem<Item> TABLE_MANGROVE = ITEMS.register("table_mangrove", () -> new BlockItem(ModBlocks.TABLE_MANGROVE.get(), new Item.Properties()));
     public static DeferredItem<Item> TABLE_WARPED = ITEMS.register("table_warped", () -> new BlockItem(ModBlocks.TABLE_WARPED.get(), new Item.Properties()));
+    public static DeferredItem<Item> LONG_BENCH = ITEMS.register("long_bench", () -> new BlockItem(ModBlocks.LONG_BENCH.get(), new Item.Properties()));
+    public static DeferredItem<Item> RED_LANTERN = ITEMS.register("red_lantern", () -> new BlockItem(ModBlocks.RED_LANTERN.get(), new Item.Properties()));
+    public static DeferredItem<Item> EIGHT_IMMORTALS_TABLE = ITEMS.register("eight_immortals_table", () -> new BlockItem(ModBlocks.EIGHT_IMMORTALS_TABLE.get(), new Item.Properties()));
 
     // 蔬菜食材
     public static DeferredItem<Item> TOMATO = ITEMS.register("tomato", () -> new Item(new Item.Properties().food(ModFoods.TOMATO)));
@@ -109,6 +122,8 @@ public final class ModItems {
     public static DeferredItem<Item> GREEN_CHILI = ITEMS.register("green_chili", () -> new ChiliItem(1));
     public static DeferredItem<Item> LETTUCE = ITEMS.register("lettuce", () -> new Item(new Item.Properties().food(ModFoods.LETTUCE)));
     public static DeferredItem<Item> RICE_PANICLE = ITEMS.register("rice_panicle", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> FRESH_TEA_LEAVES = ITEMS.register("fresh_tea_leaves", () -> new Item(new Item.Properties()));
+    public static DeferredItem<Item> DRIED_TEA_LEAVES = ITEMS.register("dried_tea_leaves", () -> new Item(new Item.Properties()));
     public static DeferredItem<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
 
     // 面类食材
@@ -121,6 +136,7 @@ public final class ModItems {
 
     // 基础食物
     public static DeferredItem<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFoods.FRIED_EGG)));
+    public static DeferredItem<Item> TEA_EGG = ITEMS.register("tea_egg", () -> new FoodWithEffectsItem(ModFoods.TEA_EGG));
     public static DeferredItem<Item> DONKEY_BURGER = ITEMS.register("donkey_burger", () -> new FoodWithEffectsItem(ModFoods.DONKEY_BURGER));
     public static DeferredItem<Item> BAOZI = ITEMS.register("baozi", () -> new FoodWithEffectsItem(ModFoods.BAOZI));
     public static DeferredItem<Item> SHENGJIAN_MANTOU = ITEMS.register("shengjian_mantou", () -> new FoodWithEffectsItem(ModFoods.SHENGJIAN_MANTOU_ITEM));

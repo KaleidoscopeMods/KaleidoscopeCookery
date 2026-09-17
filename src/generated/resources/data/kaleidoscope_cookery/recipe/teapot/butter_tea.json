@@ -1,0 +1,13 @@
+{
+  "type": "kaleidoscope_cookery:teapot",
+  "ingredient": {
+    "item": "kaleidoscope_cookery:butter_tea_bag"
+  },
+  "ingredient_count": 1,
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:butter_tea"
+  },
+  "tea_fluid": "minecraft:milk",
+  "time": 240
+}

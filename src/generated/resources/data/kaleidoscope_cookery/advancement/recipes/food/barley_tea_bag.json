@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dried_tea_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": "kaleidoscope_cookery:dried_tea_leaves"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "kaleidoscope_cookery:barley_tea_bag"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dried_tea_leaves"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "kaleidoscope_cookery:barley_tea_bag"
+    ]
+  }
+}

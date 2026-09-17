@@ -193,6 +193,12 @@ public interface ModFoods {
             .nutrition(4).saturationModifier(0.5F)
             .alwaysEdible().build();
 
+    // 茶叶蛋
+    FoodProperties TEA_EGG = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.5F)
+            .effect(() -> new MobEffectInstance(SULFUR, 60 * 20), 1.0F)
+            .alwaysEdible().build();
+
     // 黑暗料理
     FoodProperties DARK_CUISINE_BLOCK = (new FoodProperties.Builder())
             .nutrition(1).saturationModifier(0).alwaysEdible()

@@ -56,6 +56,9 @@ public interface TagCommon {
     TagKey<Item> DOUGHS = itemTag("doughs");
     TagKey<Item> FOODS_DOUGH = itemTag("foods/dough");
 
+    // 刀具
+    TagKey<Item> KNIVES = itemTag("tools/knives");
+
     // 均衡饮食模组
     TagKey<Item> FRUITS = dietTag("fruits");
     TagKey<Item> GRAINS = dietTag("grains");

@@ -23,6 +23,7 @@ public class ModEmiPlugin implements EmiPlugin {
         EmiMillstoneRecipe.register(registry);
         EmiSteamerRecipe.register(registry);
         EmiTeapotRecipe.register(registry);
+        EmiBambooTrayRecipe.register(registry);
 
         for (RecipeHolder<CraftingRecipe> recipe : RiceBowlRecipeMaker.createRecipes()) {
             registry.addRecipe(new EmiCraftingRecipe(

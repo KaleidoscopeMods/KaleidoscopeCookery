@@ -8,6 +8,14 @@
       "can_villager_compost": true,
       "chance": 0.3
     },
+    "kaleidoscope_cookery:dried_tea_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "kaleidoscope_cookery:fresh_tea_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
     "kaleidoscope_cookery:green_chili": {
       "can_villager_compost": true,
       "chance": 0.65
@@ -31,6 +39,10 @@
     "kaleidoscope_cookery:rice_panicle": {
       "can_villager_compost": true,
       "chance": 0.65
+    },
+    "kaleidoscope_cookery:tea_seed": {
+      "can_villager_compost": true,
+      "chance": 0.3
     },
     "kaleidoscope_cookery:tomato": {
       "can_villager_compost": true,

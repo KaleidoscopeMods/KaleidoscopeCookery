@@ -49,7 +49,11 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
                 ModBlocks.TABLE_WARPED.get(),
 
-                ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.CHOPPING_BOARD.get());
+                ModBlocks.EIGHT_IMMORTALS_TABLE.get(), ModBlocks.LONG_BENCH.get(),
+
+                ModBlocks.KITCHENWARE_RACKS.get(), ModBlocks.BAMBOO_TRAY.get(),
+                ModBlocks.CHOPPING_BOARD.get()
+        );
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.STRAW_BLOCK.get());
         this.tag(TagMod.TUNDRA_STRIDER_SPEED_BLOCKS).add(
                 Blocks.SNOW, Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW,
@@ -69,7 +73,7 @@ public class TagBlock extends BlockTagsProvider {
                 .addTag(FD_HEAT_SOURCES);
         this.tag(BlockTags.CROPS).add(ModBlocks.TOMATO_CROP.get(),
                 ModBlocks.RICE_CROP.get(), ModBlocks.CHILI_CROP.get(),
-                ModBlocks.LETTUCE_CROP.get());
+                ModBlocks.LETTUCE_CROP.get(), ModBlocks.TEA_TREE.get());
 
         this.tag(TagMod.COOK_STOOL).add(
                 ModBlocks.COOK_STOOL_OAK.get(), ModBlocks.COOK_STOOL_SPRUCE.get(),
@@ -95,10 +99,11 @@ public class TagBlock extends BlockTagsProvider {
                 ModBlocks.TABLE_BIRCH.get(), ModBlocks.TABLE_CHERRY.get(),
                 ModBlocks.TABLE_CRIMSON.get(), ModBlocks.TABLE_DARK_OAK.get(),
                 ModBlocks.TABLE_JUNGLE.get(), ModBlocks.TABLE_MANGROVE.get(),
-                ModBlocks.TABLE_WARPED.get()
+                ModBlocks.TABLE_WARPED.get(), ModBlocks.EIGHT_IMMORTALS_TABLE.get()
         );
 
-        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR).add(ModBlocks.TRASH_CAN.get());
+        this.tag(TagMod.SITTABLE).addTag(TagMod.COOK_STOOL).addTag(TagMod.CHAIR)
+                .add(ModBlocks.LONG_BENCH.get(), ModBlocks.TRASH_CAN.get());
 
         this.tag(TagMod.RICE_PLANTABLE).addOptional(ResourceLocation.parse("farmersdelight:rich_soil_farmland"));
 
@@ -108,15 +113,16 @@ public class TagBlock extends BlockTagsProvider {
 
         // 兼容静谧四季模组
         this.tag(TagCommon.SPRING_CROPS_BLOCK).add(
-                ModBlocks.LETTUCE_CROP.get()
+                ModBlocks.LETTUCE_CROP.get(), ModBlocks.TEA_TREE.get()
         );
         this.tag(TagCommon.SUMMER_CROPS_BLOCK).add(
                 ModBlocks.TOMATO_CROP.get(), ModBlocks.RICE_CROP.get(),
-                ModBlocks.CHILI_CROP.get()
+                ModBlocks.CHILI_CROP.get(), ModBlocks.TEA_TREE.get()
         );
         this.tag(TagCommon.AUTUMN_CROPS_BLOCK).add(
                 ModBlocks.TOMATO_CROP.get(), ModBlocks.RICE_CROP.get(),
-                ModBlocks.LETTUCE_CROP.get(), ModBlocks.CHILI_CROP.get()
+                ModBlocks.LETTUCE_CROP.get(), ModBlocks.CHILI_CROP.get(),
+                ModBlocks.TEA_TREE.get()
         );
 
         // 节气模组：湿度
@@ -127,6 +133,7 @@ public class TagBlock extends BlockTagsProvider {
         this.tag(TagCommon.AVERAGE_MOIST).add(
                 ModBlocks.TOMATO_CROP.get(),
                 ModBlocks.LETTUCE_CROP.get(),
+                ModBlocks.TEA_TREE.get(),
                 ModBlocks.CHILI_CROP.get()
         );
         this.tag(TagCommon.MOIST_HUMID).add(

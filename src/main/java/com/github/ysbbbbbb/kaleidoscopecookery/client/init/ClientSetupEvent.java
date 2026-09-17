@@ -3,11 +3,11 @@ package com.github.ysbbbbbb.kaleidoscopecookery.client.init;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.animation.CustomArmPose;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.PotOverlay;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TeapotOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TrashCanOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.model.StrawHatModel;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.block.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacerReloadListener;
-import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.LegacyPackRepositorySource;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.init.PonderCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
@@ -19,7 +19,6 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +33,6 @@ import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.jetbrains.annotations.NotNull;
 
 import static net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR;
@@ -64,6 +62,7 @@ public class ClientSetupEvent {
         BlockEntityRenderers.register(ModBlocks.CHOPPING_BOARD_BE.get(), ChoppingBoardBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.STOCKPOT_BE.get(), StockpotBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.KITCHENWARE_RACKS_BE.get(), KitchenwareRacksBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.BAMBOO_TRAY_BE.get(), BambooTrayBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.CHAIR_BE.get(), ChairBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.TABLE_BE.get(), TableBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.SHAWARMA_SPIT_BE.get(), ShawarmaSpitBlockEntityRender::new);
@@ -73,11 +72,13 @@ public class ClientSetupEvent {
         BlockEntityRenderers.register(ModBlocks.FOOD_BITE_THREE_BY_THREE_BE.get(), FoodBiteThreeByThreeBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.TEAPOT_BE.get(), TeapotBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.TRASH_CAN_BE.get(), TrashCanBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.TEA_BANNER_BE.get(), TeaBannerBlockEntityRenderer::new);
     }
 
     @SubscribeEvent
     public static void onRegisterGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(CROSSHAIR, ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "pot_overlay"), new PotOverlay());
+        event.registerAbove(CROSSHAIR, ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "teapot_overlay"), new TeapotOverlay());
         event.registerAbove(CROSSHAIR, ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "trash_can_overlay"), new TrashCanOverlay());
     }
 
@@ -126,10 +127,4 @@ public class ClientSetupEvent {
         }, ModItems.STRAW_HAT.get(), ModItems.STRAW_HAT_FLOWER.get());
     }
 
-    @SubscribeEvent
-    public static void onAddPackFinders(AddPackFindersEvent event) {
-        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            event.addRepositorySource(new LegacyPackRepositorySource());
-        }
-    }
 }

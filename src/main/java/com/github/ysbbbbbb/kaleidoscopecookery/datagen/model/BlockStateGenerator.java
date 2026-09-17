@@ -2,9 +2,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
@@ -148,6 +147,9 @@ public class BlockStateGenerator extends BlockStateProvider {
             return new ModelFile.UncheckedModelFile(model);
         });
 
+        horizontalBlock(ModBlocks.CLAY_POT_MILK_TEA.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/clay_pot_milk_tea")));
+
         TeacupRegistry.TEACUP_DATA_MAP.forEach((key, value) -> {
             Block block = BuiltInRegistries.BLOCK.get(key);
             addTeacupBlock(block, key);
@@ -158,6 +160,14 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(ModBlocks.FRUIT_BASKET.get(), new ModelFile.UncheckedModelFile(modLoc("block/fruit_basket")));
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
         horizontalBlock(ModBlocks.KITCHENWARE_RACKS.get(), new ModelFile.UncheckedModelFile(modLoc("block/kitchenware_racks")));
+
+        getVariantBuilder(ModBlocks.BAMBOO_TRAY.get()).forAllStates(state -> ConfiguredModel.builder()
+                .modelFile(new ModelFile.UncheckedModelFile(
+                        modLoc(state.getValue(BambooTrayBlock.STAND)
+                                ? "block/bamboo_tray/stand"
+                                : "block/bamboo_tray/base"
+                        )
+                )).build());
 
         cookStool(ModBlocks.COOK_STOOL_OAK, "oak");
         cookStool(ModBlocks.COOK_STOOL_SPRUCE, "spruce");
@@ -183,6 +193,9 @@ public class BlockStateGenerator extends BlockStateProvider {
         chair(ModBlocks.CHAIR_MANGROVE, "mangrove");
         chair(ModBlocks.CHAIR_WARPED, "warped");
 
+        longBench(ModBlocks.LONG_BENCH);
+        simpleBlock(ModBlocks.RED_LANTERN.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_lantern")));
+
         table(ModBlocks.TABLE_OAK, "oak");
         table(ModBlocks.TABLE_SPRUCE, "spruce");
         table(ModBlocks.TABLE_ACACIA, "acacia");
@@ -195,15 +208,22 @@ public class BlockStateGenerator extends BlockStateProvider {
         table(ModBlocks.TABLE_MANGROVE, "mangrove");
         table(ModBlocks.TABLE_WARPED, "warped");
 
+        eightImmortalsTable(ModBlocks.EIGHT_IMMORTALS_TABLE);
+
         simpleBlock(ModBlocks.OIL_BLOCK.get());
 
         crop(ModBlocks.TOMATO_CROP, "tomato");
         crop(ModBlocks.CHILI_CROP, "chili");
         crop(ModBlocks.LETTUCE_CROP, "lettuce");
 
+        teaTree();
+
         axisBlock((RotatedPillarBlock) ModBlocks.STRAW_BLOCK.get());
 
         horizontalFaceBlock(ModBlocks.RECIPE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/recipe_block")));
+
+        simpleBlock(ModBlocks.TEA_BANNER.get(), models().getBuilder("tea_banner")
+                .texture("particle", modLoc("item/tea_banner")));
 
         riceCrop();
 
@@ -268,6 +288,16 @@ public class BlockStateGenerator extends BlockStateProvider {
         });
     }
 
+    public void teaTree() {
+        getVariantBuilder(ModBlocks.TEA_TREE.get()).forAllStates(state -> {
+            int age = state.getValue(TeaTreeBlock.AGE);
+            ResourceLocation file = modLoc("block/crop/tea_tree/stage%d".formatted(age));
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(file))
+                    .build();
+        });
+    }
+
     public void riceCrop() {
         getVariantBuilder(ModBlocks.RICE_CROP.get()).forAllStates(state -> {
             int age = state.getValue(CropBlock.AGE);
@@ -292,6 +322,21 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     public void chair(DeferredBlock<Block> block, String name) {
         horizontalBlock(block.get(), new ModelFile.UncheckedModelFile(modLoc("block/chair/" + name)));
+    }
+
+    private void longBench(DeferredBlock<Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            String modelName = switch (state.getValue(LongBenchBlock.POSITION)) {
+                case LongBenchBlock.LEFT -> "left";
+                case LongBenchBlock.MIDDLE -> "middle";
+                case LongBenchBlock.RIGHT -> "right";
+                default -> "single";
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/long_bench/" + modelName)))
+                    .rotationY(state.getValue(LongBenchBlock.AXIS) == Direction.Axis.Z ? 90 : 0)
+                    .build();
+        });
     }
 
     private void table(DeferredBlock<Block> block, String name) {
@@ -331,6 +376,18 @@ public class BlockStateGenerator extends BlockStateProvider {
             } else {
                 return ConfiguredModel.builder().modelFile(middleModel).build();
             }
+        });
+    }
+
+    private void eightImmortalsTable(DeferredBlock<Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            Direction facing = state.getValue(EightImmortalsTableBlock.FACING);
+            String part = state.getValue(EightImmortalsTableBlock.PART).getSerializedName();
+            int rotation = (int) facing.toYRot();
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/eight_immortals_table/%s".formatted(part))))
+                    .rotationY(rotation)
+                    .build();
         });
     }
 

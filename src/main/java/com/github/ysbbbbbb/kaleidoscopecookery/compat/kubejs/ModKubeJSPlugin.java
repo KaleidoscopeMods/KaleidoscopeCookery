@@ -19,6 +19,7 @@ public class ModKubeJSPlugin implements KubeJSPlugin {
         registry.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.FLEX_STOCKPOT_SERIALIZER.getId().getPath(), StockpotRecipeSchema.SCHEMA);
         registry.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.MILLSTONE_SERIALIZER.getId().getPath(), MillstoneRecipeSchema.SCHEMA);
         registry.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.STEAMER_SERIALIZER.getId().getPath(), SteamerRecipeSchema.SCHEMA);
+        registry.namespace(KaleidoscopeCookery.MOD_ID).register(ModRecipes.BAMBOO_TRAY_SERIALIZER.getId().getPath(), BambooTrayRecipeSchema.SCHEMA);
     }
 
     @Override

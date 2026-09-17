@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:iron_nugget"
+    },
+    "L": {
+      "item": "kaleidoscope_cookery:dried_tea_leaves"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LCL",
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:tieguanyin_tea_bag"
+  }
+}

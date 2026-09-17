@@ -6,6 +6,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -27,6 +28,8 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
         addDumplingRecipes(consumer);
         addShengjianMantouRecipes(consumer);
         addZongziRecipes(consumer);
+        addTeaEggRecipes(consumer);
+        addClayPotMilkTeaRecipes(consumer);
 
         StockpotRecipeBuilder.builder()
                 .addInput(Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE)
@@ -403,6 +406,28 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                     .setResult(ModItems.ZONGZI.get(), count)
                     .setEmptyCarrier()
                     .save(consumer, "zongzi_count_" + count);
+        }
+    }
+
+    private void addTeaEggRecipes(RecipeOutput consumer) {
+        for (int count = 1; count <= 4; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(ModItems.DRIED_TEA_LEAVES.get(), count))
+                    .addInput((Object[]) this.getItemsWithCount(Items.EGG, count))
+                    .setResult(ModItems.TEA_EGG.get(), count)
+                    .setEmptyCarrier()
+                    .save(consumer, "tea_egg_count_" + count);
+        }
+    }
+
+    private void addClayPotMilkTeaRecipes(RecipeOutput consumer) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(TagMod.TEA_BAGS, count))
+                    .setSoupBase(ModSoupBases.MILK)
+                    .setCarrier(Items.FLOWER_POT)
+                    .setResult(ModItems.CLAY_POT_MILK_TEA.get(), count)
+                    .save(consumer, "clay_pot_milk_tea_count_" + count);
         }
     }
 }

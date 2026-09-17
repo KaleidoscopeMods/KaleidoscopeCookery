@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 1800,
+  "ingredient": {
+    "item": "minecraft:wet_sponge"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:sponge"
+  },
+  "subtype": "drying"
+}

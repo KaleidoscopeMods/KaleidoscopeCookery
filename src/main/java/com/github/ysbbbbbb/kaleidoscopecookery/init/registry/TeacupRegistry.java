@@ -26,26 +26,37 @@ public class TeacupRegistry {
     public static ResourceLocation BILUOCHUN;
     public static ResourceLocation OOLONG;
     public static ResourceLocation SAKURA_FUBUKI;
+    public static ResourceLocation BUTTER_TEA;
     public static ResourceLocation FLOWER_TEA;
+    public static ResourceLocation MYSTERY_TEA;
 
     public static void init() {
         TeacupRegistry registry = new TeacupRegistry();
+
+        MYSTERY_TEA = registry.registerTeacupData("mystery_tea", TeacupData.create(4)
+                .addEffect(() -> new MobEffectInstance(MobEffects.BLINDNESS, 15 * 20))
+                .setAnimateTick(FoodBiteAnimateTicks.SUSPICIOUS_STIR_FRY_ANIMATE_TICK)
+        );
 
         BARLEY_TEA = registry.registerTeacupData("barley_tea", TeacupData.create(4).addEffect(() ->
                 new MobEffectInstance(ModEffects.VITALITY, 8 * 60 * 20))
         );
 
         TIEGUANYIN = registry.registerTeacupData("tieguanyin", TeacupData.create(4).addEffect(() ->
-                new MobEffectInstance(ModEffects.INSTANT_SMELTING, 2 * 60 * 20))
+                new MobEffectInstance(ModEffects.INSTANT_SMELTING, 6 * 60 * 20))
         );
 
         BILUOCHUN = registry.registerTeacupData("biluochun", TeacupData.create(4).addEffect(() ->
-                new MobEffectInstance(ModEffects.PROJECTILE_DODGE, 2 * 60 * 20))
+                new MobEffectInstance(ModEffects.PROJECTILE_DODGE, 6 * 60 * 20))
         );
 
         OOLONG = registry.registerTeacupData("oolong", TeacupData.create(4)
                 .addEffect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 6 * 60 * 20))
                 .addEffect(() -> new MobEffectInstance(MobEffects.JUMP, 6 * 60 * 20))
+        );
+
+        BUTTER_TEA = registry.registerTeacupData("butter_tea", TeacupData.create(4)
+                .addEffect(() -> new MobEffectInstance(ModEffects.PROJECTILE_DODGE, 45 * 20))
         );
 
         SAKURA_FUBUKI = registry.registerTeacupData("sakura_fubuki", TeacupData.create(4).addEffect(() ->
@@ -78,6 +89,7 @@ public class TeacupRegistry {
         private final int maxCount;
         private final List<Pair<Supplier<MobEffectInstance>, Float>> effects = Lists.newArrayList();
         private @Nullable VoxelShape aabb = null;
+        private @Nullable FoodBiteAnimateTicks.AnimateTick animateTick = null;
 
         private TeacupData(int maxCount) {
             this.maxCount = maxCount;
@@ -101,6 +113,11 @@ public class TeacupRegistry {
             return this;
         }
 
+        public TeacupData setAnimateTick(FoodBiteAnimateTicks.AnimateTick animateTick) {
+            this.animateTick = animateTick;
+            return this;
+        }
+
         public int getMaxCount() {
             return maxCount;
         }
@@ -112,6 +129,11 @@ public class TeacupRegistry {
 
         public List<Pair<Supplier<MobEffectInstance>, Float>> getEffects() {
             return effects;
+        }
+
+        @Nullable
+        public FoodBiteAnimateTicks.AnimateTick getAnimateTick() {
+            return animateTick;
         }
     }
 }

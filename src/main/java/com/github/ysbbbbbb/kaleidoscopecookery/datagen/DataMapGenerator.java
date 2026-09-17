@@ -34,6 +34,9 @@ public class DataMapGenerator extends DataMapProvider {
         addCompostable(ModItems.LETTUCE_SEED, 0.3F);
         addCompostable(ModItems.WILD_RICE_SEED, 0.3F);
         addCompostable(ModItems.RICE_SEED, 0.3F);
+        addCompostable(ModItems.TEA_SEED, 0.3F);
+        addCompostable(ModItems.FRESH_TEA_LEAVES, 0.3F);
+        addCompostable(ModItems.DRIED_TEA_LEAVES, 0.3F);
         addCompostable(ModItems.TOMATO, 0.65F);
         addCompostable(ModItems.RED_CHILI, 0.65F);
         addCompostable(ModItems.GREEN_CHILI, 0.65F);

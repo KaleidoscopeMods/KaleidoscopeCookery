@@ -1,8 +1,0 @@
-{
-  "credit": "Made with Blockbench",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "particle": "kaleidoscope_cookery:block/porcelain_plate"
-  },
-  "elements": []
-}

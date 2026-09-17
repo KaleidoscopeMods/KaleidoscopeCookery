@@ -6,7 +6,9 @@ import com.github.ysbbbbbb.kaleidoscopecookery.crafting.container.TeapotInput;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.TeapotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.serializer.TeapotRecipeSerializer;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.TeapotInputHandler;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.FluidUtils;
 import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
 import com.google.common.collect.Lists;
@@ -40,6 +42,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,6 +68,7 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     private int status = PUT_INGREDIENT;
     private int currentTick = -1;
+    private final IItemHandler inputHandler = new TeapotInputHandler(this);
 
     public AnimationState boilingState = new AnimationState();
 
@@ -111,12 +115,10 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
                     this.refresh();
                     return;
                 }
-                // 如果配方找不到，弹出
-                Block.popResource(level, worldPosition, input);
-                this.input = ItemStack.EMPTY;
-                this.result = ItemStack.EMPTY;
-                this.status = ITeapot.PUT_INGREDIENT;
-                this.currentTick = -1;
+                // 错误配方仍会完成烹饪，但只产出四杯谜之茶。
+                this.result = new ItemStack(TeacupRegistry.getItem(TeacupRegistry.MYSTERY_TEA), 4);
+                this.currentTick = TeapotRecipeSerializer.DEFAULT_TIME;
+                this.status = PROCESSING;
                 this.refresh();
             }
             return;
@@ -265,23 +267,16 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
             return false;
         }
 
-        // 查询配方
-        TeapotInput container = new TeapotInput(itemStack, this.teaFluidId);
-        Optional<RecipeHolder<TeapotRecipe>> recipeOpt = this.quickCheck.getRecipeFor(container, level);
-        if (recipeOpt.isPresent()) {
-            TeapotRecipe recipe = recipeOpt.get().value();
-            int count = recipe.ingredientCount();
-
-            this.input = itemStack.copyWithCount(count);
-            this.currentTick = INGREDIENT_TIME;
-            this.refresh();
-
-            itemStack.shrink(count);
-            return true;
+        if (itemStack.isEmpty()) {
+            return false;
         }
 
-        this.sendActionBarMessage(user, "tooltip.kaleidoscope_cookery.teapot.add_ingredient.recipe_incorrect");
-        return false;
+        this.input = itemStack.copyWithCount(1);
+        this.currentTick = INGREDIENT_TIME;
+        this.refresh();
+
+        itemStack.shrink(1);
+        return true;
     }
 
     @Override
@@ -448,6 +443,35 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
         return input;
     }
 
+    public boolean canReceiveDripstoneFluid() {
+        return this.status == PUT_INGREDIENT
+               && this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID)
+               && this.input.isEmpty();
+    }
+
+    public boolean receiveDripstoneFluid(Fluid fluid) {
+        if (!this.canReceiveDripstoneFluid() || (fluid != Fluids.WATER && fluid != Fluids.LAVA)) {
+            return false;
+        }
+        this.teaFluidId = BuiltInRegistries.FLUID.getKey(fluid);
+        this.refresh();
+        return true;
+    }
+
+    public boolean canInsertIngredient(ItemStack stack) {
+        return !stack.isEmpty() && this.status == PUT_INGREDIENT
+               && !this.teaFluidId.equals(TeapotRecipeSerializer.EMPTY_TEA_FLUID) && this.input.isEmpty();
+    }
+
+    public void insertIngredient(ItemStack stack) {
+        if (!this.canInsertIngredient(stack)) {
+            return;
+        }
+        this.input = stack.copyWithCount(1);
+        this.currentTick = INGREDIENT_TIME;
+        this.refresh();
+    }
+
     public ResourceLocation getTeaFluidId() {
         return teaFluidId;
     }
@@ -458,5 +482,9 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     public int getCurrentTick() {
         return currentTick;
+    }
+
+    public IItemHandler getInputHandler() {
+        return this.inputHandler;
     }
 }

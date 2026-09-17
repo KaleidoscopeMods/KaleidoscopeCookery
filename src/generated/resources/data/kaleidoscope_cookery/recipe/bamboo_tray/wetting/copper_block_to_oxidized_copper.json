@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 900,
+  "ingredient": {
+    "item": "minecraft:copper_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:oxidized_copper"
+  },
+  "subtype": "wetting"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "kaleidoscope_cookery:block/clay_pot_milk_tea",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "kaleidoscope_cookery:block/clay_pot_milk_tea"
+    },
+    "facing=south": {
+      "model": "kaleidoscope_cookery:block/clay_pot_milk_tea",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "kaleidoscope_cookery:block/clay_pot_milk_tea",
+      "y": 270
+    }
+  }
+}

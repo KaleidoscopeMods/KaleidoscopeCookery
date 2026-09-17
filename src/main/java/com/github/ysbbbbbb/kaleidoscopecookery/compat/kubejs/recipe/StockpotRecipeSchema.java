@@ -19,7 +19,7 @@ public interface StockpotRecipeSchema {
     RecipeKey<List<Ingredient>> INGREDIENTS = IngredientComponent.INGREDIENT.instance().asListOrSelf().inputKey("ingredients");
     RecipeKey<String> SOUP_BASE = StringComponent.ID.inputKey("soup_base").optional(DEFAULT_SOUP_BASE.toString());
     RecipeKey<Integer> TIME = NumberComponent.INT.otherKey("time").optional(DEFAULT_TIME);
-    RecipeKey<Ingredient> CARRIER = IngredientComponent.INGREDIENT.inputKey("carrier").optional(DEFAULT_CARRIER);
+    RecipeKey<Ingredient> CARRIER = IngredientComponent.OPTIONAL_INGREDIENT.inputKey("carrier").optional(DEFAULT_CARRIER);
     RecipeKey<String> COOKING_TEXTURE = StringComponent.ID.otherKey("cooking_texture").optional(DEFAULT_COOKING_TEXTURE.toString());
     RecipeKey<String> FINISHED_TEXTURE = StringComponent.ID.otherKey("finished_texture").optional(DEFAULT_FINISHED_TEXTURE.toString());
     RecipeKey<Integer> COOKING_BUBBLE_COLOR = NumberComponent.INT.otherKey("cooking_bubble_color").optional(DEFAULT_COOKING_BUBBLE_COLOR);

@@ -15,7 +15,7 @@ public interface PotRecipeSchema {
     RecipeKey<ItemStack> OUTPUT = ItemStackComponent.ITEM_STACK.outputKey("result");
     RecipeKey<List<Ingredient>> INGREDIENTS = IngredientComponent.INGREDIENT.instance().asListOrSelf()
             .inputKey("ingredients");
-    RecipeKey<Ingredient> CARRIER = IngredientComponent.INGREDIENT.inputKey("carrier").optional(Ingredient.EMPTY);
+    RecipeKey<Ingredient> CARRIER = IngredientComponent.OPTIONAL_INGREDIENT.inputKey("carrier").optional(Ingredient.EMPTY);
     RecipeKey<Integer> TIME = NumberComponent.INT.otherKey("time").optional(200);
     RecipeKey<Integer> STIR_FRY_COUNT = NumberComponent.INT.otherKey("stir_fry_count").optional(3);
 

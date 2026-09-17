@@ -27,6 +27,7 @@ public class ModRecipes {
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> STEAMER_SERIALIZER = RECIPE_SERIALIZERS.register("steamer", SteamerRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> TEAPOT_SERIALIZER = RECIPE_SERIALIZERS.register("teapot", TeapotRecipeSerializer::new);
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> RICE_BOWL_SERIALIZER = RECIPE_SERIALIZERS.register("rice_bowl", RiceBowlRecipeSerializer::new);
+    public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> BAMBOO_TRAY_SERIALIZER = RECIPE_SERIALIZERS.register("bamboo_tray", BambooTrayRecipeSerializer::new);
 
     public static RecipeType<PotRecipe> POT_RECIPE;
     public static RecipeType<FlexPotRecipe> FLEX_POT_RECIPE;
@@ -36,6 +37,7 @@ public class ModRecipes {
     public static RecipeType<MillstoneRecipe> MILLSTONE_RECIPE;
     public static RecipeType<SteamerRecipe> STEAMER_RECIPE;
     public static RecipeType<TeapotRecipe> TEAPOT_RECIPE;
+    public static RecipeType<BambooTrayRecipe> BAMBOO_TRAY_RECIPE;
 
     @SubscribeEvent
     public static void register(RegisterEvent evt) {
@@ -48,6 +50,7 @@ public class ModRecipes {
             MILLSTONE_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "millstone"));
             STEAMER_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "steamer"));
             TEAPOT_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "teapot"));
+            BAMBOO_TRAY_RECIPE = RecipeType.simple(ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "bamboo_tray"));
         }
     }
 }

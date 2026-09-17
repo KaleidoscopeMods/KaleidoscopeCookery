@@ -1,8 +1,9 @@
 {
   "type": "kaleidoscope_cookery:teapot",
   "ingredient": {
-    "item": "minecraft:iron_nugget"
+    "item": "kaleidoscope_cookery:tieguanyin_tea_bag"
   },
+  "ingredient_count": 1,
   "result": {
     "count": 1,
     "id": "kaleidoscope_cookery:tieguanyin"

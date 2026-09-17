@@ -7,6 +7,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -55,6 +56,35 @@ public class DecorationRecipeProvider extends ModRecipeProvider {
         addTable(ModItems.TABLE_JUNGLE, Blocks.JUNGLE_FENCE, Blocks.JUNGLE_SLAB).save(consumer);
         addTable(ModItems.TABLE_MANGROVE, Blocks.MANGROVE_FENCE, Blocks.MANGROVE_SLAB).save(consumer);
         addTable(ModItems.TABLE_WARPED, Blocks.WARPED_FENCE, Blocks.WARPED_SLAB).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.LONG_BENCH.get())
+                .pattern("PPP")
+                .pattern("FSF")
+                .define('P', Blocks.OAK_PLANKS)
+                .define('F', Blocks.OAK_FENCE)
+                .define('S', Items.STICK)
+                .unlockedBy("has_oak_planks", has(Blocks.OAK_PLANKS))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.RED_LANTERN.get())
+                .pattern("PCP")
+                .pattern("DLD")
+                .pattern("PDP")
+                .define('P', Items.PAPER)
+                .define('C', Items.CHAIN)
+                .define('D', Items.RED_DYE)
+                .define('L', Items.CANDLE)
+                .unlockedBy("has_red_dye", has(Items.RED_DYE))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.EIGHT_IMMORTALS_TABLE.get())
+                .pattern("FPF")
+                .pattern("PPP")
+                .pattern("FPF")
+                .define('F', Blocks.OAK_FENCE)
+                .define('P', Blocks.OAK_PLANKS)
+                .unlockedBy("has_oak_fence", has(Blocks.OAK_FENCE))
+                .save(consumer);
     }
 
     private ShapedRecipeBuilder addCookStool(DeferredItem<Item> result, Block wood) {

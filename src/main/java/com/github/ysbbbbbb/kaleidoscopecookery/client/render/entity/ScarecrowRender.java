@@ -18,7 +18,7 @@ public class ScarecrowRender extends LivingEntityRenderer<ScarecrowEntity, Scare
 
     public ScarecrowRender(EntityRendererProvider.Context context) {
         super(context, new ScarecrowModel(context.bakeLayer(ScarecrowModel.LAYER_LOCATION)), 0);
-        this.addLayer(new ScarecrowHandLayer(this, context.getItemInHandRenderer(), context.getBlockRenderDispatcher()));
+        this.addLayer(new ScarecrowHandLayer(this, context.getItemInHandRenderer()));
         this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getItemInHandRenderer()));
         this.addLayer(new ScarecrowParrotOnShoulderLayer(this, context.getModelSet()));
     }

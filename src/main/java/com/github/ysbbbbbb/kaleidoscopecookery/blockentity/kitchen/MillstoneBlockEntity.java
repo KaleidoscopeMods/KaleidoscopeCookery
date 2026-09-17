@@ -13,6 +13,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.MillstoneInputHandler;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -73,6 +74,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             refresh();
         }
     };
+
+    // 仅用于 cap，对外暴露给 Create 溜槽/漏斗等，使其能直接投料
+    private final IItemHandler inputHandler = new MillstoneInputHandler(this);
 
     private ItemStack input = ItemStack.EMPTY;
     private UUID entityId = Util.NIL_UUID;
@@ -466,5 +470,9 @@ public class MillstoneBlockEntity extends BaseBlockEntity implements IMillstone 
             return 0f;
         }
         return Math.abs(value) % 360;
+    }
+
+    public IItemHandler getInputHandler() {
+        return this.inputHandler;
     }
 }

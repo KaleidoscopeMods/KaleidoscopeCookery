@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon.FD_KNIVES;
+import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagCommon.KNIVES;
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod.*;
 import static net.minecraft.tags.ItemTags.VILLAGER_PLANTABLE_SEEDS;
 import static net.minecraft.world.item.Items.*;
@@ -49,6 +50,20 @@ public class TagItem extends ItemTagsProvider {
         tag(KITCHEN_SHOVEL).add(ModItems.KITCHEN_SHOVEL.get());
 
         tag(CATERPILLARS).add(ModItems.CATERPILLAR.get());
+        tag(FLOWER_TEA_INGREDIENTS).add(LILAC, ROSE_BUSH, PEONY, PITCHER_PLANT, SUNFLOWER);
+        tag(TEA_BAGS).add(
+                ModItems.TIEGUANYIN_TEA_BAG.get(),
+                ModItems.BILUOCHUN_TEA_BAG.get(),
+                ModItems.OOLONG_TEA_BAG.get(),
+                ModItems.SAKURA_FUBUKI_TEA_BAG.get(),
+                ModItems.BARLEY_TEA_BAG.get(),
+                ModItems.BUTTER_TEA_BAG.get()
+        );
+
+        tag(KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
+                ModItems.GOLD_KITCHEN_KNIFE.get(),
+                ModItems.DIAMOND_KITCHEN_KNIFE.get(),
+                ModItems.NETHERITE_KITCHEN_KNIFE.get());
 
         // 农夫乐事
         tag(FD_KNIVES).add(ModItems.IRON_KITCHEN_KNIFE.get(),
@@ -64,7 +79,8 @@ public class TagItem extends ItemTagsProvider {
 
         this.tag(COOKERY_MOD_SEEDS).add(
                 ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
-                ModItems.WILD_RICE_SEED.get(), ModItems.LETTUCE_SEED.get()
+                ModItems.WILD_RICE_SEED.get(), ModItems.LETTUCE_SEED.get(),
+                ModItems.TEA_SEED.get()
         );
 
         this.tag(INGREDIENT_CONTAINER).add(BUCKET, BOWL, GLASS_BOTTLE);
@@ -141,6 +157,14 @@ public class TagItem extends ItemTagsProvider {
         // 原版兼容
         tag(ItemTags.SHOVELS).add(ModItems.KITCHEN_SHOVEL.get());
         tag(ItemTags.SWORDS).addTag(KITCHEN_KNIFE).add(ModItems.SICKLE.get());
+        tag(ItemTags.CHICKEN_FOOD).add(
+                ModItems.TOMATO_SEED.get(),
+                ModItems.CHILI_SEED.get(),
+                ModItems.LETTUCE_SEED.get(),
+                ModItems.WILD_RICE_SEED.get(),
+                ModItems.RICE_SEED.get(),
+                ModItems.TEA_SEED.get()
+        );
         tag(EXTINGUISH_STOVE).addTag(ItemTags.SHOVELS);
         tag(VILLAGER_PLANTABLE_SEEDS).add(ModItems.TOMATO_SEED.get(),
                 ModItems.CHILI_SEED.get(), ModItems.LETTUCE_SEED.get()
@@ -150,7 +174,8 @@ public class TagItem extends ItemTagsProvider {
                 ModItems.TOMATO_SEED.get(),
                 ModItems.LETTUCE_SEED.get(),
                 ModItems.WILD_RICE_SEED.get(),
-                ModItems.RICE_SEED.get()
+                ModItems.RICE_SEED.get(),
+                ModItems.TEA_SEED.get()
         );
         tag(Tags.Items.EGGS).add(ModItems.FRIED_EGG.get());
 
@@ -221,9 +246,12 @@ public class TagItem extends ItemTagsProvider {
         tag(TagCommon.DIET_VEGETABLES).addTag(TagCommon.VEGETABLES);
 
         // 兼容静谧四季
-        tag(TagCommon.SPRING_CROPS).add(ModItems.LETTUCE_SEED.get());
-        tag(TagCommon.SUMMER_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get());
-        tag(TagCommon.AUTUMN_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(), ModItems.LETTUCE_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get());
+        tag(TagCommon.SPRING_CROPS).add(ModItems.LETTUCE_SEED.get(), ModItems.TEA_SEED.get());
+        tag(TagCommon.SUMMER_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
+                ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get(), ModItems.TEA_SEED.get());
+        tag(TagCommon.AUTUMN_CROPS).add(ModItems.TOMATO_SEED.get(), ModItems.CHILI_SEED.get(),
+                ModItems.LETTUCE_SEED.get(), ModItems.RICE_SEED.get(), ModItems.WILD_RICE_SEED.get(),
+                ModItems.TEA_SEED.get());
     }
 
     private void addModItems() {

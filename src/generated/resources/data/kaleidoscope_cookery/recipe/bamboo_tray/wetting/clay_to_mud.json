@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 900,
+  "ingredient": {
+    "item": "minecraft:clay"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:mud"
+  },
+  "subtype": "wetting"
+}

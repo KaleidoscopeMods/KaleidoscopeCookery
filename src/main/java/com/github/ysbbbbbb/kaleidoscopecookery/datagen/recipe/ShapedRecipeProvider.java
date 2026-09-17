@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
@@ -46,6 +47,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('#', ItemTags.PLANKS)
                 .define('C', Items.CHEST)
                 .unlockedBy("has_chest", has(Items.CHEST))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.TEA_BANNER.get())
+                .pattern("WWW")
+                .pattern("WWW")
+                .pattern("S  ")
+                .define('W', Items.RED_WOOL)
+                .define('S', Items.STICK)
+                .unlockedBy("has_red_wool", has(Items.RED_WOOL))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.SCARECROW.get())
@@ -161,6 +171,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .unlockedBy("has_bucket", has(Items.BUCKET))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.BAMBOO_TRAY.get())
+                .pattern(" S ")
+                .pattern("STS")
+                .pattern(" S ")
+                .define('S', Items.STRING)
+                .define('T', Items.BAMBOO_TRAPDOOR)
+                .unlockedBy("has_bamboo_trapdoor", has(Items.BAMBOO_TRAPDOOR))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.KITCHENWARE_RACKS.get())
                 .pattern("SSS")
                 .pattern("INI")
@@ -193,6 +212,13 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('R', ModItems.RICE_PANICLE.get())
                 .unlockedBy("has_rice_panicle", has(ModItems.RICE_PANICLE.get()))
                 .save(consumer);
+
+        addTeaBagRecipe(ModItems.TIEGUANYIN_TEA_BAG.get(), Items.IRON_NUGGET).save(consumer);
+        addTeaBagRecipe(ModItems.BILUOCHUN_TEA_BAG.get(), Items.NAUTILUS_SHELL).save(consumer);
+        addTeaBagRecipe(ModItems.OOLONG_TEA_BAG.get(), Items.DRAGON_BREATH).save(consumer);
+        addTeaBagRecipe(ModItems.SAKURA_FUBUKI_TEA_BAG.get(), Items.PINK_PETALS).save(consumer);
+        addTeaBagRecipe(ModItems.BARLEY_TEA_BAG.get(), Items.WHEAT_SEEDS).save(consumer);
+        addTeaBagRecipe(ModItems.BUTTER_TEA_BAG.get(), ModItems.OIL.get()).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.FARMER_CHEST_PLATE.get())
                 .pattern("I I")
@@ -299,5 +325,15 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .define('C', Items.COMPOSTER)
                 .unlockedBy("has_ingot_iron", has(Items.IRON_INGOT))
                 .save(consumer);
+    }
+
+    private ShapedRecipeBuilder addTeaBagRecipe(ItemLike result, ItemLike center) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, result)
+                .pattern("LLL")
+                .pattern("LCL")
+                .pattern("LLL")
+                .define('L', ModItems.DRIED_TEA_LEAVES.get())
+                .define('C', center)
+                .unlockedBy("has_dried_tea_leaves", has(ModItems.DRIED_TEA_LEAVES.get()));
     }
 }

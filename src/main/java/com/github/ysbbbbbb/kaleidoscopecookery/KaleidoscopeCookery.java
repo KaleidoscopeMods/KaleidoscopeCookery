@@ -11,6 +11,7 @@ import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.slf4j.Logger;
 
 @net.neoforged.fml.common.Mod(KaleidoscopeCookery.MOD_ID)
@@ -43,5 +44,8 @@ public class KaleidoscopeCookery {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModDataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         ModAttachmentType.ATTACHMENT_TYPES.register(modEventBus);
+
+        // 启用牛奶汤底
+        NeoForgeMod.enableMilkFluid();
     }
 }

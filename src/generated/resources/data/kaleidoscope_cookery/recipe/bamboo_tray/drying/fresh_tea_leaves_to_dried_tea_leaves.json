@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 1800,
+  "ingredient": {
+    "item": "kaleidoscope_cookery:fresh_tea_leaves"
+  },
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:dried_tea_leaves"
+  },
+  "subtype": "drying"
+}

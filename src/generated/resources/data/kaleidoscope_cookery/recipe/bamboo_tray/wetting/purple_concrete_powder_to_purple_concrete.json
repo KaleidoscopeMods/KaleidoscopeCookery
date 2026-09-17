@@ -1,0 +1,12 @@
+{
+  "type": "kaleidoscope_cookery:bamboo_tray",
+  "duration": 900,
+  "ingredient": {
+    "item": "minecraft:purple_concrete_powder"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:purple_concrete"
+  },
+  "subtype": "wetting"
+}

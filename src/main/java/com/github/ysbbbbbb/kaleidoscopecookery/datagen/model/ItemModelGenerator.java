@@ -39,7 +39,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         basicItem(ModItems.OIL.get());
         basicItem(ModItems.FRIED_EGG.get());
+        basicItem(ModItems.TEA_EGG.get());
         basicItem(ModItems.SCARECROW.get());
+        basicItem(ModItems.TEA_BANNER.get());
         basicItem(ModItems.TOMATO.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES.get());
         basicItem(ModItems.SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL.get());
@@ -68,6 +70,16 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.FARMER_LEGGINGS.get());
         basicItem(ModItems.FARMER_BOOTS.get());
         basicItem(ModItems.TOMATO_SEED.get());
+        basicItem(ModItems.TEA_SEED.get());
+        basicItem(ModItems.FRESH_TEA_LEAVES.get());
+        basicItem(ModItems.DRIED_TEA_LEAVES.get());
+        basicItem(ModItems.TIEGUANYIN_TEA_BAG.get());
+        basicItem(ModItems.BILUOCHUN_TEA_BAG.get());
+        basicItem(ModItems.OOLONG_TEA_BAG.get());
+        basicItem(ModItems.SAKURA_FUBUKI_TEA_BAG.get());
+        basicItem(ModItems.BARLEY_TEA_BAG.get());
+        basicItem(ModItems.BUTTER_TEA_BAG.get());
+        basicItem(ModItems.CLAY_POT_MILK_TEA.get());
         basicItem(ModItems.RICE_SEED.get());
         basicItem(ModItems.WILD_RICE_SEED.get());
         basicItem(ModItems.RICE_PANICLE.get());
@@ -120,6 +132,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
         basicItem(modLoc("oil_in_millstone"));
+
+        withExistingParent("bamboo_tray", modLoc("block/bamboo_tray/base"));
 
         ResourceLocation chileRistra = BuiltInRegistries.ITEM.getKey(ModItems.CHILI_RISTRA.get());
         getBuilder(chileRistra.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
@@ -234,6 +248,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         withExistingParent("chair_jungle", modLoc("block/chair/jungle"));
         withExistingParent("chair_mangrove", modLoc("block/chair/mangrove"));
         withExistingParent("chair_warped", modLoc("block/chair/warped"));
+
+        withExistingParent("long_bench", modLoc("block/long_bench/single"));
+        withExistingParent("red_lantern", modLoc("block/red_lantern"));
 
         withExistingParent("table_oak", modLoc("block/table/oak_single"));
         withExistingParent("table_spruce", modLoc("block/table/spruce_single"));

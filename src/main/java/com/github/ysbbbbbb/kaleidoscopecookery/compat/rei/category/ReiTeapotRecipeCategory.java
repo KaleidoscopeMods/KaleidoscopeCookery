@@ -56,13 +56,16 @@ public class ReiTeapotRecipeCategory implements DisplayCategory<ReiTeapotRecipeC
         widgets.add(Widgets.withTranslate(Widgets.createDrawableWidget((guiGraphics, mouseX, mouseY, v) -> {
             drawCenteredString(guiGraphics, brewTime, WIDTH / 2, 70);
         }), startX, startY, 0));
-        widgets.add(Widgets.createSlot(new Point(startX + 65, startY + 3))
+        widgets.add(Widgets.createSlot(new Point(startX + 65, startY))
                 .entries(display.getInputEntries().get(0))
                 .markInput());
-        widgets.add(Widgets.createSlot(new Point(startX + 83, startY + 3))
+        widgets.add(Widgets.createSlot(new Point(startX + 83, startY))
                 .entries(display.getInputEntries().get(1))
                 .markInput());
-        widgets.add(Widgets.createSlot(new Point(startX + 128, startY + 30))
+        widgets.add(Widgets.createSlot(new Point(startX + 122, startY))
+                .entry(EntryStacks.of(ModItems.EMPTY_CUP.get()))
+                .disableBackground());
+        widgets.add(Widgets.createSlot(new Point(startX + 128, startY + 45))
                 .entries(display.getOutputEntries().get(0))
                 .backgroundEnabled(false)
                 .markOutput());

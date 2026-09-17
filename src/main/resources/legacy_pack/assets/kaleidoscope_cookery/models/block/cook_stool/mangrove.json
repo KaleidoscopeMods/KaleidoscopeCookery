@@ -1,6 +1,0 @@
-{
-  "parent": "kaleidoscope_cookery:block/cook_stool/cook_stool",
-  "textures": {
-    "particle": "kaleidoscope_cookery:block/cook_stool/mangrove"
-  }
-}

@@ -35,6 +35,14 @@ public interface TagMod {
      */
     TagKey<Item> CATERPILLARS = itemTag("caterpillars");
     /**
+     * 可以用于烹饪花茶的二格高花
+     */
+    TagKey<Item> FLOWER_TEA_INGREDIENTS = itemTag("flower_tea_ingredients");
+    /**
+     * 可用于烹饪奶茶的茶包
+     */
+    TagKey<Item> TEA_BAGS = itemTag("tea_bags");
+    /**
      * 可以当做草帽的物品
      */
     TagKey<Item> STRAW_HAT = itemTag("straw_hat");
