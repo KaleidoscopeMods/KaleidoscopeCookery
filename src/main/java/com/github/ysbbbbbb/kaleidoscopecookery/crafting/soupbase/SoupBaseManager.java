@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.recipe.soupbase.ISoupBase;
 import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluid;
 
 import java.util.Map;
 
@@ -19,6 +20,10 @@ public class SoupBaseManager {
 
     public static void registerFluidSoupBase(ResourceLocation name, Item bucketItem, int bubbleColor) {
         registerSoupBase(new FluidSoupBase(name, bucketItem, bubbleColor));
+    }
+
+    public static void registerFluidSoupBase(ResourceLocation name, Item bucketItem, Fluid fluid, int bubbleColor) {
+        registerSoupBase(new FluidSoupBase(name, bucketItem, fluid, bubbleColor));
     }
 
     public static void registerMobSoupBase(ResourceLocation name, Item bucketItem, int bubbleColor) {

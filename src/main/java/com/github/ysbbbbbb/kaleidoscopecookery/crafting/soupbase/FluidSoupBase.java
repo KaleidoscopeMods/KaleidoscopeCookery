@@ -25,14 +25,21 @@ public class FluidSoupBase implements ISoupBase {
     protected final int bubbleColor;
 
     public FluidSoupBase(ResourceLocation name, Item bucketItem, int bubbleColor) {
+        this(name, bucketItem, getBucketFluid(bucketItem), bubbleColor);
+    }
+
+    public FluidSoupBase(ResourceLocation name, Item bucketItem, Fluid fluid, int bubbleColor) {
         this.name = name;
         this.bucketItem = bucketItem;
-        if (bucketItem instanceof BucketItem bucket) {
-            this.fluid = bucket.getFluid();
-        } else {
-            throw new IllegalArgumentException("Item must be a bucket item!");
-        }
+        this.fluid = fluid;
         this.bubbleColor = bubbleColor;
+    }
+
+    private static Fluid getBucketFluid(Item bucketItem) {
+        if (bucketItem instanceof BucketItem bucket) {
+            return bucket.getFluid();
+        }
+        throw new IllegalArgumentException("Item must be a bucket item when fluid is not specified!");
     }
 
     @Override

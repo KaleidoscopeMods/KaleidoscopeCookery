@@ -42,5 +42,8 @@ public class KaleidoscopeCookery {
         ModParticles.PARTICLES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModLootModifier.GLOBAL_LOOT_MODIFIER_SERIALIZER.register(modEventBus);
+
+        // 启用牛奶汤底
+        ForgeMod.enableMilkFluid();
     }
 }

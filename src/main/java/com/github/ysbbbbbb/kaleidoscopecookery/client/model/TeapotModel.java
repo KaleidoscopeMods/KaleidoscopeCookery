@@ -48,7 +48,7 @@ public class TeapotModel extends HierarchicalModel<Entity> {
                 .texOffs(7, 0).mirror().addBox(-7.8333F, -1.5833F, -1.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(0, 0).addBox(-8.8333F, -1.5833F, -1.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-7.1667F, -2.4167F, 8.0F));
 
-        PartDefinition stick = body.addOrReplaceChild("stick", CubeListBuilder.create().texOffs(36, 10).addBox(-3.0F, -1.5625F, -1.25F, 6.0F, 1.0F, 2.0F, new CubeDeformation(0.0F))
+        PartDefinition stick = body.addOrReplaceChild("stick", CubeListBuilder.create().texOffs(36, 10).addBox(-3.0F, -1.8125F, -1.0F, 6.0F, 1.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(32, 0).addBox(-4.0F, -1.3125F, -1.0F, 8.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.8333F, -7.2708F, 0.0F));
 
         PartDefinition chain = partdefinition.addOrReplaceChild("chain", CubeListBuilder.create(), PartPose.offset(0.0F, 11.25F, 0.0F));
