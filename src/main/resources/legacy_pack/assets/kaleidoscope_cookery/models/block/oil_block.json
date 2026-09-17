@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "kaleidoscope_cookery:block/oil_block"
-  }
-}
