@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.everycomp.EveryCompatCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
@@ -9,6 +10,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.TeacupRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -42,6 +44,8 @@ public class KaleidoscopeCookery {
         ModParticles.PARTICLES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModLootModifier.GLOBAL_LOOT_MODIFIER_SERIALIZER.register(modEventBus);
+
+        if(ModList.get().isLoaded("everycomp")) EveryCompatCompat.init();
 
         // 启用牛奶汤底
         ForgeMod.enableMilkFluid();
