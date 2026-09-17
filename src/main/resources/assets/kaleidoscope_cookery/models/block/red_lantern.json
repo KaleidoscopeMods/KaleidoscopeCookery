@@ -58,8 +58,8 @@
 		},
 		{
 			"name": "bone",
-			"from": [0, 0, 0],
-			"to": [16, 12, 16],
+			"from": [1, 0, 1],
+			"to": [15, 12, 15],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 8, 6], "texture": "#0"},
