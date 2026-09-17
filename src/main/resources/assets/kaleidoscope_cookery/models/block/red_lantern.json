@@ -4,8 +4,8 @@
 	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "kaleidoscope_cookery:block/red_lantern",
-		"0": "kaleidoscope_cookery:block/red_lantern"
+		"0": "kaleidoscope_cookery:block/red_lantern",
+		"particle": "kaleidoscope_cookery:block/red_lantern"
 	},
 	"elements": [
 		{
@@ -87,7 +87,7 @@
 			"name": "bone",
 			"from": [8, 11, 6.5],
 			"to": [8, 16, 9.5],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 13.5, 8]},
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 13.5, 8]},
 			"faces": {
 				"east": {"uv": [8.5, 13, 10, 15.5], "texture": "#0"},
 				"west": {"uv": [8.5, 13, 10, 15.5], "texture": "#0"}
@@ -97,7 +97,7 @@
 			"name": "bone",
 			"from": [6.5, 11, 8],
 			"to": [9.5, 16, 8],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 13.5, 8]},
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 13.5, 8]},
 			"faces": {
 				"north": {"uv": [8.5, 10, 10, 12.5], "texture": "#0"},
 				"south": {"uv": [8.5, 10, 10, 12.5], "texture": "#0"}
