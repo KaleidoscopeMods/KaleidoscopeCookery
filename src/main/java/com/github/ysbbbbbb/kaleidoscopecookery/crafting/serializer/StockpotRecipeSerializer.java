@@ -62,7 +62,7 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         if (GsonHelper.getAsBoolean(json, "empty_carrier", false)) {
             carrier = Ingredient.EMPTY;
         } else if (json.has("carrier")) {
-            carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
+            carrier = Ingredient.fromJson(json.get("carrier"));
         }
 
         ResourceLocation cookingTexture = new ResourceLocation(GsonHelper.getAsString(

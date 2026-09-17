@@ -10,7 +10,7 @@ import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 public interface PotRecipeSchema {
     RecipeKey<OutputItem> OUTPUT = ItemComponents.OUTPUT.key("result");
     RecipeKey<InputItem[]> INGREDIENTS = ItemComponents.INPUT_ARRAY.key("ingredients");
-    RecipeKey<InputItem> CARRIER = ItemComponents.INPUT.key("carrier").optional(InputItem.EMPTY);
+    RecipeKey<InputItem> CARRIER = ItemComponents.INPUT.key("carrier").optional(InputItem.EMPTY).allowEmpty();
     RecipeKey<Integer> TIME = NumberComponent.INT.key("time").optional(200);
     RecipeKey<Integer> STIR_FRY_COUNT = NumberComponent.INT.key("stir_fry_count").optional(3);
 

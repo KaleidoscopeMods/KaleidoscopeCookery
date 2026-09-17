@@ -40,7 +40,7 @@ public class FlexStockpotRecipeSerializer implements RecipeSerializer<FlexStockp
 
         Ingredient carrier = StockpotRecipeSerializer.DEFAULT_CARRIER;
         if (json.has("carrier")) {
-            carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
+            carrier = Ingredient.fromJson(json.get("carrier"));
         }
 
         ResourceLocation cookingTexture = new ResourceLocation(GsonHelper.getAsString(

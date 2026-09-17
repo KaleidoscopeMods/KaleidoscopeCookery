@@ -24,7 +24,7 @@ public class FlexPotRecipeSerializer implements RecipeSerializer<FlexPotRecipe> 
 
         Ingredient carrier;
         if (json.has("carrier")) {
-            carrier = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "carrier"));
+            carrier = Ingredient.fromJson(json.get("carrier"));
         } else {
             carrier = Ingredient.EMPTY;
         }
