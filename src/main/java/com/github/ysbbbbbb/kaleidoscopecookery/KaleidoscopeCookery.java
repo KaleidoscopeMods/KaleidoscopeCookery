@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.compat.everycomp.EveryCompatCompat;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.ClientConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.config.GeneralConfig;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.*;
@@ -10,6 +11,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.network.NetworkHandler;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import org.slf4j.Logger;
@@ -44,6 +46,10 @@ public class KaleidoscopeCookery {
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         ModDataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         ModAttachmentType.ATTACHMENT_TYPES.register(modEventBus);
+
+        if (ModList.get().isLoaded("everycomp")) {
+            EveryCompatCompat.init();
+        }
 
         // 启用牛奶汤底
         NeoForgeMod.enableMilkFluid();
