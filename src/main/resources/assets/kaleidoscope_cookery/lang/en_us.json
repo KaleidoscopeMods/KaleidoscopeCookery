@@ -126,11 +126,9 @@
   "block.kaleidoscope_cookery.butter_tea": "Butter Tea",
   "block.kaleidoscope_cookery.clay_pot_milk_tea": "Clay Pot Milk Tea",
   "block.kaleidoscope_cookery.trash_can": "Trash Can",
-
   "block_type.kaleidoscope_cookery.cook_stool": "%s Cook's Stool",
   "block_type.kaleidoscope_cookery.chair": "%s Chair",
   "block_type.kaleidoscope_cookery.table": "%s Table",
-
   "effect.kaleidoscope_cookery.flatulence": "Flatulence",
   "effect.kaleidoscope_cookery.tundra_strider": "Tundra Strider",
   "effect.kaleidoscope_cookery.warmth": "Warmth",
