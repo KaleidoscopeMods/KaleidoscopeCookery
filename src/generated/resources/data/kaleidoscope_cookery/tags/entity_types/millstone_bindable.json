@@ -11,6 +11,7 @@
     "minecraft:mooshroom",
     "minecraft:sheep",
     "minecraft:goat",
-    "minecraft:villager"
+    "minecraft:villager",
+    "touhou_little_maid:maid"
   ]
 }
