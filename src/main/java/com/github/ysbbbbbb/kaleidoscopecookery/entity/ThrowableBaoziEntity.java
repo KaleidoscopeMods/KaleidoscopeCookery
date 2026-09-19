@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -88,6 +89,7 @@ public class ThrowableBaoziEntity extends ThrowableItemProjectile {
         hitEntity.hurt(this.damageSources().thrown(this, this.getOwner()), 0);
         this.playSound(SoundEvents.SNOW_HIT, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 
+		if (getItem().is(ModItems.SAMSA.get())) return; // 太硬了狗子不吃
         // 如果是狗，那么直接回满狗的血
         if (hitEntity instanceof Wolf wolf) {
             wolf.heal(wolf.getMaxHealth());
@@ -100,15 +102,32 @@ public class ThrowableBaoziEntity extends ThrowableItemProjectile {
         }
     }
 
-    @Override
-    protected void onHit(HitResult hitResult) {
-        super.onHit(hitResult);
-        if (!this.level().isClientSide) {
-            this.level().broadcastEntityEvent(this, EntityEvent.DEATH);
-            this.playSound(SoundEvents.SNOW_HIT, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-            this.discard();
-        }
-    }
+	@Override
+	protected void onHit(HitResult hitResult) {
+		super.onHit(hitResult);
+		if (this.level().isClientSide) return;
+		this.level().broadcastEntityEvent(this, EntityEvent.DEATH);
+		this.playSound(SoundEvents.SNOW_HIT, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+
+		ItemStack itemStack = this.getItem();
+		if (itemStack.is(ModItems.SAMSA.get())) {
+			// 烤包子击中方块后不消失
+			Level level = this.level();
+			ItemEntity itemEntity = new ItemEntity(
+					level,
+					this.getX(),
+					this.getY(),
+					this.getZ(),
+					new ItemStack(ModItems.SAMSA.get()));
+			itemEntity.setDeltaMovement(
+					(this.random.nextDouble() - 0.5) * 0.1,
+					this.random.nextDouble() * 0.1 + 0.1,
+					(this.random.nextDouble() - 0.5) * 0.1);
+			level.addFreshEntity(itemEntity);
+		}
+		this.discard();
+	}
+
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
