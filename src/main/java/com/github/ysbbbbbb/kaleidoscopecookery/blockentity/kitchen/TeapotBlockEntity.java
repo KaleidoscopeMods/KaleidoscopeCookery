@@ -305,6 +305,11 @@ public class TeapotBlockEntity extends BaseBlockEntity implements ITeapot {
 
     @Override
     public boolean takeTeapot(Level level, LivingEntity user) {
+        // 物品发放和方块移除必须由服务端执行，避免状态同步延迟造成客户端复制物品。
+        if (level.isClientSide()) {
+            return status != PROCESSING;
+        }
+
         if (status == PROCESSING) {
             this.sendActionBarMessage(user, "tooltip.kaleidoscope_cookery.teapot.take_teapot.state_incorrect");
             return false;
