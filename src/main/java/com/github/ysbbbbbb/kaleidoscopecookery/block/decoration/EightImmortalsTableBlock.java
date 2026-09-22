@@ -19,11 +19,15 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class EightImmortalsTableBlock extends HorizontalDirectionalBlock {
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
     private static final MapCodec<EightImmortalsTableBlock> CODEC = simpleCodec(p -> new EightImmortalsTableBlock());
+
+    private static final VoxelShape SELECTION_SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape COLLISION_SHAPE = Block.box(0, 12, 0, 16, 16, 16);
 
     public EightImmortalsTableBlock() {
         super(Properties.of()
@@ -72,7 +76,7 @@ public class EightImmortalsTableBlock extends HorizontalDirectionalBlock {
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock())) {
+        if (!state.is(newState.getBlock()) && !isMoving) {
             Direction facing = state.getValue(FACING);
             BlockPos anchor = getAnchorPos(pos, facing, state.getValue(PART));
             for (Part part : Part.values()) {
@@ -105,6 +109,16 @@ public class EightImmortalsTableBlock extends HorizontalDirectionalBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, PART);
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SELECTION_SHAPE;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return COLLISION_SHAPE;
     }
 
     private static BlockPos getPartPos(BlockPos anchor, Direction facing, Part part) {

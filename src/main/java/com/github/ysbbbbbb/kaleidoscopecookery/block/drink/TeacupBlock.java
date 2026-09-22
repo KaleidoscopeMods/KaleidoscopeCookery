@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.drink;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.registry.FoodBiteAnimateTicks;
@@ -165,6 +166,10 @@ public class TeacupBlock extends HorizontalDirectionalBlock {
             }
             if (cupCountNum == 1) {
                 level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+            } else if (teaCountNum == 1) {
+                level.setBlockAndUpdate(pos, ModBlocks.EMPTY_CUP.get().defaultBlockState()
+                        .setValue(EmptyCupBlock.CUP_COUNT, cupCountNum - 1)
+                        .setValue(FACING, state.getValue(FACING)));
             } else {
                 level.setBlockAndUpdate(pos, state
                         .setValue(teaCount, teaCountNum - 1)

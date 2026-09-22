@@ -96,6 +96,22 @@ public class EmptyCupBlock extends HorizontalDirectionalBlock {
             return ItemInteractionResult.SUCCESS;
         }
 
+        // 如果是茶杯，将空杯转换为对应的茶杯
+        if (itemInHand.getItem() instanceof TeacupItem teacupItem
+            && teacupItem.getBlock() instanceof TeacupBlock teacupBlock) {
+            int currentCount = state.getValue(CUP_COUNT);
+            if (currentCount < teacupBlock.getMaxCount()) {
+                level.setBlockAndUpdate(pos, teacupBlock.defaultBlockState()
+                        .setValue(teacupBlock.getCupCountProperty(), currentCount + 1)
+                        .setValue(teacupBlock.getTeaCountProperty(), 1)
+                        .setValue(FACING, state.getValue(FACING)));
+                level.playSound(player, pos, this.soundType.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                itemInHand.shrink(1);
+                return ItemInteractionResult.SUCCESS;
+            }
+            return ItemInteractionResult.CONSUME;
+        }
+
         // 如果是空杯
         if (itemInHand.is(ModItems.EMPTY_CUP.get())) {
             // 如果茶杯数量没满
