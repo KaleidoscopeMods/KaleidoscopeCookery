@@ -23,5 +23,6 @@ public record MillstoneBindableData(int rotSpeedTick, float liftAngle, Vec3 offs
     }, BuiltInRegistries.ENTITY_TYPE::getKey);
 
     public static final Codec<Map<EntityType<?>, MillstoneBindableData>> CODEC = Codec.unboundedMap(ENTITY_TYPE_CODEC, MillstoneBindableData.DATA_CODEC);
-    public static final MillstoneBindableData DEFAULT = new MillstoneBindableData(10 * 20, 5f, Vec3.ZERO);
+
+    public static final MillstoneBindableData DEFAULT = new MillstoneBindableData(500, 0f, Vec3.ZERO);
 }

@@ -1,0 +1,22 @@
+{
+  "description": {
+    "translate": "enchantment.kaleidoscope_cookery.sweep"
+  },
+  "supported_items": "#kaleidoscope_cookery:enchantable/sickles",
+  "primary_items": "#kaleidoscope_cookery:enchantable/sickles",
+  "weight": 5,
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 11
+  },
+  "max_cost": {
+    "base": 21,
+    "per_level_above_first": 11
+  },
+  "anvil_cost": 2,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {}
+}

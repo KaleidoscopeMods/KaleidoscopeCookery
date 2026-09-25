@@ -41,7 +41,7 @@ public class EmiChoppingBoardRecipe extends BasicEmiRecipe {
         registry.getRecipeManager().getAllRecipesFor(ModRecipes.CHOPPING_BOARD_RECIPE).forEach(recipeHolder -> {
             ChoppingBoardRecipe r = recipeHolder.value();
             List<EmiIngredient> inputs = r.getIngredients().stream().map(EmiIngredient::of).toList();
-            List<EmiStack> outputs = List.of(EmiStack.of(r.getResultItem(RegistryAccess.EMPTY)));
+            List<EmiStack> outputs = r.getResults().stream().map(EmiStack::of).toList();
             registry.addRecipe(new EmiChoppingBoardRecipe(recipeHolder.id(), inputs, outputs));
         });
     }
@@ -52,9 +52,18 @@ public class EmiChoppingBoardRecipe extends BasicEmiRecipe {
 
         widgets.addSlot(inputs.get(0), 38, 27)
                 .drawBack(false);
-        widgets.addSlot(outputs.get(0), 124, 26)
-                .drawBack(false)
-                .recipeContext(this)
-                .large(true);
+        if (!outputs.isEmpty()) {
+            widgets.addSlot(outputs.get(0), 124, 26)
+                    .drawBack(false)
+                    .recipeContext(this)
+                    .large(true);
+        }
+        int additionalCount = outputs.size() - 1;
+        int outputStartX = 124 - (additionalCount - 1) * 12;
+        for (int index = 1; index < outputs.size(); index++) {
+            widgets.addSlot(outputs.get(index), outputStartX + (index - 1) * 24, 54)
+                    .recipeContext(this)
+                    .large(true);
+        }
     }
 }

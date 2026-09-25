@@ -207,6 +207,15 @@
     "kaleidoscope_cookery:apple_platter",
     "kaleidoscope_cookery:tomato_platter",
     "kaleidoscope_cookery:watermelon_platter",
-    "kaleidoscope_cookery:chorus_fruit_platter"
+    "kaleidoscope_cookery:chorus_fruit_platter",
+    "kaleidoscope_cookery:kalc/quark/cook_stool_azalea",
+    "kaleidoscope_cookery:kalc/quark/cook_stool_ancient",
+    "kaleidoscope_cookery:kalc/quark/cook_stool_blossom",
+    "kaleidoscope_cookery:kalc/quark/chair_azalea",
+    "kaleidoscope_cookery:kalc/quark/chair_ancient",
+    "kaleidoscope_cookery:kalc/quark/chair_blossom",
+    "kaleidoscope_cookery:kalc/quark/table_azalea",
+    "kaleidoscope_cookery:kalc/quark/table_ancient",
+    "kaleidoscope_cookery:kalc/quark/table_blossom"
   ]
 }

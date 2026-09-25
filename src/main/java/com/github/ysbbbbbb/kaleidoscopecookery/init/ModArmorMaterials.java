@@ -21,7 +21,7 @@ public class ModArmorMaterials {
 
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> FARMER = ARMOR_MATERIALS.register("cookery_farmer", () -> new ArmorMaterial(
             Util.make(Maps.newHashMap(), map -> {
-                map.put(HELMET, 1);
+                map.put(HELMET, 3);
                 map.put(CHESTPLATE, 4);
                 map.put(LEGGINGS, 5);
                 map.put(BOOTS, 2);

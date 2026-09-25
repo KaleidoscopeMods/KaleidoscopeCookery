@@ -14,11 +14,11 @@ import static net.neoforged.neoforge.common.ItemAbilities.SWORD_DIG;
 
 public class KitchenKnifeItem extends SwordItem {
     public KitchenKnifeItem(Tier tier) {
-        super(tier, new Properties().attributes(SwordItem.createAttributes(tier, 0, -2.0F)));
+        super(tier, new Properties().attributes(SwordItem.createAttributes(tier, 3, -2.4F)));
     }
 
     public KitchenKnifeItem(Tier tier, Properties properties) {
-        super(tier, properties.attributes(SwordItem.createAttributes(tier, 0, -2.0F)));
+        super(tier, properties.attributes(SwordItem.createAttributes(tier, 3, -2.4F)));
     }
 
     @Override

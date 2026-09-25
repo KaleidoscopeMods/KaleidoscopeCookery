@@ -56,10 +56,19 @@ public class ChoppingBoardRecipeCategory implements IRecipeCategory<RecipeHolder
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<ChoppingBoardRecipe> recipe, IFocusGroup focuses) {
         Ingredient input = recipe.value().getIngredient();
-        ItemStack output = recipe.value().getResult();
+        List<ItemStack> outputs = recipe.value().getResults();
 
         builder.addSlot(RecipeIngredientRole.INPUT, 38, 27).addIngredients(input);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 128, 30).addItemStack(output);
+        if (!outputs.isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 128, 30).addItemStack(outputs.get(0));
+        }
+        int additionalCount = outputs.size() - 1;
+        int startX = 128 - (additionalCount - 1) * 12;
+        for (int index = 1; index < outputs.size(); index++) {
+            builder.addSlot(RecipeIngredientRole.OUTPUT, startX + (index - 1) * 24, 54)
+                    .setStandardSlotBackground()
+                    .addItemStack(outputs.get(index));
+        }
     }
 
     @Override
