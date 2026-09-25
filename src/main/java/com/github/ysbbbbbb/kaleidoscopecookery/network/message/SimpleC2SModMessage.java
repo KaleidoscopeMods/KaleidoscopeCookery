@@ -60,7 +60,9 @@ public record SimpleC2SModMessage(int index) {
 
     private static void handleBaozi(NetworkEvent.Context context) {
         ServerPlayer player = context.getSender();
-        if (player == null || !player.getMainHandItem().is(ModItems.BAOZI.get()) || !player.isSecondaryUseActive()) {
+        if (player == null
+            || (!player.getMainHandItem().is(ModItems.BAOZI.get()) && !player.getMainHandItem().is(ModItems.SAMSA.get()))
+            || !player.isSecondaryUseActive()) {
             return;
         }
         ItemStack stack = player.getMainHandItem();
