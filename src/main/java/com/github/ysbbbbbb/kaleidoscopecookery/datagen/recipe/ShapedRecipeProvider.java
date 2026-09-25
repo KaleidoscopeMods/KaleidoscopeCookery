@@ -284,8 +284,8 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .pattern("LSL")
                 .pattern("LLL")
                 .define('L', Items.LEATHER)
-                .define('S', Items.NETHER_STAR)
-                .unlockedBy("has_nether_star", has(Items.NETHER_STAR))
+                .define('S', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.OIL_POT.get())
