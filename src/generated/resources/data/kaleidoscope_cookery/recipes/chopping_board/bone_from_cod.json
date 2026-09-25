@@ -5,8 +5,10 @@
     "item": "minecraft:cooked_cod"
   },
   "model_id": "kaleidoscope_cookery:cooked_cod",
-  "result": {
-    "count": 2,
-    "item": "minecraft:bone"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "minecraft:bone"
+    }
+  ]
 }

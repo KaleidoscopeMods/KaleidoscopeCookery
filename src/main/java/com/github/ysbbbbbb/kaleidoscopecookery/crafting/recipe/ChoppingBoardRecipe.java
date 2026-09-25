@@ -9,14 +9,19 @@ import net.minecraft.world.item.crafting.SingleItemRecipe;
 import net.minecraft.world.level.Level;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
 public class ChoppingBoardRecipe extends SingleItemRecipe {
     private final int cutCount;
     private final ResourceLocation modelId;
+    private final List<ItemStack> results;
 
-    public ChoppingBoardRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, int cutCount, ResourceLocation modelId) {
-        super(ModRecipes.CHOPPING_BOARD_RECIPE, ModRecipes.CHOPPING_BOARD_SERIALIZER.get(), id, StringUtils.EMPTY, ingredient, result);
+    public ChoppingBoardRecipe(ResourceLocation id, Ingredient ingredient, List<ItemStack> results, int cutCount, ResourceLocation modelId) {
+        super(ModRecipes.CHOPPING_BOARD_RECIPE, ModRecipes.CHOPPING_BOARD_SERIALIZER.get(), id, StringUtils.EMPTY, ingredient,
+                results.isEmpty() ? ItemStack.EMPTY : results.get(0));
         this.cutCount = Math.max(cutCount, 1);
         this.modelId = modelId;
+        this.results = results.stream().map(ItemStack::copy).toList();
     }
 
     @Override
@@ -35,6 +40,10 @@ public class ChoppingBoardRecipe extends SingleItemRecipe {
 
     public ItemStack getResult() {
         return this.result;
+    }
+
+    public List<ItemStack> getResults() {
+        return this.results;
     }
 
     public int getCutCount() {

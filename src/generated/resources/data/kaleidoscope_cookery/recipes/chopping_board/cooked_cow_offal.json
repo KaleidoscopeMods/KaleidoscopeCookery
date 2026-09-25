@@ -5,8 +5,10 @@
     "item": "minecraft:cooked_beef"
   },
   "model_id": "kaleidoscope_cookery:cooked_cow_offal",
-  "result": {
-    "count": 2,
-    "item": "kaleidoscope_cookery:cooked_cow_offal"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "kaleidoscope_cookery:cooked_cow_offal"
+    }
+  ]
 }

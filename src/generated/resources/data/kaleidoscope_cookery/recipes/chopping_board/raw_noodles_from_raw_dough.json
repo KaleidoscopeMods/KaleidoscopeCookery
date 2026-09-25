@@ -5,8 +5,10 @@
     "tag": "forge:dough"
   },
   "model_id": "kaleidoscope_cookery:raw_dough",
-  "result": {
-    "count": 2,
-    "item": "kaleidoscope_cookery:raw_noodles"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "kaleidoscope_cookery:raw_noodles"
+    }
+  ]
 }

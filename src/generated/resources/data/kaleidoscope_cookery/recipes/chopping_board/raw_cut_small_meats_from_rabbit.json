@@ -5,8 +5,13 @@
     "item": "minecraft:rabbit"
   },
   "model_id": "kaleidoscope_cookery:raw_rabbit",
-  "result": {
-    "count": 2,
-    "item": "kaleidoscope_cookery:raw_cut_small_meats"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "kaleidoscope_cookery:raw_cut_small_meats"
+    },
+    {
+      "item": "minecraft:bone"
+    }
+  ]
 }

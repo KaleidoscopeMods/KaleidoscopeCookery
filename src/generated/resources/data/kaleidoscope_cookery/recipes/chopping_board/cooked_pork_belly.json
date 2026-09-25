@@ -5,8 +5,10 @@
     "item": "minecraft:cooked_porkchop"
   },
   "model_id": "kaleidoscope_cookery:cooked_pork_belly",
-  "result": {
-    "count": 2,
-    "item": "kaleidoscope_cookery:cooked_pork_belly"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "kaleidoscope_cookery:cooked_pork_belly"
+    }
+  ]
 }

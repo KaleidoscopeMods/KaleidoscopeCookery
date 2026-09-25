@@ -16,11 +16,11 @@ import static net.minecraftforge.common.ToolActions.SWORD_DIG;
 
 public class KitchenKnifeItem extends SwordItem {
     public KitchenKnifeItem(Tier tier) {
-        super(tier, 0, -2.0F, new Properties());
+        super(tier, 3, -2.4F, new Properties());
     }
 
     public KitchenKnifeItem(Tier tier, Properties properties) {
-        super(tier, 0, -2.0F, properties);
+        super(tier, 3, -2.4F, properties);
     }
 
     @Override

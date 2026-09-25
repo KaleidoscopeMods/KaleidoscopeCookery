@@ -49,10 +49,19 @@ public class ReiChoppingBoardRecipeCategory implements DisplayCategory<DefaultCu
                 .entries(display.getInputEntries().get(0))
                 .disableBackground()
                 .markInput());
-        widgets.add(Widgets.createSlot(new Point(startX + 128, startY + 30))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput());
+        if (!display.getOutputEntries().isEmpty()) {
+            widgets.add(Widgets.createSlot(new Point(startX + 128, startY + 30))
+                    .entries(display.getOutputEntries().get(0))
+                    .disableBackground()
+                    .markOutput());
+        }
+        int additionalCount = display.getOutputEntries().size() - 1;
+        int outputStartX = 128 - (additionalCount - 1) * 12;
+        for (int index = 1; index < display.getOutputEntries().size(); index++) {
+            widgets.add(Widgets.createSlot(new Point(startX + outputStartX + (index - 1) * 24, startY + 54))
+                    .entries(display.getOutputEntries().get(index))
+                    .markOutput());
+        }
 
         return widgets;
     }
@@ -88,7 +97,8 @@ public class ReiChoppingBoardRecipeCategory implements DisplayCategory<DefaultCu
         registry.getRecipeManager().getAllRecipesFor(ModRecipes.CHOPPING_BOARD_RECIPE)
                 .forEach(r -> {
                     List<EntryIngredient> input = ReiUtil.ofIngredients(r.getIngredients());
-                    List<EntryIngredient> output = ReiUtil.ofItemStacks(r.getResult());
+                    List<EntryIngredient> output = r.getResults().stream()
+                            .flatMap(result -> ReiUtil.ofItemStacks(result).stream()).toList();
 
                     registry.add(new DefaultCustomDisplay(r, input, output) {
                         @Override

@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.builder;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModRecipes;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -17,13 +18,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class ChoppingBoardBuilder implements RecipeBuilder {
     private static final String NAME = "chopping_board";
 
     private Ingredient ingredient = Ingredient.EMPTY;
-    private ItemStack result = ItemStack.EMPTY;
+    private List<ItemStack> results = List.of();
     private int cutCount = 3;
     private ResourceLocation modelId;
 
@@ -42,17 +44,22 @@ public class ChoppingBoardBuilder implements RecipeBuilder {
     }
 
     public ChoppingBoardBuilder setResult(ItemStack stack) {
-        this.result = stack;
+        this.results = List.of(stack);
         return this;
     }
 
     public ChoppingBoardBuilder setResult(ItemLike itemLike) {
-        this.result = new ItemStack(itemLike);
+        this.results = List.of(new ItemStack(itemLike));
         return this;
     }
 
     public ChoppingBoardBuilder setResult(ItemLike itemLike, int count) {
-        this.result = new ItemStack(itemLike, count);
+        this.results = List.of(new ItemStack(itemLike, count));
+        return this;
+    }
+
+    public ChoppingBoardBuilder setResults(ItemStack... stacks) {
+        this.results = List.of(stacks);
         return this;
     }
 
@@ -78,7 +85,7 @@ public class ChoppingBoardBuilder implements RecipeBuilder {
 
     @Override
     public Item getResult() {
-        return this.result.getItem();
+        return this.results.get(0).getItem();
     }
 
     @Override
@@ -96,20 +103,20 @@ public class ChoppingBoardBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
-        recipeOutput.accept(new ChoppingBoardRecipe(id, this.ingredient, this.result, this.cutCount, this.modelId));
+        recipeOutput.accept(new ChoppingBoardRecipe(id, this.ingredient, this.results, this.cutCount, this.modelId));
     }
 
     public static class ChoppingBoardRecipe implements FinishedRecipe {
         private final ResourceLocation id;
         private final Ingredient ingredient;
-        private final ItemStack result;
+        private final List<ItemStack> results;
         private final int cutCount;
         private final ResourceLocation modelId;
 
-        public ChoppingBoardRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result, int cutCount, ResourceLocation modelId) {
+        public ChoppingBoardRecipe(ResourceLocation id, Ingredient ingredient, List<ItemStack> results, int cutCount, ResourceLocation modelId) {
             this.id = id;
             this.ingredient = ingredient;
-            this.result = result;
+            this.results = results;
             this.cutCount = cutCount;
             this.modelId = modelId;
         }
@@ -117,12 +124,16 @@ public class ChoppingBoardBuilder implements RecipeBuilder {
         @Override
         public void serializeRecipeData(JsonObject json) {
             json.add("ingredient", this.ingredient.toJson());
-            JsonObject itemJson = new JsonObject();
-            itemJson.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(this.result.getItem())).toString());
-            if (this.result.getCount() > 1) {
-                itemJson.addProperty("count", this.result.getCount());
+            JsonArray resultArray = new JsonArray();
+            for (ItemStack result : this.results) {
+                JsonObject itemJson = new JsonObject();
+                itemJson.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(result.getItem())).toString());
+                if (result.getCount() > 1) {
+                    itemJson.addProperty("count", result.getCount());
+                }
+                resultArray.add(itemJson);
             }
-            json.add("result", itemJson);
+            json.add("result", resultArray);
             json.addProperty("cut_count", this.cutCount);
             json.addProperty("model_id", this.modelId.toString());
         }

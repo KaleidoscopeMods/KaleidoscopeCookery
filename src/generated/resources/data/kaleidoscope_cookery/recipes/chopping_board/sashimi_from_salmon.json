@@ -5,8 +5,10 @@
     "item": "minecraft:salmon"
   },
   "model_id": "kaleidoscope_cookery:salmon",
-  "result": {
-    "count": 2,
-    "item": "kaleidoscope_cookery:sashimi"
-  }
+  "result": [
+    {
+      "count": 3,
+      "item": "kaleidoscope_cookery:sashimi"
+    }
+  ]
 }
