@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.event.SickleHarvestEvent;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModEnchantments;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -69,14 +70,14 @@ public class SickleItem extends SwordItem {
 
         BlockPos pos = context.getClickedPos();
         ItemStack stack = context.getItemInHand();
-        int breakCount = 0;
-        // 搜索方块的 5x5x2 范围内的可收割作物、草丛、灌木等并收割
-        for (int x = -2; x <= 2; x++) {
+
+        int sweepLevel = stack.getEnchantmentLevel(ModEnchantments.SWEEP.get());
+        int radius = 2 + sweepLevel;
+        // 根据清扫等级搜索 5x5、7x7、9x9 或 11x11 范围内的植物。
+        for (int x = -radius; x <= radius; x++) {
             for (int y = 0; y <= 1; y++) {
-                for (int z = -2; z <= 2; z++) {
-                    if (harvest(pos, x, y, z, level, player, stack)) {
-                        breakCount++;
-                    }
+                for (int z = -radius; z <= radius; z++) {
+                    harvest(pos, x, y, z, level, player, stack);
                 }
             }
         }
@@ -86,7 +87,13 @@ public class SickleItem extends SwordItem {
                 SoundEvents.PLAYER_ATTACK_SWEEP, player.getSoundSource(),
                 1.0F, 1.0F);
         player.sweepAttack();
-        stack.hurtAndBreak(breakCount, player, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+        int durabilityCost = switch (sweepLevel) {
+            case 1 -> 2;
+            case 2 -> 4;
+            case 3 -> 8;
+            default -> 1;
+        };
+        stack.hurtAndBreak(durabilityCost, player, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         player.getCooldowns().addCooldown(this, 10);
         return InteractionResult.SUCCESS;
     }

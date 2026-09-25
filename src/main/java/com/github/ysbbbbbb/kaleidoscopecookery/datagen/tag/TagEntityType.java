@@ -21,14 +21,7 @@ public class TagEntityType extends EntityTypeTagsProvider {
         this.tag(TagMod.PIG_OIL_SOURCE)
                 .add(EntityType.PIG, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.HOGLIN, EntityType.ZOMBIFIED_PIGLIN, EntityType.ZOGLIN);
 
-        this.tag(TagMod.MILLSTONE_BINDABLE).add(
-                EntityType.MULE, EntityType.DONKEY,
-                EntityType.HORSE, EntityType.ZOMBIE_HORSE, EntityType.SKELETON_HORSE,
-                EntityType.LLAMA, EntityType.TRADER_LLAMA,
-                EntityType.COW, EntityType.MOOSHROOM,
-                EntityType.SHEEP, EntityType.GOAT,
-                EntityType.VILLAGER
-        );
+        this.tag(TagMod.MILLSTONE_BIND_BLACKLIST).add(EntityType.PLAYER);
 
         this.tag(TagMod.RICE_GROWTH_BOOSTER).add(
                 EntityType.COD, EntityType.SALMON, EntityType.TROPICAL_FISH,

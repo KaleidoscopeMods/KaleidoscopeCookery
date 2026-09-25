@@ -26,7 +26,7 @@ public class FarmerArmorMaterial implements ArmorMaterial {
     @Override
     public int getDefenseForType(ArmorItem.Type type) {
         return switch (type) {
-            case HELMET -> 1;
+            case HELMET -> 3;
             case CHESTPLATE -> 4;
             case LEGGINGS -> 5;
             case BOOTS -> 2;

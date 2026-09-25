@@ -1,53 +1,66 @@
 {
+  "minecraft:warden": {
+    "rot_speed_tick": 80,
+    "lift_angle": 0
+  },
+  "minecraft:wither": {
+    "rot_speed_tick": 80,
+    "lift_angle": 0
+  },
+  "minecraft:ravager": {
+    "rot_speed_tick": 80,
+    "lift_angle": 0
+  },
   "minecraft:mule": {
     "rot_speed_tick": 120,
-    "lift_angle": -3
-  },
-  "minecraft:villager": {
-    "rot_speed_tick": 150,
-    "lift_angle": -5,
-    "offset": [-0.1, 0, 0]
+    "lift_angle": 0
   },
   "minecraft:donkey": {
-    "rot_speed_tick": 200,
-    "lift_angle": -5
+    "rot_speed_tick": 120,
+    "lift_angle": 0
+  },
+  "minecraft:villager": {
+    "rot_speed_tick": 180,
+    "lift_angle": 0
   },
   "minecraft:horse": {
-    "rot_speed_tick": 500,
-    "lift_angle": 10
+    "rot_speed_tick": 300,
+    "lift_angle": 0
   },
   "minecraft:zombie_horse": {
-    "rot_speed_tick": 500,
-    "lift_angle": 7
+    "rot_speed_tick": 300,
+    "lift_angle": 0
   },
   "minecraft:skeleton_horse": {
-    "rot_speed_tick": 500,
-    "lift_angle": 7
-  },
-  "minecraft:llama": {
-    "rot_speed_tick": 600,
-    "lift_angle": 8
+    "rot_speed_tick": 300,
+    "lift_angle": 0
   },
   "minecraft:trader_llama": {
-    "rot_speed_tick": 600,
-    "lift_angle": 8
+    "rot_speed_tick": 300,
+    "lift_angle": 0
+  },
+  "minecraft:llama": {
+    "rot_speed_tick": 300,
+    "lift_angle": 0
+  },
+  "minecraft:camel": {
+    "rot_speed_tick": 300,
+    "lift_angle": 0
   },
   "minecraft:cow": {
-    "rot_speed_tick": 800,
-    "lift_angle": 7,
-    "offset": [0.1, 0, 0]
+    "rot_speed_tick": 400,
+    "lift_angle": 0
   },
   "minecraft:mooshroom": {
-    "rot_speed_tick": 800,
-    "lift_angle": 7,
-    "offset": [0.1, 0, 0]
+    "rot_speed_tick": 400,
+    "lift_angle": 0
   },
   "minecraft:sheep": {
-    "rot_speed_tick": 1000,
+    "rot_speed_tick": 400,
     "lift_angle": 0
   },
   "minecraft:goat": {
-    "rot_speed_tick": 1000,
-    "lift_angle": -5
+    "rot_speed_tick": 400,
+    "lift_angle": 0
   }
 }
