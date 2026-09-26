@@ -4,7 +4,7 @@
   },
   "supported_items": "#kaleidoscope_cookery:enchantable/kitchen_knives",
   "primary_items": "#kaleidoscope_cookery:enchantable/kitchen_knives",
-  "weight": 5,
+  "weight": 10,
   "max_level": 2,
   "min_cost": {
     "base": 1,
