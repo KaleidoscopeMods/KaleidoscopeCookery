@@ -55,7 +55,7 @@ public class StoveBlock extends HorizontalDirectionalBlock {
                 .strength(1.5F, 6.0F));
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.SOUTH)
-                .setValue(LIT, false));
+                .setValue(LIT, true));
     }
 
     @Override

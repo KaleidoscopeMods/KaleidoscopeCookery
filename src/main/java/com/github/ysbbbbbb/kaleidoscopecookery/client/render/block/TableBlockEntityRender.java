@@ -176,7 +176,11 @@ public class TableBlockEntityRender implements BlockEntityRenderer<TableBlockEnt
     }
 
     private void offsetBlockItem(ItemStack stack, PoseStack poseStack) {
-        if (stack.getItem() instanceof BlockItem) {
+        // 仅 3D 立体模型才会有 0.25 偏移
+        if (stack.getItem() instanceof BlockItem
+            && this.context.getItemRenderer()
+                .getModel(stack, null, null, 0)
+                .isGui3d()) {
             poseStack.translate(0, -0.25, 0);
         }
     }
