@@ -67,9 +67,18 @@ public class StockpotBlockEntityRender implements BlockEntityRenderer<StockpotBl
             renderItems(stockpot, poseStack, buffer, packedLight, packedOverlay, true);
         } else if (status == StockpotBlockEntity.FINISHED) {
             StockpotVisuals visuals = Objects.requireNonNullElse(stockpot.visuals, StockpotVisuals.DEFAULT);
-            int takeoutCount = stockpot.getTakeoutCount();
-            int maxCount = Math.min(stockpot.getResult().getCount(), StockpotBlockEntity.MAX_TAKEOUT_COUNT);
-            float soupHeight = 0.065f + 0.315f / maxCount * takeoutCount;
+            float soupHeight = 0.065f;
+
+            // 如果是糖浆
+            int syrupUses = stockpot.getSyrupUses();
+            if (syrupUses > 0) {
+                soupHeight += 0.065f + 0.3f / 9 * syrupUses;
+            } else {
+                int takeoutCount = stockpot.getTakeoutCount();
+                int maxCount = Math.min(stockpot.getResult().getCount(), StockpotBlockEntity.MAX_TAKEOUT_COUNT);
+                soupHeight += 0.315f / maxCount * takeoutCount;
+            }
+
             soupBase.renderWhenFinished(
                     stockpot, partialTick,
                     poseStack, buffer,

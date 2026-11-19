@@ -34,7 +34,8 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 ItemStack.EMPTY,
                 DEFAULT_TIME,
                 DEFAULT_CARRIER,
-                StockpotVisuals.DEFAULT
+                StockpotVisuals.DEFAULT,
+                false
         );
     }
 
@@ -83,8 +84,9 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor
         );
+        boolean syrup = GsonHelper.getAsBoolean(json, "syrup", false);
 
-        return new StockpotRecipe(recipeId, inputs, soupBase, result, time, carrier, visuals);
+        return new StockpotRecipe(recipeId, inputs, soupBase, result, time, carrier, visuals, syrup);
     }
 
     @Override
@@ -102,13 +104,14 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         ResourceLocation finishedTexture = buf.readResourceLocation();
         int cookingBubbleColor = buf.readVarInt();
         int finishedBubbleColor = buf.readVarInt();
+        boolean syrup = buf.readBoolean();
         StockpotVisuals visuals = new StockpotVisuals(
                 cookingTexture, finishedTexture,
                 cookingBubbleColor, finishedBubbleColor
         );
         return new StockpotRecipe(
                 recipeId, inputs, soupBase, result,
-                time, carrier, visuals
+                time, carrier, visuals, syrup
         );
     }
 
@@ -125,5 +128,6 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
         buffer.writeResourceLocation(visuals.finishedTexture());
         buffer.writeVarInt(visuals.cookingBubbleColor());
         buffer.writeVarInt(visuals.finishedBubbleColor());
+        buffer.writeBoolean(recipe.syrup());
     }
 }

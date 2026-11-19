@@ -129,6 +129,18 @@ public final class ModItems {
     public static RegistryObject<Item> DRIED_TEA_LEAVES = ITEMS.register("dried_tea_leaves", () -> new Item(new Item.Properties()));
     public static RegistryObject<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
 
+    // 果串与裹糖果串
+    public static RegistryObject<Item> GLOW_BERRY_SKEWER = ITEMS.register("glow_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
+    public static RegistryObject<Item> SWEET_BERRY_SKEWER = ITEMS.register("sweet_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
+    public static RegistryObject<Item> CHORUS_FRUIT_SKEWER = ITEMS.register("chorus_fruit_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
+    public static RegistryObject<Item> APPLE_SKEWER = ITEMS.register("apple_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
+    public static RegistryObject<Item> CATERPILLAR_SKEWER = ITEMS.register("caterpillar_skewer", () -> new Item(new Item.Properties().food(ModFoods.CATERPILLAR_SKEWER)));
+    public static RegistryObject<Item> CANDIED_GLOW_BERRY_SKEWER = ITEMS.register("candied_glow_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
+    public static RegistryObject<Item> CANDIED_SWEET_BERRY_SKEWER = ITEMS.register("candied_sweet_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
+    public static RegistryObject<Item> CANDIED_CHORUS_FRUIT_SKEWER = ITEMS.register("candied_chorus_fruit_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
+    public static RegistryObject<Item> CANDIED_APPLE_SKEWER = ITEMS.register("candied_apple_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
+    public static RegistryObject<Item> CANDIED_CATERPILLAR_SKEWER = ITEMS.register("candied_caterpillar_skewer", () -> new Item(new Item.Properties().food(ModFoods.CATERPILLAR_SKEWER)));
+
     // 面类食材
     public static RegistryObject<Item> FLOUR = ITEMS.register("flour", FlourItem::new);
     public static RegistryObject<Item> RAW_DOUGH = ITEMS.register("raw_dough", RawDoughItem::new);

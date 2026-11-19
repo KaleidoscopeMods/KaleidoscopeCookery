@@ -34,6 +34,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     private boolean emptyCarrier = false;
     private ResourceLocation soupBase = StockpotRecipeSerializer.DEFAULT_SOUP_BASE;
     private StockpotVisuals visuals = StockpotVisuals.DEFAULT;
+    private boolean syrup = false;
 
     public static StockpotRecipeBuilder builder() {
         return new StockpotRecipeBuilder();
@@ -95,6 +96,11 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     public StockpotRecipeBuilder setEmptyCarrier() {
         this.carrier = Ingredient.EMPTY;
         this.emptyCarrier = true;
+        return this;
+    }
+
+    public StockpotRecipeBuilder setSyrup() {
+        this.syrup = true;
         return this;
     }
 
@@ -179,7 +185,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
     @Override
     public void save(Consumer<FinishedRecipe> recipeOutput, ResourceLocation id) {
         recipeOutput.accept(new StockpotFinishedRecipe(id, this.ingredients, this.soupBase, this.result,
-                this.time, this.carrier, this.emptyCarrier, this.visuals));
+                this.time, this.carrier, this.emptyCarrier, this.visuals, this.syrup));
     }
 
     public static class StockpotFinishedRecipe implements FinishedRecipe {
@@ -191,10 +197,12 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
         private final Ingredient carrier;
         private final boolean emptyCarrier;
         private final StockpotVisuals visuals;
+        private final boolean syrup;
 
         public StockpotFinishedRecipe(ResourceLocation id, List<Ingredient> ingredients,
                                        ResourceLocation soupBase, ItemStack result,
-                                       int time, Ingredient carrier, boolean emptyCarrier, StockpotVisuals visuals
+                                      int time, Ingredient carrier, boolean emptyCarrier,
+                                      StockpotVisuals visuals, boolean syrup
         ) {
             this.id = id;
             this.ingredients = ingredients;
@@ -204,6 +212,7 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
             this.carrier = carrier;
             this.emptyCarrier = emptyCarrier;
             this.visuals = visuals;
+            this.syrup = syrup;
         }
 
         @Override
@@ -229,6 +238,9 @@ public class StockpotRecipeBuilder implements RecipeBuilder {
             json.addProperty("finished_texture", this.visuals.finishedTexture().toString());
             json.addProperty("cooking_bubble_color", this.visuals.cookingBubbleColor());
             json.addProperty("finished_bubble_color", this.visuals.finishedBubbleColor());
+            if (this.syrup) {
+                json.addProperty("syrup", true);
+            }
         }
 
         @Override

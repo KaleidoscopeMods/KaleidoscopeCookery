@@ -28,6 +28,20 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(CONFUSION, 200), 1F)
             .build();
 
+    // 果串
+    FoodProperties BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.1F)
+            .alwaysEat().build();
+
+    FoodProperties FRUIT_SKEWER = (new FoodProperties.Builder())
+            .nutrition(8).saturationMod(0.3F)
+            .alwaysEat().build();
+
+    FoodProperties CATERPILLAR_SKEWER = (new FoodProperties.Builder())
+            .nutrition(18).saturationMod(7F / 36F).alwaysEat()
+            .effect(() -> new MobEffectInstance(CONFUSION, 15 * 20), 1F)
+            .build();
+
     // 刺身
     FoodProperties SASHIMI = (new FoodProperties.Builder())
             .nutrition(1).saturationMod(0.5F)

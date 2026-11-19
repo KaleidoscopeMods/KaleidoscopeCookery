@@ -157,6 +157,17 @@ public class ModCreativeTabs {
                 output.accept(ModItems.BAMBOO_TUBE_RICE.get());
                 output.accept(ModItems.ZONGZI.get());
                 output.accept(ModItems.QINGTUAN.get());
+                // 果串
+                output.accept(ModItems.GLOW_BERRY_SKEWER.get());
+                output.accept(ModItems.SWEET_BERRY_SKEWER.get());
+                output.accept(ModItems.CHORUS_FRUIT_SKEWER.get());
+                output.accept(ModItems.APPLE_SKEWER.get());
+                output.accept(ModItems.CATERPILLAR_SKEWER.get());
+                output.accept(ModItems.CANDIED_GLOW_BERRY_SKEWER.get());
+                output.accept(ModItems.CANDIED_SWEET_BERRY_SKEWER.get());
+                output.accept(ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get());
+                output.accept(ModItems.CANDIED_APPLE_SKEWER.get());
+                output.accept(ModItems.CANDIED_CATERPILLAR_SKEWER.get());
                 // 小碗菜和盖饭
                 output.accept(ModItems.COOKED_RICE.get());
                 output.accept(ModItems.EGG_FRIED_RICE.get());

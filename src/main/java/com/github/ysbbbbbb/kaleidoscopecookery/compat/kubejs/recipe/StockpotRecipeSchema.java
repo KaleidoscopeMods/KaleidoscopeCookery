@@ -3,6 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.compat.kubejs.recipe;
 import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.item.OutputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
+import dev.latvian.mods.kubejs.recipe.component.BooleanComponent;
 import dev.latvian.mods.kubejs.recipe.component.ItemComponents;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.component.StringComponent;
@@ -21,7 +22,9 @@ public interface StockpotRecipeSchema {
     RecipeKey<String> FINISHED_TEXTURE = StringComponent.ID.key("finished_texture").optional(DEFAULT_FINISHED_TEXTURE.toString());
     RecipeKey<Integer> COOKING_BUBBLE_COLOR = NumberComponent.INT.key("cooking_bubble_color").optional(DEFAULT_COOKING_BUBBLE_COLOR);
     RecipeKey<Integer> FINISHED_BUBBLE_COLOR = NumberComponent.INT.key("finished_bubble_color").optional(DEFAULT_FINISHED_BUBBLE_COLOR);
+    RecipeKey<Boolean> SYRUP = BooleanComponent.BOOLEAN.key("syrup").optional(false);
 
     RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INGREDIENTS, SOUP_BASE, TIME, CARRIER,
-            COOKING_TEXTURE, FINISHED_TEXTURE, COOKING_BUBBLE_COLOR, FINISHED_BUBBLE_COLOR);
+            COOKING_TEXTURE, FINISHED_TEXTURE, COOKING_BUBBLE_COLOR, FINISHED_BUBBLE_COLOR,
+            SYRUP);
 }
