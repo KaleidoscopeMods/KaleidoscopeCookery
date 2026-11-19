@@ -53,6 +53,9 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
                 .with(sound("block/trash_can"));
         this.add(ModSounds.TRASH_CAN.get(), trashCanSound);
 
+        this.add(ModSounds.BLOCK_KITCHEN_SHELF.get(), definition().subtitle(subtitle("block.kitchen_shelf"))
+                .with(sound("block/kitchen_shelf")));
+
         SoundDefinition recipeBlockSound = definition().subtitle(subtitle("block.recipe_block"))
                 .with(sound("block/recipe_block/recipe_block_0"))
                 .with(sound("block/recipe_block/recipe_block_1"))

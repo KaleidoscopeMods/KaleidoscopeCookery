@@ -27,6 +27,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        withExistingParent("kitchen_shelf", modLoc("block/kitchen_shelf/single"));
         withExistingParent("stove", modLoc("block/stove"));
         withExistingParent("pot", modLoc("block/pot"));
         withExistingParent("stockpot", modLoc("block/stockpot"));

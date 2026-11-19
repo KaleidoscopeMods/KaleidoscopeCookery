@@ -3,11 +3,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.datagen.model;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.RiceCropBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.crop.TeaTreeBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.EightImmortalsTableBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.LongBenchBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.PlateBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.StackableFoodBlock;
-import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.TableBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.block.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.EmptyCupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.drink.TeacupBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.food.FoodBiteBlock;
@@ -26,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -170,6 +167,15 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(ModBlocks.FRUIT_BASKET.get(), new ModelFile.UncheckedModelFile(modLoc("block/fruit_basket")));
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
         horizontalBlock(ModBlocks.KITCHENWARE_RACKS.get(), new ModelFile.UncheckedModelFile(modLoc("block/kitchenware_racks")));
+
+        getVariantBuilder(ModBlocks.KITCHEN_SHELF.get()).forAllStates(state -> {
+            String part = state.getValue(KitchenShelfBlock.PART).getSerializedName();
+            int rotation = 180 + (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot();
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/kitchen_shelf/" + part)))
+                    .rotationY(rotation % 360)
+                    .build();
+        });
 
         getVariantBuilder(ModBlocks.BAMBOO_TRAY.get()).forAllStates(state -> ConfiguredModel.builder()
                 .modelFile(new ModelFile.UncheckedModelFile(

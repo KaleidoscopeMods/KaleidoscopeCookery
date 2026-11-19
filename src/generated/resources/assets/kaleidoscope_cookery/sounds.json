@@ -1,4 +1,10 @@
 {
+  "block.kitchen_shelf": {
+    "sounds": [
+      "kaleidoscope_cookery:block/kitchen_shelf"
+    ],
+    "subtitle": "subtitles.kaleidoscope_cookery.block.kitchen_shelf"
+  },
   "block.millstone": {
     "sounds": [
       "kaleidoscope_cookery:block/millstone/millstone_0",

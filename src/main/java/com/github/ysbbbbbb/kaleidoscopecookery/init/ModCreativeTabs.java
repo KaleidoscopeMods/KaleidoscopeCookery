@@ -21,6 +21,7 @@ public class ModCreativeTabs {
             .displayItems((par, output) -> {
                 // 厨具与杂项
                 output.accept(ModItems.STOVE.get());
+                output.accept(ModItems.KITCHEN_SHELF.get());
                 output.accept(ModItems.SHAWARMA_SPIT.get());
                 output.accept(ModItems.STRAW_BLOCK.get());
                 output.accept(ModItems.OIL_BLOCK.get());

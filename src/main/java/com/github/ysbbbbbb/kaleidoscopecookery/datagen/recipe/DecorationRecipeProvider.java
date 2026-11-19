@@ -56,6 +56,14 @@ public class DecorationRecipeProvider extends ModRecipeProvider {
         addTable(ModItems.TABLE_MANGROVE, Blocks.MANGROVE_FENCE, Blocks.MANGROVE_SLAB).save(consumer);
         addTable(ModItems.TABLE_WARPED, Blocks.WARPED_FENCE, Blocks.WARPED_SLAB).save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.KITCHEN_SHELF.get())
+                .pattern(" B ")
+                .pattern("BCB")
+                .pattern(" B ")
+                .define('B', Blocks.BARREL)
+                .define('C', Items.DISPENSER)
+                .unlockedBy("has_barrel", has(Blocks.BARREL)).save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.LONG_BENCH.get())
                 .pattern("PPP")
                 .pattern("FSF")

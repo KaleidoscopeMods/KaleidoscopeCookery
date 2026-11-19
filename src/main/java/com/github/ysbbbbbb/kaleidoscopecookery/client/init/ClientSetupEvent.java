@@ -47,6 +47,7 @@ public class ClientSetupEvent {
         BlockEntityRenderers.register(ModBlocks.CHOPPING_BOARD_BE.get(), ChoppingBoardBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.STOCKPOT_BE.get(), StockpotBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.KITCHENWARE_RACKS_BE.get(), KitchenwareRacksBlockEntityRender::new);
+        BlockEntityRenderers.register(ModBlocks.KITCHEN_SHELF_BE.get(), KitchenShelfBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.BAMBOO_TRAY_BE.get(), BambooTrayBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.CHAIR_BE.get(), ChairBlockEntityRender::new);
         BlockEntityRenderers.register(ModBlocks.TABLE_BE.get(), TableBlockEntityRender::new);
