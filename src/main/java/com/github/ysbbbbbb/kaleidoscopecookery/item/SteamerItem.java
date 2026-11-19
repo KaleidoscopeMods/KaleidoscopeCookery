@@ -3,14 +3,18 @@ package com.github.ysbbbbbb.kaleidoscopecookery.item;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.SteamerBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
+import com.github.ysbbbbbb.kaleidoscopecookery.inventory.tooltip.ItemContainerTooltip;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,9 +25,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
 public class SteamerItem extends BlockItem {
     public static final ResourceLocation HAS_ITEMS = new ResourceLocation(KaleidoscopeCookery.MOD_ID, "has_items");
@@ -62,11 +68,15 @@ public class SteamerItem extends BlockItem {
     }
 
     @Override
-    public int getMaxStackSize(ItemStack stack) {
-        if (stack.hasTag()) {
-            return 1;
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        CompoundTag data = BlockItem.getBlockEntityData(stack);
+        if (data == null || !data.contains(SteamerBlockEntity.ITEMS_TAG)) {
+            return Optional.empty();
         }
-        return super.getMaxStackSize(stack);
+        NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(data, items);
+        ItemStackHandler handler = new ItemStackHandler(items);
+        return Optional.of(new ItemContainerTooltip(handler));
     }
 
     @Override

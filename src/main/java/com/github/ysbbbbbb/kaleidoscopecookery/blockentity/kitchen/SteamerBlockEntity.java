@@ -292,7 +292,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
                     pos.getX() + 0.5 + random.nextDouble() / 1.25 * (random.nextBoolean() ? 1 : -1),
                     pos.getY() + yOffset + random.nextDouble() / 2,
                     pos.getZ() + 0.5 + random.nextDouble() / 1.25 * (random.nextBoolean() ? 1 : -1),
-                    1, 0, 0, 0, 0.05);
+                    2, 0, 0, 0, 0.05);
         }
     }
 

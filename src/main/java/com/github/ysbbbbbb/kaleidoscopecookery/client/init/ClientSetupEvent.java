@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.PotOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TeapotOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.TrashCanOverlay;
+import com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay.SteamerOverlay;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.render.block.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.client.resources.ItemRenderReplacerReloadListener;
 import com.github.ysbbbbbb.kaleidoscopecookery.compat.ponder.init.PonderCompat;
@@ -64,6 +65,7 @@ public class ClientSetupEvent {
         event.registerAbove(CROSSHAIR.id(), "pot_overlay", new PotOverlay());
         event.registerAbove(CROSSHAIR.id(), "teapot_overlay", new TeapotOverlay());
         event.registerAbove(CROSSHAIR.id(), "trash_can_overlay", new TrashCanOverlay());
+        event.registerAbove(CROSSHAIR.id(), "steamer_overlay", new SteamerOverlay());
     }
 
     @SubscribeEvent
