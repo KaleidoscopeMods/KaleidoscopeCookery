@@ -42,6 +42,24 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(CONFUSION, 15 * 20), 1F)
             .build();
 
+    // 裹糖果串
+    FoodProperties CANDIED_GLOW_BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(10).saturationMod(0.08F).alwaysEat()
+            .effect(() -> new MobEffectInstance(NIGHT_VISION, 20 * 20), 1F)
+            .build();
+
+    FoodProperties CANDIED_SWEET_BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(10).saturationMod(0.08F)
+            .alwaysEat().build();
+
+    FoodProperties CANDIED_FRUIT_SKEWER = (new FoodProperties.Builder())
+            .nutrition(16).saturationMod(0.3F)
+            .alwaysEat().build();
+
+    FoodProperties CANDIED_CATERPILLAR_SKEWER = (new FoodProperties.Builder())
+            .nutrition(36).saturationMod(7F / 36F)
+            .alwaysEat().build();
+
     // 刺身
     FoodProperties SASHIMI = (new FoodProperties.Builder())
             .nutrition(1).saturationMod(0.5F)
