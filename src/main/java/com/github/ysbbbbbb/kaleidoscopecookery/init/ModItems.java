@@ -138,11 +138,11 @@ public final class ModItems {
     public static RegistryObject<Item> CATERPILLAR_SKEWER = ITEMS.register("caterpillar_skewer", () -> new Item(new Item.Properties().food(ModFoods.CATERPILLAR_SKEWER)));
 
     // 裹糖果串
-    public static RegistryObject<Item> CANDIED_GLOW_BERRY_SKEWER = ITEMS.register("candied_glow_berry_skewer", () -> new CandiedSkewerItem(ModFoods.CANDIED_GLOW_BERRY_SKEWER, MobEffects.GLOWING, 5 * 20));
-    public static RegistryObject<Item> CANDIED_SWEET_BERRY_SKEWER = ITEMS.register("candied_sweet_berry_skewer", () -> new CandiedSkewerItem(ModFoods.CANDIED_SWEET_BERRY_SKEWER));
-    public static RegistryObject<Item> CANDIED_CHORUS_FRUIT_SKEWER = ITEMS.register("candied_chorus_fruit_skewer", () -> new CandiedSkewerItem(ModFoods.CANDIED_FRUIT_SKEWER));
-    public static RegistryObject<Item> CANDIED_APPLE_SKEWER = ITEMS.register("candied_apple_skewer", () -> new CandiedSkewerItem(ModFoods.CANDIED_FRUIT_SKEWER));
-    public static RegistryObject<Item> CANDIED_CATERPILLAR_SKEWER = ITEMS.register("candied_caterpillar_skewer", () -> new CandiedSkewerItem(ModFoods.CANDIED_CATERPILLAR_SKEWER, MobEffects.CONFUSION, 15 * 20));
+    public static RegistryObject<Item> CANDIED_GLOW_BERRY_SKEWER = ITEMS.register("candied_glow_berry_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_GLOW_BERRY_SKEWER_UPRIGHT, ModBlocks.CANDIED_GLOW_BERRY_SKEWER_SIDE, ModFoods.CANDIED_GLOW_BERRY_SKEWER, MobEffects.GLOWING, 5 * 20));
+    public static RegistryObject<Item> CANDIED_SWEET_BERRY_SKEWER = ITEMS.register("candied_sweet_berry_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_SWEET_BERRY_SKEWER_UPRIGHT, ModBlocks.CANDIED_SWEET_BERRY_SKEWER_SIDE, ModFoods.CANDIED_SWEET_BERRY_SKEWER));
+    public static RegistryObject<Item> CANDIED_CHORUS_FRUIT_SKEWER = ITEMS.register("candied_chorus_fruit_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_UPRIGHT, ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_SIDE, ModFoods.CANDIED_FRUIT_SKEWER));
+    public static RegistryObject<Item> CANDIED_APPLE_SKEWER = ITEMS.register("candied_apple_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_APPLE_SKEWER_UPRIGHT, ModBlocks.CANDIED_APPLE_SKEWER_SIDE, ModFoods.CANDIED_FRUIT_SKEWER));
+    public static RegistryObject<Item> CANDIED_CATERPILLAR_SKEWER = ITEMS.register("candied_caterpillar_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_CATERPILLAR_SKEWER_UPRIGHT, ModBlocks.CANDIED_CATERPILLAR_SKEWER_SIDE, ModFoods.CANDIED_CATERPILLAR_SKEWER, MobEffects.CONFUSION, 15 * 20));
 
     // 面类食材
     public static RegistryObject<Item> FLOUR = ITEMS.register("flour", FlourItem::new);

@@ -12,12 +12,15 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByThreeBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, KaleidoscopeCookery.MOD_ID);
@@ -93,12 +96,61 @@ public class ModBlocks {
     public static RegistryObject<Block> TABLE_WARPED = BLOCKS.register("table_warped", TableBlock::new);
 
     public static RegistryObject<Block> LONG_BENCH = BLOCKS.register("long_bench", LongBenchBlock::new);
-
     public static RegistryObject<Block> RED_LANTERN = BLOCKS.register("red_lantern", RedLanternBlock::new);
-
     public static RegistryObject<Block> EIGHT_IMMORTALS_TABLE = BLOCKS.register("eight_immortals_table", EightImmortalsTableBlock::new);
 
-    public static RegistryObject<Block> COLD_CUT_HAM_SLICES = BLOCKS.register("cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
+    public static RegistryObject<Block> CANDIED_GLOW_BERRY_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_glow_berry_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), 8
+    );
+
+    public static RegistryObject<Block> CANDIED_GLOW_BERRY_SKEWER_SIDE = candiedSkewer(
+            "candied_glow_berry_skewer_side", 5, false,
+            () -> ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), 8
+    );
+
+    public static RegistryObject<Block> CANDIED_SWEET_BERRY_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_sweet_berry_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_SWEET_BERRY_SKEWER_SIDE = candiedSkewer(
+            "candied_sweet_berry_skewer_side", 5, false,
+            () -> ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_CHORUS_FRUIT_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_chorus_fruit_skewer_upright", 5, true,
+            () -> ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_CHORUS_FRUIT_SKEWER_SIDE = candiedSkewer(
+            "candied_chorus_fruit_skewer_side", 4, false,
+            () -> ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_APPLE_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_apple_skewer_upright", 5, true,
+            () -> ModItems.CANDIED_APPLE_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_APPLE_SKEWER_SIDE = candiedSkewer(
+            "candied_apple_skewer_side", 4, false,
+            () -> ModItems.CANDIED_APPLE_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_CATERPILLAR_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_caterpillar_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_CATERPILLAR_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> CANDIED_CATERPILLAR_SKEWER_SIDE = candiedSkewer(
+            "candied_caterpillar_skewer_side", 5, false,
+            () -> ModItems.CANDIED_CATERPILLAR_SKEWER.get(), 0
+    );
+
+    public static RegistryObject<Block> COLD_CUT_HAM_SLICES = BLOCKS.register(
+            "cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
@@ -177,4 +229,8 @@ public class ModBlocks {
             TABLE_BIRCH.get(), TABLE_CHERRY.get(), TABLE_CRIMSON.get(), TABLE_DARK_OAK.get(),
             TABLE_JUNGLE.get(), TABLE_MANGROVE.get(), TABLE_WARPED.get()
     ).build(null));
+
+    private static RegistryObject<Block> candiedSkewer(String name, int maxCount, boolean upright, Supplier<Item> item, int lightLevel) {
+        return BLOCKS.register(name, () -> new CandiedSkewerBlock(maxCount, item, lightLevel, upright));
+    }
 }

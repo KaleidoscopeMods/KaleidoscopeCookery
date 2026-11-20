@@ -168,6 +168,18 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(ModBlocks.CHOPPING_BOARD.get(), new ModelFile.UncheckedModelFile(modLoc("block/chopping_board")));
         horizontalBlock(ModBlocks.KITCHENWARE_RACKS.get(), new ModelFile.UncheckedModelFile(modLoc("block/kitchenware_racks")));
 
+        // 果串
+        candiedSkewer(ModBlocks.CANDIED_GLOW_BERRY_SKEWER_UPRIGHT.get(), "candied_glow_berry_skewer", true);
+        candiedSkewer(ModBlocks.CANDIED_GLOW_BERRY_SKEWER_SIDE.get(), "candied_glow_berry_skewer", false);
+        candiedSkewer(ModBlocks.CANDIED_SWEET_BERRY_SKEWER_UPRIGHT.get(), "candied_sweet_berry_skewer", true);
+        candiedSkewer(ModBlocks.CANDIED_SWEET_BERRY_SKEWER_SIDE.get(), "candied_sweet_berry_skewer", false);
+        candiedSkewer(ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_UPRIGHT.get(), "candied_chorus_fruit_skewer", true);
+        candiedSkewer(ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_SIDE.get(), "candied_chorus_fruit_skewer", false);
+        candiedSkewer(ModBlocks.CANDIED_APPLE_SKEWER_UPRIGHT.get(), "candied_apple_skewer", true);
+        candiedSkewer(ModBlocks.CANDIED_APPLE_SKEWER_SIDE.get(), "candied_apple_skewer", false);
+        candiedSkewer(ModBlocks.CANDIED_CATERPILLAR_SKEWER_UPRIGHT.get(), "candied_caterpillar_skewer", true);
+        candiedSkewer(ModBlocks.CANDIED_CATERPILLAR_SKEWER_SIDE.get(), "candied_caterpillar_skewer", false);
+
         getVariantBuilder(ModBlocks.KITCHEN_SHELF.get()).forAllStates(state -> {
             String part = state.getValue(KitchenShelfBlock.PART).getSerializedName();
             int rotation = 180 + (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot();
@@ -473,6 +485,20 @@ public class BlockStateGenerator extends BlockStateProvider {
             int count = blockState.getValue(plateBlock.getServingsProperty());
             ResourceLocation model = new ResourceLocation(id.getNamespace(), "block/plate/%s/%s_%d".formatted(id.getPath(), id.getPath(), count));
             return new ModelFile.UncheckedModelFile(model);
+        });
+    }
+
+    private void candiedSkewer(Block block, String name, boolean upright) {
+        if (!(block instanceof CandiedSkewerBlock skewerBlock)) {
+            return;
+        }
+        getVariantBuilder(block).forAllStates(state -> {
+            int count = state.getValue(skewerBlock.getCountProperty());
+            String shape = upright ? "upright" : "side";
+            return ConfiguredModel.builder()
+                    .modelFile(new ModelFile.UncheckedModelFile(modLoc("block/candied_skewers/%s/%s_%d".formatted(name, shape, count))))
+                    .rotationY((180 + (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()) % 360)
+                    .build();
         });
     }
 }
