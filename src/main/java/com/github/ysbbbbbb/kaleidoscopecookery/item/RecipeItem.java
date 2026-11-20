@@ -5,6 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IPot;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.blockentity.IStockpot;
 import com.github.ysbbbbbb.kaleidoscopecookery.api.event.RecipeItemEvent;
 import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.PotBlock;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.KitchenShelfBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.PotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.StockpotBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
@@ -141,19 +142,32 @@ public class RecipeItem extends BlockItem {
     public InteractionResult useOn(UseOnContext context) {
         ItemStack itemInHand = context.getItemInHand();
         BlockPos clickedPos = context.getClickedPos();
-        BlockEntity blockEntity = context.getLevel().getBlockEntity(clickedPos);
-        RecipeManager recipeManager = context.getLevel().getRecipeManager();
+        Level level = context.getLevel();
+
+        BlockEntity blockEntity = level.getBlockEntity(clickedPos);
         if (blockEntity == null) {
             return super.useOn(context);
         }
+
+        // 点击厨架时，触发掉落物品
+        if (blockEntity instanceof KitchenShelfBlockEntity shelf && hasRecipe(itemInHand)) {
+            RecipeRecord record = getRecipe(itemInHand);
+            if (record != null && shelf.dispenseMatching(record.input())) {
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            }
+            return InteractionResult.PASS;
+        }
+
         Player player = context.getPlayer();
         if (player == null) {
             return super.useOn(context);
         }
+
+        RecipeManager recipeManager = level.getRecipeManager();
         if (hasRecipe(itemInHand)) {
             return this.onPutRecipe(blockEntity, player, itemInHand);
         } else {
-            return this.onRecordRecipe(context.getLevel(), player, blockEntity, recipeManager, itemInHand);
+            return this.onRecordRecipe(level, player, blockEntity, recipeManager, itemInHand);
         }
     }
 

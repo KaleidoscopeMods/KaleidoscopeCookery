@@ -62,7 +62,6 @@ public class RightClickEvent {
             && !itemInHand.isEmpty() && !itemInHand.is(ModItems.KITCHEN_SHELF.get())
             && level.getBlockEntity(pos) instanceof KitchenShelfBlockEntity shelf) {
             shelf.interact(player, true);
-            shelf.showCountHint(event.getFace());
             level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);

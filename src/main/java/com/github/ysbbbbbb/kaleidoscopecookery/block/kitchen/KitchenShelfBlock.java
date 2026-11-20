@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.KitchenShelfBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -21,14 +22,19 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+
+@SuppressWarnings("deprecation")
 public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
     public static final BooleanProperty SNEAK_PLACED = BooleanProperty.create("sneak_placed");
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
@@ -45,7 +51,7 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
                 .sound(SoundType.WOOD)
                 .noOcclusion());
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
+                .setValue(HORIZONTAL_FACING, Direction.NORTH)
                 .setValue(SNEAK_PLACED, false)
                 .setValue(PART, Part.SINGLE));
     }
@@ -54,14 +60,14 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState()
-                .setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(SNEAK_PLACED, context.getPlayer() != null && context.getPlayer().isShiftKeyDown());
         return updatePart(state, context.getLevel(), context.getClickedPos());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.HORIZONTAL_FACING, SNEAK_PLACED, PART);
+        builder.add(HORIZONTAL_FACING, SNEAK_PLACED, PART);
     }
 
     @Override
@@ -75,7 +81,7 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
             return state.setValue(PART, Part.SINGLE);
         }
 
-        Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction facing = state.getValue(HORIZONTAL_FACING);
         Direction clockwise = facing.getClockWise();
         Direction counterClockwise = facing.getCounterClockWise();
 
@@ -126,9 +132,51 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (level.getBlockEntity(pos) instanceof KitchenShelfBlockEntity shelf) {
-            shelf.dispense(state);
+        List<BlockPos> group = getConnectedShelves(level, pos);
+
+        BlockPos poweredLeader = group.stream()
+                .filter(level::hasNeighborSignal)
+                .min(BlockPos::compareTo)
+                .orElse(null);
+
+        if (pos.equals(poweredLeader)) {
+            for (BlockPos shelfPos : group) {
+                if (level.getBlockEntity(shelfPos) instanceof KitchenShelfBlockEntity shelf) {
+                    shelf.dispense(level.getBlockState(shelfPos));
+                }
+            }
         }
+    }
+
+    public static List<BlockPos> getConnectedShelves(Level level, BlockPos pos) {
+        BlockState state = level.getBlockState(pos);
+        if (!(state.getBlock() instanceof KitchenShelfBlock) || state.getValue(SNEAK_PLACED)) {
+            return List.of(pos);
+        }
+
+        Direction facing = state.getValue(HORIZONTAL_FACING);
+        Direction axis = facing.getClockWise();
+
+        List<BlockPos> shelves = Lists.newArrayList();
+        BlockPos start = pos;
+
+        // 先向一端找到起点
+        while (isSameShelf(level, start.relative(axis.getOpposite()), facing)) {
+            start = start.relative(axis.getOpposite());
+        }
+
+        // 然后遍历寻找到所有的方块
+        for (BlockPos current = start; isSameShelf(level, current, facing); current = current.relative(axis)) {
+            shelves.add(current);
+        }
+        return shelves;
+    }
+
+    private static boolean isSameShelf(Level level, BlockPos pos, Direction facing) {
+        BlockState state = level.getBlockState(pos);
+        return state.getBlock() instanceof KitchenShelfBlock
+               && !state.getValue(SNEAK_PLACED)
+               && state.getValue(HORIZONTAL_FACING) == facing;
     }
 
     @Override
@@ -145,7 +193,6 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
         if (blockEntity instanceof KitchenShelfBlockEntity shelf
             && !itemInHand.is(ModItems.KITCHEN_SHELF.get())
             && shelf.interact(player, player.isShiftKeyDown())) {
-            shelf.showCountHint(hit.getDirection());
             level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.CONSUME;
         }
@@ -177,16 +224,21 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock()) && !level.isClientSide
-            && level.getBlockEntity(pos) instanceof KitchenShelfBlockEntity shelf) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        List<ItemStack> drops = super.getDrops(state, params);
+        BlockEntity parameter = params.getParameter(LootContextParams.BLOCK_ENTITY);
+        if (parameter instanceof KitchenShelfBlockEntity shelf) {
             ItemStack stored = shelf.getStoredStack();
             if (!stored.isEmpty()) {
-                popResource(level, pos, stored.copy());
-                shelf.getCapability(ForgeCapabilities.ITEM_HANDLER)
-                        .ifPresent(handler -> handler.extractItem(0, Integer.MAX_VALUE, false));
+                int remaining = stored.getCount();
+                int maxStackSize = stored.getMaxStackSize();
+                while (remaining > 0) {
+                    int dropCount = Math.min(remaining, maxStackSize);
+                    drops.add(stored.copyWithCount(dropCount));
+                    remaining -= dropCount;
+                }
             }
         }
-        super.onRemove(state, level, pos, newState, isMoving);
+        return drops;
     }
 }

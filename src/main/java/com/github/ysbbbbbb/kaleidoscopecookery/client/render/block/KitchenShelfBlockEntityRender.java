@@ -3,13 +3,9 @@ package com.github.ysbbbbbb.kaleidoscopecookery.client.render.block;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.KitchenShelfBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -59,27 +55,7 @@ public class KitchenShelfBlockEntityRender implements BlockEntityRenderer<Kitche
             );
             poseStack.popPose();
         }
-        poseStack.popPose();
 
-        // 当超过 8 数量时，塞入渲染数字
-        if (shelf.hasCountHint()) {
-            Direction face = shelf.getHintFace();
-            poseStack.pushPose();
-            poseStack.translate(
-                    0.5 + face.getStepX() * 0.875,
-                    0.5 + face.getStepY() * 0.875,
-                    0.5 + face.getStepZ() * 0.875
-            );
-            poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
-            poseStack.scale(-0.025F, -0.025F, 0.025F);
-            Component text = Component.literal(Integer.toString(stored.getCount()));
-            float textX = -Minecraft.getInstance().font.width(text) / 2.0F;
-            Minecraft.getInstance().font.drawInBatch(
-                    text, textX, 0, 0xFFFFFF, false,
-                    poseStack.last().pose(), buffer, Font.DisplayMode.NORMAL,
-                    0x80000000, light
-            );
-            poseStack.popPose();
-        }
+        poseStack.popPose();
     }
 }

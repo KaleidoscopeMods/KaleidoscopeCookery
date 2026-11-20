@@ -1,11 +1,12 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen.KitchenShelfBlock;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.BaseBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModParticles;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSounds;
 import com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.KitchenShelfItemHandler;
-import com.github.ysbbbbbb.kaleidoscopecookery.util.ItemUtils;
+import com.google.common.collect.Sets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -14,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,6 +28,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Set;
+
 import static com.github.ysbbbbbb.kaleidoscopecookery.inventory.itemhandler.KitchenShelfItemHandler.CAPACITY;
 
 public class KitchenShelfBlockEntity extends BaseBlockEntity {
@@ -33,8 +38,6 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
     private final KitchenShelfItemHandler inventory = new KitchenShelfItemHandler(this);
     private LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> inventory);
     private boolean wasPowered;
-    private long hintExpiresAt;
-    private Direction hintFace = Direction.NORTH;
 
     public KitchenShelfBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.KITCHEN_SHELF_BE.get(), pos, state);
@@ -44,32 +47,18 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
         return inventory.getStackInSlot(0);
     }
 
-    public void showCountHint(Direction face) {
-        hintFace = face;
-        hintExpiresAt = level == null ? 0 : level.getGameTime() + 40;
-        refresh();
-    }
-
-    public boolean hasCountHint() {
-        return level != null && level.getGameTime() < hintExpiresAt && !getStoredStack().isEmpty();
-    }
-
-    public Direction getHintFace() {
-        return hintFace;
-    }
-
     public boolean interact(LivingEntity living, boolean all) {
         ItemStack held = living.getMainHandItem();
         ItemStack stored = getStoredStack();
 
-        // 空手取出
+        // 空手取出时直接向厨架正面丢出
         if (held.isEmpty()) {
             if (stored.isEmpty()) {
                 return false;
             }
-            int amount = all ? Math.min(stored.getCount(), stored.getMaxStackSize()) : 1;
+            int amount = all ? stored.getCount() : 1;
             ItemStack taken = inventory.extractItem(0, amount, false);
-            ItemUtils.getItemToLivingEntity(living, taken);
+            this.dropToFront(taken);
             return true;
         }
 
@@ -148,12 +137,55 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
     }
 
     public void dispense(BlockState state) {
-        if (!(level instanceof ServerLevel serverLevel) || getStoredStack().isEmpty()) {
+        if (!(level instanceof ServerLevel) || this.getStoredStack().isEmpty()) {
             return;
         }
 
         ItemStack stack = inventory.extractItem(0, 1, false);
-        if (stack.isEmpty()) {
+        this.dispenseStack(state, stack);
+    }
+
+    public boolean dispenseMatching(List<ItemStack> ingredients) {
+        if (level == null) {
+            return false;
+        }
+
+        // 先去除重复物品
+        Set<Item> needed = Sets.newHashSet();
+        for (ItemStack ingredient : ingredients) {
+            if (!ingredient.isEmpty()) {
+                needed.add(ingredient.getItem());
+            }
+        }
+
+        // 按照需求，遍历链接的厨架，弹射出所需的物品
+        boolean dispensed = false;
+        for (Item item : needed) {
+            for (BlockPos shelfPos : KitchenShelfBlock.getConnectedShelves(level, worldPosition)) {
+                if (level.getBlockEntity(shelfPos) instanceof KitchenShelfBlockEntity shelf
+                    && shelf.dispenseOneIfMatches(item)) {
+                    dispensed = true;
+                    break;
+                }
+            }
+        }
+        return dispensed;
+    }
+
+    private boolean dispenseOneIfMatches(Item item) {
+        if (!this.getStoredStack().is(item)) {
+            return false;
+        }
+        ItemStack stack = inventory.extractItem(0, 1, false);
+        this.dispenseStack(this.getBlockState(), stack);
+        return true;
+    }
+
+    /**
+     * 从厨架前方弹射物品
+     */
+    private void dispenseStack(BlockState state, ItemStack stack) {
+        if (!(level instanceof ServerLevel serverLevel) || stack.isEmpty()) {
             return;
         }
 
@@ -174,13 +206,35 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
         );
     }
 
+    /**
+     * 从厨架前方掉落物品
+     */
+    private void dropToFront(ItemStack stack) {
+        if (level == null || stack.isEmpty()) {
+            return;
+        }
+
+        Direction front = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        double x = worldPosition.getX() + 0.5 + front.getStepX() * 0.65;
+        double y = worldPosition.getY() + 0.45;
+        double z = worldPosition.getZ() + 0.5 + front.getStepZ() * 0.65;
+
+        int remaining = stack.getCount();
+        int maxStackSize = stack.getMaxStackSize();
+        while (remaining > 0) {
+            int count = Math.min(remaining, maxStackSize);
+            ItemEntity entity = new ItemEntity(level, x, y, z, stack.copyWithCount(count));
+            entity.setDeltaMovement(front.getStepX() * 0.2, 0.15, front.getStepZ() * 0.2);
+            level.addFreshEntity(entity);
+            remaining -= maxStackSize;
+        }
+    }
+
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("Inventory", inventory.serializeNBT());
         tag.putBoolean("WasPowered", wasPowered);
-        tag.putLong("HintExpiresAt", hintExpiresAt);
-        tag.putInt("HintFace", hintFace.get3DDataValue());
     }
 
     @Override
@@ -188,8 +242,6 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound("Inventory"));
         wasPowered = tag.getBoolean("WasPowered");
-        hintExpiresAt = tag.getLong("HintExpiresAt");
-        hintFace = Direction.from3DDataValue(tag.getInt("HintFace"));
     }
 
     @Override

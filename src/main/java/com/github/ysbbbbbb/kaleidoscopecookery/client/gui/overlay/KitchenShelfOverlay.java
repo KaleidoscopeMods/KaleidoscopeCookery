@@ -32,8 +32,8 @@ public class KitchenShelfOverlay implements IGuiOverlay {
 
         ItemStack stored = shelf.getStoredStack();
         if (!stored.isEmpty()) {
-            int x = screenWidth / 2 + 16;
-            int y = screenHeight / 2 - 8;
+            int x = screenWidth / 2 - 8;
+            int y = screenHeight / 2 + 8;
             graphics.renderFakeItem(stored, x, y);
             graphics.renderItemDecorations(minecraft.font, stored, x, y);
         }
