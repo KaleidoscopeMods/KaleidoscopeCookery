@@ -145,6 +145,7 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
         if (blockEntity instanceof KitchenShelfBlockEntity shelf
             && !itemInHand.is(ModItems.KITCHEN_SHELF.get())
             && shelf.interact(player, player.isShiftKeyDown())) {
+            shelf.showCountHint(hit.getDirection());
             level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.CONSUME;
         }

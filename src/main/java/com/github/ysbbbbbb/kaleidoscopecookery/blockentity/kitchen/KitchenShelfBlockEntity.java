@@ -33,6 +33,8 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
     private final KitchenShelfItemHandler inventory = new KitchenShelfItemHandler(this);
     private LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> inventory);
     private boolean wasPowered;
+    private long hintExpiresAt;
+    private Direction hintFace = Direction.NORTH;
 
     public KitchenShelfBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.KITCHEN_SHELF_BE.get(), pos, state);
@@ -40,6 +42,20 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
 
     public ItemStack getStoredStack() {
         return inventory.getStackInSlot(0);
+    }
+
+    public void showCountHint(Direction face) {
+        hintFace = face;
+        hintExpiresAt = level == null ? 0 : level.getGameTime() + 40;
+        refresh();
+    }
+
+    public boolean hasCountHint() {
+        return level != null && level.getGameTime() < hintExpiresAt && !getStoredStack().isEmpty();
+    }
+
+    public Direction getHintFace() {
+        return hintFace;
     }
 
     public boolean interact(LivingEntity living, boolean all) {
@@ -163,6 +179,8 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
         super.saveAdditional(tag);
         tag.put("Inventory", inventory.serializeNBT());
         tag.putBoolean("WasPowered", wasPowered);
+        tag.putLong("HintExpiresAt", hintExpiresAt);
+        tag.putInt("HintFace", hintFace.get3DDataValue());
     }
 
     @Override
@@ -170,6 +188,8 @@ public class KitchenShelfBlockEntity extends BaseBlockEntity {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound("Inventory"));
         wasPowered = tag.getBoolean("WasPowered");
+        hintExpiresAt = tag.getLong("HintExpiresAt");
+        hintFace = Direction.from3DDataValue(tag.getInt("HintFace"));
     }
 
     @Override
