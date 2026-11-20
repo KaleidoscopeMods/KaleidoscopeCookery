@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.client.gui.overlay;
 
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.SteamerBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,7 +12,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
-import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.SteamerBlockEntity;
 
 public class SteamerOverlay implements IGuiOverlay {
     @Override
@@ -28,13 +28,24 @@ public class SteamerOverlay implements IGuiOverlay {
         if (!(entity instanceof SteamerBlockEntity steamer)) {
             return;
         }
-        int x = screenWidth / 2 - 28;
+
+        int x = screenWidth / 2 - 38;
         int y = screenHeight / 2 + 4;
+        int count = 0;
+
         for (ItemStack stack : steamer.getItems()) {
             if (!stack.isEmpty()) {
                 graphics.renderFakeItem(stack, x, y);
                 graphics.renderItemDecorations(minecraft.font, stack, x, y);
+
+                count++;
                 x += 20;
+
+                if (count > 3) {
+                    x = screenWidth / 2 - 38;
+                    y += 20;
+                    count = 0;
+                }
             }
         }
     }
