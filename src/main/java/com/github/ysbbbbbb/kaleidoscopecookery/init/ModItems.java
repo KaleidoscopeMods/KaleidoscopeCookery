@@ -131,11 +131,11 @@ public final class ModItems {
     public static RegistryObject<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
 
     // 果串
-    public static RegistryObject<Item> GLOW_BERRY_SKEWER = ITEMS.register("glow_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
-    public static RegistryObject<Item> SWEET_BERRY_SKEWER = ITEMS.register("sweet_berry_skewer", () -> new Item(new Item.Properties().food(ModFoods.BERRY_SKEWER)));
-    public static RegistryObject<Item> CHORUS_FRUIT_SKEWER = ITEMS.register("chorus_fruit_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
-    public static RegistryObject<Item> APPLE_SKEWER = ITEMS.register("apple_skewer", () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SKEWER)));
-    public static RegistryObject<Item> CATERPILLAR_SKEWER = ITEMS.register("caterpillar_skewer", () -> new Item(new Item.Properties().food(ModFoods.CATERPILLAR_SKEWER)));
+    public static RegistryObject<Item> GLOW_BERRY_SKEWER = ITEMS.register("glow_berry_skewer", () -> new FruitSkewerItem(ModFoods.BERRY_SKEWER));
+    public static RegistryObject<Item> SWEET_BERRY_SKEWER = ITEMS.register("sweet_berry_skewer", () -> new FruitSkewerItem(ModFoods.BERRY_SKEWER));
+    public static RegistryObject<Item> CHORUS_FRUIT_SKEWER = ITEMS.register("chorus_fruit_skewer", () -> new FruitSkewerItem(ModFoods.FRUIT_SKEWER));
+    public static RegistryObject<Item> APPLE_SKEWER = ITEMS.register("apple_skewer", () -> new FruitSkewerItem(ModFoods.FRUIT_SKEWER));
+    public static RegistryObject<Item> CATERPILLAR_SKEWER = ITEMS.register("caterpillar_skewer", () -> new FruitSkewerItem(ModFoods.CATERPILLAR_SKEWER));
 
     // 裹糖果串
     public static RegistryObject<Item> CANDIED_GLOW_BERRY_SKEWER = ITEMS.register("candied_glow_berry_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_GLOW_BERRY_SKEWER_UPRIGHT, ModBlocks.CANDIED_GLOW_BERRY_SKEWER_SIDE, ModFoods.CANDIED_GLOW_BERRY_SKEWER, MobEffects.GLOWING, 5 * 20));
