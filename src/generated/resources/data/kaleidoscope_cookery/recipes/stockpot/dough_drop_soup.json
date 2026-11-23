@@ -21,10 +21,10 @@
       "tag": "forge:crops/lettuce"
     },
     {
-      "tag": "forge:flour"
+      "tag": "forge:flour/wheat"
     },
     {
-      "tag": "forge:flour"
+      "tag": "forge:flour/wheat"
     }
   ],
   "result": {

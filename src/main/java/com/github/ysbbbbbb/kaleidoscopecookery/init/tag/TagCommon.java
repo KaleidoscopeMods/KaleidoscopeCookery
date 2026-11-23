@@ -50,7 +50,8 @@ public interface TagCommon {
     TagKey<Item> RAW_FISHES_SALMON = itemTag("raw_fishes/salmon");
     TagKey<Item> RAW_FISHES_TROPICAL = itemTag("raw_fishes/tropical_fish");
 
-    TagKey<Item> FLOUR = itemTag("flour");
+    // #220 建议将面粉修改为此 tag
+    TagKey<Item> FLOUR = itemTag("flour/wheat");
     TagKey<Item> DOUGH = itemTag("dough");
     // 虽然面团是不可数名词，但为了兼容性……
     TagKey<Item> DOUGHS = itemTag("doughs");
