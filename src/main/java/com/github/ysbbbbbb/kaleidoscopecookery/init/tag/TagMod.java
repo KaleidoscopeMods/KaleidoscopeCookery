@@ -27,6 +27,10 @@ public interface TagMod {
      */
     TagKey<Item> EXTINGUISH_STOVE = itemTag("extinguish_stove");
     /**
+     * 锅铲专属 tag，用于方便第三方模组拓展锅铲
+     */
+    TagKey<Item> KITCHEN_SHOVELS = itemTag("kitchen_shovels");
+    /**
      * 任意可以用作炒锅油的物品
      */
     TagKey<Item> OIL = itemTag("oil");

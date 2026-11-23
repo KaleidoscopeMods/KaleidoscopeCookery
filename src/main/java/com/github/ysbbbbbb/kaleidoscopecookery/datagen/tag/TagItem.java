@@ -40,6 +40,8 @@ public class TagItem extends ItemTagsProvider {
         tag(STRAW_HAT).add(ModItems.STRAW_HAT.get(),
                 ModItems.STRAW_HAT_FLOWER.get());
 
+        tag(KITCHEN_SHOVELS).add(ModItems.KITCHEN_SHOVEL.get());
+
         tag(KITCHEN_KNIFE).add(ModItems.IRON_KITCHEN_KNIFE.get(),
                         ModItems.GOLD_KITCHEN_KNIFE.get(),
                         ModItems.DIAMOND_KITCHEN_KNIFE.get(),
