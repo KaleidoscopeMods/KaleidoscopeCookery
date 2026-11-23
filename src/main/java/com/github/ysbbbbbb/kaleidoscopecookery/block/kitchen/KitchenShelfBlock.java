@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
@@ -49,11 +50,16 @@ public class KitchenShelfBlock extends BaseEntityBlock implements EntityBlock {
                 .mapColor(MapColor.WOOD)
                 .strength(2.0F)
                 .sound(SoundType.WOOD)
+                .isRedstoneConductor(KitchenShelfBlock::never)
                 .noOcclusion());
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(HORIZONTAL_FACING, Direction.NORTH)
                 .setValue(SNEAK_PLACED, false)
                 .setValue(PART, Part.SINGLE));
+    }
+
+    private static boolean never(BlockState state, BlockGetter getter, BlockPos pos) {
+        return false;
     }
 
     @Nullable
