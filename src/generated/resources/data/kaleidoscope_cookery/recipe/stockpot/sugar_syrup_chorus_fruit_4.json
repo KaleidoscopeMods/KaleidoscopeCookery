@@ -1,0 +1,27 @@
+{
+  "type": "kaleidoscope_cookery:stockpot",
+  "carrier": {
+    "item": "kaleidoscope_cookery:chorus_fruit_skewer"
+  },
+  "finished_bubble_color": 14263361,
+  "finished_texture": "kaleidoscope_cookery:stockpot/sugar_syrup_finished",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kaleidoscope_cookery:candied_chorus_fruit_skewer"
+  },
+  "syrup": true
+}

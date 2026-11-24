@@ -110,6 +110,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.STOCKPOT.get());
         dropSelf(ModBlocks.FRUIT_BASKET.get());
         dropSelf(ModBlocks.KITCHENWARE_RACKS.get());
+        dropSelf(ModBlocks.KITCHEN_SHELF.get());
         dropSelf(ModBlocks.STRAW_BLOCK.get());
         dropSelf(ModBlocks.SHAWARMA_SPIT.get());
         dropSelf(ModBlocks.OIL_BLOCK.get());

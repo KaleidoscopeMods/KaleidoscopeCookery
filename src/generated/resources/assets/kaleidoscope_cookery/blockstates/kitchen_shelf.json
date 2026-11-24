@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,part=left,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 90
+    },
+    "facing=east,part=left,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 90
+    },
+    "facing=east,part=middle,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 90
+    },
+    "facing=east,part=middle,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 90
+    },
+    "facing=east,part=right,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 90
+    },
+    "facing=east,part=right,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 90
+    },
+    "facing=east,part=single,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 90
+    },
+    "facing=east,part=single,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 90
+    },
+    "facing=north,part=left,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left"
+    },
+    "facing=north,part=left,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left"
+    },
+    "facing=north,part=middle,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle"
+    },
+    "facing=north,part=middle,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle"
+    },
+    "facing=north,part=right,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right"
+    },
+    "facing=north,part=right,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right"
+    },
+    "facing=north,part=single,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single"
+    },
+    "facing=north,part=single,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single"
+    },
+    "facing=south,part=left,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 180
+    },
+    "facing=south,part=left,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 180
+    },
+    "facing=south,part=middle,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 180
+    },
+    "facing=south,part=middle,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 180
+    },
+    "facing=south,part=right,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 180
+    },
+    "facing=south,part=right,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 180
+    },
+    "facing=south,part=single,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 180
+    },
+    "facing=south,part=single,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 180
+    },
+    "facing=west,part=left,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 270
+    },
+    "facing=west,part=left,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/left",
+      "y": 270
+    },
+    "facing=west,part=middle,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 270
+    },
+    "facing=west,part=middle,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/middle",
+      "y": 270
+    },
+    "facing=west,part=right,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 270
+    },
+    "facing=west,part=right,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/right",
+      "y": 270
+    },
+    "facing=west,part=single,sneak_placed=false": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 270
+    },
+    "facing=west,part=single,sneak_placed=true": {
+      "model": "kaleidoscope_cookery:block/kitchen_shelf/single",
+      "y": 270
+    }
+  }
+}

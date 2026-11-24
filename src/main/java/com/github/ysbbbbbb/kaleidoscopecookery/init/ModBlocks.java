@@ -13,6 +13,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.food.FoodBiteThreeByT
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.*;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.misc.TrashCanBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -33,6 +34,7 @@ public class ModBlocks {
     public static DeferredBlock<Block> OIL_BLOCK = BLOCKS.register("oil_block", OilBlock::new);
     public static DeferredBlock<Block> ENAMEL_BASIN = BLOCKS.register("enamel_basin", EnamelBasinBlock::new);
     public static DeferredBlock<Block> KITCHENWARE_RACKS = BLOCKS.register("kitchenware_racks", KitchenwareRacksBlock::new);
+    public static DeferredBlock<Block> KITCHEN_SHELF = BLOCKS.register("kitchen_shelf", KitchenShelfBlock::new);
     public static DeferredBlock<Block> BAMBOO_TRAY = BLOCKS.register("bamboo_tray", BambooTrayBlock::new);
     public static DeferredBlock<Block> CHILI_RISTRA = BLOCKS.register("chili_ristra", ChiliRistraBlock::new);
     public static DeferredBlock<Block> STRUNG_MUSHROOMS = BLOCKS.register("strung_mushrooms", StrungMushroomsBlock::new);
@@ -94,12 +96,61 @@ public class ModBlocks {
     public static DeferredBlock<Block> TABLE_WARPED = BLOCKS.register("table_warped", TableBlock::new);
 
     public static DeferredBlock<Block> LONG_BENCH = BLOCKS.register("long_bench", LongBenchBlock::new);
-
     public static DeferredBlock<Block> RED_LANTERN = BLOCKS.register("red_lantern", RedLanternBlock::new);
-
     public static DeferredBlock<Block> EIGHT_IMMORTALS_TABLE = BLOCKS.register("eight_immortals_table", EightImmortalsTableBlock::new);
 
-    public static DeferredBlock<Block> COLD_CUT_HAM_SLICES = BLOCKS.register("cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
+    public static DeferredBlock<Block> CANDIED_GLOW_BERRY_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_glow_berry_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), 8
+    );
+
+    public static DeferredBlock<Block> CANDIED_GLOW_BERRY_SKEWER_SIDE = candiedSkewer(
+            "candied_glow_berry_skewer_side", 5, false,
+            () -> ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), 8
+    );
+
+    public static DeferredBlock<Block> CANDIED_SWEET_BERRY_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_sweet_berry_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_SWEET_BERRY_SKEWER_SIDE = candiedSkewer(
+            "candied_sweet_berry_skewer_side", 5, false,
+            () -> ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_CHORUS_FRUIT_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_chorus_fruit_skewer_upright", 5, true,
+            () -> ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_CHORUS_FRUIT_SKEWER_SIDE = candiedSkewer(
+            "candied_chorus_fruit_skewer_side", 4, false,
+            () -> ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_APPLE_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_apple_skewer_upright", 5, true,
+            () -> ModItems.CANDIED_APPLE_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_APPLE_SKEWER_SIDE = candiedSkewer(
+            "candied_apple_skewer_side", 4, false,
+            () -> ModItems.CANDIED_APPLE_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_CATERPILLAR_SKEWER_UPRIGHT = candiedSkewer(
+            "candied_caterpillar_skewer_upright", 12, true,
+            () -> ModItems.CANDIED_CATERPILLAR_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> CANDIED_CATERPILLAR_SKEWER_SIDE = candiedSkewer(
+            "candied_caterpillar_skewer_side", 5, false,
+            () -> ModItems.CANDIED_CATERPILLAR_SKEWER.get(), 0
+    );
+
+    public static DeferredBlock<Block> COLD_CUT_HAM_SLICES = BLOCKS.register(
+            "cold_cut_ham_slices", () -> new FoodBiteThreeByThreeBlock(
             ModFoods.COLD_CUT_HAM_SLICES_BLOCK, 8, null
     ));
 
@@ -133,6 +184,9 @@ public class ModBlocks {
 
     public static Supplier<BlockEntityType<KitchenwareRacksBlockEntity>> KITCHENWARE_RACKS_BE = BLOCK_ENTITIES.register("kitchenware_racks",
             () -> BlockEntityType.Builder.of(KitchenwareRacksBlockEntity::new, KITCHENWARE_RACKS.get()).build(null));
+
+    public static Supplier<BlockEntityType<KitchenShelfBlockEntity>> KITCHEN_SHELF_BE = BLOCK_ENTITIES.register("kitchen_shelf",
+            () -> BlockEntityType.Builder.of(KitchenShelfBlockEntity::new, KITCHEN_SHELF.get()).build(null));
 
     public static Supplier<BlockEntityType<BambooTrayBlockEntity>> BAMBOO_TRAY_BE = BLOCK_ENTITIES.register("bamboo_tray",
             () -> BlockEntityType.Builder.of(BambooTrayBlockEntity::new, BAMBOO_TRAY.get()).build(null));
@@ -175,4 +229,8 @@ public class ModBlocks {
             TABLE_BIRCH.get(), TABLE_CHERRY.get(), TABLE_CRIMSON.get(), TABLE_DARK_OAK.get(),
             TABLE_JUNGLE.get(), TABLE_MANGROVE.get(), TABLE_WARPED.get()
     ).build(null));
+
+    private static DeferredBlock<Block> candiedSkewer(String name, int maxCount, boolean upright, Supplier<Item> item, int lightLevel) {
+        return BLOCKS.register(name, () -> new CandiedSkewerBlock(maxCount, item, lightLevel, upright));
+    }
 }

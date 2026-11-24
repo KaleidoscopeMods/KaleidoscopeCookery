@@ -4,6 +4,7 @@ import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotRecipe;
 import com.github.ysbbbbbb.kaleidoscopecookery.crafting.recipe.StockpotVisuals;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModSoupBases;
+import com.github.ysbbbbbb.kaleidoscopecookery.util.StreamCodecUtil;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -31,7 +32,8 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
                 ItemStack.EMPTY,
                 DEFAULT_TIME,
                 DEFAULT_CARRIER,
-                StockpotVisuals.DEFAULT
+                StockpotVisuals.DEFAULT,
+                false
         );
         return new RecipeHolder<>(EMPTY_ID, stockpotRecipe);
     }
@@ -45,16 +47,18 @@ public class StockpotRecipeSerializer implements RecipeSerializer<StockpotRecipe
             ItemStack.CODEC.fieldOf("result").forGetter(StockpotRecipe::result),
             Codec.INT.optionalFieldOf("time", DEFAULT_TIME).forGetter(StockpotRecipe::time),
             Ingredient.CODEC.optionalFieldOf("carrier", DEFAULT_CARRIER).forGetter(StockpotRecipe::carrier),
-            StockpotVisuals.CODEC.forGetter(StockpotRecipe::visuals)
+            StockpotVisuals.CODEC.forGetter(StockpotRecipe::visuals),
+            Codec.BOOL.optionalFieldOf("syrup", false).forGetter(StockpotRecipe::syrup)
     ).apply(instance, StockpotRecipe::new));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, StockpotRecipe> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, StockpotRecipe> STREAM_CODEC = StreamCodecUtil.composite(
             Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), StockpotRecipe::getIngredients,
             ResourceLocation.STREAM_CODEC, StockpotRecipe::soupBase,
             ItemStack.STREAM_CODEC, StockpotRecipe::result,
             ByteBufCodecs.INT, StockpotRecipe::time,
             Ingredient.CONTENTS_STREAM_CODEC, StockpotRecipe::carrier,
             StockpotVisuals.STREAM_CODEC, StockpotRecipe::visuals,
+            ByteBufCodecs.BOOL, StockpotRecipe::syrup,
             StockpotRecipe::new
     );
 

@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "count=1,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_1",
+      "y": 90
+    },
+    "count=1,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_1"
+    },
+    "count=1,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_1",
+      "y": 180
+    },
+    "count=1,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_1",
+      "y": 270
+    },
+    "count=10,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_10",
+      "y": 90
+    },
+    "count=10,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_10"
+    },
+    "count=10,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_10",
+      "y": 180
+    },
+    "count=10,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_10",
+      "y": 270
+    },
+    "count=11,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_11",
+      "y": 90
+    },
+    "count=11,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_11"
+    },
+    "count=11,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_11",
+      "y": 180
+    },
+    "count=11,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_11",
+      "y": 270
+    },
+    "count=12,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_12",
+      "y": 90
+    },
+    "count=12,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_12"
+    },
+    "count=12,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_12",
+      "y": 180
+    },
+    "count=12,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_12",
+      "y": 270
+    },
+    "count=2,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_2",
+      "y": 90
+    },
+    "count=2,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_2"
+    },
+    "count=2,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_2",
+      "y": 180
+    },
+    "count=2,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_2",
+      "y": 270
+    },
+    "count=3,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_3",
+      "y": 90
+    },
+    "count=3,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_3"
+    },
+    "count=3,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_3",
+      "y": 180
+    },
+    "count=3,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_3",
+      "y": 270
+    },
+    "count=4,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_4",
+      "y": 90
+    },
+    "count=4,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_4"
+    },
+    "count=4,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_4",
+      "y": 180
+    },
+    "count=4,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_4",
+      "y": 270
+    },
+    "count=5,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_5",
+      "y": 90
+    },
+    "count=5,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_5"
+    },
+    "count=5,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_5",
+      "y": 180
+    },
+    "count=5,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_5",
+      "y": 270
+    },
+    "count=6,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_6",
+      "y": 90
+    },
+    "count=6,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_6"
+    },
+    "count=6,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_6",
+      "y": 180
+    },
+    "count=6,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_6",
+      "y": 270
+    },
+    "count=7,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_7",
+      "y": 90
+    },
+    "count=7,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_7"
+    },
+    "count=7,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_7",
+      "y": 180
+    },
+    "count=7,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_7",
+      "y": 270
+    },
+    "count=8,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_8",
+      "y": 90
+    },
+    "count=8,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_8"
+    },
+    "count=8,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_8",
+      "y": 180
+    },
+    "count=8,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_8",
+      "y": 270
+    },
+    "count=9,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_9",
+      "y": 90
+    },
+    "count=9,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_9"
+    },
+    "count=9,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_9",
+      "y": 180
+    },
+    "count=9,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_sweet_berry_skewer/upright_9",
+      "y": 270
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.KitchenShovelItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -77,7 +78,8 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                           Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (hand != InteractionHand.MAIN_HAND) {
             super.useItemOn(stack, state, level, pos, player, hand, hitResult);
         }
@@ -117,7 +119,7 @@ public class EnamelBasinBlock extends Block implements SimpleWaterloggedBlock {
             return ItemInteractionResult.SUCCESS;
         }
         // 当用铲子右击时
-        if (mainHandItem.is(ModItems.KITCHEN_SHOVEL.get())) {
+        if (mainHandItem.is(TagMod.KITCHEN_SHOVELS)) {
             return onShovelClick(state, level, pos, player, mainHandItem);
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

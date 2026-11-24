@@ -129,6 +129,17 @@ public class ItemModelGenerator extends ItemModelProvider {
         basicItem(ModItems.HOT_DRY_NOODLES.get());
         basicItem(ModItems.LABA_CONGEE.get());
 
+        skewerItem(ModItems.GLOW_BERRY_SKEWER.get(), "glow_berry_skewer");
+        skewerItem(ModItems.SWEET_BERRY_SKEWER.get(), "sweet_berry_skewer");
+        skewerItem(ModItems.CHORUS_FRUIT_SKEWER.get(), "chorus_fruit_skewer");
+        skewerItem(ModItems.APPLE_SKEWER.get(), "apple_skewer");
+        skewerItem(ModItems.CATERPILLAR_SKEWER.get(), "caterpillar_skewer");
+        skewerItem(ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), "candied_glow_berry_skewer");
+        skewerItem(ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), "candied_sweet_berry_skewer");
+        skewerItem(ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), "candied_chorus_fruit_skewer");
+        skewerItem(ModItems.CANDIED_APPLE_SKEWER.get(), "candied_apple_skewer");
+        skewerItem(ModItems.CANDIED_CATERPILLAR_SKEWER.get(), "candied_caterpillar_skewer");
+
         basicItem(modLoc("honey"));
         basicItem(modLoc("egg"));
         basicItem(modLoc("oil_in_millstone"));
@@ -317,5 +328,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         return getBuilder(item.toString())
                 .parent(new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()));
+    }
+
+    private void skewerItem(Item item, String texture) {
+        getBuilder(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(KaleidoscopeCookery.MOD_ID, "item/" + texture));
     }
 }

@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopecookery.block.kitchen;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
-import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import com.mojang.serialization.MapCodec;
@@ -59,7 +58,7 @@ public class StoveBlock extends HorizontalDirectionalBlock {
                 .strength(1.5F, 6.0F));
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.SOUTH)
-                .setValue(LIT, false));
+                .setValue(LIT, true));
     }
 
     @Override
@@ -143,7 +142,7 @@ public class StoveBlock extends HorizontalDirectionalBlock {
         }
         // 熄灭
         if (state.getValue(LIT) && itemInHand.is(TagMod.EXTINGUISH_STOVE)) {
-            if (itemInHand.is(ModItems.KITCHEN_SHOVEL.get()) && hasOil(itemInHand)) {
+            if (itemInHand.is(TagMod.KITCHEN_SHOVELS) && hasOil(itemInHand)) {
                 setHasOil(itemInHand, false);
             }
             level.setBlockAndUpdate(pos, state.setValue(LIT, false));

@@ -57,12 +57,15 @@ public class SteamerBlockEntityRender implements BlockEntityRenderer<SteamerBloc
             double x = (i % 2) * 0.3 + 0.35;
             double y = (i / 4) * 0.5 + 0.25 + (i % 4) * 0.01;
             double z = ((i / 2) % 2) * 0.3 + 0.35;
+
             poseStack.pushPose();
             poseStack.translate(x, y, z);
             if (!hasCustom) {
+                poseStack.mulPose(Axis.ZP.rotationDegrees(-35));
                 poseStack.mulPose(Axis.XN.rotationDegrees(90));
             } else {
                 poseStack.translate(0, 0.4375, 0.4375);
+                poseStack.mulPose(Axis.ZP.rotationDegrees(-35));
             }
             poseStack.scale(0.5F, 0.5F, 0.5F);
             itemRenderer.render(stack, ItemDisplayContext.FIXED,

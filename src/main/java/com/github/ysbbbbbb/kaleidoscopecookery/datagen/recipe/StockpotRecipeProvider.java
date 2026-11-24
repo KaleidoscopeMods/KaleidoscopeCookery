@@ -11,6 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
@@ -30,6 +31,7 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
         addZongziRecipes(consumer);
         addTeaEggRecipes(consumer);
         addClayPotMilkTeaRecipes(consumer);
+        addSugarSyrupRecipes(consumer);
 
         StockpotRecipeBuilder.builder()
                 .addInput(Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE, Items.BONE)
@@ -428,6 +430,27 @@ public class StockpotRecipeProvider extends ModRecipeProvider {
                     .setCarrier(Items.FLOWER_POT)
                     .setResult(ModItems.CLAY_POT_MILK_TEA.get(), count)
                     .save(consumer, "clay_pot_milk_tea_count_" + count);
+        }
+    }
+
+    private void addSugarSyrupRecipes(RecipeOutput consumer) {
+        addSugarSyrupRecipe(consumer, ModItems.GLOW_BERRY_SKEWER.get(), ModItems.CANDIED_GLOW_BERRY_SKEWER.get(), "glow_berry");
+        addSugarSyrupRecipe(consumer, ModItems.SWEET_BERRY_SKEWER.get(), ModItems.CANDIED_SWEET_BERRY_SKEWER.get(), "sweet_berry");
+        addSugarSyrupRecipe(consumer, ModItems.CHORUS_FRUIT_SKEWER.get(), ModItems.CANDIED_CHORUS_FRUIT_SKEWER.get(), "chorus_fruit");
+        addSugarSyrupRecipe(consumer, ModItems.APPLE_SKEWER.get(), ModItems.CANDIED_APPLE_SKEWER.get(), "apple");
+        addSugarSyrupRecipe(consumer, ModItems.CATERPILLAR_SKEWER.get(), ModItems.CANDIED_CATERPILLAR_SKEWER.get(), "caterpillar");
+    }
+
+    private void addSugarSyrupRecipe(RecipeOutput consumer, ItemLike skewer, ItemLike result, String name) {
+        for (int count = 1; count <= 9; count++) {
+            StockpotRecipeBuilder.builder()
+                    .addInput((Object[]) this.getItemsWithCount(Items.SUGAR, count))
+                    .setCarrier(skewer)
+                    .setResult(result.asItem(), 1)
+                    .setFinishedTexture(modLoc("stockpot/sugar_syrup_finished"))
+                    .setFinishedBubbleColor(0xD9A441)
+                    .setSyrup()
+                    .save(consumer, "sugar_syrup_" + name + "_" + count);
         }
     }
 }

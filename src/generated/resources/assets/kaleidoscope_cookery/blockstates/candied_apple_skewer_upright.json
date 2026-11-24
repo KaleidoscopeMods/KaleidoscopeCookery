@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "count=1,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_1",
+      "y": 90
+    },
+    "count=1,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_1"
+    },
+    "count=1,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_1",
+      "y": 180
+    },
+    "count=1,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_1",
+      "y": 270
+    },
+    "count=2,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_2",
+      "y": 90
+    },
+    "count=2,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_2"
+    },
+    "count=2,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_2",
+      "y": 180
+    },
+    "count=2,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_2",
+      "y": 270
+    },
+    "count=3,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_3",
+      "y": 90
+    },
+    "count=3,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_3"
+    },
+    "count=3,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_3",
+      "y": 180
+    },
+    "count=3,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_3",
+      "y": 270
+    },
+    "count=4,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_4",
+      "y": 90
+    },
+    "count=4,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_4"
+    },
+    "count=4,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_4",
+      "y": 180
+    },
+    "count=4,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_4",
+      "y": 270
+    },
+    "count=5,facing=east": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_5",
+      "y": 90
+    },
+    "count=5,facing=north": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_5"
+    },
+    "count=5,facing=south": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_5",
+      "y": 180
+    },
+    "count=5,facing=west": {
+      "model": "kaleidoscope_cookery:block/candied_skewers/candied_apple_skewer/upright_5",
+      "y": 270
+    }
+  }
+}

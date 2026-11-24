@@ -36,19 +36,22 @@ public class MillstoneInputHandler implements IItemHandler {
             return stack;
         }
 
-        // 模拟模式：只判断能否接受，绝不改变石磨状态（否则会导致物品复制/丢失）
         if (simulate) {
             SimpleInput container = new SimpleInput(Collections.singletonList(stack));
-            boolean canAccept = this.millstone.isOutputEmpty()
-                                && this.millstone.getInput().isEmpty()
-                                && this.millstone.matchRecipe(container, level).isPresent();
-            return canAccept ? ItemStack.EMPTY : stack;
+            if (this.millstone.isOutputEmpty()
+                && this.millstone.getInput().isEmpty()
+                && this.millstone.matchRecipe(container, level).isPresent()
+            ) {
+                int count = Math.min(stack.getCount(), MillstoneBlockEntity.MAX_INPUT_COUNT);
+                return stack.copyWithCount(stack.getCount() - count);
+            }
+            return stack;
         }
 
-        // onPutItem 内部用 split 最多取走 MAX_INPUT_COUNT 个，
-        // 返回 stack 中剩余的部分，避免多余物品被溜槽当作"已接收"而销毁
-        if (this.millstone.onPutItem(level, stack)) {
-            return stack.isEmpty() ? ItemStack.EMPTY : stack;
+        // 不能直接修改传入的 stack，需要复制后，返回修改后的 stack
+        ItemStack copy = stack.copy();
+        if (this.millstone.onPutItem(level, copy)) {
+            return copy.isEmpty() ? ItemStack.EMPTY : copy;
         }
         return stack;
     }

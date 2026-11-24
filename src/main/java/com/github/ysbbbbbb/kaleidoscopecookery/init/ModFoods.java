@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Items;
 
 import static com.github.ysbbbbbb.kaleidoscopecookery.init.ModEffects.*;
 import static net.minecraft.world.effect.MobEffects.*;
@@ -28,6 +29,38 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(CONFUSION, 200), 1F)
             .build();
 
+    // 果串
+    FoodProperties BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.1F)
+            .alwaysEdible().build();
+
+    FoodProperties FRUIT_SKEWER = (new FoodProperties.Builder())
+            .nutrition(8).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
+    FoodProperties CATERPILLAR_SKEWER = (new FoodProperties.Builder())
+            .nutrition(18).saturationModifier(7F / 36F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(CONFUSION, 15 * 20), 1F)
+            .build();
+
+    // 裹糖果串
+    FoodProperties CANDIED_GLOW_BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(10).saturationModifier(0.08F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(NIGHT_VISION, 20 * 20), 1F)
+            .build();
+
+    FoodProperties CANDIED_SWEET_BERRY_SKEWER = (new FoodProperties.Builder())
+            .nutrition(10).saturationModifier(0.08F)
+            .alwaysEdible().build();
+
+    FoodProperties CANDIED_FRUIT_SKEWER = (new FoodProperties.Builder())
+            .nutrition(16).saturationModifier(0.3F)
+            .alwaysEdible().build();
+
+    FoodProperties CANDIED_CATERPILLAR_SKEWER = (new FoodProperties.Builder())
+            .nutrition(36).saturationModifier(7F / 36F)
+            .alwaysEdible().build();
+
     // 刺身
     FoodProperties SASHIMI = (new FoodProperties.Builder())
             .nutrition(1).saturationModifier(0.5F)
@@ -45,11 +78,6 @@ public interface ModFoods {
 
     // 生五花肉
     FoodProperties RAW_PORK_BELLY = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3F)
-            .alwaysEdible().build();
-
-    // 生驴肉
-    FoodProperties RAW_DONKEY_MEAT = (new FoodProperties.Builder())
             .nutrition(2).saturationModifier(0.3F)
             .alwaysEdible().build();
 
@@ -76,11 +104,6 @@ public interface ModFoods {
     // 熟五花肉
     FoodProperties COOKED_PORK_BELLY = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0.8F)
-            .alwaysEdible().build();
-
-    // 熟驴肉
-    FoodProperties COOKED_DONKEY_MEAT = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.8F)
             .alwaysEdible().build();
 
     // 熟切制小肉
@@ -162,30 +185,35 @@ public interface ModFoods {
     FoodProperties BEEF_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 烩面
     FoodProperties HUI_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 乌冬面
     FoodProperties UDON_NOODLE = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 热干面
     FoodProperties HOT_DRY_NOODLES = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(VITALITY, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 腊八粥
     FoodProperties LABA_CONGEE = (new FoodProperties.Builder())
             .nutrition(12).saturationModifier(0.5F)
             .effect(() -> new MobEffectInstance(WARMTH, 5 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 煎蛋
@@ -288,17 +316,6 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(FLATULENCE, 35 * 20), 1.0F)
             .alwaysEdible().build();
 
-    // 红烧鱼
-    FoodProperties BRAISED_FISH_BLOCK = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.667F)
-            .effect(() -> new MobEffectInstance(WATER_BREATHING, 3600), 1.0F)
-            .alwaysEdible().build();
-
-    FoodProperties BRAISED_FISH_ITEM = (new FoodProperties.Builder())
-            .nutrition(13).saturationModifier(0.615F)
-            .effect(() -> new MobEffectInstance(WATER_BREATHING, 3600), 1.0F)
-            .alwaysEdible().build();
-
     // 黄金沙拉
     FoodProperties GOLDEN_SALAD_BLOCK = (new FoodProperties.Builder())
             .nutrition(5).saturationModifier(0.55F)
@@ -319,17 +336,6 @@ public interface ModFoods {
             .alwaysEdible().build();
 
     FoodProperties SPICY_CHICKEN_ITEM = (new FoodProperties.Builder())
-            .nutrition(20).saturationModifier(0.55F)
-            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 80 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 烧鸟串
-    FoodProperties YAKITORI_BLOCK = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.55F)
-            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 80 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    FoodProperties YAKITORI_ITEM = (new FoodProperties.Builder())
             .nutrition(20).saturationModifier(0.55F)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 80 * 20), 1.0F)
             .alwaysEdible().build();
@@ -464,198 +470,156 @@ public interface ModFoods {
             .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)
             .alwaysEdible().build();
 
-    FoodProperties SHENGJIAN_MANTOU_BLOCK = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(1)
-            .effect(() -> new MobEffectInstance(WARMTH, 6000), 1.0F)
-            .alwaysEdible().build();
-
     // 番茄炒蛋
     FoodProperties SCRAMBLE_EGG_WITH_TOMATOES = (new FoodProperties.Builder())
             .nutrition(9).saturationModifier(0.611f)
             .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 爆炒牛杂
-    FoodProperties STIR_FRIED_BEEF_OFFAL = (new FoodProperties.Builder())
-            .nutrition(9).saturationModifier(0.611f)
-            .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 红烧牛肉
     FoodProperties BRAISED_BEEF = (new FoodProperties.Builder())
             .nutrition(9).saturationModifier(0.611f)
             .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 青椒炒肉
     FoodProperties STIR_FRIED_PORK_WITH_PEPPERS = (new FoodProperties.Builder())
             .nutrition(9).saturationModifier(0.611f)
             .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 糖醋里脊
     FoodProperties SWEET_AND_SOUR_PORK = (new FoodProperties.Builder())
             .nutrition(9).saturationModifier(0.611f)
             .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 鱼香肉丝
     FoodProperties FISH_FLAVORED_SHREDDED_PORK = (new FoodProperties.Builder())
             .nutrition(9).saturationModifier(0.611f)
             .effect(() -> new MobEffectInstance(VIGOR, 90 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 田园杂蔬
-    FoodProperties COUNTRY_STYLE_MIXED_VEGETABLES = (new FoodProperties.Builder())
-            .nutrition(9).saturationModifier(0.611f)
-            .effect(() -> new MobEffectInstance(PRESERVATION, 90 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 米饭
     FoodProperties COOKED_RICE = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(1)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 蛋炒饭
     FoodProperties EGG_FRIED_RICE = (new FoodProperties.Builder())
             .nutrition(8).saturationModifier(0.875F)
-            .alwaysEdible().build();
-
-    // 美味蛋炒饭
-    FoodProperties DELICIOUS_EGG_FRIED_RICE = (new FoodProperties.Builder())
-            .nutrition(12).saturationModifier(0.667f)
-            .effect(() -> new MobEffectInstance(WARMTH, 3 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 谜之炒菜盖饭
-    FoodProperties SUSPICIOUS_STIR_FRY_RICE_BOWL = (new FoodProperties.Builder())
-            .nutrition(8).saturationModifier(0.4F)
-            .effect(() -> new MobEffectInstance(MOVEMENT_SPEED, 1200), 0.15F)
-            .effect(() -> new MobEffectInstance(JUMP, 1200), 0.15F)
-            .effect(() -> new MobEffectInstance(DIG_SPEED, 1200), 0.15F)
-            .effect(() -> new MobEffectInstance(LUCK, 1200), 0.15F)
-            .effect(() -> new MobEffectInstance(DIG_SLOWDOWN, 1200), 0.15F)
-            .effect(() -> new MobEffectInstance(CONFUSION, 400), 0.15F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 番茄炒蛋盖饭
     FoodProperties SCRAMBLE_EGG_WITH_TOMATOES_RICE_BOWL = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 爆炒牛杂盖饭
-    FoodProperties STIR_FRIED_BEEF_OFFAL_RICE_BOWL = (new FoodProperties.Builder())
-            .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 红烧牛肉盖饭
     FoodProperties BRAISED_BEEF_RICE_BOWL = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 青椒炒肉盖饭
     FoodProperties STIR_FRIED_PORK_WITH_PEPPERS_RICE_BOWL = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 糖醋里脊盖饭
     FoodProperties SWEET_AND_SOUR_PORK_RICE_BOWL = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 鱼香肉丝盖饭
     FoodProperties FISH_FLAVORED_SHREDDED_PORK_RICE_BOWL = (new FoodProperties.Builder())
             .nutrition(14).saturationModifier(0.643f)
             .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 红烧鱼盖饭
-    FoodProperties BRAISED_FISH_RICE_BOWL = (new FoodProperties.Builder())
-            .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 辣子鸡盖饭
-    FoodProperties SPICY_CHICKEN_RICE_BOWL = (new FoodProperties.Builder())
-            .nutrition(14).saturationModifier(0.643f)
-            .effect(() -> new MobEffectInstance(SATIATED_SHIELD, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 大骨汤
     FoodProperties PORK_BONE_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(VIGOR, 5 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 海鲜味噌汤
     FoodProperties SEAFOOD_MISO_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(WATER_BREATHING, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 恐惧浓汤
     FoodProperties FEARSOME_THICK_SOUP = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0)
             .effect(() -> new MobEffectInstance(SULFUR, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 萝卜羊肉汤
     FoodProperties LAMB_AND_RADISH_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(TUNDRA_STRIDER, 5 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 土豆炖牛肉
     FoodProperties BRAISED_BEEF_WITH_POTATOES = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 野菌兔肉汤
     FoodProperties WILD_MUSHROOM_RABBIT_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(MOVEMENT_SPEED, 8 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 番茄牛腩汤
-    FoodProperties TOMATO_BEEF_BRISKET_SOUP = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.667f)
-            .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 河豚汤
     FoodProperties PUFFERFISH_SOUP = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0)
             .effect(() -> new MobEffectInstance(MUSTARD, 10 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 罗宋汤
     FoodProperties BORSCHT = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(FLATULENCE, 3 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 牛丸汤
     FoodProperties BEEF_MEATBALL_SOUP = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 小鸡炖蘑菇
     FoodProperties CHICKEN_AND_MUSHROOM_STEW = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.667f)
             .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
-            .alwaysEdible().build();
-
-    // 驴肉汤
-    FoodProperties DONKEY_SOUP = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.667f)
-            .effect(() -> new MobEffectInstance(WARMTH, 8 * 60 * 20), 1.0F)
+            .usingConvertsTo(Items.BOWL)
             .alwaysEdible().build();
 
     // 拔丝土豆
@@ -832,7 +796,7 @@ public interface ModFoods {
             .nutrition(16).saturationModifier(0.8f)
             .alwaysEdible().build();
 
-    // 油泼鱼: oil_splashed_fish
+    // 油泼鱼
     FoodProperties OIL_SPLASHED_FISH_BLOCK = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.667F)
             .effect(() -> new MobEffectInstance(WARMTH, 80 * 20), 1.0F)

@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopecookery.init;
 
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.item.*;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,6 +17,7 @@ public final class ModItems {
     public static DeferredItem<Item> STOCKPOT_LID = ITEMS.register("stockpot_lid", StockpotLidItem::new);
     public static DeferredItem<Item> CHOPPING_BOARD = ITEMS.register("chopping_board", () -> new BlockItem(ModBlocks.CHOPPING_BOARD.get(), new Item.Properties()));
     public static DeferredItem<Item> KITCHENWARE_RACKS = ITEMS.register("kitchenware_racks", () -> new WithTooltipsBlockItem(ModBlocks.KITCHENWARE_RACKS.get(), "kitchenware_racks"));
+    public static DeferredItem<Item> KITCHEN_SHELF = ITEMS.register("kitchen_shelf", () -> new BlockItem(ModBlocks.KITCHEN_SHELF.get(), new Item.Properties()));
     public static DeferredItem<Item> BAMBOO_TRAY = ITEMS.register("bamboo_tray", () -> new BlockItem(ModBlocks.BAMBOO_TRAY.get(), new Item.Properties()));
     public static DeferredItem<Item> SHAWARMA_SPIT = ITEMS.register("shawarma_spit", () -> new BlockItem(ModBlocks.SHAWARMA_SPIT.get(), new Item.Properties()));
     public static DeferredItem<Item> MILLSTONE = ITEMS.register("millstone", () -> new BlockItem(ModBlocks.MILLSTONE.get(), new Item.Properties()));
@@ -125,6 +127,20 @@ public final class ModItems {
     public static DeferredItem<Item> FRESH_TEA_LEAVES = ITEMS.register("fresh_tea_leaves", () -> new Item(new Item.Properties()));
     public static DeferredItem<Item> DRIED_TEA_LEAVES = ITEMS.register("dried_tea_leaves", () -> new Item(new Item.Properties()));
     public static DeferredItem<Item> CATERPILLAR = ITEMS.register("caterpillar", () -> new WithTooltipsItem(new Item.Properties().food(ModFoods.CATERPILLAR), "caterpillar"));
+
+    // 果串
+    public static DeferredItem<Item> GLOW_BERRY_SKEWER = ITEMS.register("glow_berry_skewer", () -> new FruitSkewerItem(ModFoods.BERRY_SKEWER));
+    public static DeferredItem<Item> SWEET_BERRY_SKEWER = ITEMS.register("sweet_berry_skewer", () -> new FruitSkewerItem(ModFoods.BERRY_SKEWER));
+    public static DeferredItem<Item> CHORUS_FRUIT_SKEWER = ITEMS.register("chorus_fruit_skewer", () -> new FruitSkewerItem(ModFoods.FRUIT_SKEWER));
+    public static DeferredItem<Item> APPLE_SKEWER = ITEMS.register("apple_skewer", () -> new FruitSkewerItem(ModFoods.FRUIT_SKEWER));
+    public static DeferredItem<Item> CATERPILLAR_SKEWER = ITEMS.register("caterpillar_skewer", () -> new FruitSkewerItem(ModFoods.CATERPILLAR_SKEWER));
+
+    // 裹糖果串
+    public static DeferredItem<Item> CANDIED_GLOW_BERRY_SKEWER = ITEMS.register("candied_glow_berry_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_GLOW_BERRY_SKEWER_UPRIGHT, ModBlocks.CANDIED_GLOW_BERRY_SKEWER_SIDE, ModFoods.CANDIED_GLOW_BERRY_SKEWER, MobEffects.GLOWING, 5 * 20));
+    public static DeferredItem<Item> CANDIED_SWEET_BERRY_SKEWER = ITEMS.register("candied_sweet_berry_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_SWEET_BERRY_SKEWER_UPRIGHT, ModBlocks.CANDIED_SWEET_BERRY_SKEWER_SIDE, ModFoods.CANDIED_SWEET_BERRY_SKEWER));
+    public static DeferredItem<Item> CANDIED_CHORUS_FRUIT_SKEWER = ITEMS.register("candied_chorus_fruit_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_UPRIGHT, ModBlocks.CANDIED_CHORUS_FRUIT_SKEWER_SIDE, ModFoods.CANDIED_FRUIT_SKEWER));
+    public static DeferredItem<Item> CANDIED_APPLE_SKEWER = ITEMS.register("candied_apple_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_APPLE_SKEWER_UPRIGHT, ModBlocks.CANDIED_APPLE_SKEWER_SIDE, ModFoods.CANDIED_FRUIT_SKEWER));
+    public static DeferredItem<Item> CANDIED_CATERPILLAR_SKEWER = ITEMS.register("candied_caterpillar_skewer", () -> new CandiedSkewerItem(ModBlocks.CANDIED_CATERPILLAR_SKEWER_UPRIGHT, ModBlocks.CANDIED_CATERPILLAR_SKEWER_SIDE, ModFoods.CANDIED_CATERPILLAR_SKEWER, MobEffects.CONFUSION, 15 * 20));
 
     // 面类食材
     public static DeferredItem<Item> FLOUR = ITEMS.register("flour", FlourItem::new);

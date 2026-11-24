@@ -289,7 +289,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
     }
 
     public void makeRipeParticles(Level level, BlockPos pos) {
-        if (level instanceof ServerLevel serverLevel && level.random.nextFloat() < 0.5F) {
+        if (level instanceof ServerLevel serverLevel) {
             RandomSource random = serverLevel.random;
             boolean half = this.getBlockState().getValue(SteamerBlock.HALF);
             double yOffset = half ? 0.25 : 0.75;
@@ -297,7 +297,7 @@ public class SteamerBlockEntity extends BaseBlockEntity implements ISteamer {
                     pos.getX() + 0.5 + random.nextDouble() / 1.25 * (random.nextBoolean() ? 1 : -1),
                     pos.getY() + yOffset + random.nextDouble() / 2,
                     pos.getZ() + 0.5 + random.nextDouble() / 1.25 * (random.nextBoolean() ? 1 : -1),
-                    1, 0, 0, 0, 0.05);
+                    2, 0, 0, 0, 0.05);
         }
     }
 

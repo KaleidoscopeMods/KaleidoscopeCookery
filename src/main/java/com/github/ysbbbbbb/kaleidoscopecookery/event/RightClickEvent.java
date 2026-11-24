@@ -3,6 +3,8 @@ package com.github.ysbbbbbb.kaleidoscopecookery.event;
 import com.github.ysbbbbbb.kaleidoscopecookery.KaleidoscopeCookery;
 import com.github.ysbbbbbb.kaleidoscopecookery.advancements.critereon.ModEventTriggerType;
 import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.decoration.FruitBasketBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.blockentity.kitchen.KitchenShelfBlockEntity;
+import com.github.ysbbbbbb.kaleidoscopecookery.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.ModTrigger;
 import com.github.ysbbbbbb.kaleidoscopecookery.init.tag.TagMod;
 import net.minecraft.core.BlockPos;
@@ -12,7 +14,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
@@ -35,6 +39,8 @@ public class RightClickEvent {
         InteractionHand hand = event.getHand();
         ItemStack itemInHand = player.getItemInHand(hand);
         Item item = itemInHand.getItem();
+
+        // 兼容女仆模组的魂符和果篮
         Item maidItem = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("touhou_little_maid", "smart_slab_has_maid"));
         if (player.isSecondaryUseActive() && hand == InteractionHand.MAIN_HAND
             && !itemInHand.is(Items.DEBUG_STICK)
@@ -48,6 +54,16 @@ public class RightClickEvent {
                 }
             }
             fruitBasketBlock.takeOut(player);
+            event.setCanceled(true);
+        }
+
+        // 厨架潜行存入物品
+        if (player.isSecondaryUseActive() && hand == InteractionHand.MAIN_HAND
+            && !itemInHand.isEmpty() && !itemInHand.is(ModItems.KITCHEN_SHELF.get())
+            && level.getBlockEntity(pos) instanceof KitchenShelfBlockEntity shelf) {
+            shelf.interact(player, true);
+            level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+            event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
         }
     }
